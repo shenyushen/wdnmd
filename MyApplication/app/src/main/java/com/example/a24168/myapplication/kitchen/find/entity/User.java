@@ -1,6 +1,8 @@
-package com.entity;
+package com.example.a24168.myapplication.kitchen.find.entity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 	private int id;
 	private String username;
 	private String password;

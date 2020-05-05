@@ -42,6 +42,7 @@
 			<array>
 				<value>classpath:com/market/type/dao/*.xml</value>
 				<value>classpath:com/kitchen/recommend/dao/*.xml</value>
+				<value>classpath:com/kitchen/find/dao/*.xml</value>
 			</array>
 		</property>
 
