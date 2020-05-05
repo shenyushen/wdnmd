@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-05 11:20:54
+Date: 2020-05-05 14:22:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,6 +33,79 @@ CREATE TABLE `course` (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `findfriend`
+-- ----------------------------
+DROP TABLE IF EXISTS `findfriend`;
+CREATE TABLE `findfriend` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` int(11) DEFAULT NULL,
+  `theme` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `data` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `menuid` int(11) DEFAULT NULL,
+  `likenum` int(11) DEFAULT NULL,
+  `photo` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `author` (`author`),
+  KEY `menuid` (`menuid`),
+  KEY `type` (`type`),
+  CONSTRAINT `findfriend_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`id`),
+  CONSTRAINT `findfriend_ibfk_2` FOREIGN KEY (`menuid`) REFERENCES `menu` (`menu_id`),
+  CONSTRAINT `findfriend_ibfk_3` FOREIGN KEY (`type`) REFERENCES `findlable` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of findfriend
+-- ----------------------------
+INSERT INTO `findfriend` VALUES ('1', '1', '吃蛋糕', '蛋糕真好吃', '2020-04-29 11:05:47', '1', '0', 'abc.jpeg', '3');
+INSERT INTO `findfriend` VALUES ('2', '1', '俺不会', '恩么版', '2020-04-30 10:05:42', '1', '5', 'timg.jpg', '1');
+INSERT INTO `findfriend` VALUES ('3', '1', '饭好吃吗', '这里是一堆发表意见JFK但是艰苦奋斗撒了解科室的JFK拉萨JFK但是JFK是分解啊飞机打瞌睡浪费你的时间爱看发动机上课上课了房间看风景开始了啊；附件是肯定拉风就卡死的回复杰克萨利返回空立法会手机卡了风华绝代斯科拉很费解的是克拉夫就是卡拉回复卡角度思考分离技术的看来附近的萨福克是撒娇开始了放假撒开了；上课艰苦奋斗撒了记录死了', '2020-05-04 15:18:33', '1', '10', 'add.png', '2');
+
+-- ----------------------------
+-- Table structure for `findlable`
+-- ----------------------------
+DROP TABLE IF EXISTS `findlable`;
+CREATE TABLE `findlable` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) CHARACTER SET utf8 DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `type` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of findlable
+-- ----------------------------
+INSERT INTO `findlable` VALUES ('3', '中餐');
+INSERT INTO `findlable` VALUES ('1', '早餐');
+INSERT INTO `findlable` VALUES ('2', '晚餐');
+INSERT INTO `findlable` VALUES ('7', '泡面');
+INSERT INTO `findlable` VALUES ('6', '火锅');
+INSERT INTO `findlable` VALUES ('8', '猜你喜欢');
+INSERT INTO `findlable` VALUES ('4', '甜点');
+INSERT INTO `findlable` VALUES ('5', '饮料');
+
+-- ----------------------------
+-- Table structure for `find_photo`
+-- ----------------------------
+DROP TABLE IF EXISTS `find_photo`;
+CREATE TABLE `find_photo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `photoid` int(11) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `photoid` (`photoid`),
+  CONSTRAINT `find_photo_ibfk_1` FOREIGN KEY (`photoid`) REFERENCES `findfriend` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of find_photo
+-- ----------------------------
+INSERT INTO `find_photo` VALUES ('1', '1', 'abc.jpeg');
+INSERT INTO `find_photo` VALUES ('2', '1', 'add.png');
+INSERT INTO `find_photo` VALUES ('3', '1', 'timg.jpg');
 
 -- ----------------------------
 -- Table structure for `goods`
@@ -105,12 +178,11 @@ CREATE TABLE `market_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_type
 -- ----------------------------
-INSERT INTO `market_type` VALUES ('0', '烘培');
 INSERT INTO `market_type` VALUES ('1', '果蔬生鲜');
 INSERT INTO `market_type` VALUES ('2', '器具');
 INSERT INTO `market_type` VALUES ('3', '领券');
@@ -124,6 +196,7 @@ INSERT INTO `market_type` VALUES ('10', '米面粮油');
 INSERT INTO `market_type` VALUES ('11', '厨房电器');
 INSERT INTO `market_type` VALUES ('12', '礼盒');
 INSERT INTO `market_type` VALUES ('13', '调味品');
+INSERT INTO `market_type` VALUES ('14', '烘培');
 
 -- ----------------------------
 -- Table structure for `menu`
@@ -276,13 +349,14 @@ CREATE TABLE `user` (
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `vip` int(11) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '123', '123', null);
+INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg');
 
 -- ----------------------------
 -- Table structure for `user_menu`
