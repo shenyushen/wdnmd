@@ -1,1 +1,2 @@
 梁宏宇 5.5 添加了AndroidManifest.xml中的<activity android:name=".kitchen.recommand.menudetails"/>
+张学伟 5.5 更新了数据库表，安卓端添加并实现了find包，服务器端添加并实现了find包
