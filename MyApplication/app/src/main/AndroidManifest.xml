@@ -36,6 +36,7 @@
         <activity android:name=".market.sort.AllSort"></activity>
         <activity android:name=".market.sort.Goods"></activity>
         <activity android:name=".market.banner.MarketBanner"></activity>
+        <activity android:name=".kitchen.recommand.menudetails"/>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.a24168.myapplication.fileprovider"
