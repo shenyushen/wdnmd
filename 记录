@@ -1,0 +1,1 @@
+添加了AndroidManifest.xml中的<activity android:name=".kitchen.recommand.menudetails"/>
