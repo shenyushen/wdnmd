@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="ip1">http://10.0.2.2:8080/shixun3</string>
+    <string name="ip">http://10.0.2.2:8080/shixun3/menu/</string>
+
+    <string name="photoip">http://10.0.2.2:8080/shixun3/upload/</string>
+
+    <string name="classify">食物种类</string>
+    <string name="filter">筛选</string>
+    <string name="producing">口味</string>
+
+    <string name="ok">确定</string>
+
+    <string name="cancal">重置</string>
+
+</resources>
+

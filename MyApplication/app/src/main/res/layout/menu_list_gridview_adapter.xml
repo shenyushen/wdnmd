@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
+    android:background="@drawable/menulist_itembackground"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/menu_photo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="center"
+        android:layout_gravity="center"
+        android:src="@drawable/birth" />
+
+    <TextView
+        android:id="@+id/menu_name"
+        android:paddingLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:text="梅菜扣肉"/>
+
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        >
+
+        <ImageView
+            android:id="@+id/fanhui"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/fanhui"/>
+        <TextView
+            android:layout_marginLeft="130dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="市集"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+                />
+    </LinearLayout>
+    <GridView
+
+        android:layout_marginLeft="20dp"
+        android:id="@+id/rec1"
+        android:numColumns="4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
