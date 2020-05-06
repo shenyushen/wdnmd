@@ -4,7 +4,16 @@ public class User {
 	private int id;
 	private String username;
 	private String password;
+	private String photo;
 	private int vip;
+	
+	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public int getId() {
 		return id;
 	}

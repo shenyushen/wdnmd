@@ -52,9 +52,9 @@ public class usercontroller {
 		int index=0;
 		int sss=Integer.parseInt(b1);
 		User users=usermapper.queryUser(sss, b2);
-		System.out.println(users);
+		
 		if(users!=null) {
-			return "ss";
+			return users.getUsername();
 		}else {
 			return "aa";
 		}
