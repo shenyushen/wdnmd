@@ -54,7 +54,7 @@ public class usercontroller {
 		User users=usermapper.queryUser(sss, b2);
 		
 		if(users!=null) {
-			return users.getUsername();
+			return "true";
 		}else {
 			return "aa";
 		}

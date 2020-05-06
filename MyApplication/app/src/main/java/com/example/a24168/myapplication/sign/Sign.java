@@ -68,7 +68,7 @@ public class Sign extends AppCompatActivity {
 
                     String string1=reader.readLine();
                     Log.e("ssss",string1);
-                    if(string1.equals("ss")){
+                    if(string1.equals("true")){
                         Intent i=new Intent(Sign.this, MainActivity.class);
                         startActivity(i);
                     }else{
