@@ -3,7 +3,7 @@
 ## myapplication  是Android端   shixun3   是服务器端   shixun.sql 是数据库     test 文件夹不用管这个
 
 
-### 注意  test1	test2 test3 test4  
+### 注意  
 
 ### 注意填写记录tees2
 
