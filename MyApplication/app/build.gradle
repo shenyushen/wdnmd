@@ -35,7 +35,9 @@ dependencies {
                     if (requested.group == 'com.android.support') {
                         if (!requested.name.startsWith("multidex")) { details.useVersion '28.0.0' } } }
         }
-    implementation 'com.youth.banner:banner:1.4.10'
+    compile project(':jcvideoplayer-lib')
+    compile project(path: ':jcvideoplayer-lib')
+
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.android.support:recyclerview-v7:28.0.0-alpha1'
     implementation 'com.baoyz.swipemenulistview:library:1.3.0'
@@ -59,6 +61,4 @@ dependencies {
     implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile project(':jcvideoplayer-lib')
-    compile project(path: ':jcvideoplayer-lib')
 }

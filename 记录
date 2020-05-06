@@ -1,3 +1,4 @@
-梁宏宇 5.5 添加了AndroidManifest.xml中的<activity android:name=".kitchen.recommand.menudetails"/>
+﻿梁宏宇 5.5 添加了AndroidManifest.xml中的<activity android:name=".kitchen.recommand.menudetails"/>
 张学伟 5.5 更新了数据库表，安卓端添加并实现了find包，服务器端添加并实现了find包
 秦峰悦 5.6 添加了jcvideoplayer-lib播放类作为类库，添加了course基本功能，修改build.gradle以及AndroidManifest文件，修复视频不能全屏的bug
+刘子义 5.6 添加注册登录功能

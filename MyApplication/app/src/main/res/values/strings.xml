@@ -13,5 +13,6 @@
 
     <string name="cancal">重置</string>
 
+    <string name="ipuser">http://10.0.2.2:8080/shixun3</string>
 </resources>
 

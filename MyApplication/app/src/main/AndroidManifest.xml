@@ -31,15 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".setting.Personal"></activity>
         <activity android:name=".register.Post"></activity>
         <activity android:name=".main.MainActivity"></activity>
         <activity android:name=".market.sort.AllSort"></activity>
         <activity android:name=".market.sort.Goods"></activity>
         <activity android:name=".market.banner.MarketBanner"></activity>
-        <activity android:name=".kitchen.recommand.menudetails"/>
-        <activity android:name=".kitchen.find.unimportant.Create"></activity>
-        <activity android:name=".kitchen.find.unimportant.ShowDetails"></activity>
-        <activity android:name=".course.videoControl.videoPlayActivity" />
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.a24168.myapplication.fileprovider"
