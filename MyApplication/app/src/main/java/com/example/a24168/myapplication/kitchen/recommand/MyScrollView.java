@@ -1,5 +1,4 @@
 package com.example.a24168.myapplication.kitchen.recommand;
-
 import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;

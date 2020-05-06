@@ -1,5 +1,6 @@
 package com.example.a24168.myapplication.main;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,6 +23,8 @@ import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.kitchen.KitchenFragment;
 import com.example.a24168.myapplication.market.MarketFragment;
 import com.example.a24168.myapplication.course.CourseFragment;
+import com.example.a24168.myapplication.setting.Personal;
+import com.example.a24168.myapplication.sign.Sign;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -134,25 +137,35 @@ public  class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.nav);
         menu = findViewById(R.id.main_menu);
         View headerView = navigationView.getHeaderView(0);//获取头布局
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //点击菜单，跳出侧滑菜单
-                if (drawerLayout.isDrawerOpen(navigationView)){
-                    drawerLayout.closeDrawer(navigationView);
-                }else{
-                    drawerLayout.openDrawer(navigationView);
-                }
+        menu.setOnClickListener(view -> {
+            //点击菜单，跳出侧滑菜单
+            if (drawerLayout.isDrawerOpen(navigationView)){
+                drawerLayout.closeDrawer(navigationView);
+            }else{
+                drawerLayout.openDrawer(navigationView);
             }
         });
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(MainActivity.this,item.getTitle().toString()+"55",Toast.LENGTH_SHORT).show();
-//                drawerLayout.closeDrawer(navigationView);
-                return true;
+        navigationView.setNavigationItemSelectedListener(item -> {
+
+            switch (item.getItemId()){
+                case R.id.favorite:
+                    Intent intent = new Intent(MainActivity.this, Personal.class);
+                    startActivity(intent);
+                    break;
+                case R.id.wallet:
+                    Intent intent2=new Intent(MainActivity.this, Sign.class);
+                    startActivity(intent2);
+                    break;
+                case R.id.dress:
+
+                    break;
+                default:
+                    break;
             }
+            return true;
+
         });
+
     }
 }
