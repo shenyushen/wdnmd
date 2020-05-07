@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-07 08:45:19
+Date: 2020-05-07 18:56:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -131,6 +131,28 @@ INSERT INTO `goods` VALUES ('1', '良润面包粉5kg', '大包装更实惠', '13
 INSERT INTO `goods` VALUES ('2', '亮润面包', '大包装更实惠', '138', '50', 'mianbao.png', '0');
 INSERT INTO `goods` VALUES ('3', '亮润面包', '大包装更实惠', '138', '50', 'mianbao.png', '0');
 INSERT INTO `goods` VALUES ('4', '亮润面包', '大包装更实惠', '150', '50', 'mianbao.png', '4');
+
+-- ----------------------------
+-- Table structure for `goods_xiangqing`
+-- ----------------------------
+DROP TABLE IF EXISTS `goods_xiangqing`;
+CREATE TABLE `goods_xiangqing` (
+  `goods_x_id` int(11) NOT NULL DEFAULT '0',
+  `goods_img` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_type` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `return_goods` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `if_freeshiiping` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_score` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`goods_x_id`),
+  KEY `goods_id` (`goods_id`),
+  CONSTRAINT `goods_xiangqing_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of goods_xiangqing
+-- ----------------------------
+INSERT INTO `goods_xiangqing` VALUES ('1', 'mianbao.png,mianbao1.png,mianbao2.png,mianbao3.png,mianbao4.png', '新良原味面包粉5kg;50,新良原面包粉10kg;100', 'yes', 'yes', '4.9', '1');
 
 -- ----------------------------
 -- Table structure for `label`
