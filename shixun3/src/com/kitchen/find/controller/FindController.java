@@ -3,7 +3,7 @@ package com.kitchen.find.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +30,18 @@ public class FindController {
 	public List<FindLable> findAllLable() {
 		List<FindLable> findLables=findFriendService.findAllLable();
 		return findLables;
+	}
+	
+	@RequestMapping("/select")
+	public List<FindFriend> findByLable(HttpServletRequest request) {
+		String action = request.getParameter("action");
+		System.out.println(action);
+		if(action!=null) {
+			List<FindFriend> findFriends = findFriendService.findFindFriendByLable(action);
+			return findFriends;
+		}
+		return findFriendService.findall();
+		
 	}
 	
 }

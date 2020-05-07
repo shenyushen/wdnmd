@@ -22,4 +22,8 @@ public class FindFriendService {
 	public List<FindLable> findAllLable(){
 		return findFriendMapper.findAllLable();
 	}
+	
+	public List<FindFriend> findFindFriendByLable(String type){
+		return findFriendMapper.findFindFriendByLable(type);
+	}
 }
