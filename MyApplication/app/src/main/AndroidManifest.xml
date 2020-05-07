@@ -51,6 +51,8 @@
         <activity android:name=".kitchen.find.unimportant.ShowDetails"></activity>
         <activity android:name=".course.videoControl.videoPlayActivity" />
 
+        <activity android:name=".kitchen.find.unimportant.LableDetails"></activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.a24168.myapplication.fileprovider"

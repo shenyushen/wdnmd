@@ -45,5 +45,17 @@
 	<select id="findAllLable" resultMap="findlable">
 		select id,type from findlable ORDER BY id ASC
 	</select>
+	
+	<select id="findFindFriendByLable" resultMap="findFriend">
+		SELECT ff.id ffid,ff.author,ff.theme,ff.data,ff.date,ff.menuid,ff.likenum,ff.photo ffphoto,ff.type,
+			u.id uid,u.username,u.photo uphoto,
+			fp.id fpid,fp.photoid,fp.photo fpphoto,
+			fl.id flid,fl.type fltype
+		FROM findFriend ff 
+		left join user u on u.id = ff.author
+		left join find_photo fp on fp.photoid = ff.id 
+		left join findlable fl on fl.id = ff.type
+		where fl.type = #{lableid }
+	</select>
 
 </mapper>

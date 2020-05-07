@@ -10,6 +10,8 @@ public interface FindFriendMapper {
 	public List<FindFriend> findAllFindFriend();
 	//查lable
 	public List<FindLable> findAllLable();
+	
+	public List<FindFriend> findFindFriendByLable(String lableid);
 }
 
 
