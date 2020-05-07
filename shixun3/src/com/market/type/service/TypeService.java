@@ -21,4 +21,7 @@ public class TypeService {
     public List<Goods>find1(int id){
         return typeMapper.findAllGoods(id);
     }
+    public List<Goods> find2(int id){
+    	return typeMapper.findGood(id);
+    }
 }

@@ -12,7 +12,21 @@
 		<result property="img" column="img"/>
 
 	</resultMap>
-
+	
+	<resultMap id="good" type="com.entity.Goods">
+		<id property="goodsId" column="goods_id"/>
+		<result property="title" column="title"/>
+		<result property="littleContent" column="little_content"/>
+		<result property="saleVolume" column="sale_Volume"/>
+		<result property="price" column="price"/>
+		<result property="good.goodId" column="goods_x_id"/>
+		<result property="good.goods_img" column="goods_img"/>
+		<result property="good.goods_type" column="goods_type"/>
+		<result property="good.return_goods" column="return_goods"/>
+		<result property="good.if_freeshiiping" column="if_freeshiiping"/>
+		<result property="good.goods_score" column="goods_score"/>
+		
+	</resultMap>
     <select id="findAll" resultMap="goods">
 		select * from goods
 	</select>
@@ -21,6 +35,11 @@
 		select *
 		from goods
 		where type_id = #{type_id}
-
+	</select>
+	<select id = "findGood" resultMap = "good">
+		select *
+		from goods g
+		left join goods_xiangqing x on g.goods_id = x.goods_id
+		where g.goods_id=#{id}
 	</select>
 </mapper>

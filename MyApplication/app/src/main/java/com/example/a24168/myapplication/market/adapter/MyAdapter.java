@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -36,10 +37,13 @@ import com.example.a24168.myapplication.market.holder.MarketNewViewHolder;
 import com.example.a24168.myapplication.market.holder.TypeViewHolder;
 import com.example.a24168.myapplication.market.like.LikeAdapter;
 import com.example.a24168.myapplication.market.sort.AllSort;
+import com.example.a24168.myapplication.market.sort.Goods;
+import com.example.a24168.myapplication.market.xiangqing.XiangQing;
 
 import java.util.List;
 
 import static com.example.a24168.myapplication.market.MarketFragment.fragment;
+import static com.example.a24168.myapplication.market.sort.Goods.s_id;
 
 public class MyAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<List> lists;
@@ -173,6 +177,7 @@ public class MyAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mInflater = LayoutInflater.from(this.context);
             for (int ii = 0; ii < list1.size(); ii++) {
                 final View view = mInflater.inflate(R.layout.market_like_item, mMoviceType, false);
+                LinearLayout linearLayout = view.findViewById(R.id.lin1);
                 ImageView imageView = view.findViewById(R.id.img5);
                 TextView textView = view.findViewById(R.id.text10);
                 TextView textView1 = view.findViewById(R.id.text11);
@@ -184,9 +189,16 @@ public class MyAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 textView1.setText(list1.get(ii).getLittleContent());
                 textView2.setText("￥"+list1.get(ii).getPrice()+"");
                 textView3.setText("已销"+list1.get(ii).getSaleVolume());
+                linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
                 mMoviceType.addView(view);
 
             }
+
         }
             if (viewHolder instanceof MarketCommentViewHolder) {
                 // 市集 @xxx
@@ -203,6 +215,16 @@ public class MyAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 GridView gridView = ((MarketLikeViewHolder) viewHolder).gridView;
                 LikeAdapter likeAdapter = new LikeAdapter(list, context, R.layout.market_like_item);
                 gridView.setAdapter(likeAdapter);
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        s_id = list.get(position).getGoodsId()+"";
+                        Intent  intent = new Intent();
+                        intent.setClass(fragment, XiangQing.class);
+                        context.startActivity(intent);
+                        fragment.overridePendingTransition(R.anim.anim_in_right,R.anim.anim_out_left);
+                    }
+                });
             }
 
 

@@ -33,6 +33,10 @@ public class TypeController {
         return typeService.find1(Integer.valueOf(id));
     }
 
-
+    @RequestMapping("/lei2")
+    public List<Goods> c(@RequestParam("id") String id){
+    	return typeService.find2(Integer.valueOf(id));
+    	
+    }
 
 }
