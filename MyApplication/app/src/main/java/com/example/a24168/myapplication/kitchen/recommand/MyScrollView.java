@@ -35,18 +35,18 @@ public class MyScrollView extends ScrollView {
                 xDistance = yDistance = 0f;
                 xLast = ev.getX();
                 yLast = ev.getY();
-                Log.e("xLast",xLast+"");
-                Log.e("yLast",yLast+"");
+//                Log.e("xLast",xLast+"");
+//                Log.e("yLast",yLast+"");
                 break;
             case MotionEvent.ACTION_MOVE:
                 final float curX = ev.getX();
                 final float curY = ev.getY();
                 xDistance += Math.abs(curX - xLast);
                 yDistance += Math.abs(curY - yLast);
-                Log.e("xDistance",xDistance+"");
-                Log.e("yDistance",yDistance+"");
-                Log.e("curX",curX+"");
-                Log.e("curY",curY+"");
+//                Log.e("xDistance",xDistance+"");
+//                Log.e("yDistance",yDistance+"");
+//                Log.e("curX",curX+"");
+//                Log.e("curY",curY+"");
 
                 if(this.getScrollY() == 0){
                     // 到顶部了

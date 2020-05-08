@@ -241,7 +241,7 @@ CREATE TABLE `menu` (
 -- ----------------------------
 INSERT INTO `menu` VALUES ('1', null, '2020-04-23', 'simuxue.jpg', '思慕雪', '菜');
 INSERT INTO `menu` VALUES ('2', null, '2020-04-21', 'xiaolongxia.jpg', '小龙虾', '菜');
-INSERT INTO `menu` VALUES ('3', null, '2020-04-14', 'xianxiadanchafan.jpg', '蛋炒饭', '米');
+INSERT INTO `menu` VALUES ('3', null, '2020-04-14', 'xianxiadanchafan.jpg', '鲜虾蛋炒饭', '米');
 INSERT INTO `menu` VALUES ('4', null, '2020-04-27', 'tudousichaorou.jpg', '土豆丝炒肉', '菜');
 INSERT INTO `menu` VALUES ('5', null, null, 'labaicaiwuhuarou.jpg', '辣白菜五花肉', '菜');
 INSERT INTO `menu` VALUES ('6', null, null, 'kaishuibaicai.jpg', '开水白菜', '菜');
