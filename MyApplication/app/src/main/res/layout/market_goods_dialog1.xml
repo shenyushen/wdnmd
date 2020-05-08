@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
+    android:padding="10dp"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -63,12 +61,15 @@
             android:textSize="20dp"
             />
         <GridView
+            android:layout_marginLeft="20dp"
+            android:minHeight="40dp"
+
             android:listSelector="@drawable/selector"
             android:layout_marginTop="10dp"
             android:descendantFocusability="blocksDescendants"
             android:id="@+id/s_grid"
             android:numColumns="2"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="110dp"/>
 
     </LinearLayout>
@@ -113,11 +114,20 @@
             android:layout_height="20dp"
             android:background="@drawable/tianjia"/>
     </LinearLayout>
+    <ImageView
+        android:id="@+id/roud"
+        android:visibility="invisible"
+        android:layout_marginLeft="80dp"
+        android:src="@drawable/round"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        />
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <Button
+            android:id="@+id/add_court"
             android:text="加入购物车"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -125,6 +135,7 @@
 
         </Button>
         <Button
+            android:id="@+id/buy_court"
             android:text="立即购买"
             android:layout_weight="1"
             android:layout_width="wrap_content"

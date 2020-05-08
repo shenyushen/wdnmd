@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-07 18:56:31
+Date: 2020-05-08 11:30:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -127,10 +127,10 @@ CREATE TABLE `goods` (
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES ('1', '良润面包粉5kg', '大包装更实惠', '138', '50', 'mianbao.png', '0');
-INSERT INTO `goods` VALUES ('2', '亮润面包', '大包装更实惠', '138', '50', 'mianbao.png', '0');
-INSERT INTO `goods` VALUES ('3', '亮润面包', '大包装更实惠', '138', '50', 'mianbao.png', '0');
-INSERT INTO `goods` VALUES ('4', '亮润面包', '大包装更实惠', '150', '50', 'mianbao.png', '4');
+INSERT INTO `goods` VALUES ('1', '良润面包粉,经典实惠，大包装等你来拿', '大包装更实惠', '138', '50', 'mianbao.png', '0');
+INSERT INTO `goods` VALUES ('2', 'sql6寸8寸圆形蛋糕烤盘高级模具', '高级不沾加厚碳钢烤盘', '133', '39', 'guo.png', '0');
+INSERT INTO `goods` VALUES ('3', 'JohnsonVille尊乐大包装,好口味', '纯鲜猪肉 芝士爆浆 每根独立', '421', '248', 'chang.png', '1');
+INSERT INTO `goods` VALUES ('4', '日本进口不锈钢食品托盘/烧烤盘（多款可选）', '超上镜的多功能托盘', '1100', '15', 'qi.png', '2');
 
 -- ----------------------------
 -- Table structure for `goods_xiangqing`
@@ -153,6 +153,9 @@ CREATE TABLE `goods_xiangqing` (
 -- Records of goods_xiangqing
 -- ----------------------------
 INSERT INTO `goods_xiangqing` VALUES ('1', 'mianbao.png,mianbao1.png,mianbao2.png,mianbao3.png,mianbao4.png', '新良原味面包粉5kg;50,新良原面包粉10kg;100', 'yes', 'yes', '4.9', '1');
+INSERT INTO `goods_xiangqing` VALUES ('2', 'guo.png,guo1.png,guo2.png,guo3.png,guo4.png', '6寸蛋糕圆盘;39,8寸蛋糕圆盘;45', 'yes', 'no', '5.0', '2');
+INSERT INTO `goods_xiangqing` VALUES ('3', 'chang.png,chang1.png,chang2.png,chang3.png,chang4.png', '尊乐牌考场1950g;248,百搭车达肠;320,焦香蜜汁肠1950g;260', 'no', 'yes', '4.9', '3');
+INSERT INTO `goods_xiangqing` VALUES ('4', 'qi.png,qi1.png,qi2.png,qi3.png,qi4.png', '（可照亮镜子面）长方形托盘;19,（可照亮镜子面）圆边矩形托盘;23,（哑光亮面）长方形托盘;21', 'yes', 'no', '4.8', '4');
 
 -- ----------------------------
 -- Table structure for `label`
@@ -193,6 +196,31 @@ INSERT INTO `market_commentshow` VALUES ('2', '静儿家的猫', '生吃甜，�
 INSERT INTO `market_commentshow` VALUES ('3', '偶然的旅行', '握在手上实诚，切开满满的只是陷儿，而中间是最可爱的草莓', '3.png');
 
 -- ----------------------------
+-- Table structure for `market_court`
+-- ----------------------------
+DROP TABLE IF EXISTS `market_court`;
+CREATE TABLE `market_court` (
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `goods_content` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_type` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_price` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_count` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of market_court
+-- ----------------------------
+INSERT INTO `market_court` VALUES ('11', '良润面包粉5kg', '新良原味面包粉5kg', '￥50', '2', '1', '14');
+INSERT INTO `market_court` VALUES ('11', '良润面包粉5kg', '新良原味面包粉5kg', '￥50', '1', '1', '15');
+INSERT INTO `market_court` VALUES ('11', '良润面包粉5kg', '新良原面包粉10kg', '￥100', '2', '1', '16');
+INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '2', '1', '17');
+INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模具', '8寸蛋糕圆盘', '￥45', '2', '2', '18');
+INSERT INTO `market_court` VALUES ('11', 'JohnsonVille尊乐大包装,好口味', '焦香蜜汁肠1950g', '￥260', '2', '3', '19');
+
+-- ----------------------------
 -- Table structure for `market_type`
 -- ----------------------------
 DROP TABLE IF EXISTS `market_type`;
@@ -205,6 +233,7 @@ CREATE TABLE `market_type` (
 -- ----------------------------
 -- Records of market_type
 -- ----------------------------
+INSERT INTO `market_type` VALUES ('0', '烘培');
 INSERT INTO `market_type` VALUES ('1', '果蔬生鲜');
 INSERT INTO `market_type` VALUES ('2', '器具');
 INSERT INTO `market_type` VALUES ('3', '领券');
@@ -218,7 +247,6 @@ INSERT INTO `market_type` VALUES ('10', '米面粮油');
 INSERT INTO `market_type` VALUES ('11', '厨房电器');
 INSERT INTO `market_type` VALUES ('12', '礼盒');
 INSERT INTO `market_type` VALUES ('13', '调味品');
-INSERT INTO `market_type` VALUES ('14', '烘培');
 
 -- ----------------------------
 -- Table structure for `menu`

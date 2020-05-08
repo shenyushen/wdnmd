@@ -38,5 +38,13 @@ public class TypeController {
     	return typeService.find2(Integer.valueOf(id));
     	
     }
+    @RequestMapping("insert")
+    public String d(@RequestParam("user_id") String user_id,@RequestParam("goods_content") String goods_content,
+    		@RequestParam("goods_type")String goods_type, @RequestParam("goods_price")String goods_price,
+    		@RequestParam("goods_count")String goods_count,@RequestParam("goods_id")String goods_id) {
+    	typeService.insertCourt(Integer.valueOf(user_id), goods_content, goods_type, goods_price, goods_count, goods_id);
+    	return "ok";
+    }
 
+    
 }

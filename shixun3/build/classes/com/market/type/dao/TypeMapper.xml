@@ -25,7 +25,16 @@
 		<result property="good.return_goods" column="return_goods"/>
 		<result property="good.if_freeshiiping" column="if_freeshiiping"/>
 		<result property="good.goods_score" column="goods_score"/>
-		
+	</resultMap>
+	
+	<resultMap id="court" type="com.entity.MarketCourt">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="goodsContent" column="goods_content"/>
+		<result property="goodsType" column="goods_type"/>
+		<result property="goodsPrice" column="goods_price"/>
+		<result property="goodsCount" column="goods_count"/>
+		<result property="goodsId" column="goods_id"/>
 	</resultMap>
     <select id="findAll" resultMap="goods">
 		select * from goods
@@ -42,4 +51,9 @@
 		left join goods_xiangqing x on g.goods_id = x.goods_id
 		where g.goods_id=#{id}
 	</select>
+	
+	<insert id = "insertCourt">
+		insert into market_court(user_id,goods_content,goods_type,goods_price,goods_count,goods_id)
+		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5})
+	</insert>
 </mapper>

@@ -1,5 +1,7 @@
 package com.example.a24168.myapplication.market.xiangqing;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -16,6 +18,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,11 +51,14 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.example.a24168.myapplication.market.sort.Goods.s_id;
+import static com.example.a24168.myapplication.sign.Sign.user_id;
 
 public class XiangQing extends AppCompatActivity implements OnBannerListener {
     private ImageView imageView; //返回
@@ -68,6 +74,7 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
     private TextView textView9; // 支持退换货
     private LinearLayout linearLayout; //选择规格
     private LinearLayout linearLayout2; //退换货点击
+    ImageView imageView3;
     private Banner banner;
     private Handler handler;
     private ArrayList<String> list_path;
@@ -83,23 +90,46 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                String s = (String) msg.obj;
-                Log.e("text",s);
-                Gson gson = new Gson();
-                list = gson.fromJson(s,new TypeToken<List<Good>>(){}.getType());
-                for(int i = 0; i < list.size(); i++)
-                    Log.e("text",list.get(i).toString());
-                //添加图片路径
-                String [] a = list.get(0).getGood().getGoods_img().split(",");
-                strings = list.get(0).getGood().getGoods_type().split(",");
-                for(int i = 0; i < a.length; i++){
-                    list_path.add(getResources().getString(R.string.ip1)+"/upload/"+a[i]);
+                switch (msg.what){
+                    case 1:{
+                        String s = (String) msg.obj;
+                        Log.e("text",s);
+                        Gson gson = new Gson();
+                        list = gson.fromJson(s,new TypeToken<List<Good>>(){}.getType());
+                        for(int i = 0; i < list.size(); i++)
+                            Log.e("text",list.get(i).toString());
+                        //添加图片路径
+                        String [] a = list.get(0).getGood().getGoods_img().split(",");
+                        strings = list.get(0).getGood().getGoods_type().split(",");
+                        for(int i = 0; i < a.length; i++){
+                            list_path.add(getResources().getString(R.string.ip1)+"/upload/"+a[i]);
+                        }
+                        list_title.add(" ");list_title.add("  ");list_title.add("    ");list_title.add("     ");list_title.add("        ");
+                        // 设置轮播图
+                        initBanner();
+                        //设置数据
+                        initDate();
+                        break;
+                    }
+                    case 2:{
+                        imageView3.setVisibility(View.VISIBLE);
+                        WindowManager wm = getWindowManager();
+                        int width = wm.getDefaultDisplay().getWidth();
+                        int height = wm.getDefaultDisplay().getHeight();
+                        float x = imageView3.getRight();
+                        float y = imageView3.getBottom();
+                        Log.e("123",width+"  "+height+"  "+x+" "+y);
+                        ObjectAnimator animator = ObjectAnimator.ofFloat(imageView3,"TranslationX",0,width);
+                        ObjectAnimator animator1 = ObjectAnimator.ofFloat(imageView3,"TranslationY",0,height*-1);
+                        AnimatorSet animSet = new AnimatorSet();
+                        animSet.playTogether(animator, animator1);
+                        animSet.setDuration(1000);
+                        animSet.start();
+                        break;
+                    }
+
                 }
-                list_title.add(" ");list_title.add("  ");list_title.add("    ");list_title.add("     ");list_title.add("        ");
-                // 设置轮播图
-                initBanner();
-                //设置数据
-                initDate();
+
             }
         };
         //获取控件id
@@ -154,6 +184,7 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
                     // 交给handler处理主线程
                     Message message = Message.obtain();
                     message.obj = response.body().string();
+                    message.what = 1;
                     handler.sendMessage(message);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -230,7 +261,9 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
         Window window = dialog.getWindow();
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.main_menu_animStyle);
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 1300);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 1500);
+        imageView3 = dialog.findViewById(R.id.roud);
+
 
         // 头部
         ImageView  imageView = dialog.findViewById(R.id.s_img);
@@ -257,11 +290,9 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                t1.setText("￥"+type1s.get(position).getPrice());
                textView8.setText(type1s.get(position).getType());
+
             }
         });
-
-
-
 
         //数量
         EditText text = dialog.findViewById(R.id.text);
@@ -302,6 +333,51 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
                 }
             }
         });
+
+        // 加入购物车和购买功能
+        Button button = dialog.findViewById(R.id.add_court);
+        Button button1 = dialog.findViewById(R.id.buy_court);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                String params = "user_id="+user_id+"&goods_content="+t.getText().toString()+"&goods_type="+
+                        textView8.getText().toString()+"&goods_price="+t1.getText().toString()+"&goods_count="+
+                        text.getText().toString()+"&goods_id="+list.get(0).getGoodsId();
+                RequestBody body = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded;charset=utf-8"),
+                        params);
+                /*
+                FormBody.Builder builder = new FormBody.Builder();
+                builder.add("user_id",11+"");
+                builder.add("goods_content",t.getText().toString());
+                builder.add("goods_type",textView8.getText().toString());
+                builder.add("goods_price",t1.getText().toString());
+                builder.add("goods_count",text.getText().toString());
+                builder.add("goods_id",list.get(0).getGoodsId()+"");
+                FormBody body = builder.build();*/
+                Request request = new Request.Builder().post(body)
+                        .url(getResources().getString(R.string.ip1)+"/type/insert").build();
+                final Call call = okHttpClient.newCall(request);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Response response = call.execute();
+
+                            // 交给handler处理主线程
+                            Message message = Message.obtain();
+                            message.what=2;
+                            message.obj = response.body().string();
+                            handler.sendMessage(message);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
+
+
         dialog.show();
     }
 
@@ -314,7 +390,7 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
         Window window = dialog.getWindow();
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.main_menu_animStyle);
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 1300);
+       window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 1300);
         TextView textView = dialog.findViewById(R.id.return_m);
         TextView textView1 = dialog.findViewById(R.id.content);
         if (s.equals("yes")) {
