@@ -40,6 +40,7 @@ public class Sign extends AppCompatActivity {
     private Button bt_sign;
     private Button bt_post;
     private int q1=0;
+    public static int user_id;
     private Handler handler;
     private void getViews(){
         ed_account=findViewById(R.id.ed_account);
@@ -69,6 +70,7 @@ public class Sign extends AppCompatActivity {
                     String string1=reader.readLine();
                     Log.e("ssss",string1);
                     if(string1.equals("true")){
+                        user_id = Integer.valueOf(ed_account.getText().toString());
                         Intent i=new Intent(Sign.this, MainActivity.class);
                         startActivity(i);
                     }else{
