@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.entity.label;
 import com.example.a24168.myapplication.entity.menu;
+import com.example.a24168.myapplication.kitchen.recommand.addmenu.addmenu;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -64,6 +66,7 @@ public class Recommand extends Fragment {
     private GridviewAdapter mydapter;
     private GridviewAdapter mydapter2;
     private RecyclerView recyclerView;
+    private ImageView addimage;
     private StaggeredGridLayoutManager layoutManager;
     @Nullable
     @Override
@@ -73,6 +76,7 @@ public class Recommand extends Fragment {
         layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         shaixuan=view.findViewById(R.id.shaixuan);
+        addimage=view.findViewById(R.id.addz_menu);
 //    筛选功能的代码
         //向type集合中 添加数据
         classifyList = new ArrayList<>();
@@ -97,6 +101,14 @@ public class Recommand extends Fragment {
                 getPopupWindow();
                 // 这里是位置显示方式,在屏幕的右侧
                 popupWindow.showAtLocation(view, Gravity.RIGHT, 0, 0);
+            }
+        });
+        addimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(), addmenu.class);
+                startActivity(intent);
+
             }
         });
         inittext("list");

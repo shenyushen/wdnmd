@@ -19,6 +19,17 @@
 <select id="findall" resultType="com.entity.menu" resultMap="menu">
 	SELECT * FROM menu m,label l,menu_label ml where m.menu_id=ml.menu_id and l.label_id=ml.label_id
 </select>
+
+<insert id="addmenu" useGeneratedKeys="true" parameterType="com.entity.menu" keyProperty="menu_id">
+	insert into menu(date,menu_photo,menu_name,type) 
+    values(#{date},#{menu_photo},#{menu_name},#{type}) 
+</insert>
+<insert id="addsteps" parameterType="com.entity.Step">
+	insert into step(stepnum,menu_id,content,step_photo) values
+	<foreach collection="steps" item="step" separator=",">
+     		(#{step.stepnum},#{menuid},#{step.content},#{step.step_photo})
+     	</foreach>
+</insert>
 	<!-- <select id="findallbyleiid" resultType="entity.xinwenlei" resultMap="xinwenandlei">
          select * from xinwen x,pinglun p,xinwenandlei a,xinwenlei l where x.id = p.xinwenid and x.id=a.id and l.leiid=a.leiid and l.leiid = #{id}
     </select>
