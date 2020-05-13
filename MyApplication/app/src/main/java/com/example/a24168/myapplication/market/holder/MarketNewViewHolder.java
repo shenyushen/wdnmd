@@ -1,5 +1,6 @@
 package com.example.a24168.myapplication.market.holder;
 
+import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,11 +11,11 @@ import com.example.a24168.myapplication.R;
 
 public class MarketNewViewHolder extends RecyclerView.ViewHolder {
 
-    public HorizontalScrollView horizontalScrollView;
+    public RecyclerView recyclerView;
 
     public MarketNewViewHolder(@NonNull View itemView) {
         super(itemView);
-        horizontalScrollView = itemView.findViewById(R.id.hs_menu);
+        recyclerView = itemView.findViewById(R.id.r1);
 
     }
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:padding="10dp"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -49,6 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"/>
     <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -79,6 +83,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"/>
     <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -127,6 +133,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <Button
+            android:textColor="@color/white"
+            android:background="@drawable/s_orange"
             android:id="@+id/add_court"
             android:text="加入购物车"
             android:layout_weight="1"
@@ -135,6 +143,9 @@
 
         </Button>
         <Button
+            android:layout_marginLeft="1dp"
+            android:textColor="@color/white"
+            android:background="@drawable/s_orange"
             android:id="@+id/buy_court"
             android:text="立即购买"
             android:layout_weight="1"

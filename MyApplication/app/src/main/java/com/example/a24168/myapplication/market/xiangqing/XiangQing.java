@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,7 +35,9 @@ import com.example.a24168.myapplication.market.adapter.XiangqingAdapter;
 import com.example.a24168.myapplication.market.entity.Good;
 import com.example.a24168.myapplication.market.entity.Type;
 import com.example.a24168.myapplication.market.sort.Goods;
+import com.example.a24168.myapplication.market.xiangqing.adpter.CommentsAdapter;
 import com.example.a24168.myapplication.market.xiangqing.adpter.Type1Adapter;
+import com.example.a24168.myapplication.market.xiangqing.entity.Comments;
 import com.example.a24168.myapplication.market.xiangqing.entity.Type1;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -61,6 +65,7 @@ import static com.example.a24168.myapplication.market.sort.Goods.s_id;
 import static com.example.a24168.myapplication.sign.Sign.user_id;
 
 public class XiangQing extends AppCompatActivity implements OnBannerListener {
+    public static TextView textView10;
     private ImageView imageView; //返回
     private ImageView imageView1; // 购物车
     private TextView textView; //评分
@@ -74,6 +79,10 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
     private TextView textView9; // 支持退换货
     private LinearLayout linearLayout; //选择规格
     private LinearLayout linearLayout2; //退换货点击
+    private RecyclerView recyclerView;
+    private Button button1;
+    private Button button2;
+    private List<Comments>commentsList;
     ImageView imageView3;
     private Banner banner;
     private Handler handler;
@@ -127,6 +136,12 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
                         animSet.start();
                         break;
                     }
+                    case 3:{
+                        String s = (String) msg.obj;
+                        Gson gson = new Gson();
+                        commentsList = gson.fromJson(s,new TypeToken<List<Comments>>(){}.getType());
+                        getComment();
+                    }
 
                 }
 
@@ -138,11 +153,29 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
         getDate(s_id);
 
 
+        //获取评论
+        getCommentDate();
+
+
+
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
                 overridePendingTransition(R.anim.anim_int_right1,R.anim.anim_out_left1);
+            }
+        });
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog2(list);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog2(list);
             }
         });
     }
@@ -160,10 +193,52 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
         textView7 = findViewById(R.id.shiping);
         textView8 = findViewById(R.id.x_type);
         textView9 = findViewById(R.id.return_f);
+        textView10 = findViewById(R.id.sss);
         linearLayout = findViewById(R.id.liner);
         linearLayout2 = findViewById(R.id.liner1);
+        recyclerView = findViewById(R.id.recyle);
+        button1 = findViewById(R.id.add_court1);
+        button2 = findViewById(R.id.buy1);
         list_path = new ArrayList<>();
         list_title = new ArrayList<>();
+        commentsList = new ArrayList<>();
+    }
+    public void getCommentDate(){
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody.Builder builder = new FormBody.Builder();
+        builder.add("id",s_id);
+        FormBody body = builder.build();
+
+        Request request = new Request.Builder().post(body)
+                .url(getResources().getString(R.string.ip1)+"/type/lei3").build();
+        final Call call = okHttpClient.newCall(request);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Response response = call.execute();
+
+                    // 交给handler处理主线程
+                    Message message = Message.obtain();
+                    message.obj = response.body().string();
+                    message.what = 3;
+                    handler.sendMessage(message);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+    public void getComment(){
+
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+        CommentsAdapter commentsAdapter = new CommentsAdapter(commentsList);
+        recyclerView.setAdapter(commentsAdapter);
     }
     public void getDate(String id){
         Log.e("test",id);
@@ -261,7 +336,7 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
         Window window = dialog.getWindow();
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.main_menu_animStyle);
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 1500);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 1400);
         imageView3 = dialog.findViewById(R.id.roud);
 
 

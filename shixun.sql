@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-08 11:30:39
+Date: 2020-05-13 14:54:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -177,6 +177,37 @@ INSERT INTO `label` VALUES ('4', '辣');
 INSERT INTO `label` VALUES ('5', '咸');
 
 -- ----------------------------
+-- Table structure for `market_comments`
+-- ----------------------------
+DROP TABLE IF EXISTS `market_comments`;
+CREATE TABLE `market_comments` (
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `time` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `img` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `goods_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`c_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `market_comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of market_comments
+-- ----------------------------
+INSERT INTO `market_comments` VALUES ('1', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-03', '1.png', '1', '1');
+INSERT INTO `market_comments` VALUES ('2', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-050-07', '2.png', '1', '1');
+INSERT INTO `market_comments` VALUES ('3', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-08', '3.png', '1', '1');
+INSERT INTO `market_comments` VALUES ('4', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-09', '2.png', '1', '1');
+INSERT INTO `market_comments` VALUES ('5', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-04-06', '1.png', '1', '2');
+INSERT INTO `market_comments` VALUES ('6', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-06', '1.png', '1', '2');
+INSERT INTO `market_comments` VALUES ('7', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-06-01', '2.png', '1', '2');
+INSERT INTO `market_comments` VALUES ('8', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-01', '3.png', '1', '3');
+INSERT INTO `market_comments` VALUES ('9', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-02', '3.png', '1', '3');
+INSERT INTO `market_comments` VALUES ('10', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-05', '3.png', '1', '4');
+INSERT INTO `market_comments` VALUES ('11', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-011', '2.png', '1', '4');
+
+-- ----------------------------
 -- Table structure for `market_commentshow`
 -- ----------------------------
 DROP TABLE IF EXISTS `market_commentshow`;
@@ -208,7 +239,7 @@ CREATE TABLE `market_court` (
   `goods_id` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_court
@@ -219,6 +250,8 @@ INSERT INTO `market_court` VALUES ('11', '良润面包粉5kg', '新良原面包�
 INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '2', '1', '17');
 INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模具', '8寸蛋糕圆盘', '￥45', '2', '2', '18');
 INSERT INTO `market_court` VALUES ('11', 'JohnsonVille尊乐大包装,好口味', '焦香蜜汁肠1950g', '￥260', '2', '3', '19');
+INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '1', '1', '20');
+INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '1', '1', '21');
 
 -- ----------------------------
 -- Table structure for `market_type`
@@ -228,12 +261,11 @@ CREATE TABLE `market_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_type
 -- ----------------------------
-INSERT INTO `market_type` VALUES ('0', '烘培');
 INSERT INTO `market_type` VALUES ('1', '果蔬生鲜');
 INSERT INTO `market_type` VALUES ('2', '器具');
 INSERT INTO `market_type` VALUES ('3', '领券');
@@ -247,6 +279,7 @@ INSERT INTO `market_type` VALUES ('10', '米面粮油');
 INSERT INTO `market_type` VALUES ('11', '厨房电器');
 INSERT INTO `market_type` VALUES ('12', '礼盒');
 INSERT INTO `market_type` VALUES ('13', '调味品');
+INSERT INTO `market_type` VALUES ('15', '烘培');
 
 -- ----------------------------
 -- Table structure for `menu`

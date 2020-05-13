@@ -90,6 +90,7 @@ public class MarketFragment extends Fragment {
                         }.getType());
                         lists.add(2,list);
                         lists.remove(3);
+
                         recyclerView.setAdapter(new MyAdapter(lists));
                         break;
                     }

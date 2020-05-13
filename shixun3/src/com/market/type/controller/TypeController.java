@@ -2,6 +2,7 @@ package com.market.type.controller;
 
 
 import com.entity.Goods;
+import com.entity.MarketComments;
 import com.entity.Type;
 import com.market.type.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,10 @@ public class TypeController {
     	typeService.insertCourt(Integer.valueOf(user_id), goods_content, goods_type, goods_price, goods_count, goods_id);
     	return "ok";
     }
-
+    @RequestMapping("/lei3")
+    public List<MarketComments> e(@RequestParam("id") int goods_id) {
+    	
+    	return typeService.find3(goods_id);
+    }
     
 }

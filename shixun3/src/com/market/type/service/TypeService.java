@@ -1,6 +1,7 @@
 package com.market.type.service;
 
 import com.entity.Goods;
+import com.entity.MarketComments;
 import com.entity.Type;
 import com.market.type.dao.TypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,7 @@ public class TypeService {
     	
     }
     
-}
+    public List<MarketComments> find3(int id){
+    	return typeMapper.findAllComments(id);
+    }
+} 

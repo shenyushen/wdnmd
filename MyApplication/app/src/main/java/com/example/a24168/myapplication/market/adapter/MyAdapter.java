@@ -171,7 +171,13 @@ public class MyAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             // 市集上新
             final List<MarketNew> list1 = lists.get(i);
 
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
+            MarketNewAdapter marketNewAdapter = new MarketNewAdapter(list1);
+            ((MarketNewViewHolder) viewHolder).recyclerView.setLayoutManager(linearLayoutManager);
+            ((MarketNewViewHolder) viewHolder).recyclerView.setAdapter(marketNewAdapter);
+            /*
             HorizontalScrollView marketnew = ((MarketNewViewHolder) viewHolder).horizontalScrollView;
             mMoviceType = marketnew.findViewById(R.id.marketnew_ll);
             mInflater = LayoutInflater.from(this.context);
@@ -197,7 +203,7 @@ public class MyAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 });
                 mMoviceType.addView(view);
 
-            }
+            }*/
 
         }
             if (viewHolder instanceof MarketCommentViewHolder) {

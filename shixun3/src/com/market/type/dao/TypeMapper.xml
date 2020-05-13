@@ -36,6 +36,18 @@
 		<result property="goodsCount" column="goods_count"/>
 		<result property="goodsId" column="goods_id"/>
 	</resultMap>
+	<resultMap id="comments" type="com.entity.MarketComments">
+		<id property="id" column="c_id"/>
+		<result property="content" column="content"/>
+		<result property="time" column="time"/>
+		<result property="img" column="img"/>
+		<result property="user.id" column="id"/>
+		<result property="user.username" column="username"/>
+		<result property="user.password" column="password"/>
+		<result property="user.vip" column="vip"/>
+		<result property="user.photo" column="photo"/>
+		<result property="goodsId" column="goods_id"/>
+	</resultMap>
     <select id="findAll" resultMap="goods">
 		select * from goods
 	</select>
@@ -56,4 +68,12 @@
 		insert into market_court(user_id,goods_content,goods_type,goods_price,goods_count,goods_id)
 		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5})
 	</insert>
+	<select id = "findAllComments" resultMap = "comments">
+		select * 
+		from market_comments m
+		left join user u 
+		on m.user_id = u.id
+		where m.goods_id = #{id}
+	</select>
+	
 </mapper>
