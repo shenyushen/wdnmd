@@ -35,10 +35,10 @@
         <activity android:name=".register.Post"></activity>
         <activity android:name=".main.MainActivity"></activity>
         <activity android:name=".market.sort.AllSort"></activity>
+        <activity android:name=".kitchen.recommand.addmenu.addmenu"></activity>
         <activity android:name=".market.sort.Goods"
                 android:launchMode="standard"
             >
-
         </activity>
         <activity android:name=".market.banner.MarketBanner"></activity>
         <activity android:name=".market.xiangqing.XiangQing">
@@ -52,7 +52,7 @@
         <activity android:name=".course.videoControl.videoPlayActivity" />
 
         <activity android:name=".kitchen.find.unimportant.LableDetails"></activity>
-
+        <activity android:name=".kitchen.recommand.Recommand"></activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.a24168.myapplication.fileprovider"

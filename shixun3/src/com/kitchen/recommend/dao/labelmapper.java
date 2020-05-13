@@ -14,4 +14,7 @@ public interface labelmapper {
 	public List<Step> findstepbymenuid(String menuid);
 
 	public List<menu> findbyfind(String menuname);
+
+	public int addlabelmenu(@Param("labels")List<label> labels, @Param("menuid")int menuid);
+
 }
