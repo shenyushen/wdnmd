@@ -18,6 +18,7 @@ import com.example.a24168.myapplication.R;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class LoadPicAdapter extends RecyclerView.Adapter<LoadPicAdapter.MyViewHolder> {
 
