@@ -28,6 +28,14 @@ repositories {
     mavenCentral()
     maven { url 'https://maven.google.com' }
 }
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
 dependencies {
         configurations.all {
             resolutionStrategy.eachDependency {
@@ -38,6 +46,11 @@ dependencies {
     compile project(':jcvideoplayer-lib')
     compile project(path: ':jcvideoplayer-lib')
     compile group: 'com.youth.banner', name: 'banner', version: '1.4.10'
+
+
+    compile ('com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'){
+        exclude group: 'com.github.bumptech.glide'
+    }
 
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.google.code.gson:gson:2.8.5'
