@@ -45,7 +45,8 @@
 
 
         </activity>
-
+        <activity android:name=".market.xiangqing.Image"/>
+        <activity android:name=".market.CommentXiangqing"></activity>
         <activity android:name=".kitchen.recommand.menudetails"/>
         <activity android:name=".kitchen.find.unimportant.Create"></activity>
         <activity android:name=".kitchen.find.unimportant.ShowDetails"></activity>

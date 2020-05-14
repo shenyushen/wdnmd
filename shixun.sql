@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-13 14:54:39
+Date: 2020-05-14 15:59:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -122,7 +122,7 @@ CREATE TABLE `goods` (
   PRIMARY KEY (`goods_id`),
   KEY `type_id` (`type_id`),
   CONSTRAINT `goods_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `market_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of goods
@@ -131,6 +131,9 @@ INSERT INTO `goods` VALUES ('1', '良润面包粉,经典实惠，大包装等你
 INSERT INTO `goods` VALUES ('2', 'sql6寸8寸圆形蛋糕烤盘高级模具', '高级不沾加厚碳钢烤盘', '133', '39', 'guo.png', '0');
 INSERT INTO `goods` VALUES ('3', 'JohnsonVille尊乐大包装,好口味', '纯鲜猪肉 芝士爆浆 每根独立', '421', '248', 'chang.png', '1');
 INSERT INTO `goods` VALUES ('4', '日本进口不锈钢食品托盘/烧烤盘（多款可选）', '超上镜的多功能托盘', '1100', '15', 'qi.png', '2');
+INSERT INTO `goods` VALUES ('5', '深井锦记腊肉，广东腊味熟食蜜汁叉烧肉', '皮脆肉嫩，口感爽滑', '613', '138', 'rou.png', '4');
+INSERT INTO `goods` VALUES ('6', '三顿半，冷萃冷泡拿铁咖啡', '超即溶精品咖啡', '2162', '189', 'bei.png', '5');
+INSERT INTO `goods` VALUES ('7', '冯氏牛将军，雪花软牛肉袋', '健身必备零食', '1998', '99', 'cc.png', '6');
 
 -- ----------------------------
 -- Table structure for `goods_xiangqing`
@@ -156,6 +159,9 @@ INSERT INTO `goods_xiangqing` VALUES ('1', 'mianbao.png,mianbao1.png,mianbao2.pn
 INSERT INTO `goods_xiangqing` VALUES ('2', 'guo.png,guo1.png,guo2.png,guo3.png,guo4.png', '6寸蛋糕圆盘;39,8寸蛋糕圆盘;45', 'yes', 'no', '5.0', '2');
 INSERT INTO `goods_xiangqing` VALUES ('3', 'chang.png,chang1.png,chang2.png,chang3.png,chang4.png', '尊乐牌考场1950g;248,百搭车达肠;320,焦香蜜汁肠1950g;260', 'no', 'yes', '4.9', '3');
 INSERT INTO `goods_xiangqing` VALUES ('4', 'qi.png,qi1.png,qi2.png,qi3.png,qi4.png', '（可照亮镜子面）长方形托盘;19,（可照亮镜子面）圆边矩形托盘;23,（哑光亮面）长方形托盘;21', 'yes', 'no', '4.8', '4');
+INSERT INTO `goods_xiangqing` VALUES ('5', 'rou.png,rou1.png,rou2.png,rou3.png,rou4.png', '一份五花肉一份里脊;138,里脊肉（偏瘦肉）;138,五花肉（半肥瘦）;138', 'yes', 'yes', '4.8', '5');
+INSERT INTO `goods_xiangqing` VALUES ('6', 'bei.png,bei1.png,bei2.png,bei3.png,bei4.png', '混合24颗装;189,1号24颗装;189,2号24颗装;189,3号24颗装;189', 'no', 'yes', '4.9', '6');
+INSERT INTO `goods_xiangqing` VALUES ('7', 'cc.png,cc1.png,cc2.png,cc3.png,cc4.png', '原味208g*一袋;99,孜然208g*一袋;99,香辣味208g*一袋;99', 'yes', 'yes', '4.8', '7');
 
 -- ----------------------------
 -- Table structure for `label`
@@ -190,22 +196,25 @@ CREATE TABLE `market_comments` (
   PRIMARY KEY (`c_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `market_comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_comments
 -- ----------------------------
-INSERT INTO `market_comments` VALUES ('1', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-03', '1.png', '1', '1');
-INSERT INTO `market_comments` VALUES ('2', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-050-07', '2.png', '1', '1');
-INSERT INTO `market_comments` VALUES ('3', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-08', '3.png', '1', '1');
-INSERT INTO `market_comments` VALUES ('4', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-09', '2.png', '1', '1');
-INSERT INTO `market_comments` VALUES ('5', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-04-06', '1.png', '1', '2');
-INSERT INTO `market_comments` VALUES ('6', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-06', '1.png', '1', '2');
-INSERT INTO `market_comments` VALUES ('7', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-06-01', '2.png', '1', '2');
-INSERT INTO `market_comments` VALUES ('8', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-01', '3.png', '1', '3');
-INSERT INTO `market_comments` VALUES ('9', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-02', '3.png', '1', '3');
-INSERT INTO `market_comments` VALUES ('10', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-05', '3.png', '1', '4');
-INSERT INTO `market_comments` VALUES ('11', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-011', '2.png', '1', '4');
+INSERT INTO `market_comments` VALUES ('1', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-03', '1.png,1.png,', '1', '1');
+INSERT INTO `market_comments` VALUES ('2', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-07', '2.png,1.png,', '2', '1');
+INSERT INTO `market_comments` VALUES ('3', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-08', '3.png,1.png,', '2', '1');
+INSERT INTO `market_comments` VALUES ('4', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-09', '2.png,1.png,', '1', '1');
+INSERT INTO `market_comments` VALUES ('5', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-04-06', '1.png,1.png,', '2', '2');
+INSERT INTO `market_comments` VALUES ('6', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-06', '1.png,1.png,', '1', '2');
+INSERT INTO `market_comments` VALUES ('7', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-06-01', '2.png,1.png,', '1', '2');
+INSERT INTO `market_comments` VALUES ('8', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-01', '1.png,1.png,', '2', '3');
+INSERT INTO `market_comments` VALUES ('9', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-02', '3.png,1.png,', '1', '3');
+INSERT INTO `market_comments` VALUES ('10', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-05', '3.png,1.png,', '2', '4');
+INSERT INTO `market_comments` VALUES ('11', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-011', '2.png,1.png,', '1', '4');
+INSERT INTO `market_comments` VALUES ('12', '大话设计模式（带目录完整版）', '2020-05-11', '2.png', '2', '5');
+INSERT INTO `market_comments` VALUES ('13', '大话设计模式', '2020-05-11', '3.png', '1', '6');
+INSERT INTO `market_comments` VALUES ('14', '大话设计模式', '2020-05-11', '2.png', '2', '7');
 
 -- ----------------------------
 -- Table structure for `market_commentshow`
@@ -440,6 +449,7 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg');
+INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'song.jpg');
 INSERT INTO `user` VALUES ('11', '11', '11', '1', null);
 INSERT INTO `user` VALUES ('123', '123', '123', '1', null);
 

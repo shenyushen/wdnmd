@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="210dp"
+    android:id="@+id/cc"
     android:layout_marginLeft="10dp"
     android:orientation="vertical"
     android:background="#F4F4F4"

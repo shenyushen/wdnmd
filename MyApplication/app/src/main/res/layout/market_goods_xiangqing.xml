@@ -177,16 +177,20 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="390dp"
                     android:layout_height="30dp">
                     <TextView
                         android:id="@+id/return_f"
                         android:textColor="#FF0000"
-                        android:layout_width="wrap_content"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:text="·七天无理由退换货"/>
+                    <android.support.v4.widget.Space
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"/>
                     <ImageView
-                        android:layout_marginLeft="230dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/forward"/>

@@ -65,6 +65,7 @@ import static com.example.a24168.myapplication.market.sort.Goods.s_id;
 import static com.example.a24168.myapplication.sign.Sign.user_id;
 
 public class XiangQing extends AppCompatActivity implements OnBannerListener {
+    public static Context context;
     public static TextView textView10;
     private ImageView imageView; //返回
     private ImageView imageView1; // 购物车
@@ -149,7 +150,6 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
         };
         //获取控件id
         get();
-        Log.e("text",s_id);
         getDate(s_id);
 
 
@@ -181,6 +181,7 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
     }
 
     public void get(){
+        context = this;
         imageView = findViewById(R.id.fanhui10);
         imageView1 = findViewById(R.id.court_xiangqing);
         banner = findViewById(R.id.banner_xiangqing);
@@ -241,7 +242,6 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
         recyclerView.setAdapter(commentsAdapter);
     }
     public void getDate(String id){
-        Log.e("test",id);
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder builder = new FormBody.Builder();
         builder.add("id",id+"");
