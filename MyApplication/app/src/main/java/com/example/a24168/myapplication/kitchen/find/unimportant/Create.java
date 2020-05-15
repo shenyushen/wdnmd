@@ -318,6 +318,7 @@ public class Create extends AppCompatActivity {
                     Gson gson = new Gson();
                     String json = gson.toJson(findFriend);
                     //循环添加文件
+
                     for (int i = 0; i < selectList.size(); i++) {
                         Log.e("selectlist",selectList.get(i).getPath());
                         File file = new File(selectList.get(i).getPath());

@@ -12,7 +12,7 @@ public class FindFriend {
 	private int menuid;
 	private int likenum;
 	private String photo;
-	private String type;
+	private int type;
 	private User user = new User();
 	private List<Find_Photo> find_Photos = new ArrayList<>();
 	private FindLable findLable = new FindLable();
@@ -35,10 +35,10 @@ public class FindFriend {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 	public String getPhoto() {

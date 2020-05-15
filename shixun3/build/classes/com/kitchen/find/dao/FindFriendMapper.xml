@@ -57,5 +57,13 @@
 		left join findlable fl on fl.id = ff.type
 		where fl.type = #{lableid }
 	</select>
+	
+	<insert id="saveFindFriend" parameterType="com.entity.FindFriend" useGeneratedKeys="true" keyProperty="id">
+		insert into findfriend(Id, author, theme, data, date, menuid, likenum,photo,type)values (#{id}, #{author}, #{theme}, #{data}, #{date}, #{menuid}, #{likenum},#{photo},#{type})
+	</insert>
 
+	<insert id="saveFind_Photo" parameterType="com.entity.Find_Photo">
+		insert into find_photo(id,photoid,photo) values <foreach collection="list" item="find_Photos" separator=",">(#{find_Photos.id},#{find_Photos.photoid}, #{find_Photos.photo})</foreach>
+	</insert>
+	
 </mapper>

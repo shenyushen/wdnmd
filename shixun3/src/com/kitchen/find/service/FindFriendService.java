@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.entity.FindFriend;
 import com.entity.FindLable;
+import com.entity.Find_Photo;
 import com.kitchen.find.dao.FindFriendMapper;
 
 @Service
@@ -25,5 +26,15 @@ public class FindFriendService {
 	
 	public List<FindFriend> findFindFriendByLable(String type){
 		return findFriendMapper.findFindFriendByLable(type);
+	}
+	
+	public int saveFindFriend(FindFriend findFriend){
+		findFriendMapper.saveFindFriend(findFriend);
+		int findFriendid = findFriend.getId();
+		return findFriendid;
+	}
+	
+	public void saveFind_Photo(List<Find_Photo> find_Photos) {
+		findFriendMapper.saveFind_Photo(find_Photos);
 	}
 }
