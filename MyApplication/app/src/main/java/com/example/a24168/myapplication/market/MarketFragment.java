@@ -1,6 +1,7 @@
 package com.example.a24168.myapplication.market;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -19,12 +20,14 @@ import android.view.ViewGroup;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.market.adapter.MyAdapter;
 import com.example.a24168.myapplication.market.adapter.XiangqingAdapter;
+import com.example.a24168.myapplication.market.comment.Comment_s;
 import com.example.a24168.myapplication.market.entity.Banner;
 import com.example.a24168.myapplication.market.entity.Good;
 import com.example.a24168.myapplication.market.entity.MarketComment;
 import com.example.a24168.myapplication.market.entity.MarketLike;
 import com.example.a24168.myapplication.market.entity.MarketNew;
 import com.example.a24168.myapplication.market.entity.Type;
+import com.example.a24168.myapplication.market.xiangqing.XiangQing;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,6 +40,8 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import static com.example.a24168.myapplication.main.MainActivity.findeditText;
 
 
 public class MarketFragment extends Fragment {
@@ -51,7 +56,15 @@ public class MarketFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.market ,container, false);
-
+        findeditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), Comment_s.class);
+                startActivity(intent);
+               getActivity().overridePendingTransition(R.anim.anim_in_right,R.anim.anim_out_left);
+            }
+        });
          fragment = getActivity();
         //获取控件得id
         get();

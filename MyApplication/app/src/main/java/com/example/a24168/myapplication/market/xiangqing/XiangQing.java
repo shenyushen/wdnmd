@@ -207,7 +207,7 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
     public void getCommentDate(){
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder builder = new FormBody.Builder();
-        builder.add("id",s_id);
+        builder.add("id",s_id+"");
         FormBody body = builder.build();
 
         Request request = new Request.Builder().post(body)
