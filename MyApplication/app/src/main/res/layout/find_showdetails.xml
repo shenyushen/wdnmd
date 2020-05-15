@@ -26,6 +26,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="#f2f2f2"
+            android:src="@drawable/birth"
             android:layout_gravity="center"
             />
         <TextView
@@ -64,7 +65,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="0dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -107,7 +108,17 @@
                 android:layout_height="wrap_content"
                 android:textColor="#000"
                 />
+            <ListView
+                android:id="@+id/findlistview"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
+
+
+
     </ScrollView>
 
     <RelativeLayout
@@ -118,38 +129,20 @@
         >
         <EditText
             android:id="@+id/edit"
-
-            android:layout_width="180dp"
+            android:layout_width="280dp"
             android:layout_height="45dp"/>
-        <ImageView
-            android:id="@+id/dianzan"
-            android:gravity="center"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/dianzan2"
-            android:layout_toRightOf="@+id/edit"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="15dp"
-            />
-        <TextView
-            android:id="@+id/dianzanrenshu"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="10dp"
-            android:text="0"
-            android:textSize="22dp"
-            android:layout_toRightOf="@+id/dianzan"/>
+
         <ImageView
             android:id="@+id/pinglun"
             android:gravity="center"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/pinglun"
-            android:layout_toRightOf="@+id/dianzanrenshu"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="15dp"
+            android:layout_toLeftOf="@+id/pinglunrenshu"
             />
+
         <TextView
             android:id="@+id/pinglunrenshu"
             android:layout_width="25dp"
@@ -158,6 +151,7 @@
             android:layout_marginLeft="10dp"
             android:text="0"
             android:textSize="22dp"
-            android:layout_toRightOf="@+id/pinglun"/>
+            android:layout_alignParentRight="true"
+            />
     </RelativeLayout>
 </LinearLayout>

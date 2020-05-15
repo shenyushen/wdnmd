@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-14 15:59:06
+Date: 2020-05-15 23:48:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,6 +35,29 @@ CREATE TABLE `course` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `findcomment`
+-- ----------------------------
+DROP TABLE IF EXISTS `findcomment`;
+CREATE TABLE `findcomment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `authorid` int(11) DEFAULT NULL,
+  `comment` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `findfriendid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `authorid` (`authorid`),
+  KEY `findfriendid` (`findfriendid`),
+  CONSTRAINT `findcomment_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `user` (`id`),
+  CONSTRAINT `findcomment_ibfk_2` FOREIGN KEY (`findfriendid`) REFERENCES `findfriend` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of findcomment
+-- ----------------------------
+INSERT INTO `findcomment` VALUES ('1', '2', 'wodainimneda', '1');
+INSERT INTO `findcomment` VALUES ('2', '11', '我带你们打', '1');
+INSERT INTO `findcomment` VALUES ('3', '1', '我不带你们打', '1');
+
+-- ----------------------------
 -- Table structure for `findfriend`
 -- ----------------------------
 DROP TABLE IF EXISTS `findfriend`;
@@ -55,7 +78,7 @@ CREATE TABLE `findfriend` (
   CONSTRAINT `findfriend_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`id`),
   CONSTRAINT `findfriend_ibfk_2` FOREIGN KEY (`menuid`) REFERENCES `menu` (`menu_id`),
   CONSTRAINT `findfriend_ibfk_3` FOREIGN KEY (`type`) REFERENCES `findlable` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of findfriend
@@ -63,6 +86,10 @@ CREATE TABLE `findfriend` (
 INSERT INTO `findfriend` VALUES ('1', '1', '吃蛋糕', '蛋糕真好吃', '2020-04-29 11:05:47', '1', '0', 'abc.jpeg', '3');
 INSERT INTO `findfriend` VALUES ('2', '1', '俺不会', '恩么版', '2020-04-30 10:05:42', '1', '5', 'timg.jpg', '1');
 INSERT INTO `findfriend` VALUES ('3', '1', '饭好吃吗', '这里是一堆发表意见JFK但是艰苦奋斗撒了解科室的JFK拉萨JFK但是JFK是分解啊飞机打瞌睡浪费你的时间爱看发动机上课上课了房间看风景开始了啊；附件是肯定拉风就卡死的回复杰克萨利返回空立法会手机卡了风华绝代斯科拉很费解的是克拉夫就是卡拉回复卡角度思考分离技术的看来附近的萨福克是撒娇开始了放假撒开了；上课艰苦奋斗撒了记录死了', '2020-05-04 15:18:33', '1', '10', 'add.png', '2');
+INSERT INTO `findfriend` VALUES ('10', '1', 'fdsf', 'fsda', null, '1', '0', null, '5');
+INSERT INTO `findfriend` VALUES ('14', '1', 'fdsf', 'fsda', null, '1', '0', null, '5');
+INSERT INTO `findfriend` VALUES ('28', '1', 'aaa', 'aaa', null, '1', '0', null, '5');
+INSERT INTO `findfriend` VALUES ('29', '1', 'aaa', 'aaa', null, '1', '0', null, '5');
 
 -- ----------------------------
 -- Table structure for `findlable`
@@ -98,7 +125,7 @@ CREATE TABLE `find_photo` (
   PRIMARY KEY (`id`),
   KEY `photoid` (`photoid`),
   CONSTRAINT `find_photo_ibfk_1` FOREIGN KEY (`photoid`) REFERENCES `findfriend` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of find_photo
@@ -106,6 +133,7 @@ CREATE TABLE `find_photo` (
 INSERT INTO `find_photo` VALUES ('1', '1', 'abc.jpeg');
 INSERT INTO `find_photo` VALUES ('2', '1', 'add.png');
 INSERT INTO `find_photo` VALUES ('3', '1', 'timg.jpg');
+INSERT INTO `find_photo` VALUES ('4', '29', 'PictureSelector_20200514_143553.JPEG');
 
 -- ----------------------------
 -- Table structure for `goods`
@@ -449,8 +477,8 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg');
-INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'song.jpg');
-INSERT INTO `user` VALUES ('11', '11', '11', '1', null);
+INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg');
+INSERT INTO `user` VALUES ('11', '11', '11', '1', 'yizhifeiluo.jpg');
 INSERT INTO `user` VALUES ('123', '123', '123', '1', null);
 
 -- ----------------------------

@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.kitchen.find.adapter.GridViewAdapter;
+import com.example.a24168.myapplication.kitchen.find.adapter.ListViewAdapter;
 import com.example.a24168.myapplication.kitchen.find.custom.BannerGrid;
 import com.example.a24168.myapplication.kitchen.find.entity.FindFriend;
 import com.example.a24168.myapplication.kitchen.find.entity.Show;
@@ -31,6 +33,8 @@ public class LableDetails extends AppCompatActivity {
     private List<FindFriend> findFriends;
     private Handler handler = new Handler();
     private BannerGrid gridView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,16 +83,17 @@ public class LableDetails extends AppCompatActivity {
 
                         String myUrl = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getPhoto();
 
-                        Show show = new Show(myUrl,findFriends.get(i).getTheme());
-                        Log.e("friends",findFriends.get(0).getFindLable().getLable());
+                        String myUrl1 = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getUser().getPhoto();
+                        Show show = new Show(myUrl,findFriends.get(i).getTheme(),myUrl1,findFriends.get(i).getUser().getUsername(),findFriends.get(i).getLikenum());
                         gridList.add(show);
 
                     }
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            GridViewAdapter gridViewAdapter = new GridViewAdapter(getApplicationContext(),gridList);
+                            GridViewAdapter gridViewAdapter = new GridViewAdapter(LableDetails.this,gridList);
                             gridView.setAdapter(gridViewAdapter);
+
                         }
                     });
 
