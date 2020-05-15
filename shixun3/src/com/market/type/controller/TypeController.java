@@ -1,18 +1,23 @@
 package com.market.type.controller;
 
 
+import com.entity.Find_Photo;
 import com.entity.Goods;
 import com.entity.MarketComments;
 import com.entity.Type;
 import com.market.type.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,5 +56,26 @@ public class TypeController {
     	
     	return typeService.find3(goods_id);
     }
-    
+    @RequestMapping("/insert33")
+    public String f(HttpServletRequest request,@RequestParam("content") String content,@RequestParam("time")String time,
+    		@RequestParam("user_id")String user_id,@RequestParam("goods_id")String goods_id,
+    		@RequestParam(value="selectfile")List<MultipartFile> files) {
+    	String rooString=request.getServletContext().getRealPath("/");
+    	String img="";
+    	try {
+			for(int i = 0;i<files.size();i++) {
+				FileCopyUtils.copy(files.get(i).getBytes(), new File(rooString+"upload",files.get(i).getOriginalFilename()));
+				img= img+files.get(i).getOriginalFilename()+",";
+				
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+    	
+    	
+    	typeService.insertComment(content,time,img,Integer.valueOf(user_id),Integer.valueOf(goods_id));
+    	
+    	return "ok";
+    }
 }

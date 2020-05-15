@@ -41,6 +41,7 @@
             >
         </activity>
         <activity android:name=".market.banner.MarketBanner"></activity>
+        <activity android:name=".market.comment.Comment_s"></activity>
         <activity android:name=".market.xiangqing.XiangQing">
 
 
