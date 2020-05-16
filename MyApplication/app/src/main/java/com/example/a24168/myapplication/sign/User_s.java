@@ -1,6 +1,6 @@
-package com.entity;
+package com.example.a24168.myapplication.sign;
 
-public class User {
+public class User_s {
 	private int id;
 	private String username;
 	private String password;
@@ -72,12 +72,20 @@ public class User {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", photo=" + photo + ", vip="
-				+ vip + ", sex=" + sex + ", profession=" + profession + ", home=" + home + ", label=" + label
-				+ ", birthday=" + birthday + "]";
+		return "User_s{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", photo='" + photo + '\'' +
+				", vip=" + vip +
+				", sex='" + sex + '\'' +
+				", profession='" + profession + '\'' +
+				", home='" + home + '\'' +
+				", label='" + label + '\'' +
+				", birthday='" + birthday + '\'' +
+				'}';
 	}
-	
-	
 }

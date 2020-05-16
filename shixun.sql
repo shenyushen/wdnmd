@@ -10,8 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-14 15:59:06
-Date: 2020-05-15 23:48:28
+Date: 2020-05-16 11:29:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -471,16 +470,21 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
   `vip` int(11) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `birthday` varchar(255) DEFAULT NULL,
+  `home` varchar(255) DEFAULT NULL,
+  `label` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg');
-INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg');
-INSERT INTO `user` VALUES ('11', '11', '11', '1', 'yizhifeiluo.jpg');
-INSERT INTO `user` VALUES ('123', '123', '123', '1', null);
+INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg', null, null, null, null, null);
+INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg', null, null, null, null, null);
+INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-77-2020-05-16-03-27-47.jpg', 'nan', 'it', '2017', 'hebei', 'sss');
+INSERT INTO `user` VALUES ('123', '123', '123', '1', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `user_menu`

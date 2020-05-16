@@ -17,6 +17,7 @@ public class userservice {
 		return usermapper.insertuser(user);
 	}
 	
+	
 	/*public List<User> queryUser(){
 		return usermapper.queryUser();
 	}*/
