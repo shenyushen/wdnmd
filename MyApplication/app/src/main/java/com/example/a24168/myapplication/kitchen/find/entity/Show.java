@@ -6,6 +6,41 @@ public class Show {
 
     private String image;
     private String title;
+    private String touxiang;
+    private String nicheng;
+    private int dianzan;
+
+    public Show(String image, String title, String touxiang, String nicheng, int dianzan) {
+        this.image = image;
+        this.title = title;
+        this.touxiang = touxiang;
+        this.nicheng = nicheng;
+        this.dianzan = dianzan;
+    }
+
+    public String getTouxiang() {
+        return touxiang;
+    }
+
+    public void setTouxiang(String touxiang) {
+        this.touxiang = touxiang;
+    }
+
+    public String getNicheng() {
+        return nicheng;
+    }
+
+    public void setNicheng(String nicheng) {
+        this.nicheng = nicheng;
+    }
+
+    public int getDianzan() {
+        return dianzan;
+    }
+
+    public void setDianzan(int dianzan) {
+        this.dianzan = dianzan;
+    }
 
     public Show(String image, String title) {
         this.image = image;

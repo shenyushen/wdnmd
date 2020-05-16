@@ -1,6 +1,7 @@
 package com.example.a24168.myapplication.kitchen.find;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -63,6 +64,8 @@ public class Find extends Fragment {
     private Banner banner;
     private List<String> images;
     private List<String> titles;
+    private Bitmap bitmap;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -121,9 +124,7 @@ public class Find extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Bundle bundle = new Bundle();
-
                 FindFriend findFriend = findFriends.get(position);
-
                 bundle.putSerializable("findFriend", findFriend);
 
                 Intent intent = new Intent(getContext(), ShowDetails.class);
@@ -149,6 +150,7 @@ public class Find extends Fragment {
         return view;
     }
 
+//展示所有
 
     private void init() {
         new Thread(new Runnable() {
@@ -208,8 +210,8 @@ public class Find extends Fragment {
                     for(int i = 0; i < findFriends.size();i++) {
 
                         String myUrl = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getPhoto();
-
-                        Show show = new Show(myUrl,findFriends.get(i).getTheme());
+                        String myUrl1 = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getUser().getPhoto();
+                        Show show = new Show(myUrl,findFriends.get(i).getTheme(),myUrl1,findFriends.get(i).getUser().getUsername(),findFriends.get(i).getLikenum());
                         Log.e("friends",findFriends.get(0).getFindLable().getLable());
                         gridList.add(show);
 

@@ -56,9 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Log.e("onclick", mList.get(position)+position);
                 /*Bundle bundle = new Bundle();
 
-                *//*FindFriend findFriend = findFriends.get(position);
-                bundle.putSerializable("findFriend", findFriend);*//*
-
+                            Log.e("intent","tiaozhuanwenti");
                 Intent intent = new Intent(getContext(), ShowDetails.class);
                 //intent.putExtras(bundle);
                 startActivity(intent);*/

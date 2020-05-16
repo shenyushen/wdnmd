@@ -2,7 +2,9 @@ package com.example.a24168.myapplication.kitchen.find.adapter;
 
 import android.content.Context;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -22,6 +24,8 @@ import com.bumptech.glide.request.target.Target;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.kitchen.find.entity.Show;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class GridViewAdapter extends BaseAdapter {
@@ -29,6 +33,11 @@ public class GridViewAdapter extends BaseAdapter {
     private List<Show> dataSource;
     private LayoutInflater inflater;
 
+    Bitmap bitmap;
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
 
     public GridViewAdapter(Context context, List<Show> dataSource) {
         super();
@@ -76,6 +85,11 @@ public class GridViewAdapter extends BaseAdapter {
 
             viewHolder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
             viewHolder.textView = (TextView) convertView.findViewById(R.id.textView);
+            viewHolder.touxiang = (ImageView) convertView.findViewById(R.id.yonghutouxiang);
+            viewHolder.nicheng = (TextView) convertView.findViewById(R.id.yonghunicheng);
+            viewHolder.dianzan = convertView.findViewById(R.id.dianzan);
+
+
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -86,13 +100,37 @@ public class GridViewAdapter extends BaseAdapter {
                 .apply( new RequestOptions().error(new ColorDrawable(Color.BLUE))).listener(mRequestListener).into(viewHolder.imageView);
         String title = dataSource.get(position).getTitle();
         viewHolder.textView.setText(title);
+        String image1 = dataSource.get(position).getTouxiang();
+        Glide.with(context).load(image1)
+                .apply( new RequestOptions().error(new ColorDrawable(Color.BLUE))).listener(mRequestListener).into(viewHolder.touxiang);
+        String mingzi = dataSource.get(position).getNicheng();
+        viewHolder.nicheng.setText(mingzi);
+
+
+        ViewHolder finalViewHolder = viewHolder;
+        viewHolder.dianzan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("listener","点了");
+                if (finalViewHolder.dianzan.getDrawable().getCurrent().getConstantState().equals(context.getResources().getDrawable(R.drawable.dianzan2).getConstantState())){
+                    finalViewHolder.dianzan.setImageResource(R.drawable.dianzan1);
+                }else{
+                    finalViewHolder.dianzan.setImageResource(R.drawable.dianzan2);
+                }
+                bitmap = ((BitmapDrawable)finalViewHolder.dianzan.getDrawable()).getBitmap();
+            }
+        });
 
         return convertView;
     }
 
-    static class ViewHolder {
+    class ViewHolder {
         public ImageView imageView;
         public TextView textView;
+        public ImageView touxiang;
+        public TextView nicheng;
+        public ImageView dianzan;
     }
+
 
 }

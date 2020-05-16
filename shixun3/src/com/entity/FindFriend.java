@@ -16,7 +16,15 @@ public class FindFriend {
 	private User user = new User();
 	private List<Find_Photo> find_Photos = new ArrayList<>();
 	private FindLable findLable = new FindLable();
+	private List<FindComment> findComments = new ArrayList<>();
+
 	
+	public List<FindComment> getFindComments() {
+		return findComments;
+	}
+	public void setFindComments(List<FindComment> findComments) {
+		this.findComments = findComments;
+	}
 	public FindLable getFindLable() {
 		return findLable;
 	}
