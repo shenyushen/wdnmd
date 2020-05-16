@@ -471,6 +471,11 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
   `vip` int(11) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `birthday` varchar(255) DEFAULT NULL,
+  `home` varchar(255) DEFAULT NULL,
+  `label` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
 
