@@ -12,6 +12,7 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:scaleType="fitXY"
                 android:layout_marginTop="195dp"
@@ -26,10 +27,16 @@
                 android:src="@drawable/court"
                 android:layout_width="210dp"
                 android:layout_height="180dp"/>
+            <RatingBar
+                android:isIndicator="true"
+                android:id="@+id/r"
+                android:numStars="5"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
 
         </FrameLayout>
-
-
     </RelativeLayout>
 
     <TextView

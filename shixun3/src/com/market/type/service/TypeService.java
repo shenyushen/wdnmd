@@ -33,7 +33,7 @@ public class TypeService {
     public List<MarketComments> find3(int id){
     	return typeMapper.findAllComments(id);
     }
-    public int insertComment(String content,String time,String img,int user_id,int goods_id) {
-    	return typeMapper.insertComment(content,time,img,user_id,goods_id);
+    public int insertComment(String content,String time,String img,String r1,String r2,String r3,int user_id,int goods_id) {
+    	return typeMapper.insertComment(content,time,img,r1,r2,r3,user_id,goods_id);
     }
 } 

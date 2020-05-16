@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,11 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.main.MainActivity;
 import com.example.a24168.myapplication.register.Post;
-import com.example.a24168.myapplication.R;
-
-import org.json.JSONArray;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,22 +23,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-
-import okhttp3.Call;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 
 public class Sign extends AppCompatActivity {
+
+    public static String user_id;
+
+    public static String ww;
+
     private EditText ed_account;
     private EditText ed_pass;
     private Button bt_sign;
     private Button bt_post;
     private int q1=0;
-    public static int user_id;
     private Handler handler;
     private void getViews(){
         ed_account=findViewById(R.id.ed_account);
@@ -64,19 +58,28 @@ public class Sign extends AppCompatActivity {
                     httpURLConnection.setReadTimeout(8000);
                     InputStream in = httpURLConnection.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                    String line;
-                    String str="";
 
                     String string1=reader.readLine();
-                    Log.e("ssss",string1);
-                    if(string1.equals("true")){
-                        user_id = Integer.valueOf(ed_account.getText().toString());
-                        Intent i=new Intent(Sign.this, MainActivity.class);
-                        startActivity(i);
-                    }else{
+                    //Log.e("ssss",string1);
+
+                    Gson gson = new Gson();
+                    User_s user_s  = gson.fromJson(string1,User_s.class);
+                    //Log.e("ssss",user_s.toString());
+                    ww=Integer.toString(user_s.getId());
+                    user_id=Integer.toString(user_s.getId());
+                    Log.e("ww",ww);
+                    if(user_s.getId()== -1){
                         Looper.prepare();
                         Toast.makeText(Sign.this, "账号或密码不正确，请重新输入！", Toast.LENGTH_SHORT).show();
                         Looper.loop();
+                    }else{
+
+                        user_id=Integer.toString(user_s.getId());
+                        Log.e("tag",user_id+"");
+                        Intent i=new Intent(Sign.this, MainActivity.class);
+                        i.putExtra("stringg",string1);
+
+                        startActivity(i);
                     }
 
 

@@ -31,8 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".setting.UserSetting"></activity>
         <activity android:name=".setting.Personal"></activity>
         <activity android:name=".register.Post"></activity>
+
         <activity android:name=".main.MainActivity"></activity>
         <activity android:name=".market.sort.AllSort"></activity>
         <activity android:name=".kitchen.recommand.addmenu.addmenu"></activity>

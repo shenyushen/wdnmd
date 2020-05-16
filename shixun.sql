@@ -223,30 +223,33 @@ CREATE TABLE `market_comments` (
   `content` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `time` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `img` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `r1` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `r2` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `r3` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `goods_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`c_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `market_comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_comments
 -- ----------------------------
-INSERT INTO `market_comments` VALUES ('1', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-03', '1.png,1.png,', '1', '1');
-INSERT INTO `market_comments` VALUES ('2', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-07', '2.png,1.png,', '2', '1');
-INSERT INTO `market_comments` VALUES ('3', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-08', '3.png,1.png,', '2', '1');
-INSERT INTO `market_comments` VALUES ('4', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-09', '2.png,1.png,', '1', '1');
-INSERT INTO `market_comments` VALUES ('5', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-04-06', '1.png,1.png,', '2', '2');
-INSERT INTO `market_comments` VALUES ('6', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-06', '1.png,1.png,', '1', '2');
-INSERT INTO `market_comments` VALUES ('7', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-06-01', '2.png,1.png,', '1', '2');
-INSERT INTO `market_comments` VALUES ('8', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-01', '1.png,1.png,', '2', '3');
-INSERT INTO `market_comments` VALUES ('9', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-02', '3.png,1.png,', '1', '3');
-INSERT INTO `market_comments` VALUES ('10', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-05', '3.png,1.png,', '2', '4');
-INSERT INTO `market_comments` VALUES ('11', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-011', '2.png,1.png,', '1', '4');
-INSERT INTO `market_comments` VALUES ('12', '大话设计模式（带目录完整版）', '2020-05-11', '2.png', '2', '5');
-INSERT INTO `market_comments` VALUES ('13', '大话设计模式', '2020-05-11', '3.png', '1', '6');
-INSERT INTO `market_comments` VALUES ('14', '大话设计模式', '2020-05-11', '2.png', '2', '7');
+INSERT INTO `market_comments` VALUES ('1', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-03', '1.png,1.png,', '2.0', '2.0', '2.0', '1', '1');
+INSERT INTO `market_comments` VALUES ('2', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-07', '2.png,1.png,', '2.0', '2.0', '2.0', '2', '1');
+INSERT INTO `market_comments` VALUES ('3', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-08', '3.png,1.png,', '2.0', '2.0', '2.0', '2', '1');
+INSERT INTO `market_comments` VALUES ('4', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-09', '2.png,1.png,', '2.0', '2.0', '2.0', '1', '1');
+INSERT INTO `market_comments` VALUES ('5', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-04-06', '1.png,1.png,', '2.0', '2.0', '2.0', '2', '2');
+INSERT INTO `market_comments` VALUES ('6', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-06', '1.png,1.png,', '2.0', '2.0', '2.0', '1', '2');
+INSERT INTO `market_comments` VALUES ('7', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-06-01', '2.png,1.png,', '2.0', '2.0', '2.0', '1', '2');
+INSERT INTO `market_comments` VALUES ('8', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-01', '1.png,1.png,', '2.0', '2.0', '2.0', '2', '3');
+INSERT INTO `market_comments` VALUES ('9', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-02', '3.png,1.png,', '2.0', '2.0', '2.0', '1', '3');
+INSERT INTO `market_comments` VALUES ('10', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-05', '3.png,1.png,', '2.0', '2.0', '2.0', '2', '4');
+INSERT INTO `market_comments` VALUES ('11', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-011', '2.png,1.png,', '2.0', '2.0', '2.0', '1', '4');
+INSERT INTO `market_comments` VALUES ('12', '大话设计模式（带目录完整版）', '2020-05-11', '2.png', '2.0', '2.0', '2.0', '2', '5');
+INSERT INTO `market_comments` VALUES ('13', '大话设计模式', '2020-05-11', '3.png', '2.0', '2.0', '2.0', '1', '6');
+INSERT INTO `market_comments` VALUES ('14', '大话设计模式', '2020-05-11', '2.png', '2.0', '2.0', '2.0', '2', '7');
 
 -- ----------------------------
 -- Table structure for `market_commentshow`
@@ -474,16 +477,21 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
   `vip` int(11) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `birthday` varchar(255) DEFAULT NULL,
+  `home` varchar(255) DEFAULT NULL,
+  `label` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg');
-INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg');
-INSERT INTO `user` VALUES ('11', '11', '11', '1', 'yizhifeiluo.jpg');
-INSERT INTO `user` VALUES ('123', '123', '123', '1', null);
+INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg', null, null, null, null, null);
+INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg', null, null, null, null, null);
+INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-77-2020-05-16-03-27-47.jpg', 'nan', 'it', '2017', 'hebei', 'sss');
+INSERT INTO `user` VALUES ('123', '123', '123', '1', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `user_menu`
