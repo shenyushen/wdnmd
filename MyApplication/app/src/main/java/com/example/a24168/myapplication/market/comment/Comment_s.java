@@ -16,14 +16,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a24168.myapplication.R;
-import com.example.a24168.myapplication.kitchen.find.entity.FindFriend;
-import com.example.a24168.myapplication.market.sort.Goods;
-import com.example.a24168.myapplication.market.xiangqing.XiangQing;
-import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -45,8 +42,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
 import static com.example.a24168.myapplication.sign.Sign.user_id;
-import static com.example.a24168.myapplication.main.MainActivity.findeditText;
 
 public class Comment_s extends AppCompatActivity {
 
@@ -57,6 +54,10 @@ public class Comment_s extends AppCompatActivity {
     private PopupWindow pop;
     private Button button;
     private EditText editText;
+    //private RatingBar ratingBar;
+    private RatingBar andRatingBar;
+    private RatingBar ratingBar1;
+    private RatingBar ratingBar2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +66,9 @@ public class Comment_s extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recycler_s);
 
         initWidget();
+        andRatingBar = findViewById(R.id.rating1);
+        ratingBar1 = findViewById(R.id.rating2);
+        ratingBar2 = findViewById(R.id.rating3);
         button = findViewById(R.id.btn_s);
         editText = findViewById(R.id.edit_s);
         button.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +79,9 @@ public class Comment_s extends AppCompatActivity {
                 int year = calendar.get(Calendar.YEAR);int month = calendar.get(Calendar.MONTH)+1;
                 int day = calendar.get(Calendar.DATE);
                 String time = year+"-"+month+"-"+day;
-                send(time);
+               // Log.e("tag",aratingBar.getRating()+"");
+
+               send(time);
                 //  selectList 路径
 
             }
@@ -105,6 +111,9 @@ public class Comment_s extends AppCompatActivity {
                     requestBodyBuilder.addFormDataPart("content", content);
                     requestBodyBuilder.addFormDataPart("time", time);
                     requestBodyBuilder.addFormDataPart("user_id", user_id+"");
+                    requestBodyBuilder.addFormDataPart("r1", andRatingBar.getRating()+"");
+                    requestBodyBuilder.addFormDataPart("r2", ratingBar1.getRating()+"");
+                    requestBodyBuilder.addFormDataPart("r3", ratingBar2.getRating()+"");
                     requestBodyBuilder.addFormDataPart("goods_id","1") ;
                     RequestBody requestBody = requestBodyBuilder.build();
                     Request request = new Request.Builder()

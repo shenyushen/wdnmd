@@ -75,6 +75,7 @@ public class Sign extends AppCompatActivity {
                     }else{
 
                         user_id=Integer.toString(user_s.getId());
+                        Log.e("tag",user_id+"");
                         Intent i=new Intent(Sign.this, MainActivity.class);
                         i.putExtra("stringg",string1);
 

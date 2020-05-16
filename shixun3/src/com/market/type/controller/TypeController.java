@@ -59,6 +59,7 @@ public class TypeController {
     @RequestMapping("/insert33")
     public String f(HttpServletRequest request,@RequestParam("content") String content,@RequestParam("time")String time,
     		@RequestParam("user_id")String user_id,@RequestParam("goods_id")String goods_id,
+    		@RequestParam("r1")String r1,@RequestParam("r2")String r2,@RequestParam("r3")String r3,
     		@RequestParam(value="selectfile")List<MultipartFile> files) {
     	String rooString=request.getServletContext().getRealPath("/");
     	String img="";
@@ -73,8 +74,9 @@ public class TypeController {
 			e.printStackTrace();
 		}
     	
+    	System.out.println(content+time+img+r1+r2+r3+user_id+goods_id);
     	
-    	typeService.insertComment(content,time,img,Integer.valueOf(user_id),Integer.valueOf(goods_id));
+    	typeService.insertComment(content,time,img,r1,r2,r3,Integer.valueOf(user_id),Integer.valueOf(goods_id));
     	
     	return "ok";
     }

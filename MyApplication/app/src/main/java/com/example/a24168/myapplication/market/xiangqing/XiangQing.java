@@ -5,8 +5,6 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,10 +29,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.a24168.myapplication.R;
-import com.example.a24168.myapplication.market.adapter.XiangqingAdapter;
 import com.example.a24168.myapplication.market.entity.Good;
-import com.example.a24168.myapplication.market.entity.Type;
-import com.example.a24168.myapplication.market.sort.Goods;
 import com.example.a24168.myapplication.market.xiangqing.adpter.CommentsAdapter;
 import com.example.a24168.myapplication.market.xiangqing.adpter.Type1Adapter;
 import com.example.a24168.myapplication.market.xiangqing.entity.Comments;
@@ -46,8 +41,6 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -141,6 +134,8 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
                         String s = (String) msg.obj;
                         Gson gson = new Gson();
                         commentsList = gson.fromJson(s,new TypeToken<List<Comments>>(){}.getType());
+                        for (int i = 0; i < commentsList.size(); i++)
+                            Log.e("tag",commentsList.get(i).toString());
                         getComment();
                     }
 

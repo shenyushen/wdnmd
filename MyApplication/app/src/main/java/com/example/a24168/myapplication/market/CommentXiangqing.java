@@ -2,13 +2,12 @@ package com.example.a24168.myapplication.market;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -19,18 +18,6 @@ import com.example.a24168.myapplication.market.xiangqing.Image;
 import com.example.a24168.myapplication.market.xiangqing.adpter.ImageAdapter;
 import com.example.a24168.myapplication.market.xiangqing.entity.Comments;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-import static com.example.a24168.myapplication.market.sort.Goods.s_id;
-
 public class CommentXiangqing extends AppCompatActivity {
     private ImageView imageView;
     private TextView textView;
@@ -38,6 +25,9 @@ public class CommentXiangqing extends AppCompatActivity {
     GridView gridView;
     private ImageView imageView2;
     private TextView textView2;
+    private RatingBar rr1;
+    private RatingBar rr2;
+    private RatingBar rr3;
     public static Comments commentss;
     public static String[] strings;
     public static  int cur;
@@ -64,8 +54,14 @@ public class CommentXiangqing extends AppCompatActivity {
         gridView = findViewById(R.id.sss);
         imageView2 = findViewById(R.id.qq);
         textView2 = findViewById(R.id.time_a);
+        rr1 = findViewById(R.id.rr1);
+        rr2 = findViewById(R.id.rr2);
+        rr3 = findViewById(R.id.rr3);
     }
     public void setDate(){
+        rr1.setRating(Float.parseFloat(commentss.getR1()));
+        rr2.setRating(Float.parseFloat(commentss.getR2()));
+        rr3.setRating(Float.parseFloat(commentss.getR3()));
         textView.setText(commentss.getUser().getUsername());
         textView1.setText(commentss.getContent());
         textView2.setText(commentss.getTime());

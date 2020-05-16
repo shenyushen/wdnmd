@@ -7,7 +7,9 @@ public class Comments {
     private String content;
     private String time;
     private String img;
-
+    private String r1;
+    private String r2;
+    private String r3;
     private User1 user;
     private int goodsId;
     public int getId() {
@@ -42,6 +44,30 @@ public class Comments {
         this.img = img;
     }
 
+    public String getR1() {
+        return r1;
+    }
+
+    public void setR1(String r1) {
+        this.r1 = r1;
+    }
+
+    public String getR2() {
+        return r2;
+    }
+
+    public void setR2(String r2) {
+        this.r2 = r2;
+    }
+
+    public String getR3() {
+        return r3;
+    }
+
+    public void setR3(String r3) {
+        this.r3 = r3;
+    }
+
     public User1 getUser() {
         return user;
     }
@@ -56,5 +82,20 @@ public class Comments {
 
     public void setGoodsId(int goodsId) {
         this.goodsId = goodsId;
+    }
+
+    @Override
+    public String toString() {
+        return "Comments{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", time='" + time + '\'' +
+                ", img='" + img + '\'' +
+                ", r1='" + r1 + '\'' +
+                ", r2='" + r2 + '\'' +
+                ", r3='" + r3 + '\'' +
+                ", user=" + user +
+                ", goodsId=" + goodsId +
+                '}';
     }
 }

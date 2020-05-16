@@ -3,12 +3,12 @@ package com.example.a24168.myapplication.market.xiangqing.adpter;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -17,8 +17,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.market.CommentXiangqing;
 import com.example.a24168.myapplication.market.xiangqing.entity.Comments;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -34,6 +32,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         TextView textView; //名字
         TextView textView1; // 评论内容
         LinearLayout linearLayout;
+        RatingBar ratingBar;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.a1);
@@ -41,6 +40,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             textView1 = itemView.findViewById(R.id.a3);
             imageView1 = itemView.findViewById(R.id.icon);
             linearLayout = itemView.findViewById(R.id.cc);
+            ratingBar = itemView.findViewById(R.id.r);
         }
     }
     public CommentsAdapter(List<Comments> comments){
@@ -70,6 +70,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         viewHolder.textView.setText(comments.getUser().getUsername());
         viewHolder.textView1.setText(comments.getContent());
         textView10.setText(getItemCount()+"个评价");
+        viewHolder.ratingBar.setRating(Float.parseFloat(comments.getR1()));
         viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

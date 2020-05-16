@@ -41,6 +41,9 @@
 		<result property="content" column="content"/>
 		<result property="time" column="time"/>
 		<result property="img" column="img"/>
+		<result property="r1" column="r1"/>
+		<result property="r2" column="r2"/>
+		<result property="r3" column="r3"/>
 		<result property="user.id" column="id"/>
 		<result property="user.username" column="username"/>
 		<result property="user.password" column="password"/>
@@ -48,6 +51,7 @@
 		<result property="user.photo" column="photo"/>
 		<result property="goodsId" column="goods_id"/>
 	</resultMap>
+	
     <select id="findAll" resultMap="goods">
 		select * from goods
 	</select>
@@ -77,7 +81,7 @@
 	</select>
 	
 	<insert id = "insertComment">
-		insert into market_comments(content,time,img,user_id,goods_id)
-		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4})
+		insert into market_comments(content,time,img,r1,r2,r3,user_id,goods_id)
+		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5},#{arg6},#{arg7})
 	</insert>
 </mapper>

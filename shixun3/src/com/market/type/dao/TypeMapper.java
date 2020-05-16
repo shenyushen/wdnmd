@@ -14,5 +14,5 @@ public interface TypeMapper {
     public int insertCourt(int user_id,String goods_content,String goods_type,String goods_price,String goods_count,String goods_id);
     public List<MarketComments> findAllComments(int id);
     
-    public int insertComment(String content,String time,String img,int user_id,int goods_id);
+    public int insertComment(String content,String time,String img,String r1,String r2,String r3,int user_id,int goods_id);
 }

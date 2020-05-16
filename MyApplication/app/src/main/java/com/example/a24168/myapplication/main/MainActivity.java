@@ -1,8 +1,12 @@
 package com.example.a24168.myapplication.main;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.widget.DrawerLayout;
@@ -49,16 +53,39 @@ public  class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     ImageView menu;
     public static  EditText findeditText;
-
-
+    public Handler handler;
+    private Context context;
+    View headerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findeditText=findViewById(R.id.findfood);
+        handler = new Handler(){
+            @SuppressLint("HandlerLeak")
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                User_s user_s1 = (User_s) msg.obj;
+                TextView res = headerView.findViewById(R.id.head_name);
+                res.setText(user_s1.getUsername());
+                TextView txt_sex=headerView.findViewById(R.id.txt_sex);
+                txt_sex.setText("性别："+user_s1.getSex());
+                TextView txt_bitrhday=headerView.findViewById(R.id.txt_birthday);
+                txt_bitrhday.setText("生日："+user_s1.getBirthday());
+                TextView txt_profession=headerView.findViewById(R.id.txt_profession);
+                txt_profession.setText("职业："+user_s1.getProfession());
+                TextView txt_tag=headerView.findViewById(R.id.txt_tag);
+                txt_tag.setText("个性签名："+user_s1.getLabel());
+                TextView txt_home=headerView.findViewById(R.id.txt_home);
+                txt_home.setText("家乡："+user_s1.getHome());
+                imageView=headerView.findViewById(R.id.person);
+                Glide.with(context).load(ur+user_s1.getPhoto()).into(imageView);
+            }
+        };
         //获取FragmentTabHost对象
         FragmentTabHost fragmentTabHost = findViewById(android.R.id.tabhost);
-
+        context = this;
         //初始化FragmentTabHost
         fragmentTabHost.setup(this,
                 getSupportFragmentManager(),//FragmentManager对象用来管理多个Fragment
@@ -151,7 +178,7 @@ public  class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.activity_na);
         navigationView = findViewById(R.id.nav);
         menu = findViewById(R.id.main_menu);
-        View headerView = navigationView.getHeaderView(0);
+        headerView = navigationView.getHeaderView(0);
 
         new Thread(){
             @Override
@@ -178,23 +205,14 @@ public  class MainActivity extends AppCompatActivity {
                     String string=reader.readLine();
                     Log.e("asasas",string);
 
+
                     User_s user_s1=gson.fromJson(string,User_s.class);
 
-                    TextView res = headerView.findViewById(R.id.head_name);
-                    res.setText(user_s1.getUsername());
-                    TextView txt_sex=headerView.findViewById(R.id.txt_sex);
-                    txt_sex.setText("性别："+user_s1.getSex());
-                    TextView txt_bitrhday=headerView.findViewById(R.id.txt_birthday);
-                    txt_bitrhday.setText("生日："+user_s1.getBirthday());
-                    TextView txt_profession=headerView.findViewById(R.id.txt_profession);
-                    txt_profession.setText("职业："+user_s1.getProfession());
-                    TextView txt_tag=headerView.findViewById(R.id.txt_tag);
-                    txt_tag.setText("个性签名："+user_s1.getLabel());
-                    TextView txt_home=headerView.findViewById(R.id.txt_home);
-                    txt_home.setText("家乡："+user_s1.getHome());
-                    imageView=headerView.findViewById(R.id.person);
-                    urll=ur+user_s1.getPhoto();
 
+                    urll=ur+user_s1.getPhoto();
+                    Message message = Message.obtain();
+                    message.obj=user_s1;
+                    handler.sendMessage(message);
 
                 }catch (MalformedURLException e){
                     e.printStackTrace();
@@ -203,10 +221,10 @@ public  class MainActivity extends AppCompatActivity {
                 }
             }
         }.start();
-        Log.e("kaishi","kaishi");
-        Glide.with(this).load(urll).into(imageView);
-        Log.e("lujing",urll);
-        Log.e("jieshu","jieshu");
+     //   Log.e("kaishi","kaishi");
+      //  Glide.with(this).load(urll).into(imageView);
+       // Log.e("lujing",urll);
+       // Log.e("jieshu","jieshu");
         menu.setOnClickListener(view -> {
             //点击菜单，跳出侧滑菜单
 
