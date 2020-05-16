@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="wrap_content" android:layout_width="wrap_content">
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/favorite"
+            android:icon="@drawable/gerenzhongxin"
+            android:title="个人"/>
+        <item
+            android:id="@+id/wallet"
+            android:title="设置"
+            android:icon="@drawable/shezhi"/>
+        <item
+            android:id="@+id/photo"
+            android:title="刷新"
+            android:icon="@drawable/shuxin"/>
+        <item
+            android:id="@+id/dress"
+            android:title="收藏"
+            android:icon="@drawable/shoucang"/>
+    </group>
+</menu>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.type.dao.TypeMapper">
+	<resultMap id="goods" type="com.entity.Goods">
+		<id property="goodsId" column="goods_id"/>
+		<result property="title" column="title"/>
+		<result property="littleContent" column="little_content"/>
+		<result property="saleVolume" column="sale_Volume"/>
+		<result property="price" column="price"/>
+		<result property="img" column="img"/>
+
+	</resultMap>
+	
+	<resultMap id="good" type="com.entity.Goods">
+		<id property="goodsId" column="goods_id"/>
+		<result property="title" column="title"/>
+		<result property="littleContent" column="little_content"/>
+		<result property="saleVolume" column="sale_Volume"/>
+		<result property="price" column="price"/>
+		<result property="good.goodId" column="goods_x_id"/>
+		<result property="good.goods_img" column="goods_img"/>
+		<result property="good.goods_type" column="goods_type"/>
+		<result property="good.return_goods" column="return_goods"/>
+		<result property="good.if_freeshiiping" column="if_freeshiiping"/>
+		<result property="good.goods_score" column="goods_score"/>
+	</resultMap>
+	
+	<resultMap id="court" type="com.entity.MarketCourt">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="goodsContent" column="goods_content"/>
+		<result property="goodsType" column="goods_type"/>
+		<result property="goodsPrice" column="goods_price"/>
+		<result property="goodsCount" column="goods_count"/>
+		<result property="goodsId" column="goods_id"/>
+	</resultMap>
+	<resultMap id="comments" type="com.entity.MarketComments">
+		<id property="id" column="c_id"/>
+		<result property="content" column="content"/>
+		<result property="time" column="time"/>
+		<result property="img" column="img"/>
+		<result property="user.id" column="id"/>
+		<result property="user.username" column="username"/>
+		<result property="user.password" column="password"/>
+		<result property="user.vip" column="vip"/>
+		<result property="user.photo" column="photo"/>
+		<result property="goodsId" column="goods_id"/>
+	</resultMap>
+    <select id="findAll" resultMap="goods">
+		select * from goods
+	</select>
+	
+	<select id="findAllGoods" resultMap="goods">
+		select *
+		from goods
+		where type_id = #{type_id}
+	</select>
+	<select id = "findGood" resultMap = "good">
+		select *
+		from goods g
+		left join goods_xiangqing x on g.goods_id = x.goods_id
+		where g.goods_id=#{id}
+	</select>
+	
+	<insert id = "insertCourt">
+		insert into market_court(user_id,goods_content,goods_type,goods_price,goods_count,goods_id)
+		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5})
+	</insert>
+	<select id = "findAllComments" resultMap = "comments">
+		select * 
+		from market_comments m
+		left join user u 
+		on m.user_id = u.id
+		where m.goods_id = #{id}
+	</select>
+	
+	<insert id = "insertComment">
+		insert into market_comments(content,time,img,user_id,goods_id)
+		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4})
+	</insert>
+</mapper>

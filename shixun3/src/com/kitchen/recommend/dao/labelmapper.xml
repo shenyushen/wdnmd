@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace代表唯一标识符 -->
+<mapper namespace="com.kitchen.recommend.dao.labelmapper">
+<!-- 05 -->
+<resultMap type="com.entity.label" id="label">
+		<id property="label_id" column="label_id"/>
+        <result property="label_name" column="label_name"/>
+    <collection property="menus" ofType="com.entity.menu">
+	    <id property="menu_id" column="menu_id"/>
+	    <result property="date" column="date"/>
+	    <result property="menu_photo" column="menu_photo"/>
+	    <result property="menu_name" column="menu_name"/>
+	    <result property="type" column="type"/>
+    </collection>
+</resultMap>
+<resultMap type="com.entity.menu" id="menu">
+	<id property="menu_id" column="menu_id"/>
+    <result property="date" column="date"/>
+    <result property="menu_photo" column="menu_photo"/>
+    <result property="menu_name" column="menu_name"/>
+    <result property="type" column="type"/>
+    <collection property="labels" ofType="com.entity.label">
+    	<id property="label_id" column="label_id"/>
+        <result property="label_name" column="label_name"/>
+    </collection>
+</resultMap>
+<select id="findallbylabel"  resultMap="menu">
+	SELECT * FROM menu m,label l,menu_label ml where m.menu_id=ml.menu_id and l.label_id=ml.label_id 
+	<if test='!type.equals("*")'>
+      and m.type= #{type}
+  	</if>
+  <if test="labels!= null">
+      and l.label_name in 
+	<foreach collection="labels" open="(" close=")" separator="," item="label_name" index="i">
+         #{label_name}
+     </foreach> 
+  </if>
+	
+</select>
+	<select id="findstepbymenuid" resultType="com.entity.Step" >
+         select * from step  where menu_id=#{menuid} ORDER BY stepnum
+    </select>
+    <select id="findbyfind" resultType="com.entity.menu" >
+         SELECT * FROM menu where menu_name LIKE "%"#{menuname}"%";
+    </select>
+	<insert id="addlabelmenu" parameterType="com.entity.label">
+		insert into menu_label(label_id,menu_id)  VALUES
+		<foreach collection="labels" item="label" separator=",">
+     		(#{label.label_id},#{menuid})
+     	</foreach>
+	</insert>
+</mapper>

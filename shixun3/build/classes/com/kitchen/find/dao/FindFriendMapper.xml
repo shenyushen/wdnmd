@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace代表唯一标识符 -->
+<mapper namespace="com.kitchen.find.dao.FindFriendMapper">
+	<!-- 筛选全部 -->
+	<resultMap type="com.entity.FindFriend" id="findFriend">
+		   <id property="id" column="ffid"/>
+	       <result property="author" column="author"/>
+	       <result property="theme" column="theme"/>
+	       <result property="data" column="data"/>
+	       <result property="date" column="date"/>
+	       <result property="menuid" column="menuid"/>
+	       <result property="likenum" column="likenum"/>
+	       <result property="photo" column="ffphoto"/>
+	       <result property="type" column="type"/>
+	       <result property="user.id" column="uid"/>
+	       <result property="user.username" column="username"/>
+	       <result property="user.photo" column="uphoto"/>
+	       <result property="findLable.id" column="flid"/>
+	       <result property="findLable.lable" column="fltype"/>
+	    <collection property="find_Photos" ofType="com.entity.Find_Photo">
+	    	<id property="id" column="fpid"/>
+	    	<result property="photoid" column="photoid"/>
+		    <result property="photo" column="fpphoto"/>
+	    </collection>
+	    <collection property="findComments" ofType="com.entity.FindComment">
+	    	<id property="id" column="fcid"/>
+	    	<result property="authorid" column="authorid"/>
+		    <result property="comment" column="comment"/>
+		    <result property="user.id" column="usid"/>
+		    <result property="user.username" column="ususername"/>
+		    <result property="user.photo" column="usphoto"/>
+	    </collection>
+	</resultMap>
+
+	<select id="findAllFindFriend" resultMap="findFriend" >
+		SELECT ff.id ffid,ff.author,ff.theme,ff.data,ff.date,ff.menuid,ff.likenum,ff.photo ffphoto,ff.type,
+			u.id uid,u.username,u.photo uphoto,
+			fp.id fpid,fp.photoid,fp.photo fpphoto,
+			fl.id flid,fl.type fltype,
+			fc.id fcid, fc.authorid,fc.comment,
+			us.id usid,us.username ususername,us.photo usphoto
+		FROM findFriend ff 
+		left join user u on u.id = ff.author
+		left join find_photo fp on fp.photoid = ff.id 
+		left join findlable fl on fl.id = ff.type
+		left join findcomment fc on fc.findfriendid = ff.id
+		left join user us on us.id = fc.authorid
+	</select>
+	
+	<resultMap type="com.entity.FindLable" id="findlable">
+		<id property="id" column="id"/>
+	    <result property="lable" column="type"/>
+	</resultMap>
+	<select id="findAllLable" resultMap="findlable">
+		select id,type from findlable ORDER BY id ASC
+	</select>
+	
+	<select id="findFindFriendByLable" resultMap="findFriend">
+		SELECT ff.id ffid,ff.author,ff.theme,ff.data,ff.date,ff.menuid,ff.likenum,ff.photo ffphoto,ff.type,
+			u.id uid,u.username,u.photo uphoto,
+			fp.id fpid,fp.photoid,fp.photo fpphoto,
+			fl.id flid,fl.type fltype
+		FROM findFriend ff 
+		left join user u on u.id = ff.author
+		left join find_photo fp on fp.photoid = ff.id 
+		left join findlable fl on fl.id = ff.type
+		where fl.type = #{lableid }
+	</select>
+	
+	<insert id="saveFindFriend" parameterType="com.entity.FindFriend" useGeneratedKeys="true" keyProperty="id">
+		insert into findfriend(Id, author, theme, data, date, menuid, likenum,photo,type)values (#{id}, #{author}, #{theme}, #{data}, #{date}, #{menuid}, #{likenum},#{photo},#{type})
+	</insert>
+
+	<insert id="saveFind_Photo" parameterType="com.entity.Find_Photo">
+		insert into find_photo(id,photoid,photo) values <foreach collection="list" item="find_Photos" separator=",">(#{find_Photos.id},#{find_Photos.photoid}, #{find_Photos.photo})</foreach>
+	</insert>
+	
+	<insert id="insertComment">
+		insert into findcomment(authorid,comment,findfriendid) values (#{authorid},#{comment},#{findfriendid})
+	</insert>
+	
+	<select id="findYouCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select COUNT(*) from findcomment where findfriendid = #{id}
+	</select>
+	
+</mapper>
