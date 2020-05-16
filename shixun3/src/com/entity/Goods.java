@@ -8,8 +8,6 @@ public class Goods {
     private double price;
      private String img;
     private Type type;
-    private GoodsXiangqing good;
-    
     public Type getType() {
         return type;
     }
@@ -69,13 +67,4 @@ public class Goods {
     public void setImg(String img) {
         this.img = img;
     }
-
-	public GoodsXiangqing getGood() {
-		return good;
-	}
-
-	public void setGood(GoodsXiangqing good) {
-		this.good = good;
-	}
-    
 }

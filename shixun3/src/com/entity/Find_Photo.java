@@ -22,14 +22,4 @@ public class Find_Photo {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public Find_Photo(int photoid, String photo) {
-		super();
-		this.photoid = photoid;
-		this.photo = photo;
-	}
-	public Find_Photo() {
-		super();
-	}
-	
-	
 }

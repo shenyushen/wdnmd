@@ -61,5 +61,4 @@ public class XiangqingAdapter extends BaseAdapter {
         textView3.setText("已销"+list.get(position).getSaleVolume());
         return convertView;
     }
-    
 }

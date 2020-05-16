@@ -10,6 +10,12 @@
     <result property="username" column="username"/>
     <result property="password" column="password"/>
     <result property="vip" column="vip"/>
+    <result property="sex" column="sex"/>
+    <result property="photo" column="photo"/>
+    <result property="profession" column="profession"/>
+    <result property="birthday" column="birthday"/>
+    <result property="home" column="home"/>
+    <result property="label" column="label"/>
 </resultMap>
 <select id="insertuser">
 	insert into user(id,username,password,vip) values (#{id},#{username},#{password},#{vip})
@@ -18,5 +24,16 @@
 <select id="queryUser" resultMap="user">
 	select * from user
 	where id=#{s1} and password=#{s2}
+</select>
+
+<update id="updateUser" >
+	update user
+	set username=#{s2},sex=#{s3},profession=#{s4},home=#{s5},birthday=#{s6},label=#{s7},photo=#{s8}
+	where id=#{s1}
+
+</update>
+<select id="secondquery" resultMap="user">
+	select * from user
+	where id=#{m}
 </select>
 </mapper>

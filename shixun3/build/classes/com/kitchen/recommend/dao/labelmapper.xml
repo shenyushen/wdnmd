@@ -46,10 +46,5 @@
     <select id="findbyfind" resultType="com.entity.menu" >
          SELECT * FROM menu where menu_name LIKE "%"#{menuname}"%";
     </select>
-	<insert id="addlabelmenu" parameterType="com.entity.label">
-		insert into menu_label(label_id,menu_id)  VALUES
-		<foreach collection="labels" item="label" separator=",">
-     		(#{label.label_id},#{menuid})
-     	</foreach>
-	</insert>
+
 </mapper>

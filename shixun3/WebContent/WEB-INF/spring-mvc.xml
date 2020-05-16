@@ -44,7 +44,6 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/" />
@@ -57,5 +56,6 @@
 	</bean>
 	<tx:annotation-driven
 		transaction-manager="transactionManager" proxy-target-class="true" />
+		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" /> 
 </beans>
 		

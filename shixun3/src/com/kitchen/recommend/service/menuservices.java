@@ -31,18 +31,4 @@ public class  menuservices {
 		// TODO Auto-generated method stub
 		return labelmapper.findbyfind(menuname);
 	}
-	public int addmenu(menu menu) {
-		 menumapper.addmenu(menu);
-		 System.out.println("id"+menu.getMenu_id());
-		 return menu.getMenu_id();
-		
-	}
-	public int addlabelmenu(List<label> labels, int menuid) {
-		return this.labelmapper.addlabelmenu(labels,menuid);
-		
-	}
-	public int addsteps(int menuid, List<Step> steps) {
-		// TODO Auto-generated method stub
-		return this.menumapper.addsteps(menuid,steps);
-	}
 }

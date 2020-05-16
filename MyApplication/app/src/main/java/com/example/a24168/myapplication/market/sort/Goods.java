@@ -1,6 +1,5 @@
 package com.example.a24168.myapplication.market.sort;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,7 +15,6 @@ import android.widget.TextView;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.market.adapter.XiangqingAdapter;
 import com.example.a24168.myapplication.market.entity.Good;
-import com.example.a24168.myapplication.market.xiangqing.XiangQing;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,13 +34,11 @@ public class Goods extends AppCompatActivity {
     private ImageView imageView;
     private ImageView imageView1;
     private Context context = this;
-    public static String s_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.market_sort_xiangqing);
         handler = new Handler(){
-            @SuppressLint("HandlerLeak")
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -52,17 +47,6 @@ public class Goods extends AppCompatActivity {
                 List<Good> list = gson.fromJson(s,new TypeToken<List<Good>>(){}.getType());
                 XiangqingAdapter xiangqingAdapter = new XiangqingAdapter(list,context,R.layout.market_sort_xiangqing_item);
                 gridView.setAdapter(xiangqingAdapter);
-
-                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        s_id = list.get(position).getGoodsId()+"";
-                        Intent  intent = new Intent();
-                        intent.setClass(Goods.this, XiangQing.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.anim_in_right,R.anim.anim_out_left);
-                    }
-                });
             }
         };
 

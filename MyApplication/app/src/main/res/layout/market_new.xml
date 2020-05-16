@@ -22,10 +22,49 @@
         android:textColor="@color/black"
         android:textSize="25dp"
         />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/r1"
-        android:layout_marginLeft="15dp"
+    <HorizontalScrollView
+
+        android:id="@+id/hs_menu"
         android:layout_width="match_parent"
-        android:layout_height="280dp"/>
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_centerVertical="true"
+        android:scrollbars="none"
+        tools:ignore="MissingConstraints">
+        <LinearLayout
+            android:id="@+id/marketnew_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--            <RelativeLayout-->
+            <!--                android:layout_width="200dp"-->
+            <!--                android:layout_height="246dp">-->
+
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/marketnewPic1"-->
+            <!--                    android:layout_width="200dp"-->
+            <!--                    android:layout_height="200dp"-->
+            <!--                    android:background="#ff00ff" />-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_marginTop="200dp"-->
+            <!--                    android:text="阿斯顿"-->
+            <!--                    android:layout_width="200dp"-->
+            <!--                    android:layout_height="40dp"-->
+            <!--                    />-->
+
+            <!--            </RelativeLayout>-->
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
 
 </LinearLayout>

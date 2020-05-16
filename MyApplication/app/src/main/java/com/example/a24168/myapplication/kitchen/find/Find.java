@@ -172,7 +172,7 @@ public class Find extends Fragment {
                             LinearLayoutManager layout = new LinearLayoutManager(getContext());
                             layout.setOrientation(LinearLayoutManager.HORIZONTAL);//设置为横向排列
                             recyclerView.setLayoutManager(layout);
-                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(itemList,getContext());
+                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(itemList);
                             recyclerView.setAdapter(adapter);
 
                         }

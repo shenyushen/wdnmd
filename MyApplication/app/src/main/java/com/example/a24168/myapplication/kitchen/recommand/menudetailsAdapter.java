@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.a24168.myapplication.R;
 
 import static com.example.a24168.myapplication.kitchen.recommand.Recommand.context;
@@ -55,11 +54,8 @@ public class menudetailsAdapter extends BaseAdapter {
                 stepcontext=convertView.findViewById(R.id.stepcontext);
                 stepnum.setText("步骤"+(i+1));
                 stepcontext.setText(steps[i].trim().split("'")[3]);
-                RequestOptions options = new RequestOptions();
-                options.placeholder(R.drawable.jiazai);
                 Glide.with(context)
                         .load(context.getResources().getString(R.string.photoip)+steps[i].trim().split("'")[4])
-                        .apply(options)
                         .into(stepsphoto);
             }
         }

@@ -3,23 +3,24 @@ package com.example.a24168.myapplication.kitchen.recommand;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,8 +28,6 @@ import android.widget.Toast;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.entity.label;
 import com.example.a24168.myapplication.entity.menu;
-import com.example.a24168.myapplication.kitchen.recommand.addmenu.addmenu;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,6 +37,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import static com.example.a24168.myapplication.main.MainActivity.findeditText;
 
 /*此文件为推荐的主文件，其中inittext（）方法可以重用来获取数据
 * 1，oncreate中添加了筛选条件的数组，通过设置点击事件来进行初始化及出现消失*/
@@ -61,22 +61,36 @@ public class Recommand extends Fragment {
     private TextView shaixuan;
     //popupWindow的布局view
     private View popupWindow_view;
-    private static View view;
+    private View view;
     public static Context context;
     private GridviewAdapter mydapter;
     private GridviewAdapter mydapter2;
-    private RecyclerView recyclerView;
-    private ImageView addimage;
-    private StaggeredGridLayoutManager layoutManager;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.recommand, container, false);
         context=getContext();
-        layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         shaixuan=view.findViewById(R.id.shaixuan);
-        addimage=view.findViewById(R.id.addz_menu);
+//        findeditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.M)
+//            @Override
+//            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+//                if (i == EditorInfo.IME_ACTION_UNSPECIFIED) {
+//                    Toast.makeText(getContext(),"下厨房发现你点击了回车"+i,Toast.LENGTH_SHORT).show();
+//                    String find=findeditText.getText().toString();
+//                    Log.e("find",find);
+//                    inittext("findbyfind?menuname="+find+"&type="+i);
+//                    //隐藏软键盘
+////                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+////                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+//                }
+////                return false;
+//
+//                return (keyEvent.getKeyCode()==KeyEvent.KEYCODE_ENTER);
+//            }
+//        });
 //    筛选功能的代码
         //向type集合中 添加数据
         classifyList = new ArrayList<>();
@@ -103,14 +117,6 @@ public class Recommand extends Fragment {
                 popupWindow.showAtLocation(view, Gravity.RIGHT, 0, 0);
             }
         });
-        addimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getContext(), addmenu.class);
-                startActivity(intent);
-
-            }
-        });
         inittext("list");
 
         return view;
@@ -128,11 +134,9 @@ public class Recommand extends Fragment {
             @Override
             public void run() {
                 try {
-                    layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-                    recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
                     menus.clear();
                     //1,找水源--创建URL
-                    URL url = new URL(context.getResources().getString(R.string.ip)+urlstring);//放网站
+                    URL url = new URL(getContext().getResources().getString(R.string.ip)+urlstring);//放网站
                     //2,开水闸--openConnection
                     Log.e("url",url.toString());
                     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -177,7 +181,7 @@ public class Recommand extends Fragment {
                                 for (String label : labels) {
                                     if (!label.equals("")) {
                                         label.trim();
-                                        com.example.a24168.myapplication.entity.label label1 = new label();
+                                        label label1 = new label();
                                         label1.setLabel_id(Integer.valueOf(label.split("-")[0].trim()));
                                         label1.setLabel_name(label.split("-")[1]);
                                         meuna.getLabels().add(label1);
@@ -190,10 +194,19 @@ public class Recommand extends Fragment {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-
-                                recyclerView.setLayoutManager(layoutManager);
-                                pubuceshiadpater a=new pubuceshiadpater(menus);
-                                recyclerView.setAdapter(a);
+                                gridViewzmenulist=view.findViewById(R.id.menu_gridview);
+                                menuGridviewAdapter menuGridviewAdapter=new menuGridviewAdapter(getContext(),menus);
+                                gridViewzmenulist.setAdapter(menuGridviewAdapter);
+//                            设置浏览推荐的每一个item的点击事件，跳转及传参
+                                gridViewzmenulist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                        Log.e("点击",i+" ");
+                                        menudetalisintent.setClass(getContext(),menudetails.class);
+                                        menudetalisintent.putExtra("menu",menus.get(i).tointent());
+                                        startActivity(menudetalisintent);
+                                    }
+                                });
                             }
                         });
                     }

@@ -10,12 +10,20 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+
+
+
     <uses-sdk
         android:minSdkVersion="19"
         android:targetSdkVersion="19"/>
     <application
 
-        android:theme="@style/AppTheme1"
+       android:theme="@style/AppTheme1"
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +31,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
 
-        tools:replace="android:theme">
+       >
         <activity android:name=".sign.Sign"  android:networkSecurityConfig="@xml/network_security_config">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,30 +39,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".setting.UserSetting"></activity>
         <activity android:name=".setting.Personal"></activity>
         <activity android:name=".register.Post"></activity>
         <activity android:name=".main.MainActivity"></activity>
         <activity android:name=".market.sort.AllSort"></activity>
-        <activity android:name=".kitchen.recommand.addmenu.addmenu"></activity>
-        <activity android:name=".market.sort.Goods"
-                android:launchMode="standard"
-            >
-        </activity>
+        <activity android:name=".market.sort.Goods"></activity>
         <activity android:name=".market.banner.MarketBanner"></activity>
-        <activity android:name=".market.comment.Comment_s"></activity>
-        <activity android:name=".market.xiangqing.XiangQing">
-
-
-        </activity>
-        <activity android:name=".market.xiangqing.Image"/>
-        <activity android:name=".market.CommentXiangqing"></activity>
         <activity android:name=".kitchen.recommand.menudetails"/>
         <activity android:name=".kitchen.find.unimportant.Create"></activity>
         <activity android:name=".kitchen.find.unimportant.ShowDetails"></activity>
         <activity android:name=".course.videoControl.videoPlayActivity" />
-
-        <activity android:name=".kitchen.find.unimportant.LableDetails"></activity>
-        <activity android:name=".kitchen.recommand.Recommand"></activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.a24168.myapplication.fileprovider"
@@ -64,7 +59,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
 
     </application>
 

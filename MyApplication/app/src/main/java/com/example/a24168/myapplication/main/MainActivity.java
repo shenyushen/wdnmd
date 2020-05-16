@@ -3,39 +3,54 @@ package com.example.a24168.myapplication.main;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.StaticLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.a24168.myapplication.R;
+import com.example.a24168.myapplication.course.CourseFragment;
 import com.example.a24168.myapplication.kitchen.KitchenFragment;
 import com.example.a24168.myapplication.market.MarketFragment;
-import com.example.a24168.myapplication.course.CourseFragment;
 import com.example.a24168.myapplication.setting.Personal;
-import com.example.a24168.myapplication.sign.Sign;
+import com.example.a24168.myapplication.setting.UserSetting;
+import com.example.a24168.myapplication.sign.User_s;
+import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.a24168.myapplication.sign.Sign.ww;
 public  class MainActivity extends AppCompatActivity {
+
+   public static String urll;
+    public static ImageView imageView;
+    public static String we;
+    String ur="http://10.0.2.2:8080/shixun3/pic/";
+
     private Map<String, ImageView> imageViewMap = new HashMap<>();
     private Map<String, TextView> textViewMap = new HashMap<>();
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     ImageView menu;
      public static  EditText findeditText;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,9 +151,65 @@ public  class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.activity_na);
         navigationView = findViewById(R.id.nav);
         menu = findViewById(R.id.main_menu);
-        View headerView = navigationView.getHeaderView(0);//获取头布局
+        View headerView = navigationView.getHeaderView(0);
+
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+
+
+                    Intent intent3=getIntent();
+                    String stringg=intent3.getStringExtra("stringg");
+
+                    Gson gson = new Gson();
+                    User_s user_s  = gson.fromJson(stringg,User_s.class);
+                    we=ww;
+
+                    URL url = new URL(getResources().getString(R.string.ipuser)+"/user/secondquery?id="+ww);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    //3，建管道--InputStream
+                    httpURLConnection.setRequestMethod("GET");
+                    httpURLConnection.setConnectTimeout(8000);
+                    httpURLConnection.setReadTimeout(8000);
+                    InputStream in = httpURLConnection.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+                    String string=reader.readLine();
+                    Log.e("asasas",string);
+
+                    User_s user_s1=gson.fromJson(string,User_s.class);
+
+                    TextView res = headerView.findViewById(R.id.head_name);
+                    res.setText(user_s1.getUsername());
+                    TextView txt_sex=headerView.findViewById(R.id.txt_sex);
+                    txt_sex.setText("性别："+user_s1.getSex());
+                    TextView txt_bitrhday=headerView.findViewById(R.id.txt_birthday);
+                    txt_bitrhday.setText("生日："+user_s1.getBirthday());
+                    TextView txt_profession=headerView.findViewById(R.id.txt_profession);
+                    txt_profession.setText("职业："+user_s1.getProfession());
+                    TextView txt_tag=headerView.findViewById(R.id.txt_tag);
+                    txt_tag.setText("个性签名："+user_s1.getLabel());
+                    TextView txt_home=headerView.findViewById(R.id.txt_home);
+                    txt_home.setText("家乡："+user_s1.getHome());
+                   imageView=headerView.findViewById(R.id.person);
+                    urll=ur+user_s1.getPhoto();
+
+
+                }catch (MalformedURLException e){
+                    e.printStackTrace();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+        Log.e("kaishi","kaishi");
+        Glide.with(this).load(urll).into(imageView);
+        Log.e("lujing",urll);
+        Log.e("jieshu","jieshu");
         menu.setOnClickListener(view -> {
             //点击菜单，跳出侧滑菜单
+
             if (drawerLayout.isDrawerOpen(navigationView)){
                 drawerLayout.closeDrawer(navigationView);
             }else{
@@ -151,10 +222,11 @@ public  class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.favorite:
                     Intent intent = new Intent(MainActivity.this, Personal.class);
+
                     startActivity(intent);
                     break;
                 case R.id.wallet:
-                    Intent intent2=new Intent(MainActivity.this, Sign.class);
+                    Intent intent2=new Intent(MainActivity.this, UserSetting.class);
                     startActivity(intent2);
                     break;
                 case R.id.dress:

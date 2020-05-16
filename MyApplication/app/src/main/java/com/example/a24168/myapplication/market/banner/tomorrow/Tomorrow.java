@@ -1,6 +1,5 @@
 package com.example.a24168.myapplication.market.banner.tomorrow;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,13 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.market.adapter.XiangqingAdapter;
 import com.example.a24168.myapplication.market.entity.Good;
-import com.example.a24168.myapplication.market.xiangqing.XiangQing;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -28,8 +25,6 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static com.example.a24168.myapplication.market.sort.Goods.s_id;
 
 public class Tomorrow extends Fragment {
     View view;
@@ -54,16 +49,6 @@ public class Tomorrow extends Fragment {
                 List<Good> list = gson.fromJson(s,new TypeToken<List<Good>>(){}.getType());
                 XiangqingAdapter xiangqingAdapter = new XiangqingAdapter(list,getContext(),R.layout.market_sort_xiangqing_item);
                 gridView.setAdapter(xiangqingAdapter);
-                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        s_id = list.get(position).getGoodsId()+"";
-                        Intent intent = new Intent();
-                        intent.setClass(getActivity(), XiangQing.class);
-                        startActivity(intent);
-                        getActivity().overridePendingTransition(R.anim.anim_in_right,R.anim.anim_out_left);
-                    }
-                });
             }
         };
 
