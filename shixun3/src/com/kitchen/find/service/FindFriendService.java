@@ -46,6 +46,8 @@ public class FindFriendService {
 		return findFriendMapper.findYouCount(id);
 	}
 
-	
+	public void saveDianzan(int num,int id) {
+		findFriendMapper.insertDianzan(num,id);
+	}
 	
 }

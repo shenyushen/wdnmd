@@ -78,31 +78,7 @@ public class Find extends Fragment {
         //viewPager.setOffscreenPageLimit(6);
         //顶部banner
         messageView();
-        images = new ArrayList<>();
 
-        images.add("http://10.0.2.2:8080/shixun3/pic/abc.jpeg");
-        images.add("http://10.0.2.2:8080/shixun3/pic/add.png");
-        images.add("http://10.0.2.2:8080/shixun3/pic/timg.jpg");
-
-
-        titles = new ArrayList<>();
-        titles.add("abc");
-        titles.add("吃得饱");
-        titles.add("shima");
-
-        //设置banner样式
-        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
-        banner.setBannerAnimation(Transformer.Accordion);
-        //设置标题集合（当banner样式有显示title时）
-        banner.setBannerTitles(titles);
-
-        //设置图片加载器
-        banner.setImageLoader(new GlideImageLoader());
-        //设置图片集合
-        banner.setImages(images);
-        //设置轮播时间
-        banner.setDelayTime(2000);
-        //banner设置方法全部调用完毕时最后调用
 
         //标签
 
@@ -138,16 +114,43 @@ public class Find extends Fragment {
             public void OnBannerClick(int position) {
                 Bundle bundle = new Bundle();
 
-                /*FindFriend findFriend = findFriends.get(position);
-                bundle.putSerializable("findFriend", findFriend);*/
+                FindFriend findFriend = findFriends.get(position);
+                bundle.putSerializable("findFriend", findFriend);
 
                 Intent intent = new Intent(getContext(), ShowDetails.class);
-                //intent.putExtras(bundle);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
-        banner.start();
+
         return view;
+    }
+
+    private void bannershow(){
+        images = new ArrayList<>();
+        images.add("http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(0).getPhoto());
+        images.add("http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(1).getPhoto());
+        images.add("http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(2).getPhoto());
+
+        titles = new ArrayList<>();
+        titles.add(findFriends.get(0).getTheme());
+        titles.add(findFriends.get(1).getTheme());
+        titles.add(findFriends.get(2).getTheme());
+
+        //设置banner样式
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        banner.setBannerAnimation(Transformer.Accordion);
+        //设置标题集合（当banner样式有显示title时）
+        banner.setBannerTitles(titles);
+
+        //设置图片加载器
+        banner.setImageLoader(new GlideImageLoader());
+        //设置图片集合
+        banner.setImages(images);
+        //设置轮播时间
+        banner.setDelayTime(2000);
+        //banner设置方法全部调用完毕时最后调用
+        banner.start();
     }
 
 //展示所有
@@ -211,7 +214,7 @@ public class Find extends Fragment {
 
                         String myUrl = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getPhoto();
                         String myUrl1 = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getUser().getPhoto();
-                        Show show = new Show(myUrl,findFriends.get(i).getTheme(),myUrl1,findFriends.get(i).getUser().getUsername(),findFriends.get(i).getLikenum());
+                        Show show = new Show(myUrl,findFriends.get(i).getTheme(),myUrl1,findFriends.get(i).getUser().getUsername(),findFriends.get(i).getLikenum(),findFriends.get(i).getId());
                         Log.e("friends",findFriends.get(0).getFindLable().getLable());
                         gridList.add(show);
 
@@ -219,8 +222,11 @@ public class Find extends Fragment {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
+
+                            bannershow();
                             GridViewAdapter gridViewAdapter = new GridViewAdapter(getContext(),gridList);
                             gridView.setAdapter(gridViewAdapter);
+
                         }
                     });
                     /*Message msg = Message.obtain();

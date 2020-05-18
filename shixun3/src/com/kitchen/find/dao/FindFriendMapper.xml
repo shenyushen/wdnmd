@@ -86,4 +86,7 @@
 		select COUNT(*) from findcomment where findfriendid = #{id}
 	</select>
 	
+	<update id="insertDianzan">
+		update findfriend set likenum = #{num} where id = #{id}
+	</update>
 </mapper>

@@ -42,6 +42,13 @@
                 android:layout_height="20dp"
                 android:layout_toRightOf="@+id/yonghutouxiang"
                 />
+            <TextView
+                android:id="@+id/dianzanrenshu"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:layout_toLeftOf="@+id/dianzan"
+                />
             <ImageView
                 android:id="@+id/dianzan"
                 android:layout_width="20dp"
