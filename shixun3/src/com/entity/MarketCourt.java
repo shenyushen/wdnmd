@@ -8,7 +8,13 @@ public class MarketCourt {
 	private String goodsCount;
 	private String goodsId;
 	private int id;
-	
+	private Goods goods;
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
 	public int getUserId() {
 		return userId;
 	}

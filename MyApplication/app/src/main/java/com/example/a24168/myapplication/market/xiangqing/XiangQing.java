@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.market.entity.Good;
+import com.example.a24168.myapplication.market.shopping.Shopping;
 import com.example.a24168.myapplication.market.xiangqing.adpter.CommentsAdapter;
 import com.example.a24168.myapplication.market.xiangqing.adpter.Type1Adapter;
 import com.example.a24168.myapplication.market.xiangqing.entity.Comments;
@@ -151,7 +153,14 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
         //获取评论
         getCommentDate();
 
-
+        imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(context, Shopping.class);
+                startActivity(intent);
+            }
+        });
 
 
         imageView.setOnClickListener(new View.OnClickListener() {

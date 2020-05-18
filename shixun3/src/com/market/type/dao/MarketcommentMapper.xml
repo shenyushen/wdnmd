@@ -8,13 +8,63 @@
 		<result property="market_name" column="name"/>
 		<result property="market_comment" column="comment_show"/>
 		<result property="img" column="img"/>
+	</resultMap>
+	
+	
+	<resultMap id="goods" type="com.entity.Goods">
+		<id property="goodsId" column="goods_id"/>
+		<result property="title" column="title"/>
+		<result property="littleContent" column="little_content"/>
+		<result property="saleVolume" column="sale_Volume"/>
+		<result property="price" column="price"/>
+		<result property="img" column="img"/>
+	</resultMap>
+	
+	
+	<resultMap id="court" type="com.entity.MarketCourt">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="goodsContent" column="goods_content"/>
+		<result property="goodsType" column="goods_type"/>
+		<result property="goodsPrice" column="goods_price"/>
+		<result property="goodsCount" column="goods_count"/>
+		<result property="goodsId" column="goods_id"/>
 		
-
+		<association property="goods" javaType="com.entity.Goods">
+		<id property="goodsId" column="goods_id"/>
+		<result property="title" column="title"/>
+		<result property="littleContent" column="little_content"/>
+		<result property="saleVolume" column="sale_Volume"/>
+		<result property="price" column="price"/>
+		<result property="img" column="img"/>
+		</association>
 	</resultMap>
 
     <select id="findAll" resultMap="marketComment1">
 		select * from market_commentshow
 	</select>
 	
+	<select id="findAllshopping" resultMap="court">
+		select c.img,m.user_id,goods_content,m.goods_type,m.goods_price,m.goods_count,m.goods_id,m.id
+		from market_court m left join goods c
+		on m.goods_id = c.goods_id
+		where m.user_id = #{id}
+	</select>
+	
+	<update id="change">
+		update market_court
+		set goods_count = #{goods_count}
+		where user_id=#{user_id} and goods_id = #{goods_id}
+	</update>
+	
+	<delete id="del">
+		delete from market_court
+		where user_id = #{user_id} and goods_id = #{goods_id}
+	</delete>
+	
+	<delete id="delall">
+		delete from market_court
+		where user_id = #{user_id}
+	</delete>
 	
 </mapper>

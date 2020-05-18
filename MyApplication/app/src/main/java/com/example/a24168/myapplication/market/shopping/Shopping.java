@@ -1,8 +1,5 @@
 package com.example.a24168.myapplication.market.shopping;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,24 +8,19 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.main.MainActivity;
-import com.example.a24168.myapplication.market.entity.Good;
-import com.example.a24168.myapplication.market.shopping.entity.Order;
 import com.example.a24168.myapplication.market.shopping.adpter.ShoppingAdapter;
-import com.example.a24168.myapplication.market.xiangqing.entity.Comments;
-import com.example.a24168.myapplication.sign.Sign;
+import com.example.a24168.myapplication.market.shopping.entity.Order;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import static com.example.a24168.myapplication.market.sort.Goods.s_id;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +70,7 @@ public class Shopping extends AppCompatActivity implements ShoppingAdapter.AOnCl
                         }
                         getprice();
 
-                        Adapter = new ShoppingAdapter(list, context,R.layout.market_shoppingitem);
+                        Adapter = new ShoppingAdapter(list, context, R.layout.market_shoppingitem);
                         listView.setAdapter(Adapter);
 
                         break;

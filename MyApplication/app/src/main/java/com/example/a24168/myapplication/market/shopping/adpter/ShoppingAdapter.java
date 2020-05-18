@@ -1,8 +1,6 @@
 package com.example.a24168.myapplication.market.shopping.adpter;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +40,9 @@ public class ShoppingAdapter extends BaseAdapter {
        //checkBox选中
        public void jiaNum(float num);
        //count增加
-       public void chang(String count,String goods_id);
+       public void chang(String count, String goods_id);
        //count减少
-        public void chang2(String count,String goods_id);
+        public void chang2(String count, String goods_id);
         //item删除
         public void del(String goods_id);
     }
