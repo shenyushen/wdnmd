@@ -1,7 +1,6 @@
 package com.example.a24168.myapplication.market.shopping;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.a24168.myapplication.R;
-import com.example.a24168.myapplication.main.MainActivity;
 import com.example.a24168.myapplication.market.shopping.adpter.ShoppingAdapter;
 import com.example.a24168.myapplication.market.shopping.entity.Order;
 import com.google.gson.Gson;
@@ -154,9 +152,12 @@ public class Shopping extends AppCompatActivity implements ShoppingAdapter.AOnCl
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 Intent intent=new Intent(Shopping.this, MainActivity.class);
                 //启动
-                startActivity(intent);
+                startActivity(intent);*/
+                finish();
+                overridePendingTransition(R.anim.anim_int_right1,R.anim.anim_out_left1);
             }
         });
     }

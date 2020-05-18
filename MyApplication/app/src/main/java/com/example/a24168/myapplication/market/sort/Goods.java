@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.market.adapter.XiangqingAdapter;
 import com.example.a24168.myapplication.market.entity.Good;
+import com.example.a24168.myapplication.market.shopping.Shopping;
 import com.example.a24168.myapplication.market.xiangqing.XiangQing;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -72,6 +72,15 @@ public class Goods extends AppCompatActivity {
        int id = handleTile();
        //获取数据库数据
         getDate(id);
+        imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(context, Shopping.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_in_right,R.anim.anim_out_left);
+            }
+        });
     }
 
     public void getDate(int id){

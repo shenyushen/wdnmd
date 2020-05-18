@@ -6,12 +6,20 @@ public class MarketComment {
     private String market_name;
     private String market_comment;
     private String img;
-
+    private String goods_id;
     public MarketComment(int id, String market_name, String market_comment, String img) {
         this.id = id;
         this.market_name = market_name;
         this.market_comment = market_comment;
         this.img = img;
+    }
+
+    public String getGoods_id() {
+        return goods_id;
+    }
+
+    public void setGoods_id(String goods_id) {
+        this.goods_id = goods_id;
     }
 
     public int getId() {

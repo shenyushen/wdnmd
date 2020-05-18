@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +18,11 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.a24168.myapplication.kitchen.recommand.Recommand;
+import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.kitchen.find.Find;
 import com.example.a24168.myapplication.kitchen.like.Like;
-import com.example.a24168.myapplication.R;
+import com.example.a24168.myapplication.kitchen.recommand.Recommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +75,7 @@ public class KitchenFragment extends Fragment {
         adapter = new MyAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(3);
+        viewPager.setCurrentItem(1);
         //绑定
         tabLayout.setupWithViewPager(viewPager);
         findeditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-16 15:10:35
+Date: 2020-05-18 10:39:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -260,15 +260,16 @@ CREATE TABLE `market_commentshow` (
   `name` char(255) CHARACTER SET utf8 DEFAULT NULL,
   `comment_show` char(255) CHARACTER SET utf8 DEFAULT NULL,
   `img` varchar(255) DEFAULT NULL,
+  `goods_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_commentshow
 -- ----------------------------
-INSERT INTO `market_commentshow` VALUES ('1', 'Jane0702', '很好切，放点油煎一下，淋上糖浆，就很好吃', '1.png');
-INSERT INTO `market_commentshow` VALUES ('2', '静儿家的猫', '生吃甜，煮着吃更甜', '2.png');
-INSERT INTO `market_commentshow` VALUES ('3', '偶然的旅行', '握在手上实诚，切开满满的只是陷儿，而中间是最可爱的草莓', '3.png');
+INSERT INTO `market_commentshow` VALUES ('1', 'Jane0702', '很好切，放点油煎一下，淋上糖浆，就很好吃', '1.png', '1');
+INSERT INTO `market_commentshow` VALUES ('2', '静儿家的猫', '生吃甜，煮着吃更甜', '2.png', '2');
+INSERT INTO `market_commentshow` VALUES ('3', '偶然的旅行', '握在手上实诚，切开满满的只是陷儿，而中间是最可爱的草莓', '3.png', '3');
 
 -- ----------------------------
 -- Table structure for `market_court`
@@ -282,8 +283,10 @@ CREATE TABLE `market_court` (
   `goods_count` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `goods_id` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `goods_id` (`goods_id`),
+  CONSTRAINT `market_court_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_court
@@ -296,6 +299,7 @@ INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模
 INSERT INTO `market_court` VALUES ('11', 'JohnsonVille尊乐大包装,好口味', '焦香蜜汁肠1950g', '￥260', '2', '3', '19');
 INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '1', '1', '20');
 INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '1', '1', '21');
+INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模具', '6寸蛋糕圆盘', '￥39', '1', '2', '22');
 
 -- ----------------------------
 -- Table structure for `market_type`

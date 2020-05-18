@@ -14,7 +14,14 @@ public class marketComment {
 	private String market_name;
 	private String market_comment;
 	private String img;
-
+	private int goods_id;
+	
+	public int getGoods_id() {
+		return goods_id;
+	}
+	public void setGoods_id(int goods_id) {
+		this.goods_id = goods_id;
+	}
 	public String getImg() {
 		return img;
 	}

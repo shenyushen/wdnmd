@@ -159,6 +159,7 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
                 Intent intent = new Intent();
                 intent.setClass(context, Shopping.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_in_right,R.anim.anim_out_left);
             }
         });
 

@@ -8,6 +8,7 @@
 		<result property="market_name" column="name"/>
 		<result property="market_comment" column="comment_show"/>
 		<result property="img" column="img"/>
+		<result property="goods_id" column="goods_id"/>
 	</resultMap>
 	
 	
