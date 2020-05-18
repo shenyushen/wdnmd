@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -46,7 +47,8 @@ public  class MainActivity extends AppCompatActivity {
     public static ImageView imageView;
     public static String we;
     String ur="http://10.0.2.2:8080/shixun3/pic/";
-
+    public static LinearLayout linearLayout;
+    public static ImageView imageView1;
     private Map<String, ImageView> imageViewMap = new HashMap<>();
     private Map<String, TextView> textViewMap = new HashMap<>();
     private DrawerLayout drawerLayout;
@@ -61,6 +63,8 @@ public  class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findeditText=findViewById(R.id.findfood);
+        linearLayout = findViewById(R.id.ll);
+        imageView1 = findViewById(R.id.k);
         handler = new Handler(){
             @SuppressLint("HandlerLeak")
             @Override
