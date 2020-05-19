@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     <!-- namespace代表唯一标识符 -->
-<mapper namespace="com.kitchen.find.dao.FindFriendMapper">
+<mapper namespace="com.kitchen.like.dao.LikeMapper">
 	<!-- 筛选全部 -->
 	<resultMap type="com.entity.FindFriend" id="findFriend">
 		   <id property="id" column="ffid"/>
@@ -48,57 +48,18 @@
 		left join findlable fl on fl.id = ff.type
 		left join findcomment fc on fc.findfriendid = ff.id
 		left join user us on us.id = fc.authorid
-	</select>
-	
-	<resultMap type="com.entity.FindLable" id="findlable">
-		<id property="id" column="id"/>
-	    <result property="lable" column="type"/>
-	</resultMap>
-	<select id="findAllLable" resultMap="findlable">
-		select id,type from findlable ORDER BY id ASC
-	</select>
-	
-	<select id="findFindFriendByLable" resultMap="findFriend">
-		SELECT ff.id ffid,ff.author,ff.theme,ff.data,ff.date,ff.menuid,ff.likenum,ff.photo ffphoto,ff.type,
-			u.id uid,u.username,u.photo uphoto,
-			fp.id fpid,fp.photoid,fp.photo fpphoto,
-			fl.id flid,fl.type fltype
-		FROM findFriend ff 
-		left join user u on u.id = ff.author
-		left join find_photo fp on fp.photoid = ff.id 
-		left join findlable fl on fl.id = ff.type
-		where fl.type = #{lableid }
-	</select>
-	
-	<insert id="saveFindFriend" parameterType="com.entity.FindFriend" useGeneratedKeys="true" keyProperty="id">
-		insert into findfriend(Id, author, theme, data, date, menuid, likenum,photo,type)values (#{id}, #{author}, #{theme}, #{data}, #{date}, #{menuid}, #{likenum},#{photo},#{type})
-	</insert>
+		<where>
+              ff.id in
+              <foreach collection="list" index="index" item="aIntegers" open="(" separator="," close=")">
+                	#{aIntegers}
+              </foreach>
+        </where>
 
-	<insert id="saveFind_Photo" parameterType="com.entity.Find_Photo">
-		insert into find_photo(id,photoid,photo) values <foreach collection="list" item="find_Photos" separator=",">(#{find_Photos.id},#{find_Photos.photoid}, #{find_Photos.photo})</foreach>
-	</insert>
-	
-	<insert id="insertComment">
-		insert into findcomment(authorid,comment,findfriendid) values (#{authorid},#{comment},#{findfriendid})
-	</insert>
-	
-	<select id="findYouCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-		select COUNT(*) from findcomment where findfriendid = #{id}
 	</select>
 	
-	<update id="insertDianzan">
-		update findfriend set likenum = #{num} where id = #{id}
-	</update>
-	
-	<insert id="insertGuanzhu">
-		insert into find_user_like(userid,findfriendid) values (#{userid},#{findfriendid})
-	</insert>
-	
-	<select id="panduanGuanzhu" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-		select COUNT(*) from find_user_like where userid = #{userid} and findfriendid = #{findfriendid}
+	<select id = "findIdByUserId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select findfriendid from find_user_like where userid = #{id}
 	</select>
 	
-	<delete id="quxiaoGuanzhu" parameterType="java.util.Map">
-    	delete from find_user_like where userid = #{userid} and findfriendid = #{findfriendid}
-  	</delete>
+	
 </mapper>

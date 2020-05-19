@@ -34,7 +34,7 @@ public class FindController {
 		List<FindFriend> findFriends=findFriendService.findall();
 		
 		//String jsonString = JSONArray.fromObject(findFriends).toString();
-		return findFriendService.findall();
+		return findFriends;
 	}
 	
 	@RequestMapping("/lable")
@@ -129,6 +129,30 @@ public class FindController {
 		int id = Integer.parseInt(request.getParameter("id"));
 		System.out.println(num+"zxc"+id);
 		findFriendService.saveDianzan(num,id);
+	}
+	
+	@RequestMapping("/guanzhu")
+	public void saveGuanzhu(HttpServletRequest request) {
+		int userid = Integer.parseInt(request.getParameter("userid"));
+		int findfriendid = Integer.parseInt(request.getParameter("findfriendid"));
+		System.out.println(userid+"zxc"+findfriendid);
+		findFriendService.saveGuanzhu(userid,findfriendid);
+	}
+	
+	@RequestMapping("/panduanshifouguanzhu")
+	public String panduanGuanzhu(HttpServletRequest request) {
+		int userid = Integer.parseInt(request.getParameter("userid"));
+		int findfriendid = Integer.parseInt(request.getParameter("findfriendid"));
+		System.out.println(userid+"panduan"+findfriendid);
+		return findFriendService.panduanGuanzhu(userid,findfriendid)+"";
+	}
+	
+	@RequestMapping("/quxiaoguanzhu")
+	public void quxiaoGuanzhu(HttpServletRequest request) {
+		int userid = Integer.parseInt(request.getParameter("userid"));
+		int findfriendid = Integer.parseInt(request.getParameter("findfriendid"));
+		System.out.println(userid+"zxc"+findfriendid);
+		findFriendService.quxiaoGuanzhu(userid,findfriendid);
 	}
 	
 }

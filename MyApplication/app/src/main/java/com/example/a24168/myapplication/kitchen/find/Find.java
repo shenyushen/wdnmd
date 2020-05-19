@@ -153,7 +153,7 @@ public class Find extends Fragment {
         banner.start();
     }
 
-//展示所有
+
 
     private void init() {
         new Thread(new Runnable() {
@@ -193,6 +193,7 @@ public class Find extends Fragment {
         }).start();
     }
 
+    //展示所有
     public void messageView(){
         new Thread(new Runnable() {
             @Override

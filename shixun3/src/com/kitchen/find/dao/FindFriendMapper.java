@@ -26,6 +26,12 @@ public interface FindFriendMapper {
 	
 	public void insertDianzan(@Param("num")int num,@Param("id")int id);
 	
+	public void insertGuanzhu(@Param("userid")int userid, @Param("findfriendid")int findfriendid);
+	
+	public int panduanGuanzhu(@Param("userid")int userid, @Param("findfriendid")int findfriendid);
+	
+	public void quxiaoGuanzhu(@Param("userid")int userid, @Param("findfriendid")int findfriendid);
+	
 }
 
 

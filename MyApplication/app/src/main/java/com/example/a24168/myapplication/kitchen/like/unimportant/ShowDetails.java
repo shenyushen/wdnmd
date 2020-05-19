@@ -1,4 +1,4 @@
-package com.example.a24168.myapplication.kitchen.find.unimportant;
+package com.example.a24168.myapplication.kitchen.like.unimportant;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -18,16 +18,14 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.a24168.myapplication.R;
-import com.example.a24168.myapplication.kitchen.find.adapter.ListViewAdapter;
-import com.example.a24168.myapplication.kitchen.find.entity.FindFriend;
-import com.example.a24168.myapplication.kitchen.find.custom.GlideImageLoader;
-import com.example.a24168.myapplication.kitchen.find.entity.Show;
+import com.example.a24168.myapplication.kitchen.like.adapter.ListViewAdapter;
+import com.example.a24168.myapplication.kitchen.like.custom.GlideImageLoader;
+import com.example.a24168.myapplication.kitchen.like.entity.FindFriend;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -39,13 +37,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.FormBody;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.a24168.myapplication.kitchen.like.Like.w;
+import static com.example.a24168.myapplication.kitchen.like.Like.gridList;
+import static com.example.a24168.myapplication.kitchen.like.Like.gridViewAdapter;
 import static com.example.a24168.myapplication.sign.Sign.user_id;
 
 public class ShowDetails extends AppCompatActivity {
@@ -64,7 +64,10 @@ public class ShowDetails extends AppCompatActivity {
     private FindFriend findFriend;
     private TextView pinglunrenshu;
     private ImageView guanzhu;
+
+
     private int count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +84,7 @@ public class ShowDetails extends AppCompatActivity {
         button = findViewById(R.id.fasong);
         pinglunrenshu = findViewById(R.id.pinglunrenshu);
         guanzhu = findViewById(R.id.guanzhu);
+
 
         if(getIntent().getExtras()!=null) {
             bundle = getIntent().getExtras();
@@ -163,15 +167,21 @@ public class ShowDetails extends AppCompatActivity {
                 if (guanzhu.getDrawable().getCurrent().getConstantState().equals(ShowDetails.this.getResources().getDrawable(R.drawable.guanzhu2).getConstantState())){
                     guanzhu.setImageResource(R.drawable.guanzhu1);
                     guanzhule(findFriend.getId());
-
+                    //gridList.add(findFriend);
+                    gridViewAdapter.notifyDataSetChanged();
                 }else{
                     guanzhu.setImageResource(R.drawable.guanzhu2);
                     quxiaoguanzhu(findFriend.getId());
+
+                    gridList.remove(w);
+                    gridViewAdapter.notifyDataSetChanged();
                 }
             }
         });
 
+
     }
+
     private void quxiaoguanzhu(int position){
         new Thread(){
             @Override

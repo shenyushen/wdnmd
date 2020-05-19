@@ -55,6 +55,7 @@
         <activity android:name=".kitchen.recommand.menudetails"/>
         <activity android:name=".kitchen.find.unimportant.Create"></activity>
         <activity android:name=".kitchen.find.unimportant.ShowDetails"></activity>
+        <activity android:name=".kitchen.like.unimportant.ShowDetails"></activity>
         <activity android:name=".course.videoControl.videoPlayActivity" />
 
         <activity android:name=".kitchen.find.unimportant.LableDetails"></activity>
