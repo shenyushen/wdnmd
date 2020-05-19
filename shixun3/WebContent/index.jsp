@@ -82,11 +82,8 @@
                 <ul id="nav">
                     <li>
                         <a href="javascript:;">
-<<<<<<< HEAD
                             <i class="iconfont left-nav-li" lay-tips="会员管理">&#xe6b8;</i>
-=======
                             <i class="iconfont left-nav-li" lay-tips="用户管理">&#xe6b8;</i>
->>>>>>> a661484829fcb48c5c15e5fd6ed3891839a39a9a
                             <cite>会员管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
@@ -96,7 +93,6 @@
                                     <cite>统计页面</cite></a>
                             </li>
                             <li>
-<<<<<<< HEAD
                                 <a onclick="xadmin.add_tab('会员列表(静态表格)','member-list.jsp')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>会员列表(静态表格)</cite></a>
@@ -130,13 +126,10 @@
                                     </li>
                                 </ul>
                             </li>
-=======
                                 <a onclick="xadmin.add_tab('用户列表','member-list.jsp')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>用户列表</cite></a>
                             </li>
-                           
->>>>>>> a661484829fcb48c5c15e5fd6ed3891839a39a9a
                         </ul>
                     </li>
                     <li>
@@ -151,11 +144,7 @@
                                     <cite>关注列表</cite></a>
                             </li>
                             <li>
-<<<<<<< HEAD
                                 <a onclick="xadmin.add_tab('推荐列表','tuijian.jsp')">
-=======
-                                <a onclick="xadmin.add_tab('推荐列表','order-list1.html')">
->>>>>>> a661484829fcb48c5c15e5fd6ed3891839a39a9a
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>推荐列表</cite></a>
                             </li>
@@ -173,11 +162,7 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-<<<<<<< HEAD
-                                <a onclick="xadmin.add_tab('商品管理','market_goods.html')">
-=======
                                 <a onclick="xadmin.add_tab('商品管理','market_goods.jsp')">
->>>>>>> a661484829fcb48c5c15e5fd6ed3891839a39a9a
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>商品管理</cite></a>
                             </li>
