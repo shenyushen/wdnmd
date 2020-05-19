@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,6 +60,14 @@ public class menudetails extends AppCompatActivity {
         Glide.with(this)
                 .load(context.getResources().getString(R.string.photoip)+menu[2])
                 .into(imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getBaseContext(),miaoshudatu.class);
+                intent.putExtra("url",menu[2]);
+                context.startActivity(intent);
+            }
+        });
         getsteps(Integer.valueOf(menu[0]));
         unScrollListView.setFocusable(false);
     }

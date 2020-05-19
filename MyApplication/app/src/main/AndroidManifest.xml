@@ -31,6 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".kitchen.recommand.miaoshudatu"/>
         <activity android:name=".market.shopping.Shopping"></activity>
         <activity android:name=".setting.UserSetting"></activity>
         <activity android:name=".setting.Personal"></activity>

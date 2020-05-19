@@ -26,6 +26,12 @@ import com.example.a24168.myapplication.kitchen.find.entity.Show;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 public class GridViewAdapter extends BaseAdapter {
@@ -88,7 +94,7 @@ public class GridViewAdapter extends BaseAdapter {
             viewHolder.touxiang = (ImageView) convertView.findViewById(R.id.yonghutouxiang);
             viewHolder.nicheng = (TextView) convertView.findViewById(R.id.yonghunicheng);
             viewHolder.dianzan = convertView.findViewById(R.id.dianzan);
-
+            viewHolder.dianzanrenshu = convertView.findViewById(R.id.dianzanrenshu);
 
             convertView.setTag(viewHolder);
         } else {
@@ -106,6 +112,7 @@ public class GridViewAdapter extends BaseAdapter {
         String mingzi = dataSource.get(position).getNicheng();
         viewHolder.nicheng.setText(mingzi);
 
+        viewHolder.dianzanrenshu.setText(dataSource.get(position).getDianzan()+"");
 
         ViewHolder finalViewHolder = viewHolder;
         viewHolder.dianzan.setOnClickListener(new View.OnClickListener() {
@@ -114,10 +121,14 @@ public class GridViewAdapter extends BaseAdapter {
                 Log.e("listener","点了");
                 if (finalViewHolder.dianzan.getDrawable().getCurrent().getConstantState().equals(context.getResources().getDrawable(R.drawable.dianzan2).getConstantState())){
                     finalViewHolder.dianzan.setImageResource(R.drawable.dianzan1);
+                    finalViewHolder.dianzanrenshu.setText(String.valueOf(dataSource.get(position).getDianzan()+1));
+                    dianzanle(position);
                 }else{
                     finalViewHolder.dianzan.setImageResource(R.drawable.dianzan2);
+                    finalViewHolder.dianzanrenshu.setText(String.valueOf(dataSource.get(position).getDianzan()));
                 }
                 bitmap = ((BitmapDrawable)finalViewHolder.dianzan.getDrawable()).getBitmap();
+
             }
         });
 
@@ -130,7 +141,26 @@ public class GridViewAdapter extends BaseAdapter {
         public ImageView touxiang;
         public TextView nicheng;
         public ImageView dianzan;
+        public TextView dianzanrenshu;
     }
 
+    private void dianzanle(int position){
+        new Thread(){
+            @Override
+            public void run() {
+                URL url = null;
+                try {
+                    String num = String.valueOf(dataSource.get(position).getDianzan()+1);
+                    url = new URL("http://10.0.2.2:8080/shixun3/find/dianzan?dianzan="+num+"&id="+dataSource.get(position).getId());
+                    URLConnection conn = url.openConnection();
+                    InputStream in = conn.getInputStream();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
+            }
+        }.start();
+    }
 }
