@@ -26,6 +26,7 @@ public class UserSetting extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(UserSetting.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_int_right1,R.anim.anim_out_left1);
             }
         });
 
@@ -34,6 +35,7 @@ public class UserSetting extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(UserSetting.this, Sign.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_int_right1,R.anim.anim_out_left1);
             }
         });
     }

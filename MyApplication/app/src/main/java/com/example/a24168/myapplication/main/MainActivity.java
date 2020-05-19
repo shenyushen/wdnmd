@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -46,7 +47,8 @@ public  class MainActivity extends AppCompatActivity {
     public static ImageView imageView;
     public static String we;
     String ur="http://10.0.2.2:8080/shixun3/pic/";
-
+    public static LinearLayout linearLayout;
+    public static ImageView imageView1;
     private Map<String, ImageView> imageViewMap = new HashMap<>();
     private Map<String, TextView> textViewMap = new HashMap<>();
     private DrawerLayout drawerLayout;
@@ -61,6 +63,8 @@ public  class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findeditText=findViewById(R.id.findfood);
+        linearLayout = findViewById(R.id.ll);
+        imageView1 = findViewById(R.id.k);
         handler = new Handler(){
             @SuppressLint("HandlerLeak")
             @Override
@@ -94,7 +98,7 @@ public  class MainActivity extends AppCompatActivity {
         //创建tabspec对象
         TabHost.TabSpec tabSpec1 = fragmentTabHost.newTabSpec("tag1")
                 //                .setIndicator("消息");
-                .setIndicator(getTabSpecView("tag1",R.drawable.message,"下厨房"));
+                .setIndicator(getTabSpecView("tag1",R.drawable.kitchen,"下厨房"));
         //自定义选项卡视图
 
         fragmentTabHost.addTab(tabSpec1,
@@ -103,7 +107,7 @@ public  class MainActivity extends AppCompatActivity {
 
         TabHost.TabSpec tabSpec2 = fragmentTabHost.newTabSpec("tag2")
                 //                .setIndicator("好友");
-                .setIndicator(getTabSpecView("tag2",R.drawable.home,"市集"));
+                .setIndicator(getTabSpecView("tag2",R.drawable.chaoshi1,"市集"));
 
         fragmentTabHost.addTab(tabSpec2,
                 MarketFragment.class,
@@ -111,16 +115,16 @@ public  class MainActivity extends AppCompatActivity {
 
         TabHost.TabSpec tabSpec3 = fragmentTabHost.newTabSpec("tag3")
                 //                .setIndicator("设置");
-                .setIndicator(getTabSpecView("tag3",R.drawable.contact,"课堂"));
+                .setIndicator(getTabSpecView("tag3",R.drawable.course,"课堂"));
 
         fragmentTabHost.addTab(tabSpec3,
                 CourseFragment.class,
                 null);
 
         //设置默认选中哪一项
-        fragmentTabHost.setCurrentTab(1);
-        imageViewMap.get("tag2").setImageResource(R.drawable.home1);
-        textViewMap.get("tag2").setTextColor(Color.parseColor("#1296db"));
+        fragmentTabHost.setCurrentTab(0);
+        imageViewMap.get("tag1").setImageResource(R.drawable.ktichen1);
+        textViewMap.get("tag1").setTextColor(Color.parseColor("#FF6633"));
         //切换选项卡的事件监听器
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -128,28 +132,28 @@ public  class MainActivity extends AppCompatActivity {
                 //当切换选项卡时调用
                 switch (tabId){
                     case "tag1":
-                        imageViewMap.get("tag1").setImageResource(R.drawable.message1);
-                        textViewMap.get("tag1").setTextColor(Color.parseColor("#1296db"));
-                        imageViewMap.get("tag2").setImageResource(R.drawable.home);
+                        imageViewMap.get("tag1").setImageResource(R.drawable.ktichen1);
+                        textViewMap.get("tag1").setTextColor(Color.parseColor("#FF6633"));
+                        imageViewMap.get("tag2").setImageResource(R.drawable.chaoshi1);
                         textViewMap.get("tag2").setTextColor(Color.parseColor("#515151"));
-                        imageViewMap.get("tag3").setImageResource(R.drawable.contact);
+                        imageViewMap.get("tag3").setImageResource(R.drawable.course);
                         textViewMap.get("tag3").setTextColor(Color.parseColor("#515151"));
                         break;
                     case "tag2":
-                        imageViewMap.get("tag1").setImageResource(R.drawable.message);
+                        imageViewMap.get("tag1").setImageResource(R.drawable.kitchen);
                         textViewMap.get("tag1").setTextColor(Color.parseColor("#515151"));
-                        imageViewMap.get("tag2").setImageResource(R.drawable.home1);
-                        textViewMap.get("tag2").setTextColor(Color.parseColor("#1296db"));
-                        imageViewMap.get("tag3").setImageResource(R.drawable.contact);
+                        imageViewMap.get("tag2").setImageResource(R.drawable.chaoshi);
+                        textViewMap.get("tag2").setTextColor(Color.parseColor("#FF6633"));
+                        imageViewMap.get("tag3").setImageResource(R.drawable.course);
                         textViewMap.get("tag3").setTextColor(Color.parseColor("#515151"));
                         break;
                     case "tag3":
-                        imageViewMap.get("tag1").setImageResource(R.drawable.message);
+                        imageViewMap.get("tag1").setImageResource(R.drawable.kitchen);
                         textViewMap.get("tag1").setTextColor(Color.parseColor("#515151"));
-                        imageViewMap.get("tag2").setImageResource(R.drawable.home);
+                        imageViewMap.get("tag2").setImageResource(R.drawable.chaoshi1);
                         textViewMap.get("tag2").setTextColor(Color.parseColor("#515151"));
-                        imageViewMap.get("tag3").setImageResource(R.drawable.contact1);
-                        textViewMap.get("tag3").setTextColor(Color.parseColor("#1296db"));
+                        imageViewMap.get("tag3").setImageResource(R.drawable.course1);
+                        textViewMap.get("tag3").setTextColor(Color.parseColor("#FF6633"));
                         break;
                 }
             }
@@ -242,10 +246,12 @@ public  class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, Personal.class);
 
                     startActivity(intent);
+                    overridePendingTransition(R.anim.anim_in_right,R.anim.anim_out_left);
                     break;
                 case R.id.wallet:
                     Intent intent2=new Intent(MainActivity.this, UserSetting.class);
                     startActivity(intent2);
+                    overridePendingTransition(R.anim.anim_in_right,R.anim.anim_out_left);
                     break;
                 case R.id.dress:
 

@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +18,17 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.a24168.myapplication.kitchen.recommand.Recommand;
+import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.kitchen.find.Find;
 import com.example.a24168.myapplication.kitchen.like.Like;
-import com.example.a24168.myapplication.R;
+import com.example.a24168.myapplication.kitchen.recommand.Recommand;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.a24168.myapplication.main.MainActivity.findeditText;
+import static com.example.a24168.myapplication.main.MainActivity.linearLayout;
 
 
 public class KitchenFragment extends Fragment {
@@ -49,23 +48,6 @@ public class KitchenFragment extends Fragment {
             view = inflater.inflate(R.layout.kitchen, container,false);
         }
 
-//        findeditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @RequiresApi(api = Build.VERSION_CODES.M)
-//            @Override
-//            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-//                if (i == EditorInfo.IME_ACTION_UNSPECIFIED) {
-//                    Toast.makeText(getContext(),"下厨房你点击了回车",Toast.LENGTH_SHORT).show();
-//                    //隐藏软键盘
-////                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-////                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
-//                }
-////                return false;
-//                return (keyEvent.getKeyCode()==KeyEvent.KEYCODE_ENTER);
-//            }
-//        });
-
-
-
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         tabLayout = (TabLayout) view.findViewById(R.id.tablayout);
         //页面，数据源
@@ -77,8 +59,11 @@ public class KitchenFragment extends Fragment {
         adapter = new MyAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(3);
+        viewPager.setCurrentItem(1);
         //绑定
         tabLayout.setupWithViewPager(viewPager);
+        linearLayout.setVisibility(View.GONE);
+        findeditText.setVisibility(View.VISIBLE);
         findeditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

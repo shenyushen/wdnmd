@@ -3,7 +3,6 @@ package com.example.a24168.myapplication.market.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,18 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.a24168.myapplication.R;
-import com.example.a24168.myapplication.kitchen.like.Like;
 import com.example.a24168.myapplication.market.banner.MarketBanner;
 import com.example.a24168.myapplication.market.entity.Banner;
-import com.example.a24168.myapplication.market.entity.Good;
 import com.example.a24168.myapplication.market.entity.MarketClassic;
 import com.example.a24168.myapplication.market.entity.MarketComment;
 import com.example.a24168.myapplication.market.entity.MarketLike;
@@ -36,8 +30,6 @@ import com.example.a24168.myapplication.market.holder.MarketLikeViewHolder;
 import com.example.a24168.myapplication.market.holder.MarketNewViewHolder;
 import com.example.a24168.myapplication.market.holder.TypeViewHolder;
 import com.example.a24168.myapplication.market.like.LikeAdapter;
-import com.example.a24168.myapplication.market.sort.AllSort;
-import com.example.a24168.myapplication.market.sort.Goods;
 import com.example.a24168.myapplication.market.xiangqing.XiangQing;
 
 import java.util.List;
@@ -212,6 +204,16 @@ public class MyAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ListView View = ((MarketCommentViewHolder) viewHolder).View;
                 MarketComment_Adapter adapter = new MarketComment_Adapter(list2, context, R.layout.market_comment_item);
                 View.setAdapter(adapter);
+                View.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, android.view.View view, int position, long id) {
+                        s_id = list2.get(position).getGoods_id()+"";
+                        Intent  intent = new Intent();
+                        intent.setClass(fragment, XiangQing.class);
+                        context.startActivity(intent);
+                        fragment.overridePendingTransition(R.anim.anim_in_right,R.anim.anim_out_left);
+                    }
+                });
             }
 
             if (viewHolder instanceof MarketLikeViewHolder) {

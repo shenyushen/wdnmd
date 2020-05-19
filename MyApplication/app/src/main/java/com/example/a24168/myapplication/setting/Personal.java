@@ -115,6 +115,7 @@ public class Personal extends AppCompatActivity  implements View.OnClickListener
 
                         Intent intent=new Intent(Personal.this, MainActivity.class);
                         startActivity(intent);
+                        //overridePendingTransition(R.anim.anim_int_right1,R.anim.anim_out_left1);
                     }catch (MalformedURLException e){
                         e.printStackTrace();
                     }catch (IOException e){
@@ -129,6 +130,7 @@ public class Personal extends AppCompatActivity  implements View.OnClickListener
             public void onClick(View v) {
                 Intent intent=new Intent(Personal.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_int_right1,R.anim.anim_out_left1);
             }
         });
 
