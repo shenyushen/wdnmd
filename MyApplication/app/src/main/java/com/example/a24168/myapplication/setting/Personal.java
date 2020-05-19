@@ -23,8 +23,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.main.MainActivity;
+import com.example.a24168.myapplication.sign.User_s;
+import com.google.gson.Gson;
 import com.zxy.tiny.Tiny;
 import com.zxy.tiny.callback.FileWithBitmapCallback;
 
@@ -46,6 +49,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.example.a24168.myapplication.main.MainActivity.we;
+import static com.example.a24168.myapplication.sign.Sign.string1;
 
 public class Personal extends AppCompatActivity  implements View.OnClickListener{
 
@@ -85,20 +89,51 @@ public class Personal extends AppCompatActivity  implements View.OnClickListener
         ed_label = findViewById(R.id.edt_qian);
         save = findViewById(R.id.save);
         quit = findViewById(R.id.quit);
-
+        String urr="http://10.0.2.2:8080/shixun3/pic/";
         /*Intent intent=this.getIntent();
         String idd=intent.getStringExtra("iddd");*/
        // Log.e("idd",idd);
 
+
+        Gson gson = new Gson();
+        User_s user_s2  = gson.fromJson(string1,User_s.class);
+       Log.e("gaga",user_s2.toString());
+
+        if (ed_username.length()==0){
+            ed_username.setText(user_s2.getUsername());
+        }
+        if(ed_sex.length()==0){
+            ed_sex.setText(user_s2.getSex());
+        }
+        if(ed_birthday.length()==0){
+            ed_birthday.setText(user_s2.getBirthday());
+        }
+        if(ed_profession.length()==0){
+            ed_profession.setText(user_s2.getProfession());
+        }
+        if(ed_home.length()==0){
+            ed_home.setText(user_s2.getHome());
+        }
+        if(ed_label.length()==0){
+            ed_label.setText(user_s2.getLabel());
+        }
+
+
+        Glide.with(this).load(urr+user_s2.getPhoto()).into(imageView);
         save.setOnClickListener(v -> {
             new Thread(){
                 @Override
                 public void  run(){
                     try {
-
+                        /*String aa ;
+                        if (file.getName().length()==0){
+                            aa=user_s2.getPhoto();
+                        }else {
+                            aa=file.getName();
+                        }*/
                         URL url = new URL(getResources().getString(R.string.ipuser)+"/user/updateuser?id="+we+"&username="+ed_username.getText().toString()
                         +"&sex="+ed_sex.getText().toString()+"&profession="+ed_profession.getText().toString()+"&birthday="+ed_birthday.getText().toString()
-                        +"&home="+ed_home.getText().toString()+"&label="+ed_label.getText().toString()+"&photo="+file.getName());
+                                +"&home="+ed_home.getText().toString()+"&label="+ed_label.getText().toString()+"&photo="+file.getName());
 
                         //Log.e("updateurl", url.toString());
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
