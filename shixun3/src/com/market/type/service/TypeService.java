@@ -26,6 +26,9 @@ public class TypeService {
     public List<Goods> find2(int id){
     	return typeMapper.findGood(id);
     }
+    public List<Goods> find3(){
+    	return typeMapper.findAllGoods1();
+    }
     public int insertCourt(int user_id,String goods_content,String goods_type,String goods_price,String goods_count,String goods_id) {
     	return typeMapper.insertCourt(user_id, goods_content, goods_type, goods_price, goods_count, goods_id);
     	

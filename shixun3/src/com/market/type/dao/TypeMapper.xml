@@ -67,6 +67,11 @@
 		left join goods_xiangqing x on g.goods_id = x.goods_id
 		where g.goods_id=#{id}
 	</select>
+	<select id = "findAllGoods1" resultMap = "good">
+		select *
+		from goods g
+		left join goods_xiangqing x on g.goods_id = x.goods_id
+	</select>
 	
 	<insert id = "insertCourt">
 		insert into market_court(user_id,goods_content,goods_type,goods_price,goods_count,goods_id)

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.admin.dao.AdminMapper;
 import com.entity.Admin;
+import com.entity.User;
 
 @Service
 public class AdminService {
@@ -21,5 +22,8 @@ public class AdminService {
 
 	public List<Admin>find(){
 		return adminMapper.findAll();
+	}
+	public List<User> find1(){
+		return adminMapper.findUser();
 	}
 }
