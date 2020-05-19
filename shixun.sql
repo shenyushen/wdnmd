@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-19 15:23:26
+Date: 2020-05-19 17:59:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -363,10 +363,10 @@ INSERT INTO `menu` VALUES ('1', null, '2020-04-23', 'simuxue.jpg', '思慕雪', 
 INSERT INTO `menu` VALUES ('2', null, '2020-04-21', 'xiaolongxia.jpg', '小龙虾', '菜');
 INSERT INTO `menu` VALUES ('3', null, '2020-04-14', 'xianxiadanchafan.jpg', '鲜虾蛋炒饭', '米');
 INSERT INTO `menu` VALUES ('4', null, '2020-04-27', 'tudousichaorou.jpg', '土豆丝炒肉', '菜');
-INSERT INTO `menu` VALUES ('5', null, '2020-04-27', 'labaicaiwuhuarou.jpg', '辣白菜五花肉', '菜');
-INSERT INTO `menu` VALUES ('6', null, '2020-04-16', 'kaishuibaicai.jpg', '开水白菜', '菜');
-INSERT INTO `menu` VALUES ('7', null, '2020-04-25', 'congyoubanmian.jpg', '葱油拌面', '面');
-INSERT INTO `menu` VALUES ('8', null, '2020-04-10', 'suantangfeiniu.jpg', '酸汤肥牛', '菜');
+INSERT INTO `menu` VALUES ('5', null, null, 'labaicaiwuhuarou.jpg', '辣白菜五花肉', '菜');
+INSERT INTO `menu` VALUES ('6', null, null, 'kaishuibaicai.jpg', '开水白菜', '菜');
+INSERT INTO `menu` VALUES ('7', null, null, 'congyoubanmian.jpg', '葱油拌面', '面');
+INSERT INTO `menu` VALUES ('8', null, null, 'suantangfeiniu.jpg', '酸汤肥牛', '菜');
 
 -- ----------------------------
 -- Table structure for `menu_label`
@@ -503,10 +503,10 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg', null, null, null, null, null);
-INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg', null, null, null, null, null);
-INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-84-2020-05-18-02-50-21.jpg', 'nan', 'teacher', '1998', 'shijiazhaung', 'lazy');
-INSERT INTO `user` VALUES ('123', '123', '123', '1', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('1', '一只肥罗', '123', '1', 'yizhifeiluo.jpg', '男', 'it', '1999-11-12', '天津', 'lazy');
+INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg', '女', 'it', '1933-05-06', '衡水', 'lazy');
+INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-84-2020-05-18-02-50-21.jpg', '男', 'teacher', '1998-05-07', '石家庄', 'lazy');
+INSERT INTO `user` VALUES ('123', '123', '123', '1', 'abc.jpeg', '女', 'teacher', '1991-01-03', '廊坊', 'lazy');
 
 -- ----------------------------
 -- Table structure for `user_menu`
