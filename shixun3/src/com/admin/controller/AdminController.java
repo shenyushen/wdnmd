@@ -13,13 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.admin.service.AdminService;
 import com.entity.Admin;
+import com.entity.menu;
+import com.kitchen.recommend.service.menuservices;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
 	@Resource
 	AdminService adminService;
-	
+	@Resource
+	private menuservices menuservices;
 	@RequestMapping("login")
 	public String login(@RequestParam("username")String username,@RequestParam("password") String password,HttpSession session) {
 		
@@ -28,7 +31,8 @@ public class AdminController {
 		for(int i = 0; i < admins.size(); i++) {
 			if (admins.get(i).getUsername().equals(username) && admins.get(i).getPassword().equals(password)) {
 				session.setAttribute("user", admins.get(i));
-				
+				List<menu> menus=menuservices.findall();
+				session.setAttribute("menus",menus);
 				return "redirect:../index.jsp";
 			}
 		}
