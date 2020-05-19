@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.a24168.myapplication.main.MainActivity.findeditText;
+import static com.example.a24168.myapplication.main.MainActivity.linearLayout;
 
 
 public class KitchenFragment extends Fragment {
@@ -61,6 +62,8 @@ public class KitchenFragment extends Fragment {
         viewPager.setCurrentItem(1);
         //绑定
         tabLayout.setupWithViewPager(viewPager);
+        linearLayout.setVisibility(View.GONE);
+        findeditText.setVisibility(View.VISIBLE);
         findeditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

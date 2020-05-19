@@ -21,6 +21,9 @@ import com.example.a24168.myapplication.course.videoControl.videoPlayActivity;
 
 import java.util.ArrayList;
 
+import static com.example.a24168.myapplication.main.MainActivity.findeditText;
+import static com.example.a24168.myapplication.main.MainActivity.linearLayout;
+
 public class CourseFragment extends Fragment  {
      View view;
      Button course_label_btn_text_1;
@@ -32,6 +35,8 @@ public class CourseFragment extends Fragment  {
         if (view == null){
             view = inflater.inflate(R.layout.course, container, false);
         }
+        linearLayout.setVisibility(View.GONE);
+        findeditText.setVisibility(View.VISIBLE);
         getViews();
         a();
         return view;
