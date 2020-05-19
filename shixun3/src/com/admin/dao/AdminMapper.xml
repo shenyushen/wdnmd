@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace代表唯一标识符 -->
+<mapper namespace="com.admin.dao.AdminMapper">
+	<!-- 筛选全部 -->
+	<resultMap type="com.entity.Admin" id="admin">
+		   <id property="id" column="id"/>
+	       <result property="username" column="username"/>
+	       <result property="password" column="password"/>
+	    
+	</resultMap>
+
+	<insert id="insertAdmin">
+		insert into admin(username,password) values(#{arg0},#{arg1})
+	</insert>
+	
+	<select id = "findAll" resultMap="admin">
+		select * from admin
+	</select>
+	
+</mapper>
