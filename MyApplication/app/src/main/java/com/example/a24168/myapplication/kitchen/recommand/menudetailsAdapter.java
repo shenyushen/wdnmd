@@ -1,6 +1,7 @@
 package com.example.a24168.myapplication.kitchen.recommand;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,14 @@ public class menudetailsAdapter extends BaseAdapter {
                         .load(context.getResources().getString(R.string.photoip)+steps[i].trim().split("'")[4])
                         .apply(options)
                         .into(stepsphoto);
+                stepsphoto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent =new Intent(context,miaoshudatu.class);
+                        intent.putExtra("url",steps[i].trim().split("'")[4]);
+                        context.startActivity(intent);
+                    }
+                });
             }
         }
         return convertView;

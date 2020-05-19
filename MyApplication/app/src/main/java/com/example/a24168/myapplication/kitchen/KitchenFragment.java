@@ -47,23 +47,6 @@ public class KitchenFragment extends Fragment {
             view = inflater.inflate(R.layout.kitchen, container,false);
         }
 
-//        findeditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @RequiresApi(api = Build.VERSION_CODES.M)
-//            @Override
-//            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-//                if (i == EditorInfo.IME_ACTION_UNSPECIFIED) {
-//                    Toast.makeText(getContext(),"下厨房你点击了回车",Toast.LENGTH_SHORT).show();
-//                    //隐藏软键盘
-////                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-////                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
-//                }
-////                return false;
-//                return (keyEvent.getKeyCode()==KeyEvent.KEYCODE_ENTER);
-//            }
-//        });
-
-
-
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         tabLayout = (TabLayout) view.findViewById(R.id.tablayout);
         //页面，数据源
