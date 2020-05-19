@@ -72,19 +72,51 @@ public  class MainActivity extends AppCompatActivity {
                 super.handleMessage(msg);
                 User_s user_s1 = (User_s) msg.obj;
                 TextView res = headerView.findViewById(R.id.head_name);
+
                 res.setText(user_s1.getUsername());
                 TextView txt_sex=headerView.findViewById(R.id.txt_sex);
-                txt_sex.setText("性别："+user_s1.getSex());
+                if(user_s1.getSex()==null){
+                    txt_sex.setText("性别：未填");
+                }else{
+                    txt_sex.setText("性别："+user_s1.getSex());
+                }
+                //txt_sex.setText("性别："+user_s1.getSex());
                 TextView txt_bitrhday=headerView.findViewById(R.id.txt_birthday);
-                txt_bitrhday.setText("生日："+user_s1.getBirthday());
+                if(user_s1.getBirthday()==null){
+                    txt_bitrhday.setText("生日：未填");
+                }else{
+                    txt_bitrhday.setText("生日："+user_s1.getBirthday());
+                }
+
                 TextView txt_profession=headerView.findViewById(R.id.txt_profession);
-                txt_profession.setText("职业："+user_s1.getProfession());
+                if (user_s1.getProfession()==null){
+                    txt_profession.setText("职业：未填");
+                }else {
+                    txt_profession.setText("职业："+user_s1.getProfession());
+                }
+
                 TextView txt_tag=headerView.findViewById(R.id.txt_tag);
-                txt_tag.setText("个性签名："+user_s1.getLabel());
+                if (user_s1.getLabel()==null){
+                    txt_tag.setText("个性签名：未填");
+                }else {
+                    txt_tag.setText("个性签名："+user_s1.getLabel());
+                }
+
                 TextView txt_home=headerView.findViewById(R.id.txt_home);
-                txt_home.setText("家乡："+user_s1.getHome());
+                if (user_s1.getHome()==null){
+                    txt_home.setText("家乡：未填");
+                }else {
+                    txt_home.setText("家乡："+user_s1.getHome());
+                }
+
+
                 imageView=headerView.findViewById(R.id.person);
-                Glide.with(context).load(ur+user_s1.getPhoto()).into(imageView);
+                /*if (user_s1.getPhoto()==null){
+                    imageView.setImageResource(R.drawable.icll);
+                }else {*/
+                    Glide.with(context).load(ur + user_s1.getPhoto()).into(imageView);
+
+
             }
         };
         //获取FragmentTabHost对象
@@ -188,7 +220,6 @@ public  class MainActivity extends AppCompatActivity {
             @Override
             public void run(){
                 try {
-
 
                     Intent intent3=getIntent();
                     String stringg=intent3.getStringExtra("stringg");

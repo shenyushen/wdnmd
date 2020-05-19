@@ -30,6 +30,7 @@ public class Sign extends AppCompatActivity {
 
     public static String ww;
 
+    public static String string1;
     private EditText ed_account;
     private EditText ed_pass;
     private Button bt_sign;
@@ -59,7 +60,7 @@ public class Sign extends AppCompatActivity {
                     InputStream in = httpURLConnection.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
-                    String string1=reader.readLine();
+                     string1=reader.readLine();
                     //Log.e("ssss",string1);
 
                     Gson gson = new Gson();
