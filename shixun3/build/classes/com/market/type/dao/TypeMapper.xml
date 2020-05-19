@@ -80,8 +80,22 @@
 		where m.goods_id = #{id}
 	</select>
 	
+	
 	<insert id = "insertComment">
 		insert into market_comments(content,time,img,r1,r2,r3,user_id,goods_id)
 		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5},#{arg6},#{arg7})
 	</insert>
+	
+	<select id= "findAllCourt" resultMap = "court">
+		select * 
+		from market_court
+		where user_id = #{id}
+	</select>
+	
+	
+	<update id="updateCourt">
+		update market_court
+		set goods_count = #{arg1}
+		where goods_type= #{arg0} and goods_id=#{arg2}
+	</update>
 </mapper>

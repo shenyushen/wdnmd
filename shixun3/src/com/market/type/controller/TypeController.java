@@ -4,6 +4,7 @@ package com.market.type.controller;
 import com.entity.Find_Photo;
 import com.entity.Goods;
 import com.entity.MarketComments;
+import com.entity.MarketCourt;
 import com.entity.Type;
 import com.market.type.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,27 @@ public class TypeController {
     public String d(@RequestParam("user_id") String user_id,@RequestParam("goods_content") String goods_content,
     		@RequestParam("goods_type")String goods_type, @RequestParam("goods_price")String goods_price,
     		@RequestParam("goods_count")String goods_count,@RequestParam("goods_id")String goods_id) {
-    	typeService.insertCourt(Integer.valueOf(user_id), goods_content, goods_type, goods_price, goods_count, goods_id);
+    	int flag = -1;
+    	System.out.print(goods_type+goods_id);
+    	List<MarketCourt> marketcourts = typeService.find4(Integer.valueOf(user_id));
+    	for(int i = 0; i < marketcourts.size(); i++) {
+    		System.out.print(marketcourts.get(i).getGoodsId()+marketcourts.get(i).getGoodsType());
+    		if(marketcourts.get(i).getGoodsId().equals(goods_id) &&
+    				marketcourts.get(i).getGoodsType().equals(goods_type)) {
+    			
+    			flag = i;
+    			System.out.println(flag);
+    			break;
+    		}
+    	}
+    	
+    	if (flag == -1) {
+    		typeService.insertCourt(Integer.valueOf(user_id), goods_content, goods_type, goods_price, goods_count, goods_id);
+    	}
+    	else {
+    		typeService.update(goods_type, Integer.valueOf(goods_count)+Integer.valueOf(marketcourts.get(flag).getGoodsCount())+"", Integer.valueOf(goods_id));
+    	}
+    	
     	return "ok";
     }
     @RequestMapping("/lei3")
