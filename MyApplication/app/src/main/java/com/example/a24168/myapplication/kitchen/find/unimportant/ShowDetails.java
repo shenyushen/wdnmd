@@ -45,6 +45,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.a24168.myapplication.sign.Sign.user_id;
+
 public class ShowDetails extends AppCompatActivity {
     private TextView textView;
     private TextView textViewdata;
@@ -133,7 +135,7 @@ public class ShowDetails extends AppCompatActivity {
                                 MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
                                         .setType(MultipartBody.FORM);
 
-                                requestBodyBuilder.addFormDataPart("authorid", "11");
+                                requestBodyBuilder.addFormDataPart("authorid", user_id+"");
                                 requestBodyBuilder.addFormDataPart("comment",edit);
                                 requestBodyBuilder.addFormDataPart("findfriendid",findFriend.getId()+"");
                                 RequestBody requestBody = requestBodyBuilder.build();

@@ -24,6 +24,8 @@ public interface FindFriendMapper {
 	
 	public int findYouCount(int id);
 	
+	public void insertDianzan(@Param("num")int num,@Param("id")int id);
+	
 }
 
 

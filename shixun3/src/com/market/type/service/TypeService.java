@@ -2,6 +2,7 @@ package com.market.type.service;
 
 import com.entity.Goods;
 import com.entity.MarketComments;
+import com.entity.MarketCourt;
 import com.entity.Type;
 import com.market.type.dao.TypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,12 @@ public class TypeService {
     }
     public int insertComment(String content,String time,String img,String r1,String r2,String r3,int user_id,int goods_id) {
     	return typeMapper.insertComment(content,time,img,r1,r2,r3,user_id,goods_id);
+    }
+    
+    public List<MarketCourt> find4(int id){
+    	return typeMapper.findAllCourt(id);
+    }
+    public int update(String type,String count,int id) {
+    	return typeMapper.updateCourt(type, count, id);
     }
 } 

@@ -123,4 +123,12 @@ public class FindController {
 		return a+"";
 	}
 	
+	@RequestMapping("/dianzan")
+	public void saveDianzan(HttpServletRequest request) {
+		int num = Integer.parseInt(request.getParameter("dianzan"));
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println(num+"zxc"+id);
+		findFriendService.saveDianzan(num,id);
+	}
+	
 }
