@@ -67,6 +67,11 @@
 		left join goods_xiangqing x on g.goods_id = x.goods_id
 		where g.goods_id=#{id}
 	</select>
+	<select id = "findAllGoods1" resultMap = "good">
+		select *
+		from goods g
+		left join goods_xiangqing x on g.goods_id = x.goods_id
+	</select>
 	
 	<insert id = "insertCourt">
 		insert into market_court(user_id,goods_content,goods_type,goods_price,goods_count,goods_id)
@@ -80,8 +85,22 @@
 		where m.goods_id = #{id}
 	</select>
 	
+	
 	<insert id = "insertComment">
 		insert into market_comments(content,time,img,r1,r2,r3,user_id,goods_id)
 		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5},#{arg6},#{arg7})
 	</insert>
+	
+	<select id= "findAllCourt" resultMap = "court">
+		select * 
+		from market_court
+		where user_id = #{id}
+	</select>
+	
+	
+	<update id="updateCourt">
+		update market_court
+		set goods_count = #{arg1}
+		where goods_type= #{arg0} and goods_id=#{arg2}
+	</update>
 </mapper>

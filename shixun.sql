@@ -10,10 +10,27 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
+Date: 2020-05-19 17:59:41
 Date: 2020-05-19 18:25:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `admin`
+-- ----------------------------
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of admin
+-- ----------------------------
+INSERT INTO `admin` VALUES ('1', '123', '123');
 
 -- ----------------------------
 -- Table structure for `course`
@@ -305,16 +322,17 @@ CREATE TABLE `market_court` (
   `goods_count` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `goods_id` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
   PRIMARY KEY (`id`)
+  KEY `goods_id` (`goods_id`),
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  CONSTRAINT `market_court_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_court
 -- ----------------------------
-INSERT INTO `market_court` VALUES ('11', '良润面包粉5kg', '新良原味面包粉5kg', '￥50', '2', '1', '14');
-INSERT INTO `market_court` VALUES ('11', '良润面包粉5kg', '新良原味面包粉5kg', '￥50', '1', '1', '15');
-INSERT INTO `market_court` VALUES ('11', '良润面包粉5kg', '新良原面包粉10kg', '￥100', '2', '1', '16');
-INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '2', '1', '17');
+INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模具', '6寸蛋糕圆盘', '￥39', '1', '2', '22');
 INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模具', '8寸蛋糕圆盘', '￥45', '2', '2', '18');
 INSERT INTO `market_court` VALUES ('11', 'JohnsonVille尊乐大包装,好口味', '焦香蜜汁肠1950g', '￥260', '2', '3', '19');
 INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '1', '1', '20');
@@ -510,12 +528,10 @@ CREATE TABLE `user` (
 
 -- ----------------------------
 -- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg', null, null, null, null, null);
-INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg', null, null, null, null, null);
-INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-77-2020-05-16-03-27-47.jpg', 'nan', 'it', '2017', 'hebei', 'sss');
-INSERT INTO `user` VALUES ('123', '123', '123', '1', 'abc.jpeg', null, null, null, null, null);
-
+-- ----------------------------INSERT INTO `user` VALUES ('1', '一只肥罗', '123', '1', 'yizhifeiluo.jpg', '男', 'it', '1999-11-12', '天津', 'lazy');
+INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg', '女', 'it', '1933-05-06', '衡水', 'lazy');
+INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-84-2020-05-18-02-50-21.jpg', '男', 'teacher', '1998-05-07', '石家庄', 'lazy');
+INSERT INTO `user` VALUES ('123', '123', '123', '1', 'abc.jpeg', '女', 'teacher', '1991-01-03', '廊坊', 'lazy');
 -- ----------------------------
 -- Table structure for `user_menu`
 -- ----------------------------
