@@ -1,4 +1,4 @@
-package com.example.a24168.myapplication.main;
+﻿package com.example.a24168.myapplication.main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -109,13 +109,8 @@ public  class MainActivity extends AppCompatActivity {
                     txt_home.setText("家乡："+user_s1.getHome());
                 }
 
-
                 imageView=headerView.findViewById(R.id.person);
-                /*if (user_s1.getPhoto()==null){
-                    imageView.setImageResource(R.drawable.icll);
-                }else {*/
-                    Glide.with(context).load(ur + user_s1.getPhoto()).into(imageView);
-
+                Glide.with(context).load(ur + user_s1.getPhoto()).into(imageView);
 
             }
         };
@@ -220,6 +215,7 @@ public  class MainActivity extends AppCompatActivity {
             @Override
             public void run(){
                 try {
+
 
                     Intent intent3=getIntent();
                     String stringg=intent3.getStringExtra("stringg");
