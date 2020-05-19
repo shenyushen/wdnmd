@@ -11,13 +11,27 @@
 	       <result property="password" column="password"/>
 	    
 	</resultMap>
-
+	<resultMap type="com.entity.User" id="user1">
+	<id property="id" column="id"/>
+    <result property="username" column="username"/>
+    <result property="password" column="password"/>
+    <result property="vip" column="vip"/>
+    <result property="sex" column="sex"/>
+    <result property="photo" column="photo"/>
+    <result property="profession" column="profession"/>
+    <result property="birthday" column="birthday"/>
+    <result property="home" column="home"/>
+    <result property="label" column="label"/>
+</resultMap>
 	<insert id="insertAdmin">
 		insert into admin(username,password) values(#{arg0},#{arg1})
 	</insert>
 	
 	<select id = "findAll" resultMap="admin">
 		select * from admin
+	</select>
+	<select id = "findUser" resultMap="user1">
+		select * from user limit 8
 	</select>
 	
 </mapper>

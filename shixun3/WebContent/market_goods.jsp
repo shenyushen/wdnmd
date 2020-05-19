@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html>
 <html class="x-admin-sm">
     
@@ -192,20 +195,51 @@
                                     <tr>
                                         <th>
                                             <input type="checkbox" name="" lay-skin="primary"></th>
-                                        <th>订单编号</th>
-                                        <th>收货人</th>
-                                        <th>总金额</th>
-                                        <th>应付金额</th>
-                                        <th>订单状态</th>
-                                        <th>支付状态</th>
-                                        <th>发货状态</th>
-                                        <th>支付方式</th>
-                                        <th>配送方式</th>
-                                        <th>下单时间</th>
-                                        <th>操作</th></tr>
+                                        <th>商品编号</th>
+                                        <th>商品标题</th>
+                                        <th>商品销量</th>
+                                        <th>商品价格</th>
+                                        <th>是否包邮</th>
+                                        <th>七天退换</th>
+                                        <th>商品评分</th>
+                                        <th>商品图片</th>
+                                        
+                         				<!--  <th>配送方式</th>
+                                        <th>下单时间</th> -->
+                                        
+                                        <th>操作</th>
+                                        
+                                        </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                	<c:forEach items="${goods}" var="step">
+                                		<tr>
+                                        <td>
+                                            <input type="checkbox" name="" lay-skin="primary"></td>
+                                        <td>${step.goodsId }</td>
+                                        <td>${step.title }</td>
+                                        <td>${step.saleVolume } </td>
+                                        <td>${step.price }</td>
+                                        <td>${step.good.if_freeshiiping }</td>
+                                        <td>${step.good.return_goods }</td>
+                                        <td>${step.good.goods_score }</td>
+                                        <td><img src ="http://localhost:8080/shixun3/upload/${step.img }" width="60" height="60"  / ></td>
+                                        <!-- <td>其他方式</td>
+                                        <td>申通物流</td>
+                                        <td>2017-08-17 18:22</td> -->
+                                        <td class="td-manage">
+                                            <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
+                                                <i class="layui-icon">&#xe63c;</i></a>
+                                            <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                                <i class="layui-icon">&#xe640;</i></a>
+                                        </td>
+                                    </tr>
+                                	
+                                	</c:forEach>
+                                
+            
+                                   
+                                  <!--   <tr>
                                         <td>
                                             <input type="checkbox" name="" lay-skin="primary"></td>
                                         <td>2017009171822298053</td>
@@ -224,47 +258,8 @@
                                             <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="" lay-skin="primary"></td>
-                                        <td>2017009171822298053</td>
-                                        <td>老王:18925139194</td>
-                                        <td>7829.10</td>
-                                        <td>7854.10</td>
-                                        <td>待确认</td>
-                                        <td>未支付</td>
-                                        <td>未发货</td>
-                                        <td>其他方式</td>
-                                        <td>申通物流</td>
-                                        <td>2017-08-17 18:22</td>
-                                        <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
-                                                <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                                <i class="layui-icon">&#xe640;</i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="" lay-skin="primary"></td>
-                                        <td>2017009171822298053</td>
-                                        <td>老王:18925139194</td>
-                                        <td>7829.10</td>
-                                        <td>7854.10</td>
-                                        <td>待确认</td>
-                                        <td>未支付</td>
-                                        <td>未发货</td>
-                                        <td>其他方式</td>
-                                        <td>申通物流</td>
-                                        <td>2017-08-17 18:22</td>
-                                        <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
-                                                <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                                <i class="layui-icon">&#xe640;</i></a>
-                                        </td>
-                                    </tr>
+                                    </tr> -->
+                                    
                                 </tbody>
                             </table>
                         </div>
