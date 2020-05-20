@@ -12,7 +12,8 @@
             android:layout_marginTop="10dp"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/shangchu"/>
+            android:layout_margin="10dp"
+            android:src="@drawable/tianjiatupian"/>
 
         <LinearLayout
             android:id="@+id/ll_del"

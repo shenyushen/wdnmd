@@ -64,7 +64,7 @@ public class ShowDetails extends AppCompatActivity {
     private FindFriend findFriend;
     private TextView pinglunrenshu;
     private ImageView guanzhu;
-
+    private ImageView fanhui;
 
     private int count = 0;
 
@@ -84,7 +84,14 @@ public class ShowDetails extends AppCompatActivity {
         button = findViewById(R.id.fasong);
         pinglunrenshu = findViewById(R.id.pinglunrenshu);
         guanzhu = findViewById(R.id.guanzhu);
+        fanhui = findViewById(R.id.fanhui);
 
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowDetails.this.finish();
+            }
+        });
 
         if(getIntent().getExtras()!=null) {
             bundle = getIntent().getExtras();

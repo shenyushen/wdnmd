@@ -19,6 +19,18 @@ public class FindFriend implements Serializable {
 	private FindLable findLable = new FindLable();
 	private List<FindComment> findComments = new ArrayList<>();
 
+	public FindFriend() {
+	}
+
+	public FindFriend(int author, String theme, String data, String date, String photo, int type) {
+		this.author = author;
+		this.theme = theme;
+		this.data = data;
+		this.date = date;
+		this.photo = photo;
+		this.type = type;
+	}
+
 	public List<FindComment> getFindComments() {
 		return findComments;
 	}
@@ -97,6 +109,7 @@ public class FindFriend implements Serializable {
 	public void setLikenum(int likenum) {
 		this.likenum = likenum;
 	}
+
 
 
 	/*@Override

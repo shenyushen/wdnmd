@@ -64,10 +64,6 @@ public class FindController {
 		FindFriend findFriend = new FindFriend();
 		    try {
 		    	findFriend = om.readValue(action,FindFriend.class);
-		    	findFriend.setAuthor(1);
-		    	findFriend.setMenuid(1);
-		    	findFriend.setType(5);
-		    	System.out.println(findFriend.getData());
 		    } catch (JsonParseException e) {
 		        e.printStackTrace();
 		    } catch (JsonMappingException e) {
@@ -79,8 +75,7 @@ public class FindController {
 		String rooString=request.getServletContext().getRealPath("/");
 		System.out.println(rooString);
 		int findFriendid = findFriendService.saveFindFriend(findFriend);
-		System.out.println(findFriendid+"zhangxuewei");
-		findFriend.setId(findFriendid);
+		
 		List<Find_Photo> findPhotos = new ArrayList<Find_Photo>();
 		try {
 			for(int i = 0;i<files.size();i++) {

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.a24168.myapplication.R;
@@ -33,6 +34,7 @@ public class LableDetails extends AppCompatActivity {
     private List<FindFriend> findFriends;
     private Handler handler = new Handler();
     private BannerGrid gridView;
+    private ImageView fanhui;
 
 
     @Override
@@ -40,6 +42,14 @@ public class LableDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_lable);
 
+        fanhui = findViewById(R.id.fanhui);
+
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LableDetails.this.finish();
+            }
+        });
 
         gridView = findViewById(R.id.lablegridView);
         String result = getIntent().getStringExtra("url");

@@ -2,12 +2,10 @@ package com.example.a24168.myapplication.kitchen.find.unimportant;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +26,7 @@ import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.kitchen.find.adapter.FullyGridLayoutManager;
 import com.example.a24168.myapplication.kitchen.find.adapter.GridImageAdapter;
 import com.example.a24168.myapplication.kitchen.find.entity.FindFriend;
+import com.example.a24168.myapplication.kitchen.find.unimportant.FindCreateListView;
 import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -39,6 +39,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -51,7 +52,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownServiceException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -65,15 +68,24 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.a24168.myapplication.kitchen.find.unimportant.FindCreateListView.lableid;
+import static com.example.a24168.myapplication.kitchen.find.unimportant.FindCreateListView.lablename;
+import static com.example.a24168.myapplication.sign.Sign.user_id;
+
 public class Create extends AppCompatActivity {
     private int maxSelectNum = 5;
     private List<LocalMedia> selectList = new ArrayList<>();
     private GridImageAdapter adapter;
     private RecyclerView mRecyclerView;
     private PopupWindow pop;
-    private Button button;
+    private TextView button;
+    private TextView quxiao;
     private EditText editbiaoti;
     private EditText editneirong;
+    private RelativeLayout relativeLayout;
+    private Intent intent;
+    public static TextView textleixing;
+
 
 
     @Override
@@ -81,19 +93,43 @@ public class Create extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_create);
         button = findViewById(R.id.tijiao);
+        quxiao = findViewById(R.id.quxiao);
         mRecyclerView = findViewById(R.id.recycler);
         editbiaoti = findViewById(R.id.editbiaoti);
         editneirong = findViewById(R.id.editneirong);
+        relativeLayout = findViewById(R.id.relative);
+        textleixing = findViewById(R.id.textleixing);
 
         initWidget();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(selectList==null)
+                    Toast.makeText(Create.this, "请添加至少一张图片",Toast.LENGTH_SHORT).show();
+                else if(editbiaoti.getText().equals(""))
+                    Toast.makeText(getApplicationContext(), "请添加标题哦",Toast.LENGTH_SHORT).show();
+                else{
+                    upload();
+                    Toast.makeText(getApplicationContext(), "提交成功！",Toast.LENGTH_SHORT).show();
+                    Create.this.finish();
+                }
 
-
-                upload();
             }
         });
+        quxiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Create.this.finish();
+            }
+        });
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent=new Intent(Create.this, FindCreateListView.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initWidget() {
@@ -309,10 +345,15 @@ public class Create extends AppCompatActivity {
                             .setType(MultipartBody.FORM);
                     String biaoti = editbiaoti.getText().toString().trim();
                     String neirong = editneirong.getText().toString().trim();
-
-                    FindFriend findFriend = new FindFriend();
-                    findFriend.setTheme(biaoti);
-                    findFriend.setData(neirong);
+                    int user = Integer.parseInt(user_id);
+                    Date d = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHHmmss");
+                    String date = sdf.format(d);
+                    String date1 = sdf1.format(d);
+                    File filea = new File(selectList.get(0).getPath());
+                    String photo = date1+filea.getName();
+                    FindFriend findFriend = new FindFriend(user,biaoti,neirong,date,photo,lableid);
                     Gson gson = new Gson();
                     String json = gson.toJson(findFriend);
                     //循环添加文件
@@ -320,7 +361,7 @@ public class Create extends AppCompatActivity {
                     for (int i = 0; i < selectList.size(); i++) {
                         Log.e("selectlist",selectList.get(i).getPath());
                         File file = new File(selectList.get(i).getPath());
-                        requestBodyBuilder.addFormDataPart("selectfile", file.getName(), RequestBody.create(MutilPart_Form_Data, new File(selectList.get(i).getPath())));
+                        requestBodyBuilder.addFormDataPart("selectfile", date1+file.getName(), RequestBody.create(MutilPart_Form_Data, new File(selectList.get(i).getPath())));
                         requestBodyBuilder.addFormDataPart("data", json);
                     }
 
@@ -337,7 +378,7 @@ public class Create extends AppCompatActivity {
         }.start();
     }
 
-    public void LoginByPost()  {
+    /*public void LoginByPost()  {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -350,9 +391,9 @@ public class Create extends AppCompatActivity {
                 Gson gson = new Gson();
                 String json = gson.toJson(findFriend);
                 // 将需要传递的参数封装到List<NameValuePair>类型的对象中
-        /*List<NameValuePair> params = new ArrayList<NameValuePair>();
+        *//*List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("username", user.getUserName()));
-        params.add(new BasicNameValuePair("password", user.getUserPass()));*/
+        params.add(new BasicNameValuePair("password", user.getUserPass()));*//*
                 // 将封装参数的对象存入request中，并设置编码方式
                 String params = "findfriend=" + json;
                 byte[] data = params.getBytes();
@@ -377,6 +418,6 @@ public class Create extends AppCompatActivity {
                 }
             }
         });
-        }
+        }*/
 
 }
