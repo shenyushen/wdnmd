@@ -66,8 +66,10 @@ public class ListViewAdapter extends BaseAdapter {
         //Log.e("comments",findCommentList.get(position).getComment());
 
         String image = "http://10.0.2.2:8080/shixun3/pic/"+findCommentList.get(position).getUser().getPhoto();
+        RequestOptions options = RequestOptions.circleCropTransform();//圆形图片  好多的图片形式都是这么设置的
+        options.placeholder(R.drawable.morentouxiang);
         Glide.with(context).load(image)
-                .apply( new RequestOptions().error(new ColorDrawable(Color.BLUE))).into(viewHolder.commentImage);
+                .apply(options).into(viewHolder.commentImage);
         viewHolder.commentText.setText(findCommentList.get(position).getUser().getUsername());
         viewHolder.comment_comment.setText(findCommentList.get(position).getComment());
         return convertView;

@@ -125,8 +125,10 @@ public class ShowDetails extends AppCompatActivity {
             banner.start();
             textViewnicheng.setText(findFriend.getUser().getUsername());
             textView.setText(findFriend.getTheme());
+            RequestOptions options = RequestOptions.circleCropTransform();//圆形图片  好多的图片形式都是这么设置的
+            options.placeholder(R.drawable.morentouxiang);
             Glide.with(this).load("http://10.0.2.2:8080/shixun3/pic/"+findFriend.getUser().getPhoto())
-                    .apply( new RequestOptions().error(new ColorDrawable(Color.BLUE))).into(imagetouxiang);
+                    .apply(options).into(imagetouxiang);
             textViewdate.setText("#"+findFriend.getFindLable().getLable()+"."+findFriend.getDate()+"#");
             textViewdata.setText(findFriend.getData());
             textViewmenu.setText(findFriend.getMenuid()+"这是menu id");

@@ -103,8 +103,10 @@ public class GridViewAdapter extends BaseAdapter {
         String title = dataSource.get(position).getTitle();
         viewHolder.textView.setText(title);
         String image1 = dataSource.get(position).getTouxiang();
+        RequestOptions options = RequestOptions.circleCropTransform();//圆形图片  好多的图片形式都是这么设置的
+        options.placeholder(R.drawable.morentouxiang);
         Glide.with(context).load(image1)
-                .apply( new RequestOptions().error(new ColorDrawable(Color.BLUE))).listener(mRequestListener).into(viewHolder.touxiang);
+                .apply( options).listener(mRequestListener).into(viewHolder.touxiang);
         String mingzi = dataSource.get(position).getNicheng();
         viewHolder.nicheng.setText(mingzi);
 

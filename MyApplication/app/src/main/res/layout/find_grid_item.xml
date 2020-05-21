@@ -29,7 +29,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="20dp">
-            <com.example.a24168.myapplication.kitchen.find.custom.RoundImageView
+            <ImageView
                 android:id="@+id/yonghutouxiang"
                 android:layout_width="20dp"
                 android:layout_height="20dp"

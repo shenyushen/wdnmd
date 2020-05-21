@@ -17,7 +17,7 @@
             android:layout_height="25dp"
             android:background="@drawable/fanhui1"
             />
-        <com.example.a24168.myapplication.kitchen.find.custom.RoundImageView
+        <ImageView
             android:layout_marginLeft="20dp"
             android:gravity="center"
             android:layout_toRightOf="@+id/fanhui"
