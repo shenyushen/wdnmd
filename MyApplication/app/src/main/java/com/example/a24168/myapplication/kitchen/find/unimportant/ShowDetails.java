@@ -3,10 +3,12 @@ package com.example.a24168.myapplication.kitchen.find.unimportant;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,8 +21,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.kitchen.find.adapter.ListViewAdapter;
+import com.example.a24168.myapplication.kitchen.find.entity.FindComment;
 import com.example.a24168.myapplication.kitchen.find.entity.FindFriend;
 import com.example.a24168.myapplication.kitchen.find.custom.GlideImageLoader;
+import com.example.a24168.myapplication.kitchen.find.entity.User;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -62,7 +66,7 @@ public class ShowDetails extends AppCompatActivity {
     private TextView pinglunrenshu;
     private ImageView guanzhu;
     private ImageView fanhui;
-
+    private Handler handler = new Handler();
     private int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,11 +159,43 @@ public class ShowDetails extends AppCompatActivity {
                                         .url( "http://10.0.2.2:8080/shixun3/find/comment")
                                         .post(requestBody)
                                         .build();
+
+                                editText.setText("");
+                                ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+                                        .hideSoftInputFromWindow(ShowDetails.this
+                                                        .getCurrentFocus().getWindowToken(),
+                                                InputMethodManager.HIDE_NOT_ALWAYS);
+
                                 try {
                                     Response response = client.newCall(request).execute();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        String a = findFriend.getUser().getPhoto();
+                                        int b = findFriend.getUser().getId();
+                                        String c  = edit;
+                                        FindComment findComment = new FindComment();
+
+                                        User user = new User();
+                                        user.setId(b);
+                                        user.setPhoto(a);
+
+                                        findComment.setUser(user);
+                                        findComment.setComment(c);
+
+                                        findFriend.getFindComments().add(findComment);
+
+                                        ListViewAdapter listViewAdapter = new ListViewAdapter(ShowDetails.this, findFriend.getFindComments());
+
+                                        listView.setAdapter(listViewAdapter);
+                                        listViewAdapter.notifyDataSetChanged();
+                                        setListViewHeightBasedOnChildren(listView);
+                                    }
+                                });
                             }
                         }.start();
                     }
