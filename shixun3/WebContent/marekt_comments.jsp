@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="./css/xadmin.css">
         <script src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
+        <script src="./jquery-3.5.1.min.js"></script>
         <!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -187,7 +188,7 @@
 
                             <button class="layui-btn layui-btn-danger" onclick="delAll()">
                                 <i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加商品','./goods_add1.jsp',800,600)">
+                            <button class="layui-btn" onclick="xadmin.open('添加评论','./goods_add.jsp',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
@@ -195,42 +196,41 @@
                                     <tr>
                                         <th>
                                             <input type="checkbox" name="" lay-skin="primary"></th>
+                                        <th>评论编号</th>
+                                        <th>评论内容</th>
+                                        <th>评论时间</th>
+                                    
+                                        <th>服务质量</th>
+                                        <th>物流质量</th>
+                                        <th>产品描述</th>
                                         <th>商品编号</th>
-                                        <th>商品标题</th>
-                                        <th>商品销量</th>
-                                        <th>商品价格</th>
-                                        <th>是否包邮</th>
-                                        <th>七天退换</th>
-                                        <th>商品评分</th>
-                                        <th>商品图片</th>
-                                        
-                         				<!--  <th>配送方式</th>
-                                        <th>下单时间</th> -->
-                                        
+                                        <th>用户编号</th>
                                         <th>操作</th>
-                                        
                                         </tr>
                                 </thead>
                                 <tbody>
-                                	<c:forEach items="${goods}" var="step">
+                                	<c:forEach items="${comments}" var="step">
                                 		<tr>
                                         <td>
                                             <input type="checkbox" name="" lay-skin="primary"></td>
+                                        <td>${step.id }</td>
+                                        <td>${step.content }</td>
+                                        <td>${step.time } </td>
+                                        
+                                        
+                                        <td>${step.r1 }</td>
+                                        <td>${step.r2 }</td>
+                                        <td>${step.r3 }</td>
                                         <td>${step.goodsId }</td>
-                                        <td>${step.title }</td>
-                                        <td>${step.saleVolume } </td>
-                                        <td>${step.price }</td>
-                                        <td>${step.good.if_freeshiiping }</td>
-                                        <td>${step.good.return_goods }</td>
-                                        <td>${step.good.goods_score }</td>
-                                        <td><img src ="http://localhost:8080/shixun3/upload/${step.img }" width="60" height="60"  / ></td>
+                                        <td>${step.user.id }</td>
+                                        
                                         <!-- <td>其他方式</td>
                                         <td>申通物流</td>
                                         <td>2017-08-17 18:22</td> -->
                                         <td class="td-manage">
                                             <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
                                                 <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" onclick="member_del(this,'${step.goodsId}')" href="javascript:;">
+                                            <a title="删除" onclick="member_del(this,'${step.user.id}','${step.goodsId}')" href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
                                     </tr>
@@ -266,9 +266,12 @@
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                    <a class="prev"  href="./admin/page1?page=${(goods_page-1)<0?0:goods_page-1 }">&lt;&lt;</a>
-
-                                    <a class="next" href="./admin/page1?page=${goods_page+1 }">&gt;&gt;</a></div>
+                                    <a class="prev"  href="./admin/page?page=${(comments_page-1)<0?0:comments_page-1 }">&lt;&lt;</a>
+                                    <!-- <a class="num" href="">1</a>
+                                    <span class="current">2</span>
+                                    <a class="num" href="">3</a>
+                                    <a class="num" href="">489</a> -->
+                                    <a class="next" href="./admin/page?page=${comments_page+1 }">&gt;&gt;</a></div>
                             </div>
                         </div>
                     </div>
@@ -276,7 +279,8 @@
             </div>
         </div>
     </body>
-    <script>layui.use(['laydate', 'form'],
+    <script>
+    layui.use(['laydate', 'form'],
         function() {
             var laydate = layui.laydate;
 
@@ -323,17 +327,19 @@
         }
 
         /*用户-删除*/
-        function member_del(obj, id) {
-        	 $.get("./admin/delete1", {"id":id}, function(data){
-      	       	/* var re = eval(data); */
-      	       	console.log(data)
-      			if(data=="faile"){
-      	        	$("#info").text("账号密码错误！");
-      	        }else{
-      	        	$(obj).parents("tr").remove();
-      	        	
-      	        }
-      	    });
+     function  member_del(obj, id,id1) {
+    	 $.get("./admin/delete", {"id1":id, "id2":id1}, function(data){
+ 	       	/* var re = eval(data); */
+ 	       	console.log(data)
+ 			if(data=="faile"){
+ 	        	$("#info").text("账号密码错误！");
+ 	        }else{
+ 	        	$(obj).parents("tr").remove();
+ 	        	
+ 	        }
+ 	    });
+              
+         
         }
 
         function delAll(argument) {

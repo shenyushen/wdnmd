@@ -93,21 +93,12 @@
                                     <cite>统计页面</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('会员列表(静态表格)','member-list.jsp')">
+                                <a onclick="xadmin.add_tab('用户列表','member-list.jsp')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>会员列表(静态表格)</cite></a>
+                                    <cite>用户列表</cite></a>
                             </li>
-                            <li>
-                                <a onclick="xadmin.add_tab('会员列表(动态表格)','member-list1.html',true)">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>会员列表(动态表格)</cite></a>
-                            </li>
-                            <li>
-                                <a onclick="xadmin.add_tab('会员删除','member-del.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>会员删除</cite></a>
-                            </li>
-                            
+                          
+                          
                             <li>
                                 <a href="javascript:;">
                                     <i class="iconfont">&#xe70b;</i>
@@ -165,6 +156,11 @@
                                 <a onclick="xadmin.add_tab('商品管理','market_goods.jsp')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>商品管理</cite></a>
+                            </li>
+                             <li>
+                                <a onclick="xadmin.add_tab('评论管理','marekt_comments.jsp')">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>评论管理</cite></a>
                             </li>
                             <li>
                                 <a onclick="xadmin.add_tab('订单管理','market_dingdan.html')">

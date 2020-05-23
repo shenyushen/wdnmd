@@ -51,11 +51,25 @@
 		<result property="user.photo" column="photo"/>
 		<result property="goodsId" column="goods_id"/>
 	</resultMap>
+	<insert id = "insertGood">
+		insert into goods(goods_id,title,little_content,sale_volume,price,img,type_id)
+		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5},#{arg6})
+	</insert>
 	
+	<insert id = "insertGood1">
+		insert into goods_xiangqing(goods_img,goods_type,return_goods,if_freeshiiping,goods_score,goods_id)
+		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5})
+	</insert>
     <select id="findAll" resultMap="goods">
 		select * from goods
 	</select>
-	
+	<select id="selectPage" resultMap="comments">
+		select * 
+		from market_comments m
+		left join user u 
+		on m.user_id = u.id
+		limit #{arg0},#{arg1}
+	</select>
 	<select id="findAllGoods" resultMap="goods">
 		select *
 		from goods
@@ -72,7 +86,12 @@
 		from goods g
 		left join goods_xiangqing x on g.goods_id = x.goods_id
 	</select>
-	
+	<select id ="findPage" resultMap="good">
+		select *
+		from goods g
+		left join goods_xiangqing x on g.goods_id = x.goods_id
+		limit #{arg0},#{arg1}
+	</select>	
 	<insert id = "insertCourt">
 		insert into market_court(user_id,goods_content,goods_type,goods_price,goods_count,goods_id)
 		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5})
@@ -84,7 +103,13 @@
 		on m.user_id = u.id
 		where m.goods_id = #{id}
 	</select>
-	
+	<select id = "findAllComment" resultMap = "comments">
+		select * 
+		from market_comments m
+		left join user u 
+		on m.user_id = u.id
+		limit 8
+	</select>
 	
 	<insert id = "insertComment">
 		insert into market_comments(content,time,img,r1,r2,r3,user_id,goods_id)
@@ -96,8 +121,23 @@
 		from market_court
 		where user_id = #{id}
 	</select>
+	<delete id="deleteComment">
+		delete from market_comments
+		where user_id=#{arg0} and goods_id=#{arg1}
+	</delete>
+	<delete id ="deleteGood">
+		delete from goods_xiangqing
+		where goods_id=#{arg0}
 	
 	
+	
+	</delete>
+	<delete id ="deleteGood1">
+
+		delete from goods
+		where goods_id=#{arg0}
+	
+	</delete>
 	<update id="updateCourt">
 		update market_court
 		set goods_count = #{arg1}
