@@ -3,10 +3,12 @@ package com.example.a24168.myapplication.kitchen.find.unimportant;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,26 +21,26 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.kitchen.find.adapter.ListViewAdapter;
+import com.example.a24168.myapplication.kitchen.find.entity.FindComment;
 import com.example.a24168.myapplication.kitchen.find.entity.FindFriend;
 import com.example.a24168.myapplication.kitchen.find.custom.GlideImageLoader;
-import com.example.a24168.myapplication.kitchen.find.entity.Show;
+import com.example.a24168.myapplication.kitchen.find.entity.User;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.FormBody;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -62,9 +64,10 @@ public class ShowDetails extends AppCompatActivity {
     private Button button;
     private FindFriend findFriend;
     private TextView pinglunrenshu;
-
+    private ImageView guanzhu;
+    private ImageView fanhui;
+    private Handler handler = new Handler();
     private int count = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +83,15 @@ public class ShowDetails extends AppCompatActivity {
         editText = findViewById(R.id.edit);
         button = findViewById(R.id.fasong);
         pinglunrenshu = findViewById(R.id.pinglunrenshu);
+        guanzhu = findViewById(R.id.guanzhu);
+        fanhui = findViewById(R.id.fanhui);
+
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowDetails.this.finish();
+            }
+        });
 
         if(getIntent().getExtras()!=null) {
             bundle = getIntent().getExtras();
@@ -98,6 +110,7 @@ public class ShowDetails extends AppCompatActivity {
                 Log.e("images",images.get(i));
             }
 
+            panduanshifouguanzhu();
 
             banner.setBannerStyle(BannerConfig.NUM_INDICATOR);
             banner.setBannerAnimation(Transformer.Default);
@@ -112,8 +125,11 @@ public class ShowDetails extends AppCompatActivity {
             banner.start();
             textViewnicheng.setText(findFriend.getUser().getUsername());
             textView.setText(findFriend.getTheme());
+
+            RequestOptions options = RequestOptions.circleCropTransform();//圆形图片  好多的图片形式都是这么设置的
+                options.placeholder(R.drawable.morentouxiang);
             Glide.with(this).load("http://10.0.2.2:8080/shixun3/pic/"+findFriend.getUser().getPhoto())
-                    .apply( new RequestOptions().error(new ColorDrawable(Color.BLUE))).into(imagetouxiang);
+                    .apply(options).into(imagetouxiang);
             textViewdate.setText("#"+findFriend.getFindLable().getLable()+"."+findFriend.getDate()+"#");
             textViewdata.setText(findFriend.getData());
             textViewmenu.setText(findFriend.getMenuid()+"这是menu id");
@@ -143,11 +159,43 @@ public class ShowDetails extends AppCompatActivity {
                                         .url( "http://10.0.2.2:8080/shixun3/find/comment")
                                         .post(requestBody)
                                         .build();
+
+                                editText.setText("");
+                                ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+                                        .hideSoftInputFromWindow(ShowDetails.this
+                                                        .getCurrentFocus().getWindowToken(),
+                                                InputMethodManager.HIDE_NOT_ALWAYS);
+
                                 try {
                                     Response response = client.newCall(request).execute();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        String a = findFriend.getUser().getPhoto();
+                                        int b = findFriend.getUser().getId();
+                                        String c  = edit;
+                                        FindComment findComment = new FindComment();
+
+                                        User user = new User();
+                                        user.setId(b);
+                                        user.setPhoto(a);
+
+                                        findComment.setUser(user);
+                                        findComment.setComment(c);
+
+                                        findFriend.getFindComments().add(findComment);
+
+                                        ListViewAdapter listViewAdapter = new ListViewAdapter(ShowDetails.this, findFriend.getFindComments());
+
+                                        listView.setAdapter(listViewAdapter);
+                                        listViewAdapter.notifyDataSetChanged();
+                                        setListViewHeightBasedOnChildren(listView);
+                                    }
+                                });
                             }
                         }.start();
                     }
@@ -155,7 +203,99 @@ public class ShowDetails extends AppCompatActivity {
             });
         }
 
+        guanzhu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (guanzhu.getDrawable().getCurrent().getConstantState().equals(ShowDetails.this.getResources().getDrawable(R.drawable.guanzhu2).getConstantState())){
+                    guanzhu.setImageResource(R.drawable.guanzhu1);
+                    guanzhule(findFriend.getId());
 
+                }else{
+                    guanzhu.setImageResource(R.drawable.guanzhu2);
+                    quxiaoguanzhu(findFriend.getId());
+                }
+            }
+        });
+
+    }
+    private void quxiaoguanzhu(int position){
+        new Thread(){
+            @Override
+            public void run() {
+                URL url = null;
+                try {
+                    url = new URL("http://10.0.2.2:8080/shixun3/find/quxiaoguanzhu?userid="+user_id+"&findfriendid="+position);
+                    URLConnection conn = url.openConnection();
+                    InputStream in = conn.getInputStream();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }.start();
+    }
+
+    private void panduanshifouguanzhu(){
+
+        new Thread(){
+            @Override
+            public void run() {
+                URL url = null;
+                try {
+                    url = new URL("http://10.0.2.2:8080/shixun3/find/panduanshifouguanzhu?userid="+user_id+"&findfriendid="+findFriend.getId());
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//设置请求头
+                    conn.setRequestMethod("GET");
+                    conn.setConnectTimeout(5000);
+                    conn.setReadTimeout(5000);
+                    int panduan;
+                    int code = conn.getResponseCode();
+                    if (code == 200) {
+                        InputStream in = conn.getInputStream();
+                        String text = streamToText(in);
+                        panduan = Integer.parseInt(text);
+                        if(panduan == 0){
+                            guanzhu.setImageResource(R.drawable.guanzhu2);
+                        }
+                        else{
+
+                            guanzhu.setImageResource(R.drawable.guanzhu1);
+                        }
+                    } else {
+                        panduan = 0;
+                    }
+                    Log.e("panduan",panduan+"");
+
+                } catch (MalformedURLException | ProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }.start();
+
+    }
+    private void guanzhule(int position){
+        new Thread(){
+            @Override
+            public void run() {
+                URL url = null;
+                try {
+                    url = new URL("http://10.0.2.2:8080/shixun3/find/guanzhu?userid="+user_id+"&findfriendid="+position);
+                    URLConnection conn = url.openConnection();
+                    InputStream in = conn.getInputStream();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }.start();
 
     }
 

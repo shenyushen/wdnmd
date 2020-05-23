@@ -73,7 +73,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             url = new URL("http://10.0.2.2:8080/shixun3/find/select?action="+mList.get(position) );
                             URLConnection conn = url.openConnection();
                             InputStream in = conn.getInputStream();
-                            Log.e("intent","tiaozhuanwenti");
+
                             Intent intent = new Intent(context, LableDetails.class);
                             intent.putExtra("url",url+"");
                             context.startActivity(intent);

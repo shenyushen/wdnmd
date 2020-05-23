@@ -89,4 +89,16 @@
 	<update id="insertDianzan">
 		update findfriend set likenum = #{num} where id = #{id}
 	</update>
+	
+	<insert id="insertGuanzhu">
+		insert into find_user_like(userid,findfriendid) values (#{userid},#{findfriendid})
+	</insert>
+	
+	<select id="panduanGuanzhu" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select COUNT(*) from find_user_like where userid = #{userid} and findfriendid = #{findfriendid}
+	</select>
+	
+	<delete id="quxiaoGuanzhu" parameterType="java.util.Map">
+    	delete from find_user_like where userid = #{userid} and findfriendid = #{findfriendid}
+  	</delete>
 </mapper>

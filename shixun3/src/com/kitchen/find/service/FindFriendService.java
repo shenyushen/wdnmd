@@ -49,5 +49,20 @@ public class FindFriendService {
 	public void saveDianzan(int num,int id) {
 		findFriendMapper.insertDianzan(num,id);
 	}
+
+	public void saveGuanzhu(int userid, int findfriendid) {
+		// TODO Auto-generated method stub
+		findFriendMapper.insertGuanzhu(userid,findfriendid);
+	}
+
+	public int panduanGuanzhu(int userid, int findfriendid) {
+		// TODO Auto-generated method stub
+		return findFriendMapper.panduanGuanzhu(userid,findfriendid);
+	}
+
+	public void quxiaoGuanzhu(int userid, int findfriendid) {
+		// TODO Auto-generated method stub
+		findFriendMapper.quxiaoGuanzhu(userid,findfriendid);
+	}
 	
 }

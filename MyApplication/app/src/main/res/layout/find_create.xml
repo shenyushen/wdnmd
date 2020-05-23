@@ -5,6 +5,28 @@
     android:background="#eee"
     android:fitsSystemWindows="true"
     android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/quxiao"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:textSize="23dp"
+            android:textColor="#0000ff"
+            android:gravity="center"
+            android:text="取消"/>
+        <TextView
+            android:id="@+id/tijiao"
+            android:layout_alignParentRight="true"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:textSize="23dp"
+            android:textColor="#0000ff"
+            android:gravity="center"
+            android:text="提交"/>
+    </RelativeLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
@@ -43,6 +65,7 @@
         android:background="@drawable/bord"
         android:textColor="#BBB"
         />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -51,12 +74,13 @@
             android:id="@+id/relative"
             android:layout_width="match_parent"
             android:layout_height="30dp">
+
             <TextView
                 android:id="@+id/textbiaoqian"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:text="    #  标签"
-                android:textSize="22dp"/>
+                android:textSize="22dp" />
             <ImageView
                 android:src="@drawable/youjiantou"
                 android:layout_marginRight="35dp"
@@ -65,41 +89,17 @@
                 android:layout_height="30dp"/>
 
         </RelativeLayout>
+        <TextView
+            android:layout_below="@+id/relative"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"
+            android:textSize="20dp"
+            android:textColor="#e33e33"
+            android:id="@+id/textleixing"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"/>
 
-        <TextView
-            android:background="#b7b7b7"
-            android:layout_marginLeft="30dp"
-            android:id="@+id/zaocan"
-            android:layout_below="@+id/relative"
-            android:layout_width="150dp"
-            android:layout_height="25dp"
-            android:text="早餐"
-            android:layout_marginTop="10dp"
-            />
-        <TextView
-            android:background="#b7b7b7"
-            android:layout_toRightOf="@+id/zaocan"
-            android:layout_below="@+id/relative"
-            android:layout_marginLeft="30dp"
-            android:layout_width="150dp"
-            android:layout_height="25dp"
-            android:text="午餐"
-            android:layout_marginTop="10dp"
-            />
-        <TextView
-            android:background="#b7b7b7"
-            android:layout_below="@+id/zaocan"
-            android:layout_marginLeft="30dp"
-            android:layout_width="150dp"
-            android:layout_height="25dp"
-            android:text="晚餐"
-            android:layout_marginTop="10dp"
-            />
     </RelativeLayout>
-    <Button
-        android:id="@+id/tijiao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="提交"/>
+
 
 </LinearLayout>

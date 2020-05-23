@@ -34,7 +34,7 @@ public class FindController {
 		List<FindFriend> findFriends=findFriendService.findall();
 		
 		//String jsonString = JSONArray.fromObject(findFriends).toString();
-		return findFriendService.findall();
+		return findFriends;
 	}
 	
 	@RequestMapping("/lable")
@@ -64,10 +64,6 @@ public class FindController {
 		FindFriend findFriend = new FindFriend();
 		    try {
 		    	findFriend = om.readValue(action,FindFriend.class);
-		    	findFriend.setAuthor(1);
-		    	findFriend.setMenuid(1);
-		    	findFriend.setType(5);
-		    	System.out.println(findFriend.getData());
 		    } catch (JsonParseException e) {
 		        e.printStackTrace();
 		    } catch (JsonMappingException e) {
@@ -79,8 +75,7 @@ public class FindController {
 		String rooString=request.getServletContext().getRealPath("/");
 		System.out.println(rooString);
 		int findFriendid = findFriendService.saveFindFriend(findFriend);
-		System.out.println(findFriendid+"zhangxuewei");
-		findFriend.setId(findFriendid);
+		
 		List<Find_Photo> findPhotos = new ArrayList<Find_Photo>();
 		try {
 			for(int i = 0;i<files.size();i++) {
@@ -129,6 +124,30 @@ public class FindController {
 		int id = Integer.parseInt(request.getParameter("id"));
 		System.out.println(num+"zxc"+id);
 		findFriendService.saveDianzan(num,id);
+	}
+	
+	@RequestMapping("/guanzhu")
+	public void saveGuanzhu(HttpServletRequest request) {
+		int userid = Integer.parseInt(request.getParameter("userid"));
+		int findfriendid = Integer.parseInt(request.getParameter("findfriendid"));
+		System.out.println(userid+"zxc"+findfriendid);
+		findFriendService.saveGuanzhu(userid,findfriendid);
+	}
+	
+	@RequestMapping("/panduanshifouguanzhu")
+	public String panduanGuanzhu(HttpServletRequest request) {
+		int userid = Integer.parseInt(request.getParameter("userid"));
+		int findfriendid = Integer.parseInt(request.getParameter("findfriendid"));
+		System.out.println(userid+"panduan"+findfriendid);
+		return findFriendService.panduanGuanzhu(userid,findfriendid)+"";
+	}
+	
+	@RequestMapping("/quxiaoguanzhu")
+	public void quxiaoGuanzhu(HttpServletRequest request) {
+		int userid = Integer.parseInt(request.getParameter("userid"));
+		int findfriendid = Integer.parseInt(request.getParameter("findfriendid"));
+		System.out.println(userid+"zxc"+findfriendid);
+		findFriendService.quxiaoGuanzhu(userid,findfriendid);
 	}
 	
 }

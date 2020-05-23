@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -65,7 +66,7 @@ public class Find extends Fragment {
     private List<String> images;
     private List<String> titles;
     private Bitmap bitmap;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,10 +74,22 @@ public class Find extends Fragment {
             view = inflater.inflate(R.layout.find, container, false);
         }
         initView();
-
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //模拟网络请求需要3000毫秒，请求完成，设置setRefreshing 为false
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        messageView();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2000);
+            }
+        });
         //设置viewpager最少缓存的页数，防止自动销毁
         //viewPager.setOffscreenPageLimit(6);
-        //顶部banner
+
         messageView();
 
 
@@ -153,7 +166,7 @@ public class Find extends Fragment {
         banner.start();
     }
 
-//展示所有
+
 
     private void init() {
         new Thread(new Runnable() {
@@ -193,6 +206,7 @@ public class Find extends Fragment {
         }).start();
     }
 
+    //展示所有
     public void messageView(){
         new Thread(new Runnable() {
             @Override
@@ -254,7 +268,7 @@ public class Find extends Fragment {
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         gridView = view.findViewById(R.id.gridView);
         fab = view.findViewById(R.id.fab);
-
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
     }
 
 }

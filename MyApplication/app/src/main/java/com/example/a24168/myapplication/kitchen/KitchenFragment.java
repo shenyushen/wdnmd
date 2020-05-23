@@ -10,6 +10,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -85,7 +86,7 @@ public class KitchenFragment extends Fragment {
         });
         return view;
     }
-    class MyAdapter extends FragmentPagerAdapter {
+    class MyAdapter extends FragmentStatePagerAdapter {
         public MyAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -99,6 +100,10 @@ public class KitchenFragment extends Fragment {
             return list.size();
         }
 
+        @Override
+        public int getItemPosition(Object object) {//最主要就是加了这个方法。
+            return POSITION_NONE;
+        }
         //重写这个方法，将设置每个Tab的标题
         @Override
         public CharSequence getPageTitle(int position) {
