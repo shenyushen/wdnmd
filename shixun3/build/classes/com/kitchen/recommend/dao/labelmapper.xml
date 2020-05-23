@@ -52,4 +52,7 @@
      		(#{label.label_id},#{menuid})
      	</foreach>
 	</insert>
+	<delete id="deletelabel">
+		DELETE  from menu_label where menu_id=#{menuid}
+	</delete>
 </mapper>

@@ -16,5 +16,11 @@ public interface menumapper {
 //	public int addlei(@Param("id")int id,@Param("leiid")int leiid);
 //	public int addleis(List<xinwenlei> a);
 //	public int addxinwenandleis(@Param("id")int id,@Param("leiid")int leiid);
+	public int deletemenu(int menu_id);
+	public int editmenu(menu menu);
+	public int addstep(Step newstep);
+	public int deletestep(int step_id);
+	public int editstep(Step step);
+	public void deletesteps(int menu_id);
 	
 }

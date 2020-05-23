@@ -30,6 +30,26 @@
      		(#{step.stepnum},#{menuid},#{step.content},#{step.step_photo})
      	</foreach>
 </insert>
+<delete id="deletemenu">
+	DELETE  from menu where menu_id=#{menuid}
+</delete>
+<update id="editmenu">
+	UPDATE menu set menu_name=#{menu_name},date=#{date},type=#{type}, menu_photo=#{menu_photo}
+	where menu_id=#{menu_id}
+</update>
+<insert id="addstep">
+	insert into step(stepnum,menu_id,content,step_photo) values(#{stepnum},#{menu_id},#{content},#{step_photo})
+</insert>
+<delete id="deletestep">
+	DELETE  from step where step_id=#{step_id}
+</delete>
+<update id="editstep">
+	UPDATE step set content=#{content},step_photo=#{step_photo}
+	where step_id=#{step_id}
+</update>
+<delete id="deletesteps">
+	DELETE  from step where menu_id=#{menu_id}
+</delete>
 	<!-- <select id="findallbyleiid" resultType="entity.xinwenlei" resultMap="xinwenandlei">
          select * from xinwen x,pinglun p,xinwenandlei a,xinwenlei l where x.id = p.xinwenid and x.id=a.id and l.leiid=a.leiid and l.leiid = #{id}
     </select>
