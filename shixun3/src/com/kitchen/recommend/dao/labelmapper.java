@@ -17,4 +17,8 @@ public interface labelmapper {
 
 	public int addlabelmenu(@Param("labels")List<label> labels, @Param("menuid")int menuid);
 
+	public int deletelabel(int menuid);
+
+	public int editlabel(List<label> labels, int menu_id);
+
 }

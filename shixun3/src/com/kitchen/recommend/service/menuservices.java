@@ -45,4 +45,28 @@ public class  menuservices {
 		// TODO Auto-generated method stub
 		return this.menumapper.addsteps(menuid,steps);
 	}
+	public int deletelabel(int menuid) {
+		return this.labelmapper.deletelabel(menuid);
+	}
+	public int deletemenu(int menu_id) {
+		menumapper.deletesteps(menu_id);
+		return this.menumapper.deletemenu(menu_id);
+		
+	}
+	public int editmenu(menu menu) {
+		return this.menumapper.editmenu(menu);
+	}
+	public int editlabel(List<label> labels, int menu_id) {
+		return this.labelmapper.editlabel(labels,menu_id);
+	}
+	public int addstep(Step newstep) {
+		return this.menumapper.addstep(newstep);
+		
+	}
+	public int deletestep(int step_id) {
+		return this.menumapper.deletestep(step_id);
+	}
+	public int editstep(Step step) {
+		return this.menumapper.editstep(step);
+	}
 }

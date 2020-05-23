@@ -184,37 +184,42 @@
                         </div>
                         <div class="layui-card-header">
 
-                            <button class="layui-btn layui-btn-danger" onclick="delAll()">
+                            <button class="layui-btn layui-btn-danger" onclick="delcheck()">
                                 <i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','./order-add.html',800,600)">
+                            <button class="layui-btn" onclick="xadmin.open('添加菜单','./menu_add.html',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
                                 <thead>
                               	
                                     <tr>
-                                        <th>
-                                            <input type="checkbox" name="" lay-skin="primary"></th>
+                                        <th>批量删除</th>
                                         <th>名字</th>
                                         <th>时间</th>
                                         <th>图片</th>
                                         <th>类型</th>
+                                        <th>口味</th>
                                         <th>操作</th>
                                         </tr>
                                 </thead>
                                 <tbody>
+                                <c:set var="count" value="0"></c:set>
 	                                <c:forEach items="${menus}" var="menu">
 										<tr>
-	                                        <td><input type="checkbox" name="" lay-skin="primary"></td>
+	                                        <td><input type="checkbox" name="deletecheck" lay-skin="primary"  value="${count}"></td>
 	                                            <td>${menu.menu_name}</td>
 	                                            <td>${menu.date}</td>
 	                                            <td style="align:center;text-align:center;"><img src="http://localhost:8080/shixun3/upload/${menu.menu_photo}" width="50" height="50" /></td>
 	                                            <td>${menu.type}</td>
+	                                            <td><c:forEach items="${menu.labels}" var="label">${label.label_name} </c:forEach></td>
 	                                            <td class="td-manage">
-	                                            <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
+	                                             <a title="修改" onclick="xadmin.open('修改','admin/menuedit?count=${count}')">
+	                                                <i class="layui-icon">&#xe60a;</i></a>
+	                                            <a title="查看" onclick="xadmin.open('查看','admin/menustep?count=${count}')" href="javascript:;">
 	                                                <i class="layui-icon">&#xe63c;</i></a>
-	                                            <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-	                                                <i class="layui-icon">&#xe640;</i></a>
+	                                            <a title="删除" onclick="member_del(this,'要删除的id',${count})"  href="javascript:;">
+	                                                <i class="layui-icon" >&#xe640;</i></a>
+	                                            <c:set var="count" value="${count+1}"></c:set>
 	                                        </td>
 	                                    </tr>
 									</c:forEach>
@@ -252,6 +257,24 @@
             });
         });
 
+    function loadXMLDoc(a)
+    {
+    	var xmlhttp;
+    	if (window.XMLHttpRequest)
+    	{
+    		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    		xmlhttp=new XMLHttpRequest();
+    	}
+    	else
+    	{
+    		// IE6, IE5 浏览器执行代码
+    		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    	}
+    	xmlhttp.open("GET","admin/menudelete?count="+a,true);
+    	xmlhttp.send();
+    }
+    
+    
         /*用户-停用*/
         function member_stop(obj, id) {
             layer.confirm('确认要停用吗？',
@@ -284,7 +307,7 @@
         }
 
         /*用户-删除*/
-        function member_del(obj, id) {
+        function member_del(obj, id,a) {
             layer.confirm('确认要删除吗？',
             function(index) {
                 //发异步删除数据
@@ -293,21 +316,48 @@
                     icon: 1,
                     time: 1000
                 });
+                var xmlhttp;
+            	if (window.XMLHttpRequest)
+            	{
+            		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            		xmlhttp=new XMLHttpRequest();
+            	}
+            	else
+            	{
+            		// IE6, IE5 浏览器执行代码
+            		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            	}
+            	xmlhttp.open("GET","admin/menudelete?count="+a,true);
+            	xmlhttp.send();
             });
         }
 
-        function delAll(argument) {
+        function delcheck(argument) {
 
-            var data = tableCheck.getData();
-
-            layer.confirm('确认要删除吗？' + data,
-            function(index) {
-                //捉到所有被选中的，发异步进行删除
-                layer.msg('删除成功', {
-                    icon: 1
-                });
-                $(".layui-form-checked").not('.header').parents('tr').remove();
-            });
+        	var id = document.getElementsByName('deletecheck');
+            var sss = "";
+            for(var i = 0; i < id.length; i++){
+	             if(id[i].checked){
+	            	 sss+=(id[i].value)+",";
+	              	 console.log(i);
+	              	 $(id[i]).parents("tr").remove(); 
+	              	 i--;
+	             }
+            }
+           
+            var xmlhttp;
+         	if (window.XMLHttpRequest)
+         	{
+         		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+         		xmlhttp=new XMLHttpRequest();
+         	}
+         	else
+         	{
+         		// IE6, IE5 浏览器执行代码
+         		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+         	}
+         	xmlhttp.open("get","admin/menudeletecheck?value="+sss,true);
+         	xmlhttp.send();
         }</script>
 
 </html>
