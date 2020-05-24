@@ -109,7 +109,10 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
                         for(int i = 0; i < a.length; i++){
                             list_path.add(getResources().getString(R.string.ip1)+"/upload/"+a[i]);
                         }
-                        list_title.add(" ");list_title.add("  ");list_title.add("    ");list_title.add("     ");list_title.add("        ");
+                        for(int i = 0; i < a.length; i++){
+                            list_title.add(" ");
+                        }
+                       // list_title.add(" ");list_title.add("  ");list_title.add("    ");list_title.add("     ");list_title.add("        ");
                         // 设置轮播图
                         initBanner();
                         //设置数据

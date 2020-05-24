@@ -72,7 +72,7 @@ public class AdminController {
 				session.setAttribute("comments", comments);
 				session.setAttribute("comments_page",0);
 				session.setAttribute("goods_page",0);
-				session.setAttribute("goods_id", goods.size());
+				session.setAttribute("goods_id", goods.get(goods.size()-1).getGoodsId());
 				return "redirect:../index.jsp";
 			}
 		}
@@ -416,7 +416,9 @@ public class AdminController {
 			}
 	    	System.out.println(content+time+img+r1+r2+r3+user_id+goods_id);
 	    	typeService.insertComment(content,time,img,r1,r2,r3,Integer.valueOf(user_id),Integer.valueOf(goods_id));
-	    	List<MarketComments> comments = typeService.find11();
+	    	Integer page = (Integer) session.getAttribute("comments_page");
+	    	List<MarketComments> comments=typeService.find22(Integer.valueOf(page)*8,Integer.valueOf(page)*8+8);
+	    	
 	    	session.setAttribute("comments", comments);
 	    	
 	    	
@@ -443,8 +445,9 @@ public class AdminController {
 				e.printStackTrace();
 			}
 		 typeService.insert11(Integer.valueOf(goods_id)+1, title, little_content, 0,Double.parseDouble(price), a, Integer.valueOf(type_id));
-		 typeService.insert22(img, goods_type, return_goods, if_freeshiiping, "4", Integer.valueOf(goods_id)+1);
-		 List<Goods> good=typeService.find33(0, 5);
+		 typeService.insert22(img, goods_type+";"+price, return_goods, if_freeshiiping, "4", Integer.valueOf(goods_id)+1);
+		Integer page = (Integer) session.getAttribute("goods_page");
+		 List<Goods> good=typeService.find33(Integer.valueOf(page)*5,Integer.valueOf(page)*5+5);
 		 session.setAttribute("goods", good);
 		 session.setAttribute("goods_id", Integer.valueOf(goods_id)+1);
 		 

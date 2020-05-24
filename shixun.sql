@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-20 22:42:43
+Date: 2020-05-24 14:43:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -64,7 +64,7 @@ CREATE TABLE `findcomment` (
   KEY `findfriendid` (`findfriendid`),
   CONSTRAINT `findcomment_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `user` (`id`),
   CONSTRAINT `findcomment_ibfk_2` FOREIGN KEY (`findfriendid`) REFERENCES `findfriend` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of findcomment
@@ -77,6 +77,8 @@ INSERT INTO `findcomment` VALUES ('5', '11', 'woshinidie', '2');
 INSERT INTO `findcomment` VALUES ('6', '11', '', '2');
 INSERT INTO `findcomment` VALUES ('7', '11', '', '2');
 INSERT INTO `findcomment` VALUES ('8', '123', 'fdsafs', '1');
+INSERT INTO `findcomment` VALUES ('9', '11', '22', '1');
+INSERT INTO `findcomment` VALUES ('10', '11', '22', '1');
 
 -- ----------------------------
 -- Table structure for `findfriend`
@@ -183,7 +185,7 @@ CREATE TABLE `find_user_like` (
   KEY `userid` (`userid`),
   CONSTRAINT `find_user_like_ibfk_1` FOREIGN KEY (`findfriendid`) REFERENCES `findfriend` (`id`),
   CONSTRAINT `find_user_like_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of find_user_like
@@ -191,6 +193,7 @@ CREATE TABLE `find_user_like` (
 INSERT INTO `find_user_like` VALUES ('13', '2', '123');
 INSERT INTO `find_user_like` VALUES ('14', '14', '123');
 INSERT INTO `find_user_like` VALUES ('15', '1', '123');
+INSERT INTO `find_user_like` VALUES ('16', '1', '11');
 
 -- ----------------------------
 -- Table structure for `goods`
@@ -200,14 +203,14 @@ CREATE TABLE `goods` (
   `goods_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `little_content` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `sale_volume` int(11) DEFAULT NULL,
+  `sale_volume` int(11) DEFAULT '0',
   `price` double(11,0) DEFAULT NULL,
   `img` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `type_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`goods_id`),
   KEY `type_id` (`type_id`),
   CONSTRAINT `goods_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `market_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of goods
@@ -225,17 +228,17 @@ INSERT INTO `goods` VALUES ('7', '冯氏牛将军，雪花软牛肉袋', '健身
 -- ----------------------------
 DROP TABLE IF EXISTS `goods_xiangqing`;
 CREATE TABLE `goods_xiangqing` (
-  `goods_x_id` int(11) NOT NULL DEFAULT '0',
+  `goods_x_id` int(11) NOT NULL AUTO_INCREMENT,
   `goods_img` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `goods_type` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `return_goods` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `if_freeshiiping` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `goods_score` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_score` varchar(255) CHARACTER SET utf8 DEFAULT '4.0',
   `goods_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`goods_x_id`),
   KEY `goods_id` (`goods_id`),
   CONSTRAINT `goods_xiangqing_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of goods_xiangqing
@@ -284,25 +287,18 @@ CREATE TABLE `market_comments` (
   PRIMARY KEY (`c_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `market_comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_comments
 -- ----------------------------
-INSERT INTO `market_comments` VALUES ('1', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-03', '1.png,1.png,', '2.0', '2.0', '2.0', '1', '1');
-INSERT INTO `market_comments` VALUES ('2', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-07', '2.png,1.png,', '2.0', '2.0', '2.0', '2', '1');
-INSERT INTO `market_comments` VALUES ('3', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-08', '3.png,1.png,', '2.0', '2.0', '2.0', '2', '1');
-INSERT INTO `market_comments` VALUES ('4', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-09', '2.png,1.png,', '2.0', '2.0', '2.0', '1', '1');
-INSERT INTO `market_comments` VALUES ('5', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-04-06', '1.png,1.png,', '2.0', '2.0', '2.0', '2', '2');
-INSERT INTO `market_comments` VALUES ('6', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-06', '1.png,1.png,', '2.0', '2.0', '2.0', '1', '2');
-INSERT INTO `market_comments` VALUES ('7', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-06-01', '2.png,1.png,', '2.0', '2.0', '2.0', '1', '2');
+INSERT INTO `market_comments` VALUES ('2', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-11', '1.png,1.png,', '3', '3', '3', '1', '2');
 INSERT INTO `market_comments` VALUES ('8', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-01', '1.png,1.png,', '2.0', '2.0', '2.0', '2', '3');
 INSERT INTO `market_comments` VALUES ('9', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-02', '3.png,1.png,', '2.0', '2.0', '2.0', '1', '3');
 INSERT INTO `market_comments` VALUES ('10', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-05', '3.png,1.png,', '2.0', '2.0', '2.0', '2', '4');
 INSERT INTO `market_comments` VALUES ('11', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-011', '2.png,1.png,', '2.0', '2.0', '2.0', '1', '4');
 INSERT INTO `market_comments` VALUES ('12', '大话设计模式（带目录完整版）', '2020-05-11', '2.png', '2.0', '2.0', '2.0', '2', '5');
-INSERT INTO `market_comments` VALUES ('13', '大话设计模式', '2020-05-11', '3.png', '2.0', '2.0', '2.0', '1', '6');
-INSERT INTO `market_comments` VALUES ('14', '大话设计模式', '2020-05-11', '2.png', '2.0', '2.0', '2.0', '2', '7');
+INSERT INTO `market_comments` VALUES ('39', 'www', '2017-06-02', '1233333.png,lianghongyu.png,', '2', '3', '1', '11', '3');
 
 -- ----------------------------
 -- Table structure for `market_commentshow`
@@ -324,6 +320,31 @@ INSERT INTO `market_commentshow` VALUES ('2', '静儿家的猫', '生吃甜，�
 INSERT INTO `market_commentshow` VALUES ('3', '偶然的旅行', '握在手上实诚，切开满满的只是陷儿，而中间是最可爱的草莓', '3.png');
 
 -- ----------------------------
+-- Table structure for `market_court`
+-- ----------------------------
+DROP TABLE IF EXISTS `market_court`;
+CREATE TABLE `market_court` (
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `goods_content` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_type` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_price` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_count` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `goods_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  KEY `goods_id` (`goods_id`),
+  CONSTRAINT `market_court_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of market_court
+-- ----------------------------
+INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '4', '1', '31');
+INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原面包粉10kg', '￥100', '4', '1', '32');
+INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模具', '6寸蛋糕圆盘', '￥39', '3', '2', '33');
+INSERT INTO `market_court` VALUES ('2', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '4', '1', '34');
+
+-- ----------------------------
 -- Table structure for `market_type`
 -- ----------------------------
 DROP TABLE IF EXISTS `market_type`;
@@ -331,11 +352,12 @@ CREATE TABLE `market_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_type
 -- ----------------------------
+INSERT INTO `market_type` VALUES ('0', '烘培');
 INSERT INTO `market_type` VALUES ('1', '果蔬生鲜');
 INSERT INTO `market_type` VALUES ('2', '器具');
 INSERT INTO `market_type` VALUES ('3', '领券');
@@ -349,7 +371,6 @@ INSERT INTO `market_type` VALUES ('10', '米面粮油');
 INSERT INTO `market_type` VALUES ('11', '厨房电器');
 INSERT INTO `market_type` VALUES ('12', '礼盒');
 INSERT INTO `market_type` VALUES ('13', '调味品');
-INSERT INTO `market_type` VALUES ('15', '烘培');
 
 -- ----------------------------
 -- Table structure for `menu`
@@ -365,7 +386,7 @@ CREATE TABLE `menu` (
   PRIMARY KEY (`menu_id`),
   KEY `author` (`author`),
   CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
@@ -378,6 +399,7 @@ INSERT INTO `menu` VALUES ('5', null, null, 'labaicaiwuhuarou.jpg', '辣白菜�
 INSERT INTO `menu` VALUES ('6', null, null, 'kaishuibaicai.jpg', '开水白菜', '菜');
 INSERT INTO `menu` VALUES ('7', null, null, 'congyoubanmian.jpg', '葱油拌面', '面');
 INSERT INTO `menu` VALUES ('8', null, null, 'suantangfeiniu.jpg', '酸汤肥牛', '菜');
+INSERT INTO `menu` VALUES ('9', null, '2020-05-23', '1233333.png', 'qqq', '米');
 
 -- ----------------------------
 -- Table structure for `menu_label`
@@ -392,7 +414,7 @@ CREATE TABLE `menu_label` (
   KEY `menu_id` (`menu_id`),
   CONSTRAINT `menu_label_ibfk_1` FOREIGN KEY (`label_id`) REFERENCES `label` (`label_id`),
   CONSTRAINT `menu_label_ibfk_2` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu_label
@@ -410,6 +432,7 @@ INSERT INTO `menu_label` VALUES ('10', '4', '7');
 INSERT INTO `menu_label` VALUES ('11', '5', '7');
 INSERT INTO `menu_label` VALUES ('12', '1', '8');
 INSERT INTO `menu_label` VALUES ('13', '5', '8');
+INSERT INTO `menu_label` VALUES ('14', '1', '9');
 
 -- ----------------------------
 -- Table structure for `mv_comment`

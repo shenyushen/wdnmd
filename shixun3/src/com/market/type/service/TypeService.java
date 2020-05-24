@@ -30,6 +30,7 @@ public class TypeService {
     	return typeMapper.findPage(a, b);
     }
     public int deleteGood(int id) {
+    	typeMapper.deleteCourt(id);
     	typeMapper.deleteGood(id);
     	return typeMapper.deleteGood1(id);
     }

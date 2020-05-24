@@ -209,7 +209,7 @@
                     android:textSize="20dp"
                     android:layout_marginLeft="320dp"
                     android:textColor="#FF0000"
-                    android:text="15个评价"
+                    android:text="暂未评价"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"/>
             </LinearLayout>
@@ -217,7 +217,7 @@
                 android:layout_marginTop="8dp"
                 android:id="@+id/recyle"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
             />
         </LinearLayout>
 

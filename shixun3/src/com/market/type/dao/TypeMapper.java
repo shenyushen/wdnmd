@@ -26,6 +26,7 @@ public interface TypeMapper {
     public int deleteGood(int id);
     public int deleteGood1(int id);
     
+    public int deleteCourt(int id);
     public int insertGood(int goods_id, String title,String little_content,int count,double price,String img,int type_id);
     public int insertGood1(String goods_img,String goods_type,String return_goods,String if_freeshiiping,String goods_score,int goods_id);
 }

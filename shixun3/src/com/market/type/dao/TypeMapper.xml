@@ -51,6 +51,12 @@
 		<result property="user.photo" column="photo"/>
 		<result property="goodsId" column="goods_id"/>
 	</resultMap>
+	<delete id="deleteCourt">
+		delete from market_court
+		where goods_id=#{id}
+	</delete>
+	
+	
 	<insert id = "insertGood">
 		insert into goods(goods_id,title,little_content,sale_volume,price,img,type_id)
 		values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5},#{arg6})
