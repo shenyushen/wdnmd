@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<c:forEach items="${steps}" var="step">
+	${step.step_id}'${step.stepnum}'${step.menu_id}'${step.content}'${step.step_photo}<br/>
+</c:forEach>
+</body>
+</html>

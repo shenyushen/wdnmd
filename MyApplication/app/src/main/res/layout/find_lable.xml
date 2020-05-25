@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/findfragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:background="#f2f2f2"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="50dp">
+        <ImageView
+            android:gravity="center"
+            android:id="@+id/fanhui"
+            android:layout_marginTop="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/fanhui1"
+            />
+        <TextView
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:id="@+id/nicheng"
+            android:layout_marginTop="12dp"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:text="用户"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_marginRight="12dp"
+            android:gravity="center"
+            android:id="@+id/sange"
+            android:layout_marginTop="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/sange"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+    <com.example.a24168.myapplication.kitchen.find.custom.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/labletitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/describe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                />
+
+            <com.example.a24168.myapplication.kitchen.find.custom.BannerGrid
+                android:layout_marginTop="13dp"
+                android:id="@+id/lablegridView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+            </com.example.a24168.myapplication.kitchen.find.custom.BannerGrid>
+        </LinearLayout>
+
+    </com.example.a24168.myapplication.kitchen.find.custom.MyScrollView>
+
+
+</LinearLayout>

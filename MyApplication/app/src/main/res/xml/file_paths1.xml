@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <external-path
+            name="camera_photos"
+            path="" />
+    </paths>
+    <paths>
+        <external-path name="takpic_img_path" path="Camera"/>
+
+        <external-path name="apk_file_path" path="APL_DOWNLOAD"/>
+    </paths>
+
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.stx.xhb.pagemenulibrary.PageMenuLayout
+        android:id="@+id/pagemenu"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:pagemenu_row_count="2"
+        app:pagemenu_span_count="4"/>
+
+    <com.example.a24168.myapplication.course.until.widget.IndicatorView
+        android:id="@+id/main_home_entrance_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="16dp"
+        app:gravity="0"
+        app:indicatorColor="#668b8989"
+        app:indicatorColorSelected="#FF5722"
+        app:indicatorWidth="6"/>
+
+    <RelativeLayout
+        android:layout_marginLeft="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#40E0D0"
+        android:layout_marginTop="9dp"/>
+    <ListView
+        android:id="@+id/lv_persons1"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_marginTop="6dp">
+    </ListView>
+</LinearLayout>
