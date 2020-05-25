@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 
 import com.example.a24168.myapplication.R;
@@ -58,7 +59,7 @@ public class Find extends Fragment {
     private Handler handler = new Handler();
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
-
+    private MyScrollView myScrollView;
     private List<String> itemList;
     private List<Show> gridList;
     private List<FindLable> findLables;
@@ -74,6 +75,18 @@ public class Find extends Fragment {
             view = inflater.inflate(R.layout.find, container, false);
         }
         initView();
+
+        if (myScrollView != null) {
+            myScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                @Override
+                public void onScrollChanged() {
+                    if (swipeRefreshLayout != null) {
+                        swipeRefreshLayout.setEnabled(myScrollView.getScrollY() == 0);
+                    }
+                }
+            });
+        }
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -259,6 +272,7 @@ public class Find extends Fragment {
     }
 
     private void initView() {
+        myScrollView = view.findViewById(R.id.myscrollview);
         banner = view.findViewById(R.id.banner);
         mScrollView = (MyScrollView) view.findViewById(R.id.scrollView);
         gridView = view.findViewById(R.id.gridView);
