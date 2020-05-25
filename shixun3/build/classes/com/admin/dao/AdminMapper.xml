@@ -31,7 +31,23 @@
 		select * from admin
 	</select>
 	<select id = "findUser" resultMap="user1">
-		select * from user limit 8
+		select * from user limit 5
 	</select>
+	
+	<delete id="deleteUser">
+		delete from user 
+		where id=#{s1}
+	</delete>
+	
+	<select id = "findUserPaging" resultMap="user1">
+		select * from user 
+		limit #{arg0},#{arg1}
+	</select>
+	
+	<insert id="insertuser">
+		insert into user(id,username,password,sex,photo,profession,home,birthday,label)
+		 values(#{arg0},#{arg1},#{arg2},#{arg3},#{arg4},#{arg5},#{arg6},#{arg7},#{arg8})
+	
+	</insert>
 	
 </mapper>

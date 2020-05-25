@@ -453,4 +453,74 @@ public class AdminController {
 		 
 		 return "<script>parent.location.reload(); window.close();</script>";
 	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 //删除用户
+	 @RequestMapping(value = "deleteuser")
+		public String deleteuser(HttpServletRequest request) {
+			String aaString=request.getParameter("test_str");
+			String[] aString=aaString.substring(1,aaString.length()-1).split(",");
+			System.out.println(aaString);
+			
+			 int[] ints = new int[aString.length];
+
+			    for(int i=0;i<aString.length;i++){
+
+			        ints[i] = Integer.parseInt(aString[i]);
+
+			    }
+			
+			for(int i=0;i<ints.length;i++) {
+				
+				int aaa=adminService.deleteuser(ints[i]);
+				//System.out.println(aString[i]);
+			}
+			return "redirect:../member-list.jsp";
+		}
+	 
+	 //分页查询用户
+	 @RequestMapping("userpage")
+		public String userpaging(@RequestParam("userpaging") String page,HttpSession session) {
+			System.out.print(page);
+			int a = Integer.valueOf(page)*5;
+			int b = a+5;
+			List<User> user=adminService.findUPage(a, b);
+			
+			session.setAttribute("yonghu", user);
+			session.setAttribute("user_page",Integer.valueOf(page));
+			return "redirect:../member-list.jsp";
+		}
+	 
+	 //添加用户
+	 @RequestMapping("/insertuser")
+	 @ResponseBody
+	 public String insertuser(HttpServletRequest request,@RequestParam("userid")String userid,@RequestParam("username")String username
+			 ,@RequestParam("password") String password,@RequestParam("sex")String sex,@RequestParam(value="photo")List<MultipartFile> files,
+			 @RequestParam("profession")String profession,@RequestParam("home") String home,@RequestParam("birthday")String birthday,
+			 @RequestParam("label") String label,HttpSession session) {
+		 String rooString=request.getServletContext().getRealPath("/");
+	    	String img="";
+	    	String a="";
+	    	a = files.get(0).getOriginalFilename();
+	    	try {
+				for(int i = 0;i<files.size();i++) {
+					FileCopyUtils.copy(files.get(i).getBytes(), new File(rooString+"/pic",files.get(i).getOriginalFilename()));
+					img= img+files.get(i).getOriginalFilename();
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+	    	System.out.println("aaa"+rooString);
+	    	int tid=Integer.parseInt(userid);
+	    	adminService.insertuser(tid, username, password, sex, img, profession, home, birthday, label);
+	    	
+		 
+		 return "<script>parent.location.reload(); window.close();</script>";
 	 }
+}
