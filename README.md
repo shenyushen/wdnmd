@@ -3,6 +3,8 @@
   饭签
 ### 开发工具
   eclipse+Androidstudio+Git
+### 开发框架
+  ssm+okhttp+glide+banner+reclyerview
 ### 人员安排
 姓名|负责内容
 --|:--:
