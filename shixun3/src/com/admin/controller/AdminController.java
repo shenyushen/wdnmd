@@ -26,6 +26,7 @@ import com.kitchen.recommend.dao.labelmapper;
 import com.kitchen.recommend.service.menuservices;
 
 import com.entity.Goods;
+import com.entity.Goods_x;
 import com.entity.MarketComments;
 import com.entity.Step;
 import com.entity.User;
@@ -39,6 +40,12 @@ public class AdminController {
 	List<menu> menus=new ArrayList<menu>();
 	int menunum=-1;
 	List<Step> steps= new ArrayList<Step>();
+	double price1 = 0;
+	double price2 = 9999;
+	String if_freeshiiping="未填写";
+	String return_goods="未填写";
+	String title="未填写";
+	String content ="";
 	@Resource
 	AdminService adminService;
 	@Resource
@@ -52,12 +59,11 @@ public class AdminController {
 		List<User> user = adminService.find1();
 		List<Goods> goods = typeService.find3();
 		List<MarketComments> comments = typeService.find11();
-		
-		
-		
-		
 		List<Goods> good = new ArrayList<>();
-		
+		List<String> num = new ArrayList<>();
+		for(int i = 999; i>=0; i--) {
+			num.add(i+"");
+		}
 		for(int i = 0; i < goods.size(); i++) {
 			if (i == 5) break;
 			good.add(goods.get(i));
@@ -73,6 +79,9 @@ public class AdminController {
 				session.setAttribute("comments_page",0);
 				session.setAttribute("goods_page",0);
 				session.setAttribute("goods_id", goods.get(goods.size()-1).getGoodsId());
+				session.setAttribute("goods_all", goods);
+				session.setAttribute("num", num);
+				
 				return "redirect:../index.jsp";
 			}
 		}
@@ -348,8 +357,83 @@ public class AdminController {
 		}
 	}
 
+	
+	
+	/**
+	 * 	以下为市集操作
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	@RequestMapping("/search_comments")
+	public String ff(HttpSession session,@RequestParam("content")String content_1) {
+		session.setAttribute("comments_page",0);
+		content = content_1;
+		List<MarketComments> comments= typeService.find66(0, 8, content);
+		session.setAttribute("comments",comments);
+		return "redirect:../marekt_comments.jsp";
+	}
+	
+	
+	@RequestMapping("/search_goods")
+	public String ee(HttpSession session,@RequestParam("title")String title_1,@RequestParam("price1")String price_1,@RequestParam("price2")String price_2,
+			@RequestParam("if_freeshiiping") String if_freeshiiping_1,@RequestParam("return_goods")String return_goods_1) {
+		
+		System.out.println(price_1+price_2);
+		price1 = Double.parseDouble(price_1);
+		price2 = Double.parseDouble(price_2);
+		if_freeshiiping = if_freeshiiping_1;
+		return_goods = return_goods_1;
+		title=title_1;
+		session.setAttribute("goods_page",0);
 
-@RequestMapping("/delete")
+		List<Goods> goods = typeService.find55(0, 5,title, price1, price2, if_freeshiiping, return_goods);
+		session.setAttribute("goods",goods);
+	
+		
+		return "redirect:../market_goods.jsp";
+	}
+	
+	
+	
+	@RequestMapping("/xiangqing")
+	public String qq(@RequestParam("id") String id,HttpSession session) {
+		List<Goods> goods = typeService.find3();
+		System.out.println(id);
+		Goods good = new Goods();
+		for(int i = 0; i < goods.size(); i++) {
+			if (goods.get(i).getGoodsId() == Integer.valueOf(id)) {
+				good = goods.get(i);
+				break;
+			}
+		}
+		
+		Goods_x good1= new Goods_x();
+		good1.setGoods_id(good.getGoodsId());good1.setGoods_score(good.getGood().getGoods_score());
+		good1.setLittile_content(good.getLittleContent());good1.setTitle(good.getTitle());
+		good1.setIf_freeshiiping(good.getGood().getIf_freeshiiping());good1.setReturn_goods(good.getGood().getReturn_goods());
+		good1.setSale_volume(good.getSaleVolume());
+		//设置图片
+		String [] s = good.getGood().getGoods_img().split(",");
+		good1.setImg(s);
+		
+		// 设置种类
+		String[] s1 = good.getGood().getGoods_type().split(",");
+		List<String> type = new ArrayList<>();
+		List<String> type_price = new ArrayList<>();
+		for(int i = 0; i < s1.length; i++) {
+			type.add(s1[i].split(";")[0]+" ￥："+s1[i].split(";")[1]+"  ");
+			
+		}
+		good1.setGoods_type(type);
+		good1.setType_price(type_price);
+		session.setAttribute("good1", good1);
+		 return "redirect:../good_view.jsp";
+	}
+	
+	
+	@RequestMapping("/delete")
 	@ResponseBody
 	public String d(@RequestParam("id1") String id1, @RequestParam("id2") String id2,HttpSession session) {
 		typeService.delete(Integer.valueOf(id1), Integer.valueOf(id2));
@@ -367,7 +451,7 @@ public class AdminController {
 		System.out.print(page);
 		int a = Integer.valueOf(page)*8;
 		int b = a+8;
-		List<MarketComments> comments=typeService.find22(a, b);
+		List<MarketComments> comments=typeService.find66(a, b,content);
 		session.setAttribute("comments", comments);
 		session.setAttribute("comments_page",Integer.valueOf(page));
 		return "redirect:../marekt_comments.jsp";
@@ -377,9 +461,10 @@ public class AdminController {
 		System.out.print(page);
 		int a = Integer.valueOf(page)*5;
 		int b = a+5;
-		List<Goods> good=typeService.find33(a, b);
+		List<Goods> goods = typeService.find55(a, b,title, price1, price2, if_freeshiiping, return_goods);
+		session.setAttribute("goods",goods);
 		
-		session.setAttribute("goods", good);
+		//session.setAttribute("goods", good);
 		session.setAttribute("goods_page",Integer.valueOf(page));
 		return "redirect:../market_goods.jsp";
 	}
@@ -450,7 +535,8 @@ public class AdminController {
 		 List<Goods> good=typeService.find33(Integer.valueOf(page)*5,Integer.valueOf(page)*5+5);
 		 session.setAttribute("goods", good);
 		 session.setAttribute("goods_id", Integer.valueOf(goods_id)+1);
-		 
+		 List<Goods> goods = typeService.find3();
+		 session.setAttribute("goods_all", goods);
 		 return "<script>parent.location.reload(); window.close();</script>";
 	 }
 	 
