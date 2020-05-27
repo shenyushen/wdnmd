@@ -451,7 +451,7 @@ public class AdminController {
 		System.out.print(page);
 		int a = Integer.valueOf(page)*8;
 		int b = a+8;
-		List<MarketComments> comments=typeService.find66(a, b,content);
+		List<MarketComments> comments=typeService.find66(a, 8,content);
 		session.setAttribute("comments", comments);
 		session.setAttribute("comments_page",Integer.valueOf(page));
 		return "redirect:../marekt_comments.jsp";
@@ -460,8 +460,9 @@ public class AdminController {
 	public String f(@RequestParam("page") String page,HttpSession session) {
 		System.out.print(page);
 		int a = Integer.valueOf(page)*5;
-		int b = a+5;
-		List<Goods> goods = typeService.find55(a, b,title, price1, price2, if_freeshiiping, return_goods);
+	
+		
+		List<Goods> goods = typeService.find55(a, 5,title, price1, price2, if_freeshiiping, return_goods);
 		session.setAttribute("goods",goods);
 		
 		//session.setAttribute("goods", good);
@@ -502,7 +503,7 @@ public class AdminController {
 	    	System.out.println(content+time+img+r1+r2+r3+user_id+goods_id);
 	    	typeService.insertComment(content,time,img,r1,r2,r3,Integer.valueOf(user_id),Integer.valueOf(goods_id));
 	    	Integer page = (Integer) session.getAttribute("comments_page");
-	    	List<MarketComments> comments=typeService.find22(Integer.valueOf(page)*8,Integer.valueOf(page)*8+8);
+	    	List<MarketComments> comments=typeService.find22(Integer.valueOf(page)*8,8);
 	    	
 	    	session.setAttribute("comments", comments);
 	    	
@@ -532,7 +533,7 @@ public class AdminController {
 		 typeService.insert11(Integer.valueOf(goods_id)+1, title, little_content, 0,Double.parseDouble(price), a, Integer.valueOf(type_id));
 		 typeService.insert22(img, goods_type+";"+price, return_goods, if_freeshiiping, "4", Integer.valueOf(goods_id)+1);
 		Integer page = (Integer) session.getAttribute("goods_page");
-		 List<Goods> good=typeService.find33(Integer.valueOf(page)*5,Integer.valueOf(page)*5+5);
+		 List<Goods> good=typeService.find55(Integer.valueOf(page)*5,5,title, price1, price2, if_freeshiiping, return_goods);
 		 session.setAttribute("goods", good);
 		 session.setAttribute("goods_id", Integer.valueOf(goods_id)+1);
 		 List<Goods> goods = typeService.find3();

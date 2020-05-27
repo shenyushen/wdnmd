@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-26 14:56:48
+Date: 2020-05-27 09:38:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -231,7 +231,7 @@ CREATE TABLE `goods` (
   PRIMARY KEY (`goods_id`),
   KEY `type_id` (`type_id`),
   CONSTRAINT `goods_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `market_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of goods
@@ -243,6 +243,10 @@ INSERT INTO `goods` VALUES ('4', '日本进口不锈钢食品托盘/烧烤盘（
 INSERT INTO `goods` VALUES ('5', '深井锦记腊肉，广东腊味熟食蜜汁叉烧肉', '皮脆肉嫩，口感爽滑', '613', '138', 'rou.png', '4');
 INSERT INTO `goods` VALUES ('6', '三顿半，冷萃冷泡拿铁咖啡', '超即溶精品咖啡', '2162', '189', 'bei.png', '5');
 INSERT INTO `goods` VALUES ('7', '冯氏牛将军，雪花软牛肉袋', '健身必备零食', '1998', '99', 'cc.png', '6');
+INSERT INTO `goods` VALUES ('8', '铁蛋米店|东北土特产玉米', '农民自产绿色食品认证', '0', '40', 'yumi1.png', '1');
+INSERT INTO `goods` VALUES ('9', '【正常发货】长白山秋木耳', '块块香脆，长白山秋木耳', '0', '38', 'gan1.png', '8');
+INSERT INTO `goods` VALUES ('10', '雁门清高|苦荞藜麦石头饼休闲零食', '控糖星人的专属零食', '0', '40', 'qiao.png', '6');
+INSERT INTO `goods` VALUES ('11', '网红罐子蛋糕马口铁盒冰淇淋豆乳', '300ml的铁罐容量刚刚好的大小', '0', '10', 'dangao.png', '0');
 
 -- ----------------------------
 -- Table structure for `goods_xiangqing`
@@ -259,7 +263,7 @@ CREATE TABLE `goods_xiangqing` (
   PRIMARY KEY (`goods_x_id`),
   KEY `goods_id` (`goods_id`),
   CONSTRAINT `goods_xiangqing_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of goods_xiangqing
@@ -271,6 +275,10 @@ INSERT INTO `goods_xiangqing` VALUES ('4', 'qi.png,qi1.png,qi2.png,qi3.png,qi4.p
 INSERT INTO `goods_xiangqing` VALUES ('5', 'rou.png,rou1.png,rou2.png,rou3.png,rou4.png', '一份五花肉一份里脊;138,里脊肉（偏瘦肉）;138,五花肉（半肥瘦）;138', 'yes', 'yes', '4.8', '5');
 INSERT INTO `goods_xiangqing` VALUES ('6', 'bei.png,bei1.png,bei2.png,bei3.png,bei4.png', '混合24颗装;189,1号24颗装;189,2号24颗装;189,3号24颗装;189', 'no', 'yes', '4.9', '6');
 INSERT INTO `goods_xiangqing` VALUES ('7', 'cc.png,cc1.png,cc2.png,cc3.png,cc4.png', '原味208g*一袋;99,孜然208g*一袋;99,香辣味208g*一袋;99', 'yes', 'yes', '4.8', '7');
+INSERT INTO `goods_xiangqing` VALUES ('8', 'yumi1.png,yumi2.png,yumi3.png,yumi4.png,', '粉糯玉米;39.9,', 'no', 'yes', '4', '8');
+INSERT INTO `goods_xiangqing` VALUES ('9', 'gan1.png,gan2.png,gan3.png,gan4.png,', '尝鲜【50g/袋】;23.8,实惠【100g/袋*1】;37.9', 'yes', 'yes', '4', '9');
+INSERT INTO `goods_xiangqing` VALUES ('10', 'qiao.png,qiao1.png,qiao2.png,qiao3.png,qiao4.png,', '石头饼【120g*5】;39.9,石头饼【200g*5】;80', 'yes', 'yes', '4', '10');
+INSERT INTO `goods_xiangqing` VALUES ('11', 'dangao.png,dangao1.png,dao2.png,daogao3.png,', '马口铁蛋糕罐6个;15,白色马白铁长蛋糕;10;10', 'yes', 'yes', '4', '11');
 
 -- ----------------------------
 -- Table structure for `label`
@@ -313,7 +321,13 @@ CREATE TABLE `market_comments` (
 -- ----------------------------
 -- Records of market_comments
 -- ----------------------------
+INSERT INTO `market_comments` VALUES ('1', '宝贝收到了，做面包的不二选择', '2019-06-25', '1001.png,1002.png', '3', '4', '5', '11', '1');
 INSERT INTO `market_comments` VALUES ('2', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-11', '1.png,1.png,', '3', '3', '3', '1', '2');
+INSERT INTO `market_comments` VALUES ('3', '已经购买很多次了，很好的面粉', '2018-06-30', '1003.png', '2', '5', '2', '2', '1');
+INSERT INTO `market_comments` VALUES ('4', '袋子下面开了一个口子，包装啥时候能给力点', '2018-01-28', '1004.png', '1', '1', '1', '1', '1');
+INSERT INTO `market_comments` VALUES ('5', '宝贝很好啊', '2020-02-28', '1005.png', '5', '5', '5', '1', '2');
+INSERT INTO `market_comments` VALUES ('6', '这款摸具真的好脱膜哦', '2019-05-24', '1006.png', '3', '3', '3', '1', '2');
+INSERT INTO `market_comments` VALUES ('7', '质感不错是我喜欢的', '2019-04-03', '1007.png', '5', '5', '5', '11', '2');
 INSERT INTO `market_comments` VALUES ('8', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-01', '1.png,1.png,', '2.0', '2.0', '2.0', '2', '3');
 INSERT INTO `market_comments` VALUES ('9', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-02', '3.png,1.png,', '2.0', '2.0', '2.0', '1', '3');
 INSERT INTO `market_comments` VALUES ('10', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-05', '3.png,1.png,', '2.0', '2.0', '2.0', '2', '4');
@@ -339,7 +353,7 @@ CREATE TABLE `market_commentshow` (
 -- Records of market_commentshow
 -- ----------------------------
 INSERT INTO `market_commentshow` VALUES ('1', 'Jane0702', '很好切，放点油煎一下，淋上糖浆，就很好吃', '1.png', '1');
-INSERT INTO `market_commentshow` VALUES ('2', '静儿家的猫', '生吃甜，煮着吃更甜', '2.png', '2');
+INSERT INTO `market_commentshow` VALUES ('2', '静儿家的猫', '好吃到爆酱', '2.png', '5');
 INSERT INTO `market_commentshow` VALUES ('3', '偶然的旅行', '握在手上实诚，切开满满的只是陷儿，而中间是最可爱的草莓', '3.png', '3');
 
 -- ----------------------------
@@ -357,7 +371,7 @@ CREATE TABLE `market_court` (
   PRIMARY KEY (`id`),
   KEY `goods_id` (`goods_id`),
   CONSTRAINT `market_court_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_court
@@ -366,6 +380,7 @@ INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包�
 INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原面包粉10kg', '￥100', '4', '1', '32');
 INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模具', '6寸蛋糕圆盘', '￥39', '3', '2', '33');
 INSERT INTO `market_court` VALUES ('2', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '4', '1', '34');
+INSERT INTO `market_court` VALUES ('11', '铁蛋米店|东北土特产玉米', '粉糯玉米', '￥39.9', '2', '8', '35');
 
 -- ----------------------------
 -- Table structure for `market_type`
