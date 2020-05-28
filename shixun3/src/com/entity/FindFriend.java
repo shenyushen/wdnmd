@@ -21,6 +21,21 @@ public class FindFriend {
 	
 	
 	
+	public FindFriend() {
+		super();
+	}
+	public FindFriend(int author, String theme, String data, String date, int menuid, int likenum, String photo,
+			int type) {
+		super();
+		this.author = author;
+		this.theme = theme;
+		this.data = data;
+		this.date = date;
+		this.menuid = menuid;
+		this.likenum = likenum;
+		this.photo = photo;
+		this.type = type;
+	}
 	public int getCommentCount() {
 		return commentCount;
 	}

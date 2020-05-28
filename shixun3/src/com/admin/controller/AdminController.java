@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.admin.service.AdminService;
 import com.entity.Admin;
+import com.entity.FindFriend;
 import com.entity.menu;
 import com.kitchen.recommend.dao.labelmapper;
 import com.kitchen.recommend.service.menuservices;
@@ -137,6 +138,7 @@ public class AdminController {
 		session.setAttribute("menu", menus.get(count));
 		return "redirect:../menu_edit.html";
 	}
+	
 	@RequestMapping(value="menuedit",method=RequestMethod.POST)
 	public String menuedit(@RequestParam("menu_name")String menu_name,@RequestParam("menu_photo") MultipartFile photo,@RequestParam("kouwei") String kouwei,@RequestParam("type")String type,HttpSession session,HttpServletRequest request) {
 		menu menu=(com.entity.menu) session.getAttribute("menu");
@@ -523,4 +525,7 @@ public class AdminController {
 		 
 		 return "<script>parent.location.reload(); window.close();</script>";
 	 }
+	 
+	 
+	 
 }

@@ -55,6 +55,7 @@ public class FindController {
 		
 	}
 	
+	//提交
 	@RequestMapping("/pic")
 	public void saveFindFriend(HttpServletRequest request,@RequestParam(value="selectfile")List<MultipartFile> files) {
 		String action = request.getParameter("data");
@@ -149,5 +150,8 @@ public class FindController {
 		System.out.println(userid+"zxc"+findfriendid);
 		findFriendService.quxiaoGuanzhu(userid,findfriendid);
 	}
+	
+	
+	
 	
 }

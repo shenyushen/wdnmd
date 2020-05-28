@@ -101,4 +101,38 @@
 	<delete id="quxiaoGuanzhu" parameterType="java.util.Map">
     	delete from find_user_like where userid = #{userid} and findfriendid = #{findfriendid}
   	</delete>
+  	
+  	<!-- web -->
+  	<delete id="delectphoto"  parameterType = "String">
+     	delete from find_photo where photoid in (<foreach collection="array"  item="data"  separator=",">#{data}</foreach>)
+	</delete>
+	<delete id="delectuserlike"  parameterType = "String">
+     	delete from find_user_like where findfriendid in (<foreach collection="array"  item="data"  separator=",">#{data}</foreach>)
+	</delete>
+	<delete id="delectcomment"  parameterType = "String">
+     	delete from findcomment where findfriendid in (<foreach collection="array"  item="data"  separator=",">#{data}</foreach>)
+	</delete>
+  	<delete id="delectWeb"  parameterType = "String">
+     	delete from findfriend where id in (<foreach collection="array"  item="data"  separator=",">#{data}</foreach>)
+	</delete>
+
+  	<select id="selectlableid"  resultType="java.lang.Integer">
+		select id from findlable where type=#{type}
+	</select>
+  	
+  	<update id="updateFindFriend" parameterType="com.entity.FindFriend">
+        update findfriend set theme=#{findfriend.theme},data=#{findfriend.data},date=#{findfriend.date},photo=#{findfriend.photo},type=#{findfriend.type} where id= #{id}
+    </update>
+    
+  <!--   <delete id="deleteMoreEmp" parameterType="int[]">
+		delete from find_photo where photoid in
+		<foreach collection="array" item="arr" index="no" open="("
+			separator="," close=")">
+			#{arr}
+		</foreach>
+	</delete> -->
+	<delete id="delectPhoto" parameterType="java.lang.Integer">
+		delete from find_photo where photoid = #{id}
+	</delete>
+
 </mapper>
