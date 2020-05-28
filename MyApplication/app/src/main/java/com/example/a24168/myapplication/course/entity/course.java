@@ -68,4 +68,16 @@ public class course {
         this.mv_path = mv_path;
         this.mv_up = mv_up;
     }
+
+    @Override
+    public String toString() {
+        return "course{" +
+                "course_id=" + course_id +
+                ", time='" + time + '\'' +
+                ", mv_name='" + mv_name + '\'' +
+                ", mv_account='" + mv_account + '\'' +
+                ", mv_path='" + mv_path + '\'' +
+                ", mv_up='" + mv_up + '\'' +
+                '}';
+    }
 }

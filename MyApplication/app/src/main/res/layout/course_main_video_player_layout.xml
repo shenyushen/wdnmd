@@ -4,16 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
-        android:id="@+id/videocontroller1"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
-
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="评论预留位置" />
+        android:gravity="center"
+        android:id="@+id/list_item_title"
+        android:layout_width="255dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="260dp"
+        android:text="loading……"
+        android:textSize="25dp" />
 
 </LinearLayout>
 

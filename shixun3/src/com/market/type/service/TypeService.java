@@ -5,6 +5,8 @@ import com.entity.MarketComments;
 import com.entity.MarketCourt;
 import com.entity.Type;
 import com.market.type.dao.TypeMapper;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,13 @@ import java.util.List;
 public class TypeService {
     @Autowired
     TypeMapper typeMapper;
+    public List<Goods> find55(int a,int b,String title,double price1,
+    		double price2,String if_freeshiiping,String return_goods){
+    	return typeMapper.findP(a, b,title, price1, price2, if_freeshiiping, return_goods);
+    }
+    public List<MarketComments>find66(int a, int b, String content){
+    	return typeMapper.findP1(a, b, content);
+    }
     public int insert11(int goods_id, String title,String little_content,int count,double price,String img,int type_id) {
     	return typeMapper.insertGood(goods_id, title, little_content, count,price, img, type_id);
     }

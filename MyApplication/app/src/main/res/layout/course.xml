@@ -1,179 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <RelativeLayout
-        android:id="@+id/R1"
-        android:layout_marginLeft="5dp"
+    <com.stx.xhb.pagemenulibrary.PageMenuLayout
+        android:id="@+id/pagemenu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_height="200dp"
+        app:pagemenu_row_count="2"
+        app:pagemenu_span_count="4"/>
 
-        <Button
-            android:id="@+id/course_label_btn_image_1"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:scaleType="fitXY"
-            android:background="@mipmap/ic_photo_2"
-             />
-        <Button
-            android:id="@+id/course_label_btn_image_2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="110dp"
-            android:scaleType="fitXY"
-            android:background="@mipmap/ic_photo_1"
-            />
-        <Button
-            android:id="@+id/course_label_btn_image_3"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="210dp"
-            android:scaleType="fitXY"
-            android:background="@mipmap/ic_photo_3"
-           />
-        <Button
-            android:id="@+id/course_label_btn_image_4"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="310dp"
-            android:scaleType="fitXY"
-            android:background="@mipmap/ic_category_10"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/R2"
-        android:layout_marginLeft="5dp"
+    <com.example.a24168.myapplication.course.until.widget.IndicatorView
+        android:id="@+id/main_home_entrance_indicator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="0dp">
-        <Button
-            android:id="@+id/course_label_btn_text_1"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
-            android:scaleType="fitXY"
-            android:text="面包"
-            />
-        <Button
-            android:id="@+id/course_label_btn_text_2"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="110dp"
-            android:scaleType="fitXY"
-            android:text="蛋糕"
-            />
-        <Button
-            android:id="@+id/course_label_btn_text_3"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="210dp"
-            android:scaleType="fitXY"
-            android:text="甜点"
-            />
-        <Button
-            android:id="@+id/course_label_btn_text_4"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="310dp"
-            android:scaleType="fitXY"
-            android:text="饮品"
-            />
-    </RelativeLayout>
+        android:layout_height="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="16dp"
+        app:gravity="0"
+        app:indicatorColor="#668b8989"
+        app:indicatorColorSelected="#FF5722"
+        app:indicatorWidth="6"/>
 
-    <RelativeLayout
-        android:id="@+id/R3"
-        android:layout_marginLeft="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp">
-
-        <Button
-            android:id="@+id/course_label_btn_image_5"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:scaleType="fitXY"
-            android:background="@drawable/course_test4"
-            />
-        <Button
-            android:id="@+id/course_label_btn_image_6"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="110dp"
-            android:scaleType="fitXY"
-            android:background="@drawable/course_test3"
-            />
-        <Button
-            android:id="@+id/course_label_btn_image_7"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="210dp"
-            android:scaleType="fitXY"
-            android:background="@drawable/course_test1"
-            />
-        <Button
-            android:id="@+id/course_label_btn_image_8"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="310dp"
-            android:scaleType="fitXY"
-            android:background="@drawable/course_test2"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/R4"
-        android:layout_marginLeft="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="0dp">
-        <Button
-            android:id="@+id/course_label_btn_text_5"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="-10dp"
-            android:scaleType="fitXY"
-            android:text="中式料理"
-            />
-        <Button
-            android:id="@+id/course_label_btn_text_6"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="110dp"
-            android:scaleType="fitXY"
-            android:text="小吃"
-            />
-        <Button
-            android:id="@+id/course_label_btn_text_7"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="210dp"
-            android:scaleType="fitXY"
-            android:text="汤粥"
-            />
-        <Button
-            android:id="@+id/course_label_btn_text_8"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="310dp"
-            android:scaleType="fitXY"
-            android:text="面食"
-            />
-    </RelativeLayout>
     <RelativeLayout
         android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/colorAccentGray"
-        android:layout_marginTop="-24dp"/>
+        android:background="#40E0D0"
+        android:layout_marginTop="9dp"/>
     <ListView
         android:id="@+id/lv_persons1"
         android:layout_width="match_parent"
-        android:layout_height="600dp">
+        android:layout_height="420dp"
+        android:layout_marginTop="6dp">
     </ListView>
 </LinearLayout>

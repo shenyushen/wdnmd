@@ -3,6 +3,7 @@ package com.example.a24168.myapplication.kitchen;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -108,6 +109,11 @@ public class KitchenFragment extends Fragment {
         @Override
         public CharSequence getPageTitle(int position) {
             return titles[position];
+        }
+
+        @Override
+        public Parcelable saveState(){
+            return null;
         }
     }
 
