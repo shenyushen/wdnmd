@@ -14,6 +14,13 @@
         <link rel="stylesheet" href="./css/xadmin.css">
         <script src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
+        <script type="text/javascript" >
+	        function dianji(obj) {
+	        	alert(obj.id);
+	        	obj.style.backgroundColor = "blue";
+	       	 }
+	        
+        </script>
         <!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -239,13 +246,16 @@
                         </div>
                         <div class="layui-card-body ">
                             <div class="page">
-                                <div>
-                                    <a class="prev" href="">&lt;&lt;</a>
-                                    <a class="num" href="">1</a>
-                                    <span class="current">2</span>
-                                    <a class="num" href="">3</a>
-                                    <a class="num" href="">489</a>
-                                    <a class="next" href="">&gt;&gt;</a></div>
+                                <div name="mydiv" >
+                                
+	                               	
+	                                <c:forEach var="i" begin="1"  end="${p}" step="1">
+	                                
+										<a href="findweb/findbypage?page=${i}" name="ahref"  id="${i}">${i}</a>
+									</c:forEach>
+									
+                                    <a class="next" href="">&gt;&gt;</a>
+                                </div>
                             </div>
                         </div>
                     </div>

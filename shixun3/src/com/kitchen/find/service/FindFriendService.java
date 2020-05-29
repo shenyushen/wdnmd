@@ -20,6 +20,14 @@ public class FindFriendService {
 		return findFriendMapper.findAllFindFriend();
 	}
 	
+	//分页查询
+	public List<FindFriend> findByPage(int page){
+		return findFriendMapper.findByPage(page);
+	}
+	public int findcount() {
+		return findFriendMapper.findCount();
+	}
+	
 	public List<FindLable> findAllLable(){
 		return findFriendMapper.findAllLable();
 	}

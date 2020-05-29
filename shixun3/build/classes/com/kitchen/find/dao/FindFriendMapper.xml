@@ -50,6 +50,24 @@
 		left join user us on us.id = fc.authorid
 	</select>
 	
+	<!-- 分页 -->
+	<select id="findByPage" resultMap="findFriend" >
+		SELECT ff.id ffid,ff.author,ff.theme,ff.data,ff.date,ff.menuid,ff.likenum,ff.photo ffphoto,ff.type,
+			u.id uid,u.username,u.photo uphoto,
+			fp.id fpid,fp.photoid,fp.photo fpphoto,
+			fl.id flid,fl.type fltype,
+			fc.id fcid, fc.authorid,fc.comment,
+			us.id usid,us.username ususername,us.photo usphoto
+		FROM (select * from findfriend limit #{page},5) as ff 
+			left join user u on u.id = ff.author
+			left join find_photo fp on fp.photoid = ff.id 
+			left join findlable fl on fl.id = ff.type
+			left join findcomment fc on fc.findfriendid = ff.id
+			left join user us on us.id = fc.authorid
+
+		
+	</select>
+	
 	<resultMap type="com.entity.FindLable" id="findlable">
 		<id property="id" column="id"/>
 	    <result property="lable" column="type"/>
@@ -84,6 +102,10 @@
 	
 	<select id="findYouCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
 		select COUNT(*) from findcomment where findfriendid = #{id}
+	</select>
+	
+	<select id="findCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select COUNT(*) from findfriend
 	</select>
 	
 	<update id="insertDianzan">

@@ -11,6 +11,9 @@ import com.entity.Find_Photo;
 public interface FindFriendMapper {
 	//全查
 	public List<FindFriend> findAllFindFriend();
+	//分页
+	public List<FindFriend> findByPage(int page);
+	public int findCount();
 	//查lable
 	public List<FindLable> findAllLable();
 	

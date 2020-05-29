@@ -119,4 +119,20 @@ public class FindWeb {
 		return null;
 	}
 	
+	@RequestMapping("/findbypage")
+	public String findFindFriendByPage(HttpSession session,HttpServletRequest request) {
+		int pager = Integer.parseInt(request.getParameter("page"));
+		int page = (pager-1)*5;
+		int pnum = findFriendService.findcount();
+		
+		List<FindFriend> findFriends = new ArrayList<FindFriend>();
+		findFriends = findFriendService.findByPage(page);
+		session.setAttribute("find",findFriends);
+		System.out.println(findFriends.size());
+		session.setAttribute("p", pnum/5+1);
+		System.out.println(pnum/5+1);
+		return "redirect:../order-list2.jsp";
+		
+	}
+	
 }

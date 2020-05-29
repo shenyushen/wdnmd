@@ -95,7 +95,7 @@
                                     <cite>推荐列表</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('发现列表','findweb/findorder')">
+                                <a onclick="xadmin.add_tab('发现列表','findweb/findbypage?page=1')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>发现列表</cite></a>
                             </li>
