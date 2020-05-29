@@ -47,7 +47,7 @@ dependencies {
     compile project(path: ':jcvideoplayer-lib')
     compile group: 'com.youth.banner', name: 'banner', version: '1.4.10'
 
-
+    compile 'com.contrarywind:Android-PickerView:4.1.6'
     compile ('com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'){
         exclude group: 'com.github.bumptech.glide'
     }

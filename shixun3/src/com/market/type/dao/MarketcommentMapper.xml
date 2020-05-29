@@ -40,6 +40,16 @@
 		<result property="img" column="img"/>
 		</association>
 	</resultMap>
+	
+	<resultMap id="order" type="com.entity.Market_order">
+		<id property="id" column="id"/>
+		<result property="user_id" column="user_id"/>
+		<result property="price" column="price"/>
+		<result property="address" column="address"/>
+		<result property="context" column="context"/>
+		
+	</resultMap>
+	
 
     <select id="findAll" resultMap="marketComment1">
 		select * from market_commentshow
@@ -67,5 +77,11 @@
 		delete from market_court
 		where user_id = #{user_id}
 	</delete>
+	
+	<insert id="addorder">
+		insert into market_order(user_id,address,price,context)
+		values(#{arg0},#{arg2},#{arg1},#{arg3})
+	</insert>
+	
 	
 </mapper>
