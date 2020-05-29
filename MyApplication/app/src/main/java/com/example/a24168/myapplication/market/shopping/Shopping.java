@@ -1,6 +1,7 @@
 package com.example.a24168.myapplication.market.shopping;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.a24168.myapplication.R;
+import com.example.a24168.myapplication.market.order.Order1;
 import com.example.a24168.myapplication.market.shopping.adpter.ShoppingAdapter;
 import com.example.a24168.myapplication.market.shopping.entity.Order;
 import com.google.gson.Gson;
@@ -89,8 +91,19 @@ public class Shopping extends AppCompatActivity implements ShoppingAdapter.AOnCl
         //list.add(new Order("苹果",1,12,12,20,"mianbao.png"));
         getDate();
         fangfa();
+        settlement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Shopping.this, Order1.class);
+                intent.putExtra("allprice",allprice.getText());
 
+                startActivity(intent);
+                Log.e("lzylist",list.get(1).getGoodsContent());
+            }
+        });
     }
+
+
     public void fangfa(){
         //隐藏和展示
         bianji = findViewById(R.id.bt_header_right);

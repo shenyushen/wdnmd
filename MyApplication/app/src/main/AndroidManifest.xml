@@ -50,6 +50,7 @@
 
 
         </activity>
+        <activity android:name=".market.order.Order1"/>
         <activity android:name=".market.xiangqing.Image"/>
         <activity android:name=".market.CommentXiangqing"></activity>
         <activity android:name=".kitchen.recommand.menudetails"/>

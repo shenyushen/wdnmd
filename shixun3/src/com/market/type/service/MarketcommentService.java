@@ -30,5 +30,8 @@ public class MarketcommentService {
     public int delall(int user_id) {
     	return MarketcommentMapper.delall(user_id);
     }
+    public int addorder(int user_id,String price,String address,String context) {
+    	return MarketcommentMapper.addorder(user_id,address,price,context);
+    }
     
 }
