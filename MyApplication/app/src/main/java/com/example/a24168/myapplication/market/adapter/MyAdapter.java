@@ -208,6 +208,7 @@ public class MyAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     @Override
                     public void onItemClick(AdapterView<?> parent, android.view.View view, int position, long id) {
                         s_id = list2.get(position).getGoods_id()+"";
+                        Log.e("321",s_id);
                         Intent  intent = new Intent();
                         intent.setClass(fragment, XiangQing.class);
                         context.startActivity(intent);
@@ -227,6 +228,7 @@ public class MyAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         s_id = list.get(position).getGoodsId()+"";
+
                         Intent  intent = new Intent();
                         intent.setClass(fragment, XiangQing.class);
                         context.startActivity(intent);

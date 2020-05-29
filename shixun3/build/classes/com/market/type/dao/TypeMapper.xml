@@ -51,6 +51,43 @@
 		<result property="user.photo" column="photo"/>
 		<result property="goodsId" column="goods_id"/>
 	</resultMap>
+	<select id="findP1" resultMap="comments">
+		select * 
+		from market_comments m
+		left join user u 
+		on m.user_id = u.id
+		<where>
+			<if test="! content.equals('')">
+				and content like '%${content}%'
+			</if>
+			
+		</where>
+		limit #{a},#{b}
+	</select>
+	
+	
+	<select id ="findP" resultMap="good">
+		select *
+		from goods g
+		left join goods_xiangqing x on g.goods_id = x.goods_id
+		<where>
+			<if test="! title.equals('未填写')">
+				and g.goods_id=#{title }
+			</if>
+			<if test="! return_goods.equals('未填写')">
+				and return_goods=#{return_goods}
+			</if>
+			<if test="! if_freeshiiping.equals('未填写')">
+				and if_freeshiiping=#{if_freeshiiping}
+			</if>
+			and price between #{price1} and #{price2}
+		</where>
+		limit #{a},#{b}
+	</select>
+	
+	
+	
+	
 	<delete id="deleteCourt">
 		delete from market_court
 		where goods_id=#{id}

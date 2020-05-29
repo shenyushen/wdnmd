@@ -34,8 +34,8 @@
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
                             <span class="x-red">*</span>时间</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="time" name="time" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                                    <input type="date" class="layui-input" placeholder="日期" name="time" id="time"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">

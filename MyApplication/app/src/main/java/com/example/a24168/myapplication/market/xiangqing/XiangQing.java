@@ -315,7 +315,7 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
 
         if(list.get(0).getGood().getIf_freeshiiping().equals("yes")) textView7.setText(" 包邮");
         else textView7.setText("不包邮");
-
+        /*
         if(strings.length == 1) textView8.setText(strings[0]);
         else {
             textView8.setText("请选择规格");
@@ -325,7 +325,14 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
                     showDialog2(list);
                 }
             });
-        }
+        }*/
+        textView8.setText("请选择规格");
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog2(list);
+            }
+        });
 
 
         if (list.get(0).getGood().getReturn_goods().equals("yes")) textView9.setText("·七天无理由退换货");

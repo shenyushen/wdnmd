@@ -34,6 +34,8 @@ public class FindFriendService {
 		return findFriendid;
 	}
 	
+	
+	
 	public void saveFind_Photo(List<Find_Photo> find_Photos) {
 		findFriendMapper.saveFind_Photo(find_Photos);
 	}
@@ -65,4 +67,24 @@ public class FindFriendService {
 		findFriendMapper.quxiaoGuanzhu(userid,findfriendid);
 	}
 	
+	public void delectWeb(int[] data) {
+		// TODO Auto-generated method stub
+		findFriendMapper.delectcomment(data);
+		findFriendMapper.delectuserlike(data);
+		findFriendMapper.delectphoto(data);
+		findFriendMapper.delectWeb(data);
+	}
+	
+	public int selectlableid(String type) {
+		// TODO Auto-generated method stub
+		return findFriendMapper.selectlableid(type);
+	}
+	
+	public void updateFindFriend(int id,FindFriend findFriend){
+		findFriendMapper.updateFindFriend(id,findFriend);
+	}
+	
+	public void delectPhoto(int id){
+		findFriendMapper.delectPhoto(id);
+	}
 }

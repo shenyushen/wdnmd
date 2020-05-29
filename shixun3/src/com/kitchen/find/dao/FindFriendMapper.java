@@ -32,6 +32,19 @@ public interface FindFriendMapper {
 	
 	public void quxiaoGuanzhu(@Param("userid")int userid, @Param("findfriendid")int findfriendid);
 	
+	//web
+	public void delectcomment(int[] data);
+	public void delectuserlike(int[] data);
+	public void delectphoto(int[] data);
+	public void delectWeb(int[] data);
+	
+	//查询类型id
+	public int selectlableid(String type);
+	
+	public int updateFindFriend(@Param("id")int id,@Param("findfriend")FindFriend findFriend);
+	
+	public int delectPhoto(int id);
+	
 }
 
 
