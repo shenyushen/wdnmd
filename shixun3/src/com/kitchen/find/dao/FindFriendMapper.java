@@ -2,11 +2,13 @@ package com.kitchen.find.dao;
 
 import java.util.List;
 
+import org.apache.catalina.tribes.group.interceptors.FragmentationInterceptor.FragCollection;
 import org.apache.ibatis.annotations.Param;
 
 import com.entity.FindFriend;
 import com.entity.FindLable;
 import com.entity.Find_Photo;
+import com.entity.User;
 
 public interface FindFriendMapper {
 	//全查
@@ -48,6 +50,9 @@ public interface FindFriendMapper {
 	
 	public int delectPhoto(int id);
 	
+	public List<FindFriend> selectByItem(@Param("author")String author,@Param("theme")String theme,@Param("date")String date,@Param("a")String[] a,@Param("like")String like);
+	
+	public List<User> finduser();
 }
 
 

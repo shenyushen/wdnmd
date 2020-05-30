@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.entity.FindFriend;
 import com.entity.FindLable;
 import com.entity.Find_Photo;
+import com.entity.User;
 import com.kitchen.find.dao.FindFriendMapper;
 
 @Service
@@ -94,5 +95,16 @@ public class FindFriendService {
 	
 	public void delectPhoto(int id){
 		findFriendMapper.delectPhoto(id);
+	}
+	
+	
+	
+	public List<FindFriend> selectByItem(String author,String theme,String date,String[] a,String like) {
+	
+		return findFriendMapper.selectByItem(author,theme,date,a,like);
+	}
+	
+	public List<User> finduser(){
+		return findFriendMapper.finduser();
 	}
 }

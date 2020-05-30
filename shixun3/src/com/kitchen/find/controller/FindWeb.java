@@ -17,7 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.entity.FindFriend;
 import com.entity.Find_Photo;
+import com.entity.User;
 import com.kitchen.find.service.FindFriendService;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 
 @Controller
@@ -26,13 +28,17 @@ public class FindWeb {
 	@Resource
 	private FindFriendService findFriendService;
 	//发现
-	@RequestMapping("/findorder")
+	/*@RequestMapping("/findorder")
 	public String findFindFriend(HttpSession session) {
 		List<FindFriend> findFriends = new ArrayList<FindFriend>();
 		findFriends = findFriendService.findall();
+		
+		List <User> users =new ArrayList<User>();
+		users = findFriendService.finduser();
+		session.setAttribute("user",users);
 		session.setAttribute("find",findFriends);
 		return "redirect:../order-list2.jsp";
-	}
+	}*/
 	
 	
 	@RequestMapping("/delect")
@@ -124,15 +130,33 @@ public class FindWeb {
 		int pager = Integer.parseInt(request.getParameter("page"));
 		int page = (pager-1)*5;
 		int pnum = findFriendService.findcount();
+		List <User> users =new ArrayList<User>();
+		users = findFriendService.finduser();
+		session.setAttribute("user",users);
 		
 		List<FindFriend> findFriends = new ArrayList<FindFriend>();
 		findFriends = findFriendService.findByPage(page);
 		session.setAttribute("find",findFriends);
-		System.out.println(findFriends.size());
 		session.setAttribute("p", pnum/5+1);
-		System.out.println(pnum/5+1);
 		return "redirect:../order-list2.jsp";
-		
 	}
+	
+	//条件筛选
+	@RequestMapping("/selectbyitem")
+	public String selectByItem(HttpSession session,HttpServletRequest request) {
+		String author = request.getParameter("modules");
+		String theme = request.getParameter("theme");
+		String date = request.getParameter("date");
+		String[] a = request.getParameterValues("choosebox");
+		
+		String like = request.getParameter("open");  //判断是否为空
+		List<FindFriend> findFriends = new ArrayList<FindFriend>();
+		findFriends = findFriendService.selectByItem(author,theme,date,a,like);
+		session.setAttribute("find", findFriends);
+		
+		return "redirect:../order-list2.jsp";
+	}
+	
+	
 	
 }
