@@ -52,7 +52,6 @@ import static com.example.a24168.myapplication.sign.Sign.user_id;
 public class ShowDetails extends AppCompatActivity {
     private TextView textView;
     private TextView textViewdata;
-    private TextView textViewmenu;
     private TextView textViewdate;
     private TextView textViewnicheng;
     private Bundle bundle;
@@ -74,7 +73,6 @@ public class ShowDetails extends AppCompatActivity {
         setContentView(R.layout.find_showdetails);
         textView = findViewById(R.id.textdetail);
         textViewdata = findViewById(R.id.textdata);
-        textViewmenu = findViewById(R.id.textmenu);
         textViewdate = findViewById(R.id.textdate);
         textViewnicheng = findViewById(R.id.nicheng);
         imagetouxiang = findViewById(R.id.touxiang);
@@ -106,7 +104,7 @@ public class ShowDetails extends AppCompatActivity {
             }
             images = new ArrayList<>();
             for(int i = 0;i<findFriend.getFind_Photos().size();i++) {
-                images.add("http://10.0.2.2:8080/shixun3/pic/" + findFriend.getFind_Photos().get(i).getPhoto());
+                images.add(getResources().getString(R.string.ip1)+"/pic/" + findFriend.getFind_Photos().get(i).getPhoto());
                 Log.e("images",images.get(i));
             }
 
@@ -128,11 +126,10 @@ public class ShowDetails extends AppCompatActivity {
 
             RequestOptions options = RequestOptions.circleCropTransform();//圆形图片  好多的图片形式都是这么设置的
                 options.placeholder(R.drawable.morentouxiang);
-            Glide.with(this).load("http://10.0.2.2:8080/shixun3/pic/"+findFriend.getUser().getPhoto())
+            Glide.with(this).load(getResources().getString(R.string.ip1)+"/pic/"+findFriend.getUser().getPhoto())
                     .apply(options).into(imagetouxiang);
             textViewdate.setText("#"+findFriend.getFindLable().getLable()+"."+findFriend.getDate()+"#");
             textViewdata.setText(findFriend.getData());
-            textViewmenu.setText(findFriend.getMenuid()+"这是menu id");
 
             //提交评论
             button.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +153,7 @@ public class ShowDetails extends AppCompatActivity {
                                 requestBodyBuilder.addFormDataPart("findfriendid",findFriend.getId()+"");
                                 RequestBody requestBody = requestBodyBuilder.build();
                                 Request request = new Request.Builder()
-                                        .url( "http://10.0.2.2:8080/shixun3/find/comment")
+                                        .url( getResources().getString(R.string.ip1)+"/find/comment")
                                         .post(requestBody)
                                         .build();
 
@@ -224,7 +221,7 @@ public class ShowDetails extends AppCompatActivity {
             public void run() {
                 URL url = null;
                 try {
-                    url = new URL("http://10.0.2.2:8080/shixun3/find/quxiaoguanzhu?userid="+user_id+"&findfriendid="+position);
+                    url = new URL(getResources().getString(R.string.ip1)+"/find/quxiaoguanzhu?userid="+user_id+"&findfriendid="+position);
                     URLConnection conn = url.openConnection();
                     InputStream in = conn.getInputStream();
                 } catch (MalformedURLException e) {
@@ -244,7 +241,7 @@ public class ShowDetails extends AppCompatActivity {
             public void run() {
                 URL url = null;
                 try {
-                    url = new URL("http://10.0.2.2:8080/shixun3/find/panduanshifouguanzhu?userid="+user_id+"&findfriendid="+findFriend.getId());
+                    url = new URL(getResources().getString(R.string.ip1)+"/find/panduanshifouguanzhu?userid="+user_id+"&findfriendid="+findFriend.getId());
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //设置请求头
                     conn.setRequestMethod("GET");
@@ -285,7 +282,7 @@ public class ShowDetails extends AppCompatActivity {
             public void run() {
                 URL url = null;
                 try {
-                    url = new URL("http://10.0.2.2:8080/shixun3/find/guanzhu?userid="+user_id+"&findfriendid="+position);
+                    url = new URL(getResources().getString(R.string.ip1)+"/find/guanzhu?userid="+user_id+"&findfriendid="+position);
                     URLConnection conn = url.openConnection();
                     InputStream in = conn.getInputStream();
                 } catch (MalformedURLException e) {
@@ -323,7 +320,7 @@ public class ShowDetails extends AppCompatActivity {
             public void run() {
                 URL url = null;
                 try {
-                    url = new URL("http://10.0.2.2:8080/shixun3/find/count?id="+findFriend.getId());
+                    url = new URL(getResources().getString(R.string.ip1)+"/find/count?id="+findFriend.getId());
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //设置请求头
                     conn.setRequestMethod("GET");

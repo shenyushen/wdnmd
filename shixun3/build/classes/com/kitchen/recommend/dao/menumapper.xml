@@ -20,6 +20,9 @@
 	SELECT * FROM menu m,label l,menu_label ml where m.menu_id=ml.menu_id and l.label_id=ml.label_id
 </select>
 
+<select id="fenye" resultType="com.entity.menu" resultMap="menu">
+	SELECT * FROM (SELECT * FROM menu LIMIT #{min},#{max} )m,label l,menu_label ml where m.menu_id=ml.menu_id and l.label_id=ml.label_id
+</select>
 <insert id="addmenu" useGeneratedKeys="true" parameterType="com.entity.menu" keyProperty="menu_id">
 	insert into menu(date,menu_photo,menu_name,type) 
     values(#{date},#{menu_photo},#{menu_name},#{type}) 
@@ -50,6 +53,24 @@
 <delete id="deletesteps">
 	DELETE  from step where menu_id=#{menu_id}
 </delete>
+<select id="selectmenu" resultType="com.entity.menu" resultMap="menu">
+	<bind name="mohu" value="'%' + menu_name + '%'"/>
+	SELECT * FROM menu m,label l,menu_label ml where m.menu_id=ml.menu_id and l.label_id=ml.label_id
+	 <if test="type != null and !type.equals('')">
+      and m.type = #{type}
+  	</if>
+  	<if test="menu_name != null and !menu_name.equals('')">
+      and m.menu_name like  #{mohu}
+  	</if>
+  	<if test="kouwei != null">
+  	and l.label_id in 
+	  	<foreach collection="kouwei" item="value" 
+	        index="key" separator="," open="(" close=")">
+	        #{value}
+	    </foreach>
+  	</if>
+	
+</select>
 	<!-- <select id="findallbyleiid" resultType="entity.xinwenlei" resultMap="xinwenandlei">
          select * from xinwen x,pinglun p,xinwenandlei a,xinwenlei l where x.id = p.xinwenid and x.id=a.id and l.leiid=a.leiid and l.leiid = #{id}
     </select>

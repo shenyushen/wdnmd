@@ -83,7 +83,7 @@
 		left join user u on u.id = ff.author
 		left join find_photo fp on fp.photoid = ff.id 
 		left join findlable fl on fl.id = ff.type
-		where fl.type = #{lableid }
+		where fl.type = #{lableid}
 	</select>
 	
 	<insert id="saveFindFriend" parameterType="com.entity.FindFriend" useGeneratedKeys="true" keyProperty="id">

@@ -22,5 +22,7 @@ public interface menumapper {
 	public int deletestep(int step_id);
 	public int editstep(Step step);
 	public void deletesteps(int menu_id);
+	public List<menu> selectmenu(@Param("menu_name")String menu_name, @Param("kouwei")String[] kouwei,@Param("type") String type);
+	public List<menu> fenye(@Param("min")int i, @Param("max")int j);
 	
 }

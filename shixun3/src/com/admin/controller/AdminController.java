@@ -38,6 +38,9 @@ import com.market.type.service.TypeService;
 @Controller
 @RequestMapping("admin")
 public class AdminController {
+	int thispage=1;
+	int maxpage=0;
+	int maxsize=0;
 	List<menu> menus=new ArrayList<menu>();
 	int menunum=-1;
 	List<Step> steps= new ArrayList<Step>();
@@ -74,6 +77,7 @@ public class AdminController {
 				session.setAttribute("user", admins.get(i));
 				menus=menuservices.findall();
 				session.setAttribute("menus",menus);
+				fenye(1,session);
 				session.setAttribute("yonghu", user);
 				session.setAttribute("goods",good);
 				session.setAttribute("comments", comments);
@@ -137,7 +141,8 @@ public class AdminController {
 		int panduan=this.menuservices.addlabelmenu(labels,menuid);
 		menus=menuservices.findall();
 		session.setAttribute("menus",menus);
-		return "list";
+		fenye(thispage, session);
+		return "ok";
 		
 	}
 //	修改menu
@@ -195,7 +200,8 @@ public class AdminController {
 		int m1=menuservices.addlabelmenu(labels, menu.getMenu_id());
 		menus=menuservices.findall();
 		session.setAttribute("menus",menus);
-		return "list";
+		fenye(thispage, session);
+		return "ok";
 	}
 //	删除菜单功能
 	@RequestMapping("menudelete")
@@ -205,7 +211,7 @@ public class AdminController {
 		menuservices.deletemenu(menus.get(count).getMenu_id());
 		menus.remove(count);
 		session.setAttribute("menus",menus);
-		
+		fenye(thispage, session);
 	}
 	@RequestMapping("menudeletecheck")
 	public void menudeletecheck(@RequestParam("value")String value,HttpSession session) {
@@ -222,6 +228,7 @@ public class AdminController {
 			}
 			menus=menuservices.findall();
 			session.setAttribute("menus",menus);
+			fenye(thispage, session);
 			
 		}
 		else {
@@ -297,7 +304,7 @@ public class AdminController {
 			}
 		}
 		session.setAttribute("steps", steps);
-		return "list";
+		return "ok";
 	}
 //	删除步骤功能
 	@RequestMapping("stepdelete")
@@ -338,7 +345,7 @@ public class AdminController {
 		int n=menuservices.editstep(step);
 		steps=menuservices.findstepbymenuid(menus.get(menunum).getMenu_id()+"");
 		session.setAttribute("steps",steps);
-		return "list";
+		return "ok";
 		
 	}
 	
@@ -358,6 +365,84 @@ public class AdminController {
 			System.out.println("字符穿为空");
 		}
 	}
+<<<<<<< HEAD
+	
+//	筛选
+	@RequestMapping("selectmenu")
+	public String selectmenu(@RequestParam("menu_name")String menu_name,@RequestParam(value="kouwei",required=false) String kouwei,@RequestParam("type")String type,HttpSession session,HttpServletRequest request) {
+		if(type.equals("mi")) {
+			type="米";
+		}
+		else if(type.equals("mian")) {
+			type="面";
+		}
+		else{
+			type="菜";
+		}
+		String[] s = null;
+		if(kouwei!=null) {
+			s=kouwei.split(",");
+		}
+		
+		System.out.println("筛选"+menu_name+"试试"+kouwei+"试试"+type);
+		menus=menuservices.selectmenu(menu_name,s,type);
+		session.setAttribute("menus", menus);
+		return "redirect:../tuijian.jsp";
+	}
+	
+	@RequestMapping("resit")
+	public String resit(HttpSession session) {
+		menus=menuservices.findall();
+		session.setAttribute("menus",menus);
+		fenye(thispage, session);
+		return "redirect:../tuijian.jsp";
+	}
+
+//	分页查询
+	@RequestMapping("fenye")
+	public String fenye(@RequestParam("page")int page,HttpSession session) {
+		thispage=page;
+		maxsize=menuservices.findall().size();
+		if(maxsize%6!=0) {
+			maxpage=maxsize/6+1;
+		}
+		else {
+			maxpage=maxsize/6;
+		}
+		
+		List<Integer> pagelist=new ArrayList<Integer>();
+		if(page-1>=1) {
+			pagelist.add(page-1);
+		}
+		pagelist.add(page);
+		if(page+1<=maxpage) {
+			pagelist.add(page+1);
+		}
+		if(maxpage>=3) {
+			if(pagelist.size()!=3) {
+				if(pagelist.get(0)==1) {
+					pagelist.add(3);
+				}
+				else {
+					pagelist.add(0, pagelist.get(0)-1);
+				}
+			}
+		}
+		
+		for(int a:pagelist) {
+			System.out.println("page: "+a);
+		}
+		
+		menus=menuservices.fenye((page-1)*6,6);
+		session.setAttribute("menus",menus);
+		session.setAttribute("maxpage", maxpage);
+		session.setAttribute("thispage", thispage);
+		session.setAttribute("pagelist", pagelist);
+		return "redirect:../tuijian.jsp";
+	}
+}
+=======
+>>>>>>> d45c08afd69154ea6bc431dd5f37f635ad18a778
 
 	
 	

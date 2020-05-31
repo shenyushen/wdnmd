@@ -85,11 +85,6 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('关注列表','order-list.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>关注列表</cite></a>
-                            </li>
-                            <li>
                                 <a onclick="xadmin.add_tab('推荐列表','tuijian.jsp')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>推荐列表</cite></a>
