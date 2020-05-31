@@ -63,7 +63,7 @@ public class ListViewAdapter extends BaseAdapter {
 
         //Log.e("comments",findCommentList.get(position).getComment());
 
-        String image = "http://10.0.2.2:8080/shixun3/pic/"+findCommentList.get(position).getUser().getPhoto();
+        String image = context.getResources().getString(R.string.ip1)+"/pic/"+findCommentList.get(position).getUser().getPhoto();
         RequestOptions options = RequestOptions.circleCropTransform();//圆形图片  好多的图片形式都是这么设置的
         options.placeholder(R.drawable.morentouxiang);
         Glide.with(context).load(image)

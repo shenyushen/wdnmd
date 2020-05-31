@@ -93,7 +93,7 @@ public class Like extends Fragment {
             public void run() {
                 try {
                     gridList = new ArrayList<Show>();
-                    URL url = new URL("http://10.0.2.2:8080/shixun3/like/list?id="+user_id);//放网站
+                    URL url = new URL(getResources().getString(R.string.ip1)+"/like/list?id="+user_id);//放网站
                     URLConnection conn = url.openConnection();
                     InputStream in = conn.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
@@ -106,8 +106,8 @@ public class Like extends Fragment {
 
                     for(int i = 0; i < findFriends.size();i++) {
 
-                        String myUrl = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getPhoto();
-                        String myUrl1 = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getUser().getPhoto();
+                        String myUrl = getResources().getString(R.string.ip1)+"/pic/"+findFriends.get(i).getPhoto();
+                        String myUrl1 = getResources().getString(R.string.ip1)+"/pic/"+findFriends.get(i).getUser().getPhoto();
                         Show show = new Show(myUrl,findFriends.get(i).getTheme(),myUrl1,findFriends.get(i).getUser().getUsername(),findFriends.get(i).getLikenum(),findFriends.get(i).getId());
                         Log.e("friends",findFriends.get(0).getFindLable().getLable());
                         gridList.add(show);
