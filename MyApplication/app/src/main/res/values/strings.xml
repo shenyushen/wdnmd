@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">饭签</string>
 <!--    10.0.2.2-->
     <string name="ip1">http://10.0.2.2:8080/shixun3</string>
     <string name="ip">http://10.0.2.2:8080/shixun3/menu/</string>

@@ -351,7 +351,7 @@ public class XiangQing extends AppCompatActivity implements OnBannerListener {
         Window window = dialog.getWindow();
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.main_menu_animStyle);
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 1400);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 1000);
         imageView3 = dialog.findViewById(R.id.roud);
 
 
