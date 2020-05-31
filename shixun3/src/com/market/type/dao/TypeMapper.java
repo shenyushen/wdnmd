@@ -7,6 +7,8 @@ import com.entity.Type;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface TypeMapper {
     public List<Goods> findAll();
     public List<Goods> findAllGoods(int type_id);
@@ -17,4 +19,25 @@ public interface TypeMapper {
     public List<MarketCourt>findAllCourt(int id);
     public int updateCourt(String type,String count,int id);
     public int insertComment(String content,String time,String img,String r1,String r2,String r3,int user_id,int goods_id);
+    
+    public List<MarketComments> findAllComment();
+    
+    public int deleteComment(int id1,int id2);
+    public List<MarketComments> selectPage(int a,int b);
+    public List<Goods> findPage(int a,int b);
+    public int deleteGood(int id);
+    public int deleteGood1(int id);
+    
+    public int deleteCourt(int id);
+    public int insertGood(int goods_id, String title,String little_content,int count,double price,String img,int type_id);
+    public int insertGood1(String goods_img,String goods_type,String return_goods,String if_freeshiiping,String goods_score,int goods_id);
+
+    
+    public List<Goods>findP(@Param("a")int a,@Param("b")int b,@Param("title")String title,@Param("price1")double price1,
+    		@Param("price2")double price2,@Param("if_freeshiiping")String if_freeshiiping,@Param("return_goods")String return_goods);
+
+    
+    public List<MarketComments>findP1(@Param("a")int a,@Param("b")int b,@Param("content")String content);
+    	
+    
 }

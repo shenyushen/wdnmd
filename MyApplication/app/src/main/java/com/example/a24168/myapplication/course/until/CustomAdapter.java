@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.a24168.myapplication.R;
@@ -22,6 +23,7 @@ import java.util.List;
         private List<course> texts = new ArrayList<>();
         private int itemLayoutId;
         private Context context;
+        private   ArrayList<Integer> drawables=new ArrayList<>();
         public CustomAdapter(Context context, List<course> texts, int itemLayoutId){
 
             this.context = context;
@@ -58,11 +60,23 @@ import java.util.List;
         @Override
 
         public View getView(final int position, View convertView, ViewGroup parent) {
+            drawables.add(R.drawable.course_cha);
+            drawables.add(R.drawable.course_chaofan);
+            drawables.add(R.drawable.course_dangao);
+            drawables.add(R.drawable.course_dangao2);
+            drawables.add(R.drawable.course_huage);
+            drawables.add(R.drawable.course_jiamo);
+            drawables.add(R.drawable.course_lajiao);
+            drawables.add(R.drawable.course_mifan);
+            drawables.add(R.drawable.course_pizza);
+            drawables.add(R.drawable.course_roupian);
             if (null == convertView) {
                 LayoutInflater inflater = LayoutInflater.from(context);
                 convertView = inflater.inflate(itemLayoutId, null);
             }
-
+            ImageView imageView=convertView.findViewById(R.id.list_item_image_1);
+            imageView.setImageResource(drawables.get(Integer.valueOf(texts.get(position).getCourse_id())));
+            System.out.println(R.drawable.mi+"               abcde");
             TextView mv_title = convertView.findViewById(R.id.list_item_title);
             TextView mv_time=convertView.findViewById(R.id.list_item_time);
             TextView mv_content = convertView.findViewById(R.id.list_item_content);

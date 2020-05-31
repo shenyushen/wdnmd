@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 
 import com.example.a24168.myapplication.R;
@@ -58,7 +59,7 @@ public class Find extends Fragment {
     private Handler handler = new Handler();
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
-
+    private MyScrollView myScrollView;
     private List<String> itemList;
     private List<Show> gridList;
     private List<FindLable> findLables;
@@ -74,6 +75,18 @@ public class Find extends Fragment {
             view = inflater.inflate(R.layout.find, container, false);
         }
         initView();
+
+        if (myScrollView != null) {
+            myScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                @Override
+                public void onScrollChanged() {
+                    if (swipeRefreshLayout != null) {
+                        swipeRefreshLayout.setEnabled(myScrollView.getScrollY() == 0);
+                    }
+                }
+            });
+        }
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -141,9 +154,9 @@ public class Find extends Fragment {
 
     private void bannershow(){
         images = new ArrayList<>();
-        images.add("http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(0).getPhoto());
-        images.add("http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(1).getPhoto());
-        images.add("http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(2).getPhoto());
+        images.add(getResources().getString(R.string.ip1)+"/pic/"+findFriends.get(0).getPhoto());
+        images.add(getResources().getString(R.string.ip1)+"/pic/"+findFriends.get(1).getPhoto());
+        images.add(getResources().getString(R.string.ip1)+"/pic/"+findFriends.get(2).getPhoto());
 
         titles = new ArrayList<>();
         titles.add(findFriends.get(0).getTheme());
@@ -175,7 +188,7 @@ public class Find extends Fragment {
                 try {
                     findLables = new ArrayList<>();
                     Gson gson = new Gson();
-                    URL url = new URL("http://10.0.2.2:8080/shixun3/find/lable");
+                    URL url = new URL(getResources().getString(R.string.ip1)+"/find/lable");
                     URLConnection conn = url.openConnection();
                     InputStream in = conn.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
@@ -213,7 +226,7 @@ public class Find extends Fragment {
             public void run() {
                 try {
                     gridList = new ArrayList<Show>();
-                    URL url = new URL("http://10.0.2.2:8080/shixun3/find/list");//放网站
+                    URL url = new URL(getResources().getString(R.string.ip1)+"/find/list");//放网站
                     URLConnection conn = url.openConnection();
                     InputStream in = conn.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
@@ -226,8 +239,8 @@ public class Find extends Fragment {
 
                     for(int i = 0; i < findFriends.size();i++) {
 
-                        String myUrl = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getPhoto();
-                        String myUrl1 = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getUser().getPhoto();
+                        String myUrl = getResources().getString(R.string.ip1)+"/pic/"+findFriends.get(i).getPhoto();
+                        String myUrl1 = getResources().getString(R.string.ip1)+"/pic/"+findFriends.get(i).getUser().getPhoto();
                         Show show = new Show(myUrl,findFriends.get(i).getTheme(),myUrl1,findFriends.get(i).getUser().getUsername(),findFriends.get(i).getLikenum(),findFriends.get(i).getId());
                         Log.e("friends",findFriends.get(0).getFindLable().getLable());
                         gridList.add(show);
@@ -259,6 +272,7 @@ public class Find extends Fragment {
     }
 
     private void initView() {
+        myScrollView = view.findViewById(R.id.myscrollview);
         banner = view.findViewById(R.id.banner);
         mScrollView = (MyScrollView) view.findViewById(R.id.scrollView);
         gridView = view.findViewById(R.id.gridView);

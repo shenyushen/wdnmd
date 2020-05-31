@@ -149,7 +149,7 @@ public class GridViewAdapter extends BaseAdapter {
                 URL url = null;
                 try {
                     String num = String.valueOf(dataSource.get(position).getDianzan()+1);
-                    url = new URL("http://10.0.2.2:8080/shixun3/find/dianzan?dianzan="+num+"&id="+dataSource.get(position).getId());
+                    url = new URL(context.getResources().getString(R.string.ip1)+"/find/dianzan?dianzan="+num+"&id="+dataSource.get(position).getId());
                     URLConnection conn = url.openConnection();
                     InputStream in = conn.getInputStream();
                 } catch (MalformedURLException e) {

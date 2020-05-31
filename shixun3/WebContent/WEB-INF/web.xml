@@ -9,7 +9,10 @@
       <welcome-file>default.htm</welcome-file>
       <welcome-file>default.jsp</welcome-file> -->
     </welcome-file-list> 
+<<<<<<< HEAD
     
+=======
+>>>>>>> d45c08afd69154ea6bc431dd5f37f635ad18a778
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -26,7 +29,10 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+<<<<<<< HEAD
     
+=======
+>>>>>>> d45c08afd69154ea6bc431dd5f37f635ad18a778
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>

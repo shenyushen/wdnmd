@@ -2,15 +2,20 @@ package com.kitchen.find.dao;
 
 import java.util.List;
 
+import org.apache.catalina.tribes.group.interceptors.FragmentationInterceptor.FragCollection;
 import org.apache.ibatis.annotations.Param;
 
 import com.entity.FindFriend;
 import com.entity.FindLable;
 import com.entity.Find_Photo;
+import com.entity.User;
 
 public interface FindFriendMapper {
 	//全查
 	public List<FindFriend> findAllFindFriend();
+	//分页
+	public List<FindFriend> findByPage(int page);
+	public int findCount();
 	//查lable
 	public List<FindLable> findAllLable();
 	
@@ -32,6 +37,22 @@ public interface FindFriendMapper {
 	
 	public void quxiaoGuanzhu(@Param("userid")int userid, @Param("findfriendid")int findfriendid);
 	
+	//web
+	public void delectcomment(int[] data);
+	public void delectuserlike(int[] data);
+	public void delectphoto(int[] data);
+	public void delectWeb(int[] data);
+	
+	//查询类型id
+	public int selectlableid(String type);
+	
+	public int updateFindFriend(@Param("id")int id,@Param("findfriend")FindFriend findFriend);
+	
+	public int delectPhoto(int id);
+	
+	public List<FindFriend> selectByItem(@Param("author")String author,@Param("theme")String theme,@Param("date")String date,@Param("a")String[] a,@Param("like")String like);
+	
+	public List<User> finduser();
 }
 
 

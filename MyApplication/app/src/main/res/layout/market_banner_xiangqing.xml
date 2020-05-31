@@ -29,7 +29,7 @@
             android:textColor="@color/black"
             />
         <ImageView
-            android:id="@+id/img4"
+            android:id="@+id/img44"
             android:layout_marginLeft="90dp"
             android:layout_width="40dp"
             android:layout_height="30dp"

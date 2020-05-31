@@ -26,4 +26,16 @@ public class AdminService {
 	public List<User> find1(){
 		return adminMapper.findUser();
 	}
+	
+	public int deleteuser(int s1) {
+		return adminMapper.deleteUser(s1);
+	}
+	
+	public List<User> findUPage(int a,int b){
+		return adminMapper.findUserPaging(a, b);
+	}
+	
+	public int insertuser(int userid,String username,String password,String sex,String photo,String profession,String home,String birthday,String label) {
+		return adminMapper.insertuser(userid, username, password, sex, photo, profession, home, birthday, label);
+	}
 }

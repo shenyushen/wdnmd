@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.entity.FindFriend;
 import com.entity.FindLable;
 import com.entity.Find_Photo;
+import com.entity.User;
 import com.kitchen.find.dao.FindFriendMapper;
 
 @Service
@@ -18,6 +19,14 @@ public class FindFriendService {
 	
 	public List<FindFriend> findall(){
 		return findFriendMapper.findAllFindFriend();
+	}
+	
+	//分页查询
+	public List<FindFriend> findByPage(int page){
+		return findFriendMapper.findByPage(page);
+	}
+	public int findcount() {
+		return findFriendMapper.findCount();
 	}
 	
 	public List<FindLable> findAllLable(){
@@ -33,6 +42,8 @@ public class FindFriendService {
 		int findFriendid = findFriend.getId();
 		return findFriendid;
 	}
+	
+	
 	
 	public void saveFind_Photo(List<Find_Photo> find_Photos) {
 		findFriendMapper.saveFind_Photo(find_Photos);
@@ -65,4 +76,35 @@ public class FindFriendService {
 		findFriendMapper.quxiaoGuanzhu(userid,findfriendid);
 	}
 	
+	public void delectWeb(int[] data) {
+		// TODO Auto-generated method stub
+		findFriendMapper.delectcomment(data);
+		findFriendMapper.delectuserlike(data);
+		findFriendMapper.delectphoto(data);
+		findFriendMapper.delectWeb(data);
+	}
+	
+	public int selectlableid(String type) {
+		// TODO Auto-generated method stub
+		return findFriendMapper.selectlableid(type);
+	}
+	
+	public void updateFindFriend(int id,FindFriend findFriend){
+		findFriendMapper.updateFindFriend(id,findFriend);
+	}
+	
+	public void delectPhoto(int id){
+		findFriendMapper.delectPhoto(id);
+	}
+	
+	
+	
+	public List<FindFriend> selectByItem(String author,String theme,String date,String[] a,String like) {
+	
+		return findFriendMapper.selectByItem(author,theme,date,a,like);
+	}
+	
+	public List<User> finduser(){
+		return findFriendMapper.finduser();
+	}
 }

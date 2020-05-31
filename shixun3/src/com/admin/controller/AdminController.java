@@ -17,14 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.admin.service.AdminService;
 import com.entity.Admin;
+import com.entity.FindFriend;
 import com.entity.menu;
 import com.kitchen.recommend.dao.labelmapper;
 import com.kitchen.recommend.service.menuservices;
 
 import com.entity.Goods;
+import com.entity.Goods_x;
+import com.entity.MarketComments;
 import com.entity.Step;
 import com.entity.User;
 import com.entity.label;
@@ -40,6 +44,12 @@ public class AdminController {
 	List<menu> menus=new ArrayList<menu>();
 	int menunum=-1;
 	List<Step> steps= new ArrayList<Step>();
+	double price1 = 0;
+	double price2 = 9999;
+	String if_freeshiiping="未填写";
+	String return_goods="未填写";
+	String title="未填写";
+	String content ="";
 	@Resource
 	AdminService adminService;
 	@Resource
@@ -52,9 +62,14 @@ public class AdminController {
 		List<Admin> admins = adminService.find();
 		List<User> user = adminService.find1();
 		List<Goods> goods = typeService.find3();
+		List<MarketComments> comments = typeService.find11();
 		List<Goods> good = new ArrayList<>();
+		List<String> num = new ArrayList<>();
+		for(int i = 999; i>=0; i--) {
+			num.add(i+"");
+		}
 		for(int i = 0; i < goods.size(); i++) {
-			if (i == 10) break;
+			if (i == 5) break;
 			good.add(goods.get(i));
 		}
 		for(int i = 0; i < admins.size(); i++) {
@@ -65,6 +80,12 @@ public class AdminController {
 				fenye(1,session);
 				session.setAttribute("yonghu", user);
 				session.setAttribute("goods",good);
+				session.setAttribute("comments", comments);
+				session.setAttribute("comments_page",0);
+				session.setAttribute("goods_page",0);
+				session.setAttribute("goods_id", goods.get(goods.size()-1).getGoodsId());
+				session.setAttribute("goods_all", goods);
+				session.setAttribute("num", num);
 				
 				return "redirect:../index.jsp";
 			}
@@ -131,6 +152,7 @@ public class AdminController {
 		session.setAttribute("menu", menus.get(count));
 		return "redirect:../menu_edit.html";
 	}
+	
 	@RequestMapping(value="menuedit",method=RequestMethod.POST)
 	public String menuedit(@RequestParam("menu_name")String menu_name,@RequestParam("menu_photo") MultipartFile photo,@RequestParam("kouwei") String kouwei,@RequestParam("type")String type,HttpSession session,HttpServletRequest request) {
 		menu menu=(com.entity.menu) session.getAttribute("menu");
@@ -343,6 +365,7 @@ public class AdminController {
 			System.out.println("字符穿为空");
 		}
 	}
+<<<<<<< HEAD
 	
 //	筛选
 	@RequestMapping("selectmenu")
@@ -418,4 +441,263 @@ public class AdminController {
 		return "redirect:../tuijian.jsp";
 	}
 }
+=======
+>>>>>>> d45c08afd69154ea6bc431dd5f37f635ad18a778
 
+	
+	
+	/**
+	 * 	以下为市集操作
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	@RequestMapping("/search_comments")
+	public String ff(HttpSession session,@RequestParam("content")String content_1) {
+		session.setAttribute("comments_page",0);
+		content = content_1;
+		List<MarketComments> comments= typeService.find66(0, 8, content);
+		session.setAttribute("comments",comments);
+		return "redirect:../marekt_comments.jsp";
+	}
+	
+	
+	@RequestMapping("/search_goods")
+	public String ee(HttpSession session,@RequestParam("title")String title_1,@RequestParam("price1")String price_1,@RequestParam("price2")String price_2,
+			@RequestParam("if_freeshiiping") String if_freeshiiping_1,@RequestParam("return_goods")String return_goods_1) {
+		
+		System.out.println(price_1+price_2);
+		price1 = Double.parseDouble(price_1);
+		price2 = Double.parseDouble(price_2);
+		if_freeshiiping = if_freeshiiping_1;
+		return_goods = return_goods_1;
+		title=title_1;
+		session.setAttribute("goods_page",0);
+
+		List<Goods> goods = typeService.find55(0, 5,title, price1, price2, if_freeshiiping, return_goods);
+		session.setAttribute("goods",goods);
+	
+		
+		return "redirect:../market_goods.jsp";
+	}
+	
+	
+	
+	@RequestMapping("/xiangqing")
+	public String qq(@RequestParam("id") String id,HttpSession session) {
+		List<Goods> goods = typeService.find3();
+		System.out.println(id);
+		Goods good = new Goods();
+		for(int i = 0; i < goods.size(); i++) {
+			if (goods.get(i).getGoodsId() == Integer.valueOf(id)) {
+				good = goods.get(i);
+				break;
+			}
+		}
+		
+		Goods_x good1= new Goods_x();
+		good1.setGoods_id(good.getGoodsId());good1.setGoods_score(good.getGood().getGoods_score());
+		good1.setLittile_content(good.getLittleContent());good1.setTitle(good.getTitle());
+		good1.setIf_freeshiiping(good.getGood().getIf_freeshiiping());good1.setReturn_goods(good.getGood().getReturn_goods());
+		good1.setSale_volume(good.getSaleVolume());
+		//设置图片
+		String [] s = good.getGood().getGoods_img().split(",");
+		good1.setImg(s);
+		
+		// 设置种类
+		String[] s1 = good.getGood().getGoods_type().split(",");
+		List<String> type = new ArrayList<>();
+		List<String> type_price = new ArrayList<>();
+		for(int i = 0; i < s1.length; i++) {
+			type.add(s1[i].split(";")[0]+" ￥："+s1[i].split(";")[1]+"  ");
+			
+		}
+		good1.setGoods_type(type);
+		good1.setType_price(type_price);
+		session.setAttribute("good1", good1);
+		 return "redirect:../good_view.jsp";
+	}
+	
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public String d(@RequestParam("id1") String id1, @RequestParam("id2") String id2,HttpSession session) {
+		typeService.delete(Integer.valueOf(id1), Integer.valueOf(id2));
+		List<MarketComments> comments = (List<MarketComments>) session.getAttribute("comments");
+		for(int i = 0; i < comments.size(); i++) {
+			if(comments.get(i).getUser().getId()== Integer.valueOf(id1) && comments.get(i).getGoodsId() == Integer.valueOf(id2)) {
+				comments.remove(i);
+				break;
+			}
+		}
+		return "ok";
+	}
+	@RequestMapping("page")
+	public String e(@RequestParam("page") String page,HttpSession session) {
+		System.out.print(page);
+		int a = Integer.valueOf(page)*8;
+		int b = a+8;
+		List<MarketComments> comments=typeService.find66(a, 8,content);
+		session.setAttribute("comments", comments);
+		session.setAttribute("comments_page",Integer.valueOf(page));
+		return "redirect:../marekt_comments.jsp";
+	}
+	@RequestMapping("page1")
+	public String f(@RequestParam("page") String page,HttpSession session) {
+		System.out.print(page);
+		int a = Integer.valueOf(page)*5;
+	
+		
+		List<Goods> goods = typeService.find55(a, 5,title, price1, price2, if_freeshiiping, return_goods);
+		session.setAttribute("goods",goods);
+		
+		//session.setAttribute("goods", good);
+		session.setAttribute("goods_page",Integer.valueOf(page));
+		return "redirect:../market_goods.jsp";
+	}
+	@RequestMapping("/delete1")
+	@ResponseBody
+	public String h(@RequestParam("id") String id,HttpSession session) {
+		typeService.deleteGood(Integer.valueOf(id));
+		
+		List<Goods> goods = (List<Goods>) session.getAttribute("goods");
+		for(int i = 0; i < goods.size(); i++) {
+			if(goods.get(i).getGoodsId() == Integer.valueOf(id)) {
+				goods.remove(i);
+				break;
+			}
+		}
+		return "ok";
+	}
+	 @RequestMapping("/insert")
+	 @ResponseBody
+	    public String f(HttpServletRequest request,@RequestParam("content") String content,@RequestParam("time")String time,
+	    		@RequestParam("user_id")String user_id,@RequestParam("goods_id")String goods_id,
+	    		@RequestParam("r1")String r1,@RequestParam("r2")String r2,@RequestParam("r3")String r3,
+	    		@RequestParam(value="selectfile")List<MultipartFile> files,HttpSession session) {
+	    	String rooString=request.getServletContext().getRealPath("/");
+	    	String img="";
+	    	try {
+				for(int i = 0;i<files.size();i++) {
+					FileCopyUtils.copy(files.get(i).getBytes(), new File(rooString+"upload",files.get(i).getOriginalFilename()));
+					img= img+files.get(i).getOriginalFilename()+",";
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+	    	System.out.println(content+time+img+r1+r2+r3+user_id+goods_id);
+	    	typeService.insertComment(content,time,img,r1,r2,r3,Integer.valueOf(user_id),Integer.valueOf(goods_id));
+	    	Integer page = (Integer) session.getAttribute("comments_page");
+	    	List<MarketComments> comments=typeService.find22(Integer.valueOf(page)*8,8);
+	    	
+	    	session.setAttribute("comments", comments);
+	    	
+	    	
+	    	return "<script>parent.location.reload(); window.close();</script>";
+	    }
+	 
+	 @RequestMapping("/insert1")
+	 @ResponseBody
+	 public String qq(HttpServletRequest request,@RequestParam("goods_id")String goods_id,@RequestParam("title")String title
+			 ,@RequestParam("little_content") String little_content,@RequestParam("price")String price,@RequestParam(value="selectfile")List<MultipartFile> files,
+			 @RequestParam("type_id")String type_id,@RequestParam("goods_type") String goods_type,@RequestParam("return_goods")String return_goods,
+			 @RequestParam("if_freeshiiping") String if_freeshiiping,HttpSession session) {
+		 String rooString=request.getServletContext().getRealPath("/");
+	    	String img="";
+	    	String a="";
+	    	a = files.get(0).getOriginalFilename();
+	    	try {
+				for(int i = 0;i<files.size();i++) {
+					FileCopyUtils.copy(files.get(i).getBytes(), new File(rooString+"upload",files.get(i).getOriginalFilename()));
+					img= img+files.get(i).getOriginalFilename()+",";
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		 typeService.insert11(Integer.valueOf(goods_id)+1, title, little_content, 0,Double.parseDouble(price), a, Integer.valueOf(type_id));
+		 typeService.insert22(img, goods_type+";"+price, return_goods, if_freeshiiping, "4", Integer.valueOf(goods_id)+1);
+		Integer page = (Integer) session.getAttribute("goods_page");
+		 List<Goods> good=typeService.find55(Integer.valueOf(page)*5,5,title, price1, price2, if_freeshiiping, return_goods);
+		 session.setAttribute("goods", good);
+		 session.setAttribute("goods_id", Integer.valueOf(goods_id)+1);
+		 List<Goods> goods = typeService.find3();
+		 session.setAttribute("goods_all", goods);
+		 return "<script>parent.location.reload(); window.close();</script>";
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 //删除用户
+	 @RequestMapping(value = "deleteuser")
+		public String deleteuser(HttpServletRequest request) {
+			String aaString=request.getParameter("test_str");
+			String[] aString=aaString.substring(1,aaString.length()-1).split(",");
+			System.out.println(aaString);
+			
+			 int[] ints = new int[aString.length];
+
+			    for(int i=0;i<aString.length;i++){
+
+			        ints[i] = Integer.parseInt(aString[i]);
+
+			    }
+			
+			for(int i=0;i<ints.length;i++) {
+				
+				int aaa=adminService.deleteuser(ints[i]);
+				//System.out.println(aString[i]);
+			}
+			return "redirect:../member-list.jsp";
+		}
+	 
+	 //分页查询用户
+	 @RequestMapping("userpage")
+		public String userpaging(@RequestParam("userpaging") String page,HttpSession session) {
+			System.out.print(page);
+			int a = Integer.valueOf(page)*5;
+			int b = a+5;
+			List<User> user=adminService.findUPage(a, b);
+			
+			session.setAttribute("yonghu", user);
+			session.setAttribute("user_page",Integer.valueOf(page));
+			return "redirect:../member-list.jsp";
+		}
+	 
+	 //添加用户
+	 @RequestMapping("/insertuser")
+	 @ResponseBody
+	 public String insertuser(HttpServletRequest request,@RequestParam("userid")String userid,@RequestParam("username")String username
+			 ,@RequestParam("password") String password,@RequestParam("sex")String sex,@RequestParam(value="photo")List<MultipartFile> files,
+			 @RequestParam("profession")String profession,@RequestParam("home") String home,@RequestParam("birthday")String birthday,
+			 @RequestParam("label") String label,HttpSession session) {
+		 String rooString=request.getServletContext().getRealPath("/");
+	    	String img="";
+	    	String a="";
+	    	a = files.get(0).getOriginalFilename();
+	    	try {
+				for(int i = 0;i<files.size();i++) {
+					FileCopyUtils.copy(files.get(i).getBytes(), new File(rooString+"/pic",files.get(i).getOriginalFilename()));
+					img= img+files.get(i).getOriginalFilename();
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+	    	System.out.println("aaa"+rooString);
+	    	int tid=Integer.parseInt(userid);
+	    	adminService.insertuser(tid, username, password, sex, img, profession, home, birthday, label);
+	    	
+		 
+		 return "<script>parent.location.reload(); window.close();</script>";
+	 }
+	 
+	 
+	 
+}

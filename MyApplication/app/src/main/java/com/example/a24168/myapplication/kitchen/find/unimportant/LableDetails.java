@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.a24168.myapplication.R;
 import com.example.a24168.myapplication.kitchen.find.adapter.GridViewAdapter;
@@ -35,7 +36,8 @@ public class LableDetails extends AppCompatActivity {
     private Handler handler = new Handler();
     private BannerGrid gridView;
     private ImageView fanhui;
-
+    private TextView labletitle;
+    private TextView describe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,8 @@ public class LableDetails extends AppCompatActivity {
         setContentView(R.layout.find_lable);
 
         fanhui = findViewById(R.id.fanhui);
+        labletitle = findViewById(R.id.labletitle);
+        describe = findViewById(R.id.describe);
 
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,21 +57,21 @@ public class LableDetails extends AppCompatActivity {
 
         gridView = findViewById(R.id.lablegridView);
         String result = getIntent().getStringExtra("url");
+        String title = getIntent().getStringExtra("title");
+        String des = getIntent().getStringExtra("des");
+        labletitle.setText(title);
+        describe.setText(des);
         messageView(result);
-
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Bundle bundle = new Bundle();
                 FindFriend findFriend = findFriends.get(position);
                 bundle.putSerializable("findFriend", findFriend);
-
                 Intent intent = new Intent(getApplicationContext(), ShowDetails.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
-
             }
         });
     }
@@ -90,10 +94,8 @@ public class LableDetails extends AppCompatActivity {
                     findFriends = gson.fromJson(info, TypeToken.getParameterized(List.class, FindFriend.class).getType());
 
                     for(int i = 0; i < findFriends.size();i++) {
-
-                        String myUrl = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getPhoto();
-
-                        String myUrl1 = "http://10.0.2.2:8080/shixun3/pic/"+findFriends.get(i).getUser().getPhoto();
+                        String myUrl = getResources().getString(R.string.ip1)+"/pic/"+findFriends.get(i).getPhoto();
+                        String myUrl1 = getResources().getString(R.string.ip1)+"/pic/"+findFriends.get(i).getUser().getPhoto();
                         Show show = new Show(myUrl,findFriends.get(i).getTheme(),myUrl1,findFriends.get(i).getUser().getUsername(),findFriends.get(i).getLikenum(),findFriends.get(i).getId());
                         gridList.add(show);
 

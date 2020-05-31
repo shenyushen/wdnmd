@@ -347,7 +347,7 @@ public class Create extends AppCompatActivity {
                     String neirong = editneirong.getText().toString().trim();
                     int user = Integer.parseInt(user_id);
                     Date d = new Date();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHHmmss");
                     String date = sdf.format(d);
                     String date1 = sdf1.format(d);
@@ -367,7 +367,7 @@ public class Create extends AppCompatActivity {
 
                     RequestBody requestBody = requestBodyBuilder.build();
                     Request request = new Request.Builder()
-                            .url( "http://10.0.2.2:8080/shixun3/find/pic")
+                            .url(getResources().getString(R.string.ip1)+"/find/pic")
                             .post(requestBody)
                             .build();
                     Response response = client.newCall(request).execute();

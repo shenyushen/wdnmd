@@ -1,0 +1,160 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/s_orange"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/fanhuigouwuche"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/s_orange"
+            android:drawableLeft="@drawable/fanhui1"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dip"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="确认订单"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:textSize="22dp" />
+
+
+        <TextView
+            android:id="@+id/bt_header_right2"
+            android:layout_width="50dip"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:gravity="center"
+            android:text="完成"
+            android:visibility="gone"
+            android:paddingTop="20dip"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/diqux"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/black"
+        android:text="地区选择                              ------"
+        android:textSize="30dp">
+
+    </TextView>
+<TextView
+    android:layout_width="120dp"
+    android:layout_height="50dp"
+    android:text="详细地址:"
+    android:layout_marginTop="150dp"
+    android:textSize="25dp"></TextView>
+    <EditText
+        android:background="@drawable/shape_corner"
+        android:id="@+id/diqux2"
+        android:layout_marginLeft="110dp"
+        android:layout_width="359dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="150dp"
+        android:text=" ">
+
+    </EditText>
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginTop="300dp"
+    android:src="@drawable/baoguo"></ImageView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="570dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:text="支付方式:">
+
+    </TextView>
+
+
+    <RadioGroup
+        android:layout_marginTop="600dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/rg_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/rb_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝"
+            android:textSize="16sp"
+            android:textColor="#c50f57"
+            android:checked="true"
+            />
+        <RadioButton
+            android:id="@+id/rb_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信"
+            android:layout_below="@id/rb_1"
+            android:textSize="16sp"
+            android:textColor="#c50f57"
+            />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/shifukuan"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="实付款:0.00"
+            android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/fukuan"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/s_orange"
+            android:gravity="center"
+            android:text="付款"
+            android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/tv_del"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/s_orange"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="删除"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

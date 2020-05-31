@@ -10,6 +10,9 @@ public class MarketComments {
 	private String r3;
 	private User user;
 	private int goodsId;
+	
+	
+
 	public int getId() {
 		return id;
 	}

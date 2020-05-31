@@ -51,7 +51,7 @@
                         </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','./member-add.html',600,400)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加用户','./member_add.jsp',800,600)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body layui-table-body layui-table-main">
                             <table class="layui-table layui-form">
@@ -62,25 +62,33 @@
                                     </th>
                                     <th>ID</th>
                                     <th>用户名</th>
+                                    <th>密码</th>
                                     <th>性别</th>
                                     <th>职业</th>
                                     <th>地址</th>
                                     <th>图片</th>
+                                    <th>生日</th>
+                                    <th>个性签名</th>
                                     <th>操作</th></tr>
                                 </thead>
                                 <tbody>
                                 	<c:forEach items="${yonghu}" var="step">
-										<tr>
+									<tr>
                                     <td>
-                                      <input type="checkbox" name="id" value="1"   lay-skin="primary"> 
+                                      <input type="checkbox" name="id" value="${ step.id}"   lay-skin="primary"> 
                                     </td>
                                     <td>${step.id }</td>
                                     <td>${step.username }</td>
+                                    <td>${step.password }</td>
                                     <td>${step.sex }</td>
                                     <td>${step.profession }</td>
                                     <td>${step.home }</td>
+                                    
                                     <td class="td-status">
-                                      <img src="http://localhost:8080/shixun3/pic/${step.photo }" width="50" height="50" /></td>
+                                      <img src="http://localhost:8080/shixun3/pic/${step.photo }" width="50" height="50" />
+                                    </td>
+                                    <td>${step.birthday }</td>
+                                    <td>${step.label }</td> 
                                     <td class="td-manage">
                                       <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                                         <i class="layui-icon">&#xe601;</i>
@@ -101,50 +109,27 @@
 	
 								</c:forEach>
                                 	
-  							<!-- 
-                                  <tr>
-                                    <td>
-                                     <input type="checkbox" name="id" value="6" lay-skin="primary">
-                                    </td>
-                                    <td>1</td>
-                                    <td>小明</td>
-                                    <td>男</td>
-                                    <td>13000000000</td>
-                                    <td>北京市 海淀区</td>
-                                    <td class="td-status">
-                                      <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-                                    <td class="td-manage">
-                                      <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                                        <i class="layui-icon">&#xe601;</i>
-                                      </a>
-                                      <a title="编辑"  onclick="xadmin.open('编辑','member-edit.html',600,400)" href="javascript:;">
-                                        <i class="layui-icon">&#xe642;</i>
-                                      </a>
-                                      <a onclick="xadmin.open('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">
-                                        <i class="layui-icon">&#xe631;</i>
-                                      </a>
-                                      <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                        <i class="layui-icon">&#xe640;</i>
-                                      </a>
-                                    </td>
-                                  </tr> -->
                                   
                                   
                                 </tbody>
                             </table>
                         </div>
+                        
+                        
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                  <a class="prev" href="">&lt;&lt;</a>
-                                  <a class="num" href="">1</a>
-                                  <span class="current">2</span>
-                                  <a class="num" href="">3</a>
-                                  <a class="num" href="">489</a>
-                                  <a class="next" href="">&gt;&gt;</a>
+                                    <a class="prev"  href="./admin/userpage?userpaging=${(user_page-1)<0?0:user_page-1 }">&lt;&lt;</a>
+
+                                    <a class="next" href="./admin/userpage?userpaging=${user_page+1 }">&gt;&gt;</a>
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                         
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -216,20 +201,45 @@
 
 
       function delAll (argument) {
-        var ids = [];
+        var ids = "";
 
         // 获取选中的id 
         $('tbody input').each(function(index, el) {
             if($(this).prop('checked')){
-               ids.push($(this).val())
+               //ids.push($(this).val())
+                ids+=($(this).val())+","          
             }
+            
         });
-  
+        var test_str = JSON.stringify(ids );
+        
+        console.log(test_str);
+        
+        
+        
         layer.confirm('确认要删除吗？'+ids.toString(),function(index){
             //捉到所有被选中的，发异步进行删除
             layer.msg('删除成功', {icon: 1});
             $(".layui-form-checked").not('.header').parents('tr').remove();
+            
+            //window.loaction.href='/deleteuser?test_str='+test_str;
         });
+        
+        var xmlhttp;
+    	if (window.XMLHttpRequest)
+    	{
+    		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    		xmlhttp=new XMLHttpRequest();
+    	}
+    	else
+    	{
+    		// IE6, IE5 浏览器执行代码
+    		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    	}
+    	xmlhttp.open("GET","admin/deleteuser?test_str="+test_str,true);
+    	xmlhttp.send();
+
+       
       }
     </script>
 </html>
