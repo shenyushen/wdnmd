@@ -38,4 +38,8 @@ public class AdminService {
 	public int insertuser(int userid,String username,String password,String sex,String photo,String profession,String home,String birthday,String label) {
 		return adminMapper.insertuser(userid, username, password, sex, photo, profession, home, birthday, label);
 	}
+	
+	public List<User>selectuser(int userid){
+		return adminMapper.selectuser(userid);
+	}
 }

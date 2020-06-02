@@ -38,6 +38,8 @@ import com.market.type.service.TypeService;
 @Controller
 @RequestMapping("admin")
 public class AdminController {
+	
+	List<User> users=new ArrayList<User>();
 	int thispage=1;
 	int maxpage=0;
 	int maxsize=0;
@@ -365,7 +367,7 @@ public class AdminController {
 			System.out.println("字符穿为空");
 		}
 	}
-<<<<<<< HEAD
+
 	
 //	筛选
 	@RequestMapping("selectmenu")
@@ -440,9 +442,8 @@ public class AdminController {
 		session.setAttribute("pagelist", pagelist);
 		return "redirect:../tuijian.jsp";
 	}
-}
-=======
->>>>>>> d45c08afd69154ea6bc431dd5f37f635ad18a778
+
+
 
 	
 	
@@ -698,6 +699,24 @@ public class AdminController {
 		 return "<script>parent.location.reload(); window.close();</script>";
 	 }
 	 
+	
+	 //搜索用户
+	 @RequestMapping("selectuser")
+	 public String selectuser(@RequestParam("userid")String userid,HttpSession session,HttpServletRequest httpServletRequest ) {
+		 int usersid=Integer.parseInt(userid);
+		 users=adminService.selectuser(usersid);
+		 session.setAttribute("yonghu", users);
+		 
+		 return "redirect:../member-list.jsp";
+	 }
 	 
-	 
+	 //重置用户列表
+	 @RequestMapping("resetuser")
+	 public String resetuser(HttpSession session) {
+		 List<User> user = adminService.find1();
+		 session.setAttribute("yonghu", user);
+		 
+		 return "redirect:../member-list.jsp";
+	 }
+
 }

@@ -34,18 +34,23 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
-                                <div class="layui-inline layui-show-xs-block">
+                            <form class="layui-form layui-col-space5" action="admin/selectuser">
+                                <!-- <div class="layui-inline layui-show-xs-block">
                                     <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
+                                </div> -->
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" name="userid" id="userid" placeholder="请输入用户ID" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                                    <button class="layui-btn"  type="submit" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
                                 </div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                                <div class="layui-inline layui-show-xs-block" >
+                                    <button class="layui-btn"  type="reset" lay-submit="" lay-filter="sreach" >
+                                    	<a href="admin/resetuser" style="color:white">重置</a>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -69,7 +74,7 @@
                                     <th>图片</th>
                                     <th>生日</th>
                                     <th>个性签名</th>
-                                    <th>操作</th></tr>
+                                    <!-- <th>操作</th></tr> -->
                                 </thead>
                                 <tbody>
                                 	<c:forEach items="${yonghu}" var="step">
@@ -89,7 +94,7 @@
                                     </td>
                                     <td>${step.birthday }</td>
                                     <td>${step.label }</td> 
-                                    <td class="td-manage">
+                                    <!-- <td class="td-manage">
                                       <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                                         <i class="layui-icon">&#xe601;</i>
                                       </a>
@@ -102,7 +107,7 @@
                                       <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                         <i class="layui-icon">&#xe640;</i>
                                       </a>
-                                    </td>
+                                    </td> -->
                                   </tr>
 	
 	

@@ -15,4 +15,6 @@ public interface AdminMapper {
 	public List<User> findUserPaging(int a,int b);
 	
 	public int insertuser(int userid,String username,String password,String sex,String photo,String profession,String home,String birthday,String label);
+	
+	public List<User> selectuser(int userid);
 }	
