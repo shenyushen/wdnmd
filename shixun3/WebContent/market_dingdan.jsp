@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html>
 <html class="x-admin-sm">
     
@@ -38,9 +41,9 @@
                         <div class="layui-card-body ">
                             <div class="layui-collapse" lay-filter="test">
                                 <div class="layui-colla-item">
-                                <h2 class="layui-colla-title">条件筛选<i class="layui-icon layui-colla-icon"></i></h2>
+                              
                                 <div class="layui-colla-content">
-                                  <form class="layui-form" action="">
+                                  <form class="layui-form" action="./admin/search_orders">
                                       <div class="layui-form-item">
                                         <div class="layui-inline">
                                           <label class="layui-form-label">范围</label>
@@ -182,30 +185,51 @@
                         </div>
                         <div class="layui-card-header">
 
-                            <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                                <i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','./order-add.html',800,600)">
+                            
+                            <button class="layui-btn" onclick="xadmin.open('添加订单','./order-add.jsp',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
-                        <div class="layui-card-body ">
+                       <div class="layui-card-body ">
                             <table class="layui-table layui-form">
                                 <thead>
                                     <tr>
                                         <th>
                                             <input type="checkbox" name="" lay-skin="primary"></th>
                                         <th>订单编号</th>
-                                        <th>收货人</th>
-                                        <th>总金额</th>
-                                        <th>应付金额</th>
-                                        <th>订单状态</th>
-                                        <th>支付状态</th>
-                                        <th>发货状态</th>
-                                        <th>支付方式</th>
-                                        <th>配送方式</th>
-                                        <th>下单时间</th>
-                                        <th>操作</th></tr>
+                                        <th>用户ID</th>
+                                        <th>详细地址</th>
+                                    
+                                        <th>支付价格</th>
+                                        <th>备注信息</th>
+                                       
+                                        <th>操作</th>
+                                        </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                	<c:forEach items="${order}" var="step">
+                                		<tr>
+                                        <td>
+                                            <input type="checkbox" name="" lay-skin="primary"></td>
+                                        <td>${step.id }</td>
+                                        <td>${step.user_id }</td>
+                                        <td>${step.address } </td>
+                                        <td>${step.price }</td>
+                                        <td>${step.context }</td>
+                                        
+                                        <!-- <td>其他方式</td>
+                                        <td>申通物流</td>
+                                        <td>2017-08-17 18:22</td> -->
+                                        <td class="td-manage">
+                                            
+                                            <a title="删除" onclick="member_del(this,'${step.id}')"  href="javascript:;">
+                                                <i class="layui-icon">&#xe640;</i></a>
+                                        </td>
+                                    </tr>
+                                	
+                                	</c:forEach>
+                                
+            
+                                   
+                                  <!--   <tr>
                                         <td>
                                             <input type="checkbox" name="" lay-skin="primary"></td>
                                         <td>2017009171822298053</td>
@@ -224,59 +248,20 @@
                                             <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="" lay-skin="primary"></td>
-                                        <td>2017009171822298053</td>
-                                        <td>老王:18925139194</td>
-                                        <td>7829.10</td>
-                                        <td>7854.10</td>
-                                        <td>待确认</td>
-                                        <td>未支付</td>
-                                        <td>未发货</td>
-                                        <td>其他方式</td>
-                                        <td>申通物流</td>
-                                        <td>2017-08-17 18:22</td>
-                                        <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
-                                                <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                                <i class="layui-icon">&#xe640;</i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="" lay-skin="primary"></td>
-                                        <td>2017009171822298053</td>
-                                        <td>老王:18925139194</td>
-                                        <td>7829.10</td>
-                                        <td>7854.10</td>
-                                        <td>待确认</td>
-                                        <td>未支付</td>
-                                        <td>未发货</td>
-                                        <td>其他方式</td>
-                                        <td>申通物流</td>
-                                        <td>2017-08-17 18:22</td>
-                                        <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
-                                                <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                                <i class="layui-icon">&#xe640;</i></a>
-                                        </td>
-                                    </tr>
+                                    </tr> -->
+                                    
                                 </tbody>
                             </table>
                         </div>
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                    <a class="prev" href="">&lt;&lt;</a>
-                                    <a class="num" href="">1</a>
+                                    <a class="prev"  href="./admin/search_orders?order=${(order_page-1)<0?0:order_page-1 }">&lt;&lt;</a>
+                                    <!-- <a class="num" href="">1</a>
                                     <span class="current">2</span>
                                     <a class="num" href="">3</a>
-                                    <a class="num" href="">489</a>
-                                    <a class="next" href="">&gt;&gt;</a></div>
+                                    <a class="num" href="">489</a> -->
+                                    <a class="next" href="./admin/search_orders?order=${order_page+1 }">&gt;&gt;</a></div>
                             </div>
                         </div>
                     </div>
@@ -332,8 +317,7 @@
 
         /*用户-删除*/
         function member_del(obj, id) {
-            layer.confirm('确认要删除吗？',
-            function(index) {
+        	$.get("./admin/deleteorder", {"id":id}, function(data) {
                 //发异步删除数据
                 $(obj).parents("tr").remove();
                 layer.msg('已删除!', {

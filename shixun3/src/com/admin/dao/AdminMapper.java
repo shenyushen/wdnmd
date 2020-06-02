@@ -17,4 +17,6 @@ public interface AdminMapper {
 	public int insertuser(int userid,String username,String password,String sex,String photo,String profession,String home,String birthday,String label);
 	
 	public List<User> selectuser(int userid);
+	
+	
 }	

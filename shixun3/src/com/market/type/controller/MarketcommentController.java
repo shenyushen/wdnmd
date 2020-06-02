@@ -52,9 +52,9 @@ public class MarketcommentController {
         return 0;
     }
     @RequestMapping("/12345addorder")
-    public int add(@RequestParam("user_id") int user_id ,@RequestParam("address") String address,@RequestParam("price") String price,@RequestParam("context") String context){
+    public String add(@RequestParam("user_id") int user_id ,@RequestParam("address") String address,@RequestParam("price") String price,@RequestParam("context") String context){
         MarketcommentService.addorder(Integer.valueOf(user_id),address,price,context);
-        return 0;
+        return "添加成功";
     }
     
     

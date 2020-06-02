@@ -113,7 +113,7 @@
                                     <cite>评论管理</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('订单管理','market_dingdan.html')">
+                                <a onclick="xadmin.add_tab('订单管理','market_dingdan.jsp')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>订单管理</cite></a>
                             </li>

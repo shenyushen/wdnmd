@@ -29,9 +29,11 @@ import com.kitchen.recommend.service.menuservices;
 import com.entity.Goods;
 import com.entity.Goods_x;
 import com.entity.MarketComments;
+import com.entity.Market_order;
 import com.entity.Step;
 import com.entity.User;
 import com.entity.label;
+import com.market.type.service.MarketcommentService;
 import com.market.type.service.TypeService;
 
 
@@ -58,6 +60,8 @@ public class AdminController {
 	private menuservices menuservices;
 	@Resource
 	TypeService typeService;
+	@Resource
+	MarketcommentService marketcommentService;
 	@RequestMapping("login")
 	public String login(@RequestParam("username")String username,@RequestParam("password") String password,HttpSession session) {
 		
@@ -629,10 +633,26 @@ public class AdminController {
 		 return "<script>parent.location.reload(); window.close();</script>";
 	 }
 	 
+	 //订单获取
+	 @RequestMapping("/search_orders")
+	 public String orders(@RequestParam("order") String page,HttpSession session) {
+			System.out.print(page);
+			int a = Integer.valueOf(page)*5;
+			int b = a+5;
+			List<Market_order> order=marketcommentService.findOrder(a, b);
+			
+			session.setAttribute("order", order);
+			session.setAttribute("order_page",Integer.valueOf(page));
+			return "redirect:../market_dingdan.jsp";
+		}
 	 
-	 
-	 
-	 
+	 //订单删除
+	 @RequestMapping("/deleteorder")
+		@ResponseBody
+		public String d(@RequestParam("id") String id,HttpSession session) {
+		 	marketcommentService.deleteorder(Integer.valueOf(id));
+			return "ok";
+		}
 	 
 	 
 	 //删除用户

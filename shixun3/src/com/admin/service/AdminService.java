@@ -42,4 +42,7 @@ public class AdminService {
 	public List<User>selectuser(int userid){
 		return adminMapper.selectuser(userid);
 	}
+	
+	
+	
 }
