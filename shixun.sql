@@ -629,10 +629,12 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg', null, null, null, null, null);
-INSERT INTO `user` VALUES ('2', 'ss', '2', '1', 'abc.jpeg', null, null, null, null, null);
-INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-77-2020-05-16-03-27-47.jpg', 'nan', 'it', '2017', 'hebei', 'sss');
-INSERT INTO `user` VALUES ('123', '123', '123', '1', 'abc.jpeg', null, null, null, null, null);
+INSERT INTO `user` VALUES ('1', '一只肥罗', '123', '1', 'yizhifeiluo.jpg', '男', '学生', '2017', '北京', '热爱美食');
+INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg', '女', '学生', '2018', '北京', '热爱美食');
+INSERT INTO `user` VALUES ('11', '张松', '11', '1', 'tiny-77-2020-05-16-03-27-47.jpg', '男', 'it', '2017', '北京', '热爱美食');
+INSERT INTO `user` VALUES ('33', '张松', '33', '1', 'timg.jpg', '男', '学生', '2017', '河北', '热爱旅游');
+INSERT INTO `user` VALUES ('123', '张松', '123', '1', 'abc.jpeg', '男', '学生', '2020', '河北', '热爱美食');
+INSERT INTO `user` VALUES ('1234', '张松', '1234', '1', 'add.png', '女', '教师', '2019', '河北', '热爱旅游');
 
 -- ----------------------------
 -- Table structure for `user_menu`
