@@ -119,7 +119,7 @@
                                 <i class="layui-icon"></i>批量删除</button>
                                 
                                 
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','./order-add.jsp',800,600)">
+                            <button class="layui-btn" onclick="xadmin.open('添加用户','./order-add3.jsp',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
@@ -177,7 +177,7 @@
 										<a href="findweb/findbypage?page=${i}" name="ahref"  id="${i}">${i}</a>
 									</c:forEach>
 									
-                                    <a class="next" href="">&gt;&gt;</a>
+                                    
                                 </div>
                             </div>
                         </div>
