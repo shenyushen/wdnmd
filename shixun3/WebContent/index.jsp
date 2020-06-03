@@ -126,9 +126,14 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('三级地区联动','city.html')">
+                                <a onclick="xadmin.add_tab('视频管理','viewCourse')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>三级地区联动</cite></a>
+                                    <cite>管理视频</cite></a>
+                            </li>
+                            <li>
+                                <a onclick="xadmin.add_tab('评论管理','viewcomment')">
+                                    <i class="iconfont">&#xe6a7;</i>
+                                    <cite>管理评论</cite></a>
                             </li>
                         </ul>
                     </li>
