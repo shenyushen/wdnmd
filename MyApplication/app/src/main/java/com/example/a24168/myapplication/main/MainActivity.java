@@ -62,6 +62,7 @@ public  class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ur=getResources().getString(R.string.ip1)+"/pic/";
         findeditText=findViewById(R.id.findfood);
         linearLayout = findViewById(R.id.ll);
         imageView1 = findViewById(R.id.k);

@@ -38,7 +38,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:padding="7dp"
-                android:src="@mipmap/ic_close_black" />
+                android:src="@drawable/guan" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:padding="5dp"
-                android:src="@mipmap/ic_send_comment" />
+                android:src="@drawable/ic_send_comment" />
 
             <View
                 android:layout_width="match_parent"
