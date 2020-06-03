@@ -67,9 +67,11 @@ public class addmenu extends AppCompatActivity implements View.OnClickListener  
     private List<String> menuzlistphoto=new ArrayList<String>();
     private String menuyulanphoto="";
     private String menubaiotistring="";
+    private String menumiaoshustring="";
     static ImageView addmenuimage;
     private ImageView menu_yulan;
     private EditText menubaioti;
+    private EditText menumiaoshu;
     private static int RESULT_LOAD_IMAGE = 1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class addmenu extends AppCompatActivity implements View.OnClickListener  
         addHotelNameView = (LinearLayout) findViewById(R.id.ll_addView);
         menu_yulan=findViewById(R.id.menuz_yulan);
         menubaioti=findViewById(R.id.menuz_biaoti);
+        menumiaoshu=findViewById(R.id.menuz_miaoshu);
         menutype=findViewById(R.id.menutype);
         menukouwei=findViewById(R.id.menukouwei);
         menu_yulan.setOnClickListener(new View.OnClickListener() {
@@ -301,6 +304,14 @@ public class addmenu extends AppCompatActivity implements View.OnClickListener  
         if(!menubaiotistring.equals("") && Tag==1){
             urlstring+="&biaoti=";
             urlstring+=menubaiotistring;
+        }
+        else{
+            Tag=0;
+        }
+        menumiaoshustring=menumiaoshu.getText().toString();
+        if(!menumiaoshustring.equals("") && Tag==1){
+            urlstring+="&miaoshu=";
+            urlstring+=menumiaoshustring;
         }
         else{
             Tag=0;

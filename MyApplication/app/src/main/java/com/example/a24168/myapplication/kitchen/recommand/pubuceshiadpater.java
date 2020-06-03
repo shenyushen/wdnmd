@@ -117,7 +117,11 @@ public class pubuceshiadpater extends RecyclerView.Adapter<pubuceshiadpater.View
             }).start();
 
         menu menu = menus.get(position);
-        holder.menu_nametextview.setText(menu.getMenu_name());
+        String text=menu.getMenu_name()+","+menu.getText();
+        if(text.length()>20){
+            text=text.substring(0,20)+"...";
+        }
+        holder.menu_nametextview.setText(text);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

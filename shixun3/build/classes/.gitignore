@@ -1,1 +1,5 @@
+/applicationContext.xml
 /com/
+/db.properties
+/mybatis.xml
+/myjs.class

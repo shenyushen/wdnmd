@@ -102,7 +102,7 @@ public class AdminController {
 	}
 //	添加菜单功能
 	@RequestMapping(value="menuadd",method=RequestMethod.POST)
-	public String menuadd(@RequestParam("menu_name")String menu_name,@RequestParam("menu_photo") MultipartFile photo,@RequestParam("kouwei") String kouwei,@RequestParam("type")String type,HttpSession session,HttpServletRequest request) {
+	public String menuadd(@RequestParam("menu_name")String menu_name,@RequestParam("text")String text,@RequestParam("menu_photo") MultipartFile photo,@RequestParam("kouwei") String kouwei,@RequestParam("type")String type,HttpSession session,HttpServletRequest request) {
 		System.out.println(menu_name+" "+photo.getName()+" "+type+" "+kouwei);
 		String [] c=kouwei.split(",");
 		List<label> labels=new ArrayList<label>();
@@ -131,6 +131,7 @@ public class AdminController {
 		menu.setDate(new Date().toLocaleString());
 		menu.setMenu_photo(photo.getOriginalFilename());
 		menu.setMenu_name(menu_name);
+		menu.setText(text);
 		if(type.equals("mi")) {
 			type="米";
 		}
@@ -154,13 +155,22 @@ public class AdminController {
 //	修改menu
 	@RequestMapping(value="menuedit",method=RequestMethod.GET)
 	public String menuedit(@RequestParam("count")int count,HttpSession session) {
-		System.out.println(menus.get(count).getMenu_name());
 		session.setAttribute("menu", menus.get(count));
-		return "redirect:../menu_edit.html";
+		List<String>  labelstring=new ArrayList<String>();
+		List<String>  checkbox=new ArrayList<String>();
+		String type=menus.get(count).getType();
+		for(label a: menus.get(count).getLabels()) {
+			labelstring.add(a.getLabel_id()+"");
+		}
+		checkbox.add("酸");checkbox.add("甜");checkbox.add("苦");checkbox.add("辣");checkbox.add("咸");
+		session.setAttribute("duoxuan", labelstring);
+		session.setAttribute("type", type);
+		session.setAttribute("checkbox", checkbox);
+		return "redirect:../menu_edit.jsp";
 	}
 	
 	@RequestMapping(value="menuedit",method=RequestMethod.POST)
-	public String menuedit(@RequestParam("menu_name")String menu_name,@RequestParam("menu_photo") MultipartFile photo,@RequestParam("kouwei") String kouwei,@RequestParam("type")String type,HttpSession session,HttpServletRequest request) {
+	public String menuedit(@RequestParam("menu_name")String menu_name,@RequestParam("text")String text,@RequestParam("menu_photo") MultipartFile photo,@RequestParam("kouwei") String kouwei,@RequestParam("type")String type,HttpSession session,HttpServletRequest request) {
 		menu menu=(com.entity.menu) session.getAttribute("menu");
 //		上传文件
 		String rootPath=request.getServletContext().getRealPath("/");
@@ -181,6 +191,10 @@ public class AdminController {
 		menu.setDate(new Date().toLocaleString());
 		if(!menu_name.equals("")) {
 			menu.setMenu_name(menu_name);
+		}
+		if(!text.equals("")) {
+			System.out.println("text"+text);
+			menu.setText(text);
 		}
 		if(type.equals("mi")) {
 			type="米";

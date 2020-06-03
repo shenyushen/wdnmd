@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2020-05-31 16:17:50
+Date: 2020-06-03 15:22:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -448,25 +448,26 @@ INSERT INTO `market_type` VALUES ('13', '调味品');
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
   `menu_id` int(100) NOT NULL AUTO_INCREMENT,
-  `author` int(100) DEFAULT NULL,
+  `text` varchar(100) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `menu_photo` varchar(255) DEFAULT NULL,
   `menu_name` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`menu_id`),
-  KEY `author` (`author`),
-  CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  KEY `author` (`text`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu` VALUES ('1', null, '2020-04-23', 'simuxue.jpg', '思慕雪', '菜');
-INSERT INTO `menu` VALUES ('2', null, '2020-04-21', 'xiaolongxia.jpg', '小龙虾', '菜');
-INSERT INTO `menu` VALUES ('4', null, '2020-04-27', 'tudousichaorou.jpg', '土豆丝炒肉', '菜');
-INSERT INTO `menu` VALUES ('5', null, '2020-06-17','labaicaiwuhuarou.jpg', '辣白菜五花肉', '菜');
-INSERT INTO `menu` VALUES ('6', null, '2020-05-27','kaishuibaicai.jpg', '开水白菜', '菜');
-INSERT INTO `menu` VALUES ('7', null, '2020-04-17','congyoubanmian.jpg', '葱油拌面', '面');
+INSERT INTO `menu` VALUES ('4', '土豆丝的正宗做法，学会这个三个技巧，土豆又脆有下饭', '2020-06-03', 'tudousichaorou.jpg', '土豆丝炒肉', '米');
+INSERT INTO `menu` VALUES ('5', '一定要用甜口的辣白菜，太酸的辣白菜炒出来不好吃', '2020-06-03', 'labaicaiwuhuarou.jpg', '辣白菜五花肉', '菜');
+INSERT INTO `menu` VALUES ('6', '开水白菜以北方的大白菜心来制作，配以用鸡，鸭，排骨熬煮，\r\n并用鸡肉蓉，猪肉蓉澄澈的高汤调味，最后浇汤时在汤里淋一\r\n些鸡油。成菜后，清鲜淡雅，香味浓醇，汤味浓厚，不油不腻，\r\n却清香爽口。', '2020-06-03', 'kaishuibaicai.jpg', '开水白菜', '菜');
+INSERT INTO `menu` VALUES ('7', '本菜谱是简易的葱油拌面，做得不是很讲究。', '2020-06-03', 'congyoubanmian.jpg', '葱油拌面', '菜');
+INSERT INTO `menu` VALUES ('13', '仅记录自己方便使用，侵权删除', '2020-06-03', 'xcf_recipe_1591166507773.jpg', '木耳炒腐竹', '菜');
+INSERT INTO `menu` VALUES ('14', '夏天不想做菜，那就来一道简单好吃又快手的凉拌豆皮吧、酸辣开胃，做法简单，喜欢的你一定要试试哦？', '2020-06-03', 'xcf_recipe_1591167750972.jpg', '巨好吃的凉拌豆皮❗️香辣过瘾连吃三天都不腻', '菜');
+INSERT INTO `menu` VALUES ('15', '时间：约20-25分钟 难度：零厨艺✌️ 份量：4人份', '2020-06-03', 'xcf_recipe_1591168098748.jpeg', '鲜味香菇芋头饭', '米');
+INSERT INTO `menu` VALUES ('16', '简单又爽口的热汤面 加入自己喜欢的青菜，十分钟就能搞定的早餐&午餐&晚餐', '2020-06-03', 'xcf_recipe_1591168309586.jpeg', '十分钟搞定的热汤面', '面');
 
 -- ----------------------------
 -- Table structure for `menu_comment`
@@ -502,21 +503,31 @@ CREATE TABLE `menu_label` (
   KEY `menu_id` (`menu_id`),
   CONSTRAINT `menu_label_ibfk_1` FOREIGN KEY (`label_id`) REFERENCES `label` (`label_id`),
   CONSTRAINT `menu_label_ibfk_2` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu_label
 -- ----------------------------
-INSERT INTO `menu_label` VALUES ('3', '4', '2');
-INSERT INTO `menu_label` VALUES ('4', '5', '2');
-INSERT INTO `menu_label` VALUES ('5', '2', '1');
-INSERT INTO `menu_label` VALUES ('6', '4', '4');
-INSERT INTO `menu_label` VALUES ('7', '5', '4');
-INSERT INTO `menu_label` VALUES ('8', '2', '5');
-INSERT INTO `menu_label` VALUES ('9', '5', '6');
-INSERT INTO `menu_label` VALUES ('10', '4', '7');
-INSERT INTO `menu_label` VALUES ('11', '5', '7');
 INSERT INTO `menu_label` VALUES ('14', '1', '9');
+INSERT INTO `menu_label` VALUES ('42', '4', '13');
+INSERT INTO `menu_label` VALUES ('43', '5', '13');
+INSERT INTO `menu_label` VALUES ('44', '1', '4');
+INSERT INTO `menu_label` VALUES ('45', '4', '4');
+INSERT INTO `menu_label` VALUES ('46', '5', '4');
+INSERT INTO `menu_label` VALUES ('47', '1', '5');
+INSERT INTO `menu_label` VALUES ('48', '4', '5');
+INSERT INTO `menu_label` VALUES ('49', '5', '5');
+INSERT INTO `menu_label` VALUES ('51', '5', '6');
+INSERT INTO `menu_label` VALUES ('54', '4', '7');
+INSERT INTO `menu_label` VALUES ('55', '5', '7');
+INSERT INTO `menu_label` VALUES ('56', '1', '14');
+INSERT INTO `menu_label` VALUES ('57', '4', '14');
+INSERT INTO `menu_label` VALUES ('58', '5', '14');
+INSERT INTO `menu_label` VALUES ('59', '4', '15');
+INSERT INTO `menu_label` VALUES ('60', '5', '15');
+INSERT INTO `menu_label` VALUES ('61', '1', '16');
+INSERT INTO `menu_label` VALUES ('62', '4', '16');
+INSERT INTO `menu_label` VALUES ('63', '5', '16');
 
 -- ----------------------------
 -- Table structure for `mv_comment`
@@ -569,24 +580,11 @@ CREATE TABLE `step` (
   PRIMARY KEY (`step_id`),
   KEY `menu_id` (`menu_id`),
   CONSTRAINT `step_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of step
 -- ----------------------------
-INSERT INTO `step` VALUES ('1', '1', '1', '备好材料：酸奶150克、香蕉1根、橙子1个、冻蓝莓50克', 'simuxue_01.jpg');
-INSERT INTO `step` VALUES ('2', '2', '1', '将香蕉、冻蓝莓和酸奶都放在料理机桶中', 'simuxue_02.jpg');
-INSERT INTO `step` VALUES ('3', '1', '2', '龙虾处理干净', 'xiaolongxia_01.jpg');
-INSERT INTO `step` VALUES ('4', '5', '2', '放料酒，生抽，五料粉，甜椒油', 'xiaolongxia_05.jpg');
-INSERT INTO `step` VALUES ('5', '3', '2', '温热煸姜末', 'xiaolongxia_02.jpg');
-INSERT INTO `step` VALUES ('6', '2', '2', '放入沥干水分的龙虾', 'xiaolongxia_03.jpg');
-INSERT INTO `step` VALUES ('7', '3', '1', '橙子榨汁，没有新鲜的橙子，用橙汁也是可以的，但不是那种含添加剂的，而是100%的鲜榨果汁。\r\n橙子榨汁，没有新鲜的橙子，用橙汁也是可以的，但不是那种含添加剂的，而是100%的鲜榨果汁。\r\n好像这是废话，你怎么可以保证买的是百分之百的呢，还是自己榨果汁吧。', 'simuxue_03.jpg');
-INSERT INTO `step` VALUES ('8', '4', '1', '然后将橙汁连同果肉都放到料理机桶中，插入搅拌棒，上下打搅几下，就得到了非常细腻的，半流动的液体。', 'simuxue_04.jpg');
-INSERT INTO `step` VALUES ('9', '5', '1', '这就是思慕雪。欧美等国家都非常的流行，他们把它叫做液体面包，或者是减肥健身餐。', 'simuxue_05.jpg');
-INSERT INTO `step` VALUES ('11', '4', '2', '煸炒', 'xiaolongxia_04.jpg');
-INSERT INTO `step` VALUES ('12', '6', '2', '加水', 'xiaolongxia_06.jpg');
-INSERT INTO `step` VALUES ('13', '7', '2', '放入冰糖', 'xiaolongxia_07.jpg');
-INSERT INTO `step` VALUES ('14', '8', '2', '汤沸后小火煮30分钟捞出即可', 'xiaolongxia_08.jpg');
 INSERT INTO `step` VALUES ('21', '1', '4', '土豆去皮切丝、青椒切丝、青葱切末、红椒切丝、猪肉切丁', 'tudousichaorou_01.jpg');
 INSERT INTO `step` VALUES ('22', '2', '4', '起锅将清水煮沸，放入土豆丝焯水30秒', 'tudousichaorou_02.jpg');
 INSERT INTO `step` VALUES ('23', '3', '4', '另起锅烧油，倒入食用油、加葱末、猪肉，炒至变色', 'tudousichaorou_03.jpg');
@@ -606,6 +604,23 @@ INSERT INTO `step` VALUES ('36', '2', '7', '取一个大点的碗，放入1茶�
 INSERT INTO `step` VALUES ('37', '3', '7', '放入1/2茶匙白糖，调成酱汁备用，锅里烧开水，放面条煮熟', 'congyoubanmian_03.jpg');
 INSERT INTO `step` VALUES ('38', '4', '7', '煮好的面条捞出放入碗中拌匀，锅里烧热油，爆香葱白和小米椒', 'congyoubanmian_04.jpg');
 INSERT INTO `step` VALUES ('39', '5', '7', '爆好的葱油淋在面上，撒上葱花即可', 'congyoubanmian_05.jpg');
+INSERT INTO `step` VALUES ('42', '1', '13', '备料，木耳温水泡发，腐竹凉水泡法，腹逐找个东西压着泡', 'xcf_recipe_1591166514106.jpg');
+INSERT INTO `step` VALUES ('43', '2', '13', '调料，半勺老抽，一勺生抽，一勺生蚝，少许白糖，盐，寂静，两勺玉米淀粉，导入半碗清水', 'xcf_recipe_1591166520664.jpg');
+INSERT INTO `step` VALUES ('44', '3', '13', '葱姜蒜下锅煸炒出香味，下入腐竹木耳，加两碗清水煮两分钟', 'xcf_recipe_1591166527591.jpg');
+INSERT INTO `step` VALUES ('45', '4', '13', '加入辣椒，翻炒后加入料汁，开火收汁后出锅即可', 'xcf_recipe_1591166532565.jpg');
+INSERT INTO `step` VALUES ('46', '1', '14', '豆皮切丝，大蒜拍碎，小米辣切碎，黄瓜切丝、香菜切段备用。 锅中水开放豆皮焯水1分钟、捞出过凉水！ 碗中➕蒜末、小米椒碎、浇上两勺热油，➕两勺生抽、两勺香醋，一勺蚝油，适量盐', 'xcf_recipe_1591167757355.jpg');
+INSERT INTO `step` VALUES ('47', '2', '14', '两勺辣椒油拌匀备用', 'xcf_recipe_1591167764324.jpg');
+INSERT INTO `step` VALUES ('48', '3', '14', '碗中放黄瓜丝和香菜段，再淋上调好的料汁，拌匀即可！', 'xcf_recipe_1591167768101.jpg');
+INSERT INTO `step` VALUES ('49', '4', '14', '简单爽口的凉拌豆皮就做好了', 'xcf_recipe_1591167771715.jpg');
+INSERT INTO `step` VALUES ('50', '1', '15', '炒锅中倒入油，放入泡发好的海米和干香菇，煸炒出香味。干货泡发后，本身的水分很多，所以要煸炒的透彻一些。泡发香菇的水留用，不要倒掉。 小贴士：干香菇和海米最好能提前一天泡发。', 'xcf_recipe_1591168107360.jpeg');
+INSERT INTO `step` VALUES ('51', '2', '15', '将淘洗好的米、炒好的芋头香菇、泡香菇的水，倒入电饭锅内。 小贴士：泡香菇的水，大约要200g。', 'xcf_recipe_1591168102334.jpeg');
+INSERT INTO `step` VALUES ('52', '3', '15', '开启一个正常的焖饭流程，大约37分钟-40分钟，根据自己家的锅情况。流程结束，饭就熟了，翻拌均匀就可以吃了。', 'xcf_recipe_1591168098748.jpeg');
+INSERT INTO `step` VALUES ('53', '1', '16', '香葱切碎放入大碗中，锅里烧热油淋在香葱上呛出香味（喜欢辣可以放点辣椒粉）', 'xcf_recipe_1591168283456.jpeg');
+INSERT INTO `step` VALUES ('54', '2', '16', '加入生抽，陈醋，盐，鸡精', 'xcf_recipe_1591168290221.jpeg');
+INSERT INTO `step` VALUES ('55', '3', '16', '加入烧开的热水（煮面的水多烧点，烧开了先倒一些在料碗里做热汤，剩的煮面。或者一个锅烧水，一个锅煮面同时进行）', 'xcf_recipe_1591168296087.jpeg');
+INSERT INTO `step` VALUES ('56', '4', '16', '水烧开，煮熟面条（这时青菜可一起煮熟）', 'xcf_recipe_1591168299962.jpeg');
+INSERT INTO `step` VALUES ('57', '5', '16', '将煮熟的面条捞入热汤中，放点香菜，爽口的热汤面就做好啦', 'xcf_recipe_1591168305524.jpeg');
+INSERT INTO `step` VALUES ('58', '6', '16', '也可以放点紫菜，或者自己喜欢的青菜和鸡蛋，如果今天你不想大动干戈做顿饭，就来试试吧', 'xcf_recipe_1591168309586.jpeg');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -628,12 +643,10 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '一只肥罗', '123', '1', 'yizhifeiluo.jpg', '男', '学生', '2017', '北京', '热爱美食');
-INSERT INTO `user` VALUES ('2', '张松', '2', '1', 'abc.jpeg', '女', '学生', '2018', '北京', '热爱美食');
-INSERT INTO `user` VALUES ('11', '张松', '11', '1', 'tiny-77-2020-05-16-03-27-47.jpg', '男', 'it', '2017', '北京', '热爱美食');
-INSERT INTO `user` VALUES ('33', '张松', '33', '1', 'timg.jpg', '男', '学生', '2017', '河北', '热爱旅游');
-INSERT INTO `user` VALUES ('123', '张松', '123', '1', 'abc.jpeg', '男', '学生', '2020', '河北', '热爱美食');
-INSERT INTO `user` VALUES ('1234', '张松', '1234', '1', 'add.png', '女', '教师', '2019', '河北', '热爱旅游');
+INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg', null, null, null, null, null);
+INSERT INTO `user` VALUES ('2', 'ss', '2', '1', 'abc.jpeg', null, null, null, null, null);
+INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-77-2020-05-16-03-27-47.jpg', 'nan', 'it', '2017', 'hebei', 'sss');
+INSERT INTO `user` VALUES ('123', '123', '123', '1', 'abc.jpeg', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `user_menu`

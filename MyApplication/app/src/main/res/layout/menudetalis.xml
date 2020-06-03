@@ -44,6 +44,18 @@
                 android:id="@+id/menudetails"
                 android:layout_height="wrap_content">
             </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="10dp"
+                android:text="描述"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:id="@+id/menutext"
+                android:layout_height="wrap_content">
+            </TextView>
         </LinearLayout>
         <com.example.a24168.myapplication.kitchen.recommand.UnScrollListView
             android:layout_width="match_parent"

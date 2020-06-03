@@ -1,3 +1,8 @@
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html class="x-admin-sm">
     
@@ -17,7 +22,7 @@
             <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
         <![endif]--></head>
     
-    <body>
+    <body >
         <div class="layui-fluid">
             <div class="layui-row">
                 <form action="admin/menuedit" class="layui-form" method="post" enctype="multipart/form-data">
@@ -25,7 +30,14 @@
                         <label for="menu_name" class="layui-form-label">
                             <span class="x-red">*</span>菜单名</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="menu_name" name="menu_name" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input value="${menu.menu_name}" type="text" id="menu_name" name="menu_name" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                         </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="text" class="layui-form-label">
+                            <span class="x-red">*</span>描述</label>
+                        <div class="layui-input-inline">
+                            <textarea style="width:400px; height:100px" type="text" id="text" name="text" required="" lay-verify="required" autocomplete="off" class="layui-input">${menu.text}</textarea></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="menu_photo" class="layui-form-label">
@@ -38,20 +50,43 @@
                             <span class="x-red">*</span>类型</label>
                         <div class="layui-input-inline">
                             <select id="type" name="type" class="valid">
-                                <option value="mi">米</option>
-                                <option value="mian">面</option>
-                                <option value="cai">菜</option></select>
+                            <c:if test="${type.equals('米')}">
+                           			 <option value="mi" selected>米</option>
+                            </c:if>
+                            <c:if test="${!type.equals('米')}">
+                           			 <option value="mi">米</option>
+                            </c:if>
+                             <c:if test="${type.equals('面')}">
+                           			<option value="mian" selected>面</option>
+                            </c:if>
+                            <c:if test="${!type.equals('面')}">
+                           			<option value="mian">面</option>
+                            </c:if>
+                             <c:if test="${type.equals('菜')}">
+                           			<option value="cai" selected>菜</option>
+                            </c:if>
+                            <c:if test="${!type.equals('菜')}">
+                           			<option value="cai">菜</option>
+                            </c:if>
+                                
+                                
+                            </select>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label for="kouwei" class="layui-form-label">
                             <span class="x-red">*</span>口味</label>
-                        <div class="layui-input-inline">
-                            <input   name="kouwei" type="checkbox" value="1" />酸
-                            <input   name="kouwei" type="checkbox" value="2" />甜
-                            <input   name="kouwei" type="checkbox" value="3" />苦 
-                            <input   name="kouwei" type="checkbox" value="4" />辣 
-                            <input  name="kouwei" type="checkbox" value="5" />咸 
+                        <div class="layui-input-inline" >
+                        <c:set var="index" value="1"></c:set>
+                       	<c:forEach items="${checkbox}" var="check">
+                       	 	<c:if test="${duoxuan.contains(index.toString())}">
+                       	 		<input   name="kouwei" type="checkbox" checked="checked" value="${index}" />${check}
+                       	 	</c:if>
+                       	 	<c:if test="${!duoxuan.contains(index.toString())}">
+                       	 		<input   name="kouwei" type="checkbox" value="${index}" />${check}
+                       	 	</c:if>
+                        	 <c:set var="index" value="${index+1}"></c:set>
+                        </c:forEach>
                         </div>
                     </div>
            			 <div class="layui-form-item">
@@ -100,7 +135,10 @@
                     return false;
                 });
 
-            });</script>
+            });
+     
+
+        </script>
         <script>var _hmt = _hmt || []; (function() {
                 var hm = document.createElement("script");
                 hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
