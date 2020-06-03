@@ -16,6 +16,7 @@ import java.util.List;
 public class menu {
 private int menu_id;
 private String date;
+private String text;
 private String menu_photo;
 private String menu_name;
 private String type;
@@ -23,6 +24,15 @@ private List<label> labels=new ArrayList<label>();
 public int getMenu_id() {
 	return menu_id;
 }
+
+public String getText() {
+	return text;
+}
+
+public void setText(String text) {
+	this.text = text;
+}
+
 public void setMenu_id(int menu_id) {
 	this.menu_id = menu_id;
 }

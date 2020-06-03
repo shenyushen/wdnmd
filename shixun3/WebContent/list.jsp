@@ -9,7 +9,7 @@
 </head>
 <body>
 <c:forEach items="${menus}" var="menus">
-	${menus.menu_id},${menus.date},${menus.menu_photo},${menus.menu_name},
+	${menus.menu_id},${menus.date},${menus.menu_photo},${menus.menu_name},${menus.text},
 	<c:forEach items="${menus.labels }" var ="label">
 		${label.label_id}-${label.label_name}'
 	</c:forEach>

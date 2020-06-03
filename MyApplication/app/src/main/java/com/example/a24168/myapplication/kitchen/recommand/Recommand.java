@@ -172,7 +172,8 @@ public class Recommand extends Fragment {
                                 meuna.setDate(men[1]);
                                 meuna.setMenu_photo(men[2]);
                                 meuna.setMenu_name(men[3]);
-                                String[] labels = men[4].trim().split("'");
+                                meuna.setText(men[4]);
+                                String[] labels = men[5].trim().split("'");
 //                        分割菜单的类型部分，由于是list因此要循环
                                 for (String label : labels) {
                                     if (!label.equals("")) {

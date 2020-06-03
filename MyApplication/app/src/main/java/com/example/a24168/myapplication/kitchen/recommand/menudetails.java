@@ -43,12 +43,14 @@ public class menudetails extends AppCompatActivity {
     public static LinearLayout linearLayout;
     private Intent menudetalisintent;
     private TextView textView;
+    private TextView textView1;
     private ImageView imageView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menudetalis);
         textView=findViewById(R.id.menudetails);
+        textView1=findViewById(R.id.menutext);
         linearLayout=findViewById(R.id.schildren);
         imageView=findViewById(R.id.menudetails_photo);
 //        myScrollView=findViewById(R.id.MyScrollView);
@@ -57,6 +59,7 @@ public class menudetails extends AppCompatActivity {
         menudetalisintent=getIntent();
         String[] menu=menudetalisintent.getStringExtra("menu").trim().split(",");
         textView.setText(menu[3]);
+        textView1.setText("  "+menu[4].trim());
         Glide.with(this)
                 .load(context.getResources().getString(R.string.photoip)+menu[2])
                 .into(imageView);

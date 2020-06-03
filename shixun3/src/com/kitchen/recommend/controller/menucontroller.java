@@ -91,7 +91,8 @@ public class menucontroller {
 			@RequestParam("photo") String photo,
 			@RequestParam("buzhou") String buzhou,
 			@RequestParam("buzhouphoto") String buzhouphoto,
-			@RequestParam("kouwei") String kouwei) {
+			@RequestParam("kouwei") String kouwei,
+			@RequestParam("miaoshu") String miaoshu) {
 		biaoti=biaoti.trim();
 		photo=photo.trim();
 		type=type.trim();
@@ -108,6 +109,7 @@ public class menucontroller {
 		menu menu=new menu();
 		menu.setDate(new Date().toLocaleString());
 		menu.setMenu_photo(photo);
+		menu.setText(miaoshu);
 		menu.setMenu_name(biaoti);
 		menu.setType(type);
 //		添加menu到menu表

@@ -9,8 +9,17 @@ public class menu {
     private String date;
     private String menu_photo;
     private String menu_name;
+    private String text;
     private String type;
     private List<label> labels=new ArrayList<label>();
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public int getMenu_id() {
         return menu_id;
@@ -60,7 +69,7 @@ public class menu {
         this.labels = labels;
     }
     public String tointent(){
-        return menu_id+","+date+","+menu_photo+","+menu_name+","+type;
+        return menu_id+","+date+","+menu_photo+","+menu_name+","+text+","+type;
     }
     @Override
     public String toString() {

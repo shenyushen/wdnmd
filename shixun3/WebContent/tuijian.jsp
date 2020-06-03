@@ -81,7 +81,7 @@
 
                             <button class="layui-btn layui-btn-danger" onclick="delcheck()">
                                 <i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加菜单','./menu_add.html',800,600)">
+                            <button class="layui-btn" onclick="xadmin.open('添加菜单','./menu_add2.html',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
@@ -91,6 +91,7 @@
                                         <th>批量删除</th>
                                         <th>名字</th>
                                         <th>时间</th>
+                                        <th>描述</th>
                                         <th>图片</th>
                                         <th>类型</th>
                                         <th>口味</th>
@@ -104,6 +105,7 @@
 	                                        <td><input type="checkbox" name="deletecheck" lay-skin="primary"  value="${count}"></td>
 	                                            <td>${menu.menu_name}</td>
 	                                            <td>${menu.date}</td>
+	                                            <td>${menu.text}</td>
 	                                            <td style="align:center;text-align:center;"><img src="http://localhost:8080/shixun3/upload/${menu.menu_photo}" width="50" height="50" /></td>
 	                                            <td>${menu.type}</td>
 	                                            <td><c:forEach items="${menu.labels}" var="label">${label.label_name} </c:forEach></td>
