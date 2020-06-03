@@ -187,7 +187,7 @@ public class VerticalCommentLayout extends LinearLayout implements
         TextView tv_content = view.findViewById(R.id.tv_content);
 
         Glide.with(iv_header.getContext()).load(content.getHeadImg()).into(iv_header);
-        iv_like.setImageResource(content.getIsLike() == 0 ? R.mipmap.icon_topic_post_item_like : R.mipmap.icon_topic_post_item_like_blue);
+        iv_like.setImageResource(content.getIsLike() == 0 ? R.drawable.dian : R.drawable.zan);
         tv_like_count.setText(content.getLikeCount() + "");
         tv_like_count.setVisibility(content.getLikeCount() <= 0 ? View.GONE : View.VISIBLE);
 

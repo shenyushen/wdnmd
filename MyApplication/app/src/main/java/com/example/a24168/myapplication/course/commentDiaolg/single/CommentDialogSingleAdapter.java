@@ -41,7 +41,7 @@ public class CommentDialogSingleAdapter extends BaseQuickAdapter<FirstLevelBean,
 
         helper.addOnClickListener(R.id.rl_group);
         helper.addOnClickListener(R.id.ll_like);
-        iv_like.setImageResource(content.getIsLike() == 0 ? R.mipmap.icon_topic_post_item_like : R.mipmap.icon_topic_post_item_like_blue);
+        iv_like.setImageResource(content.getIsLike() == 0 ? R.drawable.dian : R.drawable.zan);
         tv_like_count.setText(content.getLikeCount() + "");
         tv_like_count.setVisibility(content.getLikeCount() <= 0 ? View.GONE : View.VISIBLE);
 

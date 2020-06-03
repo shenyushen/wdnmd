@@ -35,11 +35,11 @@ public class delcomment extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String temp=request.getParameter("mvcomment_id");
-		int mvcomment_id=Integer.parseInt(temp==null || "".equals(temp)?"0":temp);
+		String temp=request.getParameter("mv_id");
+		int mv_id=Integer.parseInt(temp==null || "".equals(temp)?"0":temp);
 		UserDao userDao=new UserDao();
 		try {
-			userDao.deleteDate("delete from mv_comment where mvcomment_id='"+mvcomment_id+"'");
+			userDao.deleteDate("delete from mv_comment where mv_id='"+mv_id+"'");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,6 +47,7 @@ public class delcomment extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request.getRequestDispatcher("viewcomment").forward(request, response);
 	}
 
 	/**

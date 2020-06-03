@@ -97,7 +97,7 @@ public class CourseFragment extends Fragment  {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://10.0.2.2:8080/shixun3/viewCourse");
+                    URL url = new URL("http://10.0.2.2:8080/shixun3/shipin");
                     URLConnection conn = url.openConnection();
                     InputStream in = conn.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
@@ -131,7 +131,7 @@ public class CourseFragment extends Fragment  {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://10.0.2.2:8080/shixun3/viewcomment");
+                    URL url = new URL("http://10.0.2.2:8080/shixun3/pinglun");
                     URLConnection conn = url.openConnection();
                     InputStream in = conn.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
