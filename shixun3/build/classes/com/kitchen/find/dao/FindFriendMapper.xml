@@ -194,4 +194,13 @@
 	<select id="finduser" resultMap="user" >
 		select u.id,u.username from user u
 	</select>
+	
+	<resultMap type="com.entity.User" id="myuser">
+		   <id property="id" column="id"/>
+	       <result property="username" column="username"/>
+	       <result property="photo" column="photo"/>
+	</resultMap>
+	<select id="getUser" resultMap="user" >
+		select u.id,u.username,u.photo from user u where u.id=#{id}
+	</select>
 </mapper>

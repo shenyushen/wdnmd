@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.entity.FindFriend;
 import com.entity.FindLable;
 import com.entity.Find_Photo;
+import com.entity.User;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -151,7 +152,14 @@ public class FindController {
 		findFriendService.quxiaoGuanzhu(userid,findfriendid);
 	}
 	
-	
+	@RequestMapping("/getuser")
+	public User getUser(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		
+		System.out.println(id);
+		return findFriendService.getUser(id);
+	}
 	
 	
 }

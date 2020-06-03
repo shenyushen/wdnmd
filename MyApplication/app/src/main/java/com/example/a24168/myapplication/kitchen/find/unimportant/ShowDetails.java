@@ -25,6 +25,8 @@ import com.example.a24168.myapplication.kitchen.find.entity.FindComment;
 import com.example.a24168.myapplication.kitchen.find.entity.FindFriend;
 import com.example.a24168.myapplication.kitchen.find.custom.GlideImageLoader;
 import com.example.a24168.myapplication.kitchen.find.entity.User;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -32,6 +34,7 @@ import com.youth.banner.Transformer;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -66,6 +69,7 @@ public class ShowDetails extends AppCompatActivity {
     private ImageView guanzhu;
     private ImageView fanhui;
     private Handler handler = new Handler();
+    private User user;
     private int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +87,8 @@ public class ShowDetails extends AppCompatActivity {
         pinglunrenshu = findViewById(R.id.pinglunrenshu);
         guanzhu = findViewById(R.id.guanzhu);
         fanhui = findViewById(R.id.fanhui);
+
+        m();
 
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,13 +178,13 @@ public class ShowDetails extends AppCompatActivity {
                                     @Override
                                     public void run() {
 
-                                        String a = findFriend.getUser().getPhoto();
-                                        int b = findFriend.getUser().getId();
+                                        String a = user.getPhoto();
+                                        String b = user.getUsername();
                                         String c  = edit;
                                         FindComment findComment = new FindComment();
 
                                         User user = new User();
-                                        user.setId(b);
+                                        user.setUsername(b);
                                         user.setPhoto(a);
 
                                         findComment.setUser(user);
@@ -215,6 +221,40 @@ public class ShowDetails extends AppCompatActivity {
         });
 
     }
+
+    private void m() {
+        new Thread(){
+            @Override
+            public void run() {
+                URL url = null;
+                try {
+                    url = new URL(getResources().getString(R.string.ip1)+"/find/getuser?id="+user_id);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//设置请求头
+                    conn.setRequestMethod("GET");
+                    conn.setConnectTimeout(5000);
+                    conn.setReadTimeout(5000);
+//获得状态码
+                    int code = conn.getResponseCode();
+                    if (code == 200) {
+                        InputStream in = conn.getInputStream();
+                        String text = streamToText(in);
+                        user = new User();
+                        Gson gson = new Gson();
+                        user = gson.fromJson(text, TypeToken.getParameterized(User.class).getType());
+
+                    }
+                } catch (MalformedURLException | ProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }.start();
+    }
+
     private void quxiaoguanzhu(int position){
         new Thread(){
             @Override
