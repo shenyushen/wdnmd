@@ -188,7 +188,9 @@
                             
                             <button class="layui-btn" onclick="xadmin.open('添加订单','./order-add.jsp',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
+                      
                        <div class="layui-card-body ">
+                       <from  action="./admin/search_orders">
                             <table class="layui-table layui-form">
                                 <thead>
                                     <tr>
@@ -252,7 +254,9 @@
                                     
                                 </tbody>
                             </table>
+                             </from>
                         </div>
+                       
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
