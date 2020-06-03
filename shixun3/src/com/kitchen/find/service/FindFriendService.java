@@ -107,4 +107,8 @@ public class FindFriendService {
 	public List<User> finduser(){
 		return findFriendMapper.finduser();
 	}
+	
+	public User getUser(int id){
+		return findFriendMapper.getUser(id);
+	}
 }

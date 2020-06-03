@@ -53,6 +53,8 @@ public interface FindFriendMapper {
 	public List<FindFriend> selectByItem(@Param("author")String author,@Param("theme")String theme,@Param("date")String date,@Param("a")String[] a,@Param("like")String like);
 	
 	public List<User> finduser();
+	
+	public User getUser(int id);
 }
 
 
