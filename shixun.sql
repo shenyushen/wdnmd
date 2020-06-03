@@ -83,23 +83,23 @@ CREATE TABLE `findcomment` (
 -- ----------------------------
 -- Records of findcomment
 -- ----------------------------
-INSERT INTO `findcomment` VALUES ('1', '2', 'wodainimneda', '1');
-INSERT INTO `findcomment` VALUES ('2', '11', '我带你们打', '1');
-INSERT INTO `findcomment` VALUES ('3', '1', '我不带你们打', '1');
-INSERT INTO `findcomment` VALUES ('4', '11', 'fjdaskhfjkahsfjk', '3');
-INSERT INTO `findcomment` VALUES ('5', '11', 'woshinidie', '2');
-INSERT INTO `findcomment` VALUES ('6', '11', '', '2');
-INSERT INTO `findcomment` VALUES ('7', '11', '', '2');
-INSERT INTO `findcomment` VALUES ('8', '123', 'fdsafs', '1');
-INSERT INTO `findcomment` VALUES ('9', '11', '22', '1');
-INSERT INTO `findcomment` VALUES ('10', '11', '22', '1');
-INSERT INTO `findcomment` VALUES ('11', '123', '11', '1');
-INSERT INTO `findcomment` VALUES ('12', '123', '11', '1');
-INSERT INTO `findcomment` VALUES ('13', '123', '11', '1');
-INSERT INTO `findcomment` VALUES ('14', '123', '11', '1');
-INSERT INTO `findcomment` VALUES ('15', '123', '11', '1');
-INSERT INTO `findcomment` VALUES ('16', '123', '11', '1');
-INSERT INTO `findcomment` VALUES ('17', '123', '11', '1');
+INSERT INTO `findcomment` VALUES ('1', '2', '真的好吃', '1');
+INSERT INTO `findcomment` VALUES ('2', '11', '感谢感谢', '1');
+INSERT INTO `findcomment` VALUES ('3', '1', '你们做了嘛，是不是很好吃', '1');
+INSERT INTO `findcomment` VALUES ('4', '11', '很好吃', '3');
+INSERT INTO `findcomment` VALUES ('5', '11', '真的香', '2');
+INSERT INTO `findcomment` VALUES ('6', '11', '这种做法也太轻松了', '2');
+INSERT INTO `findcomment` VALUES ('7', '11', '我也觉得这个很不错', '2');
+INSERT INTO `findcomment` VALUES ('8', '123', '今天天气真好', '3');
+INSERT INTO `findcomment` VALUES ('9', '11', '太好吃了8', '1');
+INSERT INTO `findcomment` VALUES ('10', '11', '不会吧不会吧', '28');
+INSERT INTO `findcomment` VALUES ('11', '123', '真的太好吃了，感谢分享', '29');
+INSERT INTO `findcomment` VALUES ('12', '123', '图片与实物不符', '30');
+INSERT INTO `findcomment` VALUES ('13', '2', '差评', '10');
+INSERT INTO `findcomment` VALUES ('14', '123', '嗯好', '14');
+INSERT INTO `findcomment` VALUES ('15', '1', '很好', '29');
+INSERT INTO `findcomment` VALUES ('16', '123', '不错', '28');
+INSERT INTO `findcomment` VALUES ('17', '123', '还行吧也就那样', '1');
 
 -- ----------------------------
 -- Table structure for `findfriend`
