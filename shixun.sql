@@ -10,6 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
+Date: 2020-06-03 09:59:42
 Date: 2020-06-03 10:32:00
 */
 
@@ -402,17 +403,13 @@ CREATE TABLE `market_order` (
 -- ----------------------------
 -- Records of market_order
 -- ----------------------------
-INSERT INTO `market_order` VALUES ('-1', '11', '917.0', '湖北省  武汉市  江岸区', 'null');
-INSERT INTO `market_order` VALUES ('1', '12', '10', 'mianbao.png', null);
-INSERT INTO `market_order` VALUES ('2', '1', '1', '1', '1');
-INSERT INTO `market_order` VALUES ('3', '123', '北京市  北京市  东城区asd', '89.0', 'null');
-INSERT INTO `market_order` VALUES ('4', '123', '地区选择                              ------', '89.0', 'null');
-INSERT INTO `market_order` VALUES ('5', '123', '地区选择                              ------', '89.0', 'null');
-INSERT INTO `market_order` VALUES ('6', '123', '地区选择                              ------', '89.0', 'null');
-INSERT INTO `market_order` VALUES ('7', '123', '地区选择                              ------', '89.0', 'null');
-INSERT INTO `market_order` VALUES ('8', '123', '地区选择                              ------', '89.0', 'null');
-INSERT INTO `market_order` VALUES ('9', '123', '地区选择                              ------', '89.0', 'null');
-INSERT INTO `market_order` VALUES ('10', '123', '地区选择                              ------', '89.0', 'null');
+INSERT INTO `market_order` VALUES ('0', '123', '地区选择                              ------', '89.0', 'null');
+INSERT INTO `market_order` VALUES ('1', '12', '10', '辽宁省丹东市东港市仁达路88-25号', 'null');
+INSERT INTO `market_order` VALUES ('2', '1', '1', '江苏省苏州市吴中区东方大道1233号', 'null');
+INSERT INTO `market_order` VALUES ('3', '123', '89.0', '河北省石家庄裕华区河北师范大学', '记得加送我一包辣条');
+INSERT INTO `market_order` VALUES ('4', '123', '77.2', '四川省成都市青羊区青华路10号之附10-12', 'null');
+INSERT INTO `market_order` VALUES ('5', '123', '33.2', '陕西省安康市汉滨区大桥路2号', 'null');
+INSERT INTO `market_order` VALUES ('6', '123', '66.6', '孝感市云梦县梦馨佳园b区', 'null');
 
 -- ----------------------------
 -- Table structure for `market_type`
