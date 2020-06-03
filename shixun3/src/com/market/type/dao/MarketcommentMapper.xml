@@ -83,5 +83,14 @@
 		values(#{arg0},#{arg2},#{arg1},#{arg3})
 	</insert>
 	
+	<select id = "findOrder" resultMap="order">
+		select * from market_order 
+		limit #{arg0},#{arg1}
+	</select>
+	
+	<delete id="deleteorder">
+		delete from market_order
+		where id=#{arg0}
+	</delete>
 	
 </mapper>

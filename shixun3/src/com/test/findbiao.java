@@ -35,7 +35,6 @@ public class findbiao extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("textml;charset=utf-8");
-		//System.out.println("*****************");
 		String label=request.getParameter("label");
 		System.out.println(label);
 		UserDao userDao=new UserDao();
@@ -61,12 +60,10 @@ public class findbiao extends HttpServlet {
 				writer.write("\""+rs.getString(5)+"\""+",");
 				writer.write("\"mv_path\":");
 				writer.write("\""+rs.getString(6)+"\""+",");
-                writer.write("\"mv_photo\":");
-				writer.write("\""+rs.getString(7)+"\""+",");
 				writer.write("\"label\":");
-				writer.write("\""+rs.getString(8)+"\""+",");
+				writer.write("\""+rs.getString(7)+"\""+",");
 				writer.write("\"mv_pic\":");
-				writer.write("\""+rs.getString(9)+"\"");
+				writer.write("\""+rs.getString(8)+"\"");
 				writer.write("}");
 				count=1;
 			}

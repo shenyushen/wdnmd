@@ -50,4 +50,8 @@
 	
 	</insert>
 	
+	<select id="selectuser" resultMap="user1">
+		select * from user
+		where id=#{arg0}
+	</select>
 </mapper>

@@ -2,6 +2,8 @@ package com.market.type.service;
 
 import com.entity.marketComment;
 import com.entity.MarketCourt;
+import com.entity.Market_order;
+import com.entity.User;
 import com.market.type.dao.MarketcommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,13 @@ public class MarketcommentService {
     }
     public int addorder(int user_id,String price,String address,String context) {
     	return MarketcommentMapper.addorder(user_id,address,price,context);
+    }
+    
+    public List<Market_order> findOrder(int a,int b){
+		return MarketcommentMapper.findOrder(a, b);
+	}
+    public int deleteorder(int id) {
+    	return MarketcommentMapper.deleteorder(id);
     }
     
 }

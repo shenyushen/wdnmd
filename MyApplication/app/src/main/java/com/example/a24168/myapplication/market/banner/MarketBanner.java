@@ -31,7 +31,7 @@ public class MarketBanner  extends AppCompatActivity {
     private ImageView imageView3;
     private List<Fragment> list;
     private MyAdapter1 myAdapter1;
-    private String[] titles = {" 4月29日 10：00 开售 ", " 4月30日 10：00 开售 ", "好货尝鲜"};
+    private String[] titles = {" 6月4日 9：00 开售 ", " 6月5日 9：00 开售 ", "好货尝鲜"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

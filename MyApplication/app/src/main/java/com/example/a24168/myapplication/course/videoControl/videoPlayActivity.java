@@ -168,7 +168,7 @@ public class videoPlayActivity extends AppCompatActivity implements VerticalComm
                 R.color.bottom_bg, R.drawable.skin_enlarge_video, R.drawable.skin_shrink_video);
         videoController1.setUp(videoPath,
                 "http://p.qpic.cn/videoyun/0/2449_43b6f696980311e567f22794e792_1/640",
-                "sion：视频测试");
+                "精彩视频");
         //视频 sion   sion-------------------------------
 
 

@@ -69,4 +69,12 @@ public class  menuservices {
 	public int editstep(Step step) {
 		return this.menumapper.editstep(step);
 	}
+	public List<menu> selectmenu(String menu_name, String[] kouwei, String type) {
+		// TODO Auto-generated method stub
+		return this.menumapper.selectmenu(menu_name,kouwei,type);
+	}
+	public List<menu> fenye(int i, int j) {
+		// TODO Auto-generated method stub
+		return this.menumapper.fenye(i,j);
+	}
 }

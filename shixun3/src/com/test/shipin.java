@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,16 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.dao.UserDao;
 
 /**
- * Servlet implementation class viewCourse
+ * Servlet implementation class shipin
  */
-@WebServlet("/viewCourse")
-public class viewCourse extends HttpServlet {
+@WebServlet("/shipin")
+public class shipin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public viewCourse() {
+    public shipin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,24 +38,37 @@ public class viewCourse extends HttpServlet {
 		try {
 			UserDao user = new UserDao();
 		ResultSet rs = user.queryDate("select * from course");
+		int count = 0;
+		//System.out.println("11");
 		PrintWriter writer = response.getWriter();
-		List<String> list=new ArrayList<>();
+		writer.write("[");
 			while(rs.next()) {
-				list.add(rs.getString(1));
-				list.add(rs.getString(2));
-				list.add(rs.getString(3));
-				list.add(rs.getString(4));
-				list.add(rs.getString(5));
-				list.add(rs.getString(6));
-				list.add(rs.getString(7));
-				list.add(rs.getString(8));
-				list.add(";");
+				if (count != 0)
+					writer.write(",");
+				writer.write("{");
+				writer.write("\"id\":");
+				writer.write("\""+rs.getString(1)+"\""+",");
+				writer.write("\"author\":");
+				writer.write("\""+rs.getString(2)+"\""+",");
+        	    writer.write("\"time\":");
+				writer.write("\""+rs.getString(3)+"\""+",");
+        	    writer.write("\"mv_name\":");
+				writer.write("\""+rs.getString(4)+"\""+",");
+        	    writer.write("\"mv_account\":");
+				writer.write("\""+rs.getString(5)+"\""+",");
+				writer.write("\"mv_path\":");
+				writer.write("\""+rs.getString(6)+"\""+",");
+				writer.write("\"label\":");
+				writer.write("\""+rs.getString(7)+"\""+",");
+				writer.write("\"mv_pic\":");
+				writer.write("\""+rs.getString(8)+"\"");
+				writer.write("}");
+				count=1;
 			}
-		request.setAttribute("lis", list);
-		request.getRequestDispatcher("course.jsp").forward(request, response);
+		writer.write("]");
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			((Throwable) e).printStackTrace();
 		}
 	}
 

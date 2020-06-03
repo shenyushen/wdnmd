@@ -1,6 +1,8 @@
 package com.market.type.dao;
 
 import com.entity.MarketCourt;
+import com.entity.Market_order;
+import com.entity.User;
 import com.entity.marketComment;
 import java.util.List;
 
@@ -15,4 +17,8 @@ public interface MarketcommentMapper {
     public int delall(@Param("user_id") int user_id);
     
     public int addorder(int user_id ,String address,String price,String context);
+    
+    
+    public List<Market_order> findOrder(int a,int b);
+    public int deleteorder(int id);
 }

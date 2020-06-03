@@ -27,7 +27,7 @@
                 <a>
                     <cite>导航元素</cite></a>
             </span>
-            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <a id="shuaxin" class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
                 <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
             </a>
         </div>
@@ -42,141 +42,36 @@
                                 <div class="layui-colla-item">
                                 <h2 class="layui-colla-title">条件筛选<i class="layui-icon layui-colla-icon"></i></h2>
                                 <div class="layui-colla-content">
-                                  <form class="layui-form" action="">
+                                  <form class="layui-form" action="admin/selectmenu">
                                       <div class="layui-form-item">
-                                        <div class="layui-inline">
-                                          <label class="layui-form-label">范围</label>
-                                          <div class="layui-input-inline" style="width: 100px;">
-                                            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
-                                          </div>
-                                          <div class="layui-form-mid">-</div>
-                                          <div class="layui-input-inline" style="width: 100px;">
-                                            <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="layui-form-item">
-                                        <div class="layui-inline">
-                                          <label class="layui-form-label">分组选择框</label>
-                                          <div class="layui-input-inline">
-                                            <select name="quiz">
-                                              <option value="">请选择问题</option>
-                                              <optgroup label="城市记忆">
-                                                <option value="你工作的第一个城市">你工作的第一个城市</option>
-                                              </optgroup>
-                                              <optgroup label="学生时代">
-                                                <option value="你的工号">你的工号</option>
-                                                <option value="你最喜欢的老师">你最喜欢的老师</option>
-                                              </optgroup>
-                                            </select>
-                                          </div>
-                                        </div>
-                                        <div class="layui-inline">
-                                          <label class="layui-form-label">搜索选择框</label>
-                                          <div class="layui-input-inline">
-                                            <select name="modules" lay-verify="required" lay-search="">
-                                              <option value="">直接选择或搜索选择</option>
-                                              <option value="1">layer</option>
-                                              <option value="2">form</option>
-                                              <option value="3">layim</option>
-                                              <option value="4">element</option>
-                                              <option value="5">laytpl</option>
-                                              <option value="6">upload</option>
-                                              <option value="7">laydate</option>
-                                              <option value="8">laypage</option>
-                                              <option value="9">flow</option>
-                                              <option value="10">util</option>
-                                              <option value="11">code</option>
-                                              <option value="12">tree</option>
-                                              <option value="13">layedit</option>
-                                              <option value="14">nav</option>
-                                              <option value="15">tab</option>
-                                              <option value="16">table</option>
-                                              <option value="17">select</option>
-                                              <option value="18">checkbox</option>
-                                              <option value="19">switch</option>
-                                              <option value="20">radio</option>
-                                            </select>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="layui-form-item">
-                                        <label class="layui-form-label">联动选择框</label>
-                                        <div class="layui-input-inline">
-                                          <select name="quiz1">
-                                            <option value="">请选择省</option>
-                                            <option value="浙江" selected="">浙江省</option>
-                                            <option value="你的工号">江西省</option>
-                                            <option value="你最喜欢的老师">福建省</option>
-                                          </select>
-                                        </div>
-                                        <div class="layui-input-inline">
-                                          <select name="quiz2">
-                                            <option value="">请选择市</option>
-                                            <option value="杭州">杭州</option>
-                                            <option value="宁波" disabled="">宁波</option>
-                                            <option value="温州">温州</option>
-                                            <option value="温州">台州</option>
-                                            <option value="温州">绍兴</option>
-                                          </select>
-                                        </div>
-                                        <div class="layui-input-inline">
-                                          <select name="quiz3">
-                                            <option value="">请选择县/区</option>
-                                            <option value="西湖区">西湖区</option>
-                                            <option value="余杭区">余杭区</option>
-                                            <option value="拱墅区">临安市</option>
-                                          </select>
-                                        </div>
-                                        <div class="layui-form-mid layui-word-aux">此处只是演示联动排版，并未做联动交互</div>
-                                      </div>
-                                      
-                                      <div class="layui-form-item">
-                                        <label class="layui-form-label">复选框</label>
-                                        <div class="layui-input-block">
-                                          <input type="checkbox" name="like[write]" title="写作">
-                                          <input type="checkbox" name="like[read]" title="阅读" checked="">
-                                          <input type="checkbox" name="like[game]" title="游戏">
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="layui-form-item" pane="">
-                                        <label class="layui-form-label">原始复选框</label>
-                                        <div class="layui-input-block">
-                                          <input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked="">
-                                          <input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读">
-                                          <input type="checkbox" name="like1[game]" lay-skin="primary" title="游戏" disabled="">
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="layui-form-item">
-                                        <label class="layui-form-label">开关-默认关</label>
-                                        <div class="layui-input-block">
-                                          <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
-                                        </div>
-                                      </div>
-                                      <div class="layui-form-item">
-                                        <label class="layui-form-label">开关-默认开</label>
-                                        <div class="layui-input-block">
-                                          <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-                                        </div>
-                                      </div>
-                                      <div class="layui-form-item">
-                                        <label class="layui-form-label">单选框</label>
-                                        <div class="layui-input-block">
-                                          <input type="radio" name="sex" value="男" title="男" checked="">
-                                          <input type="radio" name="sex" value="女" title="女">
-                                          <input type="radio" name="sex" value="禁" title="禁用" disabled="">
-                                        </div>
-                                      </div>
-                                      <div class="layui-form-item">
-                                        <div class="layui-input-block">
-                                          <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-                                          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                                        </div>
-                                      </div>
+					                        <label for="menu_name" class="layui-form-label">菜单名</label>
+					                        <div class="layui-input-inline">
+					                            <input type="text" id="menu_name" name="menu_name"  class="layui-input" ></div>
+					                    </div>
+					                    <div class="layui-form-item">
+					                        <label for="type" class="layui-form-label">类型</label>
+					                        <div class="layui-input-inline">
+					                            <select id="type" name="type" class="valid">
+					                                <option value="mi">米</option>
+					                                <option value="mian">面</option>
+					                                <option value="cai">菜</option></select>
+					                        </div>
+					                    </div>
+					                    <div class="layui-form-item">
+					                        <label for="kouwei" class="layui-form-label">口味</label>
+					                        <div class="layui-input-inline">
+					                            <input   name="kouwei" type="checkbox" value="1" />酸
+					                            <input   name="kouwei" type="checkbox" value="2" />甜
+					                            <input   name="kouwei" type="checkbox" value="3" />苦 
+					                            <input   name="kouwei" type="checkbox" value="4" />辣 
+					                            <input  name="kouwei" type="checkbox" value="5" />咸 
+					                        </div>
+					                    </div>
+					           			 <div class="layui-form-item">
+								            <label for="L_repass" class="layui-form-label"></label>
+								            <button class="layui-btn" type="submit">提交</button>
+								             <button  type="reset" class="layui-btn layui-btn-primary"><a href="admin/resit">重置</a></button>
+								         </div>
                                     </form>
                                 </div>
                               </div>
@@ -229,12 +124,19 @@
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                    <a class="prev" href="">&lt;&lt;</a>
-                                    <a class="num" href="">1</a>
-                                    <span class="current">2</span>
-                                    <a class="num" href="">3</a>
-                                    <a class="num" href="">489</a>
-                                    <a class="next" href="">&gt;&gt;</a></div>
+                                	<a class="prev" href="admin/fenye?page=${pagelist.get(0)}">&lt;&lt;</a>
+                                	<c:forEach items="${pagelist}" var="p">
+	                                		<c:if test="${thispage==p}">
+	                                			 <a  href="admin/fenye?page=${p}"><span class="current">${p}</span></a>
+	                                		</c:if>
+	                                		<c:if test="${thispage!=p}">
+	                                			<a  href="admin/fenye?page=${p}">${p}</a>
+	                                			
+	                                		</c:if>
+                                	</c:forEach>
+	                                <a class="next" href="admin/fenye?page=${pagelist.get(pagelist.size()-1)}">&gt;&gt;</a>
+	                                	
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -358,6 +260,22 @@
          	}
          	xmlhttp.open("get","admin/menudeletecheck?value="+sss,true);
          	xmlhttp.send();
-        }</script>
+        }
+        function resit() {
+            var xmlhttp;
+         	if (window.XMLHttpRequest)
+         	{
+         		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+         		xmlhttp=new XMLHttpRequest();
+         	}
+         	else
+         	{
+         		// IE6, IE5 浏览器执行代码
+         		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+         	}
+         	xmlhttp.open("get","admin/resit",true);
+         	xmlhttp.send();
+        }
+        </script>
 
 </html>

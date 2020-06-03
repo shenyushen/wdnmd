@@ -2,6 +2,7 @@ package com.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -13,16 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.dao.UserDao;
 
 /**
- * Servlet implementation class delectMV
+ * Servlet implementation class pinglun
  */
-@WebServlet("/delectMV")
-public class delectMV extends HttpServlet {
+@WebServlet("/pinglun")
+public class pinglun extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public delectMV() {
+    public pinglun() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,19 +35,33 @@ public class delectMV extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		String mv_name=request.getParameter("mv_name");
-		UserDao userDao=new UserDao();
 		try {
-			userDao.deleteDate("delete from course where mv_name='"+mv_name+"'");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+			UserDao user = new UserDao();
+		ResultSet rs = user.queryDate("select * from mv_comment");
+		int count = 0;
+		//System.out.println("11");
+		PrintWriter writer = response.getWriter();
+		writer.write("[");
+		while(rs.next()) {
+			if (count != 0)
+				writer.write(",");
+			writer.write("{");
+			writer.write("\"mvcomment_id\":");
+			writer.write("\""+rs.getString(1)+"\""+",");
+			writer.write("\"author\":");
+			writer.write("\""+rs.getString(2)+"\""+",");
+			writer.write("\"content\":");
+			writer.write("\""+rs.getString(3)+"\""+",");
+			writer.write("\"mv_id\":");
+			writer.write("\""+rs.getString(4)+"\"");
+			writer.write("}");
+			count=1;
+		}
+	writer.write("]");
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("viewCourse").forward(request, response);
 	}
 
 	/**

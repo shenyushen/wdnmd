@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,23 +43,17 @@ public class viewcomment extends HttpServlet {
 		int count = 0;
 		//System.out.println("11");
 		PrintWriter writer = response.getWriter();
-		writer.write("[");
+		List<String> comm=new ArrayList<>();
 		while(rs.next()) {
-			if (count != 0)
-				writer.write(",");
-			writer.write("{");
-			writer.write("\"mvcomment_id\":");
-			writer.write("\""+rs.getString(1)+"\""+",");
-			writer.write("\"author\":");
-			writer.write("\""+rs.getString(2)+"\""+",");
-			writer.write("\"content\":");
-			writer.write("\""+rs.getString(3)+"\""+",");
-			writer.write("\"mv_id\":");
-			writer.write("\""+rs.getString(4)+"\"");
-			writer.write("}");
-			count=1;
+			comm.add(rs.getString(1));
+			comm.add(rs.getString(2));
+			comm.add(rs.getString(3));
+			comm.add(rs.getString(4));
+			comm.add(rs.getString(5));
+			comm.add(";");
 		}
-	writer.write("]");
+		request.setAttribute("comment", comm);
+		request.getRequestDispatcher("mv_comment.jsp").forward(request, response);
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

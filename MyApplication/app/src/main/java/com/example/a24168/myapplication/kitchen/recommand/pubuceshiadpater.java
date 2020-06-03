@@ -75,8 +75,8 @@ public class pubuceshiadpater extends RecyclerView.Adapter<pubuceshiadpater.View
                     int srcHeight = image.getHeight();    // 源图高度
                     a[0] = srcWidth;
                     a[1] = srcHeight;
-                    a[1]=a[1]*260/a[0];
-                    a[0]=260;
+                    a[1]=a[1]*220/a[0];
+                    a[0]=220;
                     //释放资源
                     image.recycle();
                     is.close();

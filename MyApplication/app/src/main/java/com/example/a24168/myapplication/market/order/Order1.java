@@ -88,6 +88,7 @@ public class Order1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addOrder();
+
             }
         });
         fanhuigouwuche.setOnClickListener(new View.OnClickListener() {

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_margin="6dp"
     android:layout_weight="1"
     android:layout_gravity="center"
     android:gravity="center"
@@ -12,12 +12,11 @@
     <ImageView
         android:id="@+id/menu_photo"
         android:layout_weight="1"
-        android:layout_width="260dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:scaleType="center"
         android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:src="@drawable/birth" />
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/menu_name"
@@ -27,8 +26,7 @@
         android:layout_gravity="left"
         android:gravity="left"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        android:text="梅菜扣肉"/>
+        android:textSize="18dp"/>
 
 
 </LinearLayout>
