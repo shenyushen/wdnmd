@@ -10,12 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-<<<<<<< HEAD
-Date: 2020-06-03 15:22:28
-=======
-Date: 2020-06-03 09:59:42
-Date: 2020-06-03 10:32:00
->>>>>>> db9c99bacba2194f92478b851f2ec59134604747
+Date: 2020-06-04 16:06:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,7 +47,7 @@ CREATE TABLE `course` (
   PRIMARY KEY (`id`),
   KEY `author` (`author`),
   CONSTRAINT `course_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of course
@@ -67,6 +62,13 @@ INSERT INTO `course` VALUES ('7', '1', '前天', '西红柿米饭', '超级无�
 INSERT INTO `course` VALUES ('8', '1', '昨天', '青辣椒', '贵州女孩半斤青辣椒加上一点盐，三碗米饭不够吃', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo-transcode/9801893_1234f55e50d52656080587c0cc33314b_3.mp4', '中式料理，辣，蔬菜', '6');
 INSERT INTO `course` VALUES ('9', '1', '前天', '米饭披萨料理', '少女也爱的米饭披萨料理', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo-transcode/16373534_3fc80e18e5c7145523185b2ee2867848_1.mp4', '米饭', '8');
 INSERT INTO `course` VALUES ('10', '1', '2020/2/15', '美味炒面', '这一锅面条，在校门口10分钟就能卖完.', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo-transcode/1715317_5edf14aad856582d15e44d048eb2445d_2.mp4', '面条', '1');
+INSERT INTO `course` VALUES ('11', '1', '2019/12/12', '彩虹千层', '彩虹千层你爱了吗', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo-transcode-crf/653902_923a94a99c580e2456c3fd6fe785df1f_0.mp4', '甜点，甜，蛋糕', '10');
+INSERT INTO `course` VALUES ('12', '1', '2020/02/15', '苦瓜黄豆排骨汤', '适合夏天吃的，清热去火。', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/764053_8aababbbe14d8e5bd985594471a12cca.mp4', '中式料理，蔬菜', '11');
+INSERT INTO `course` VALUES ('13', '1', '2020/06/01', '晚歺糖水', '今晚晚歺糖水，赞', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/764053_e7e7177b73a6e0c4fd7dea9ace6e5867.mp4', '饮品，甜', '12');
+INSERT INTO `course` VALUES ('14', '1', '昨天', '西红柿土豆萝卜瘦肉汤', '好吃不长胖，美少女们的最爱', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/764053_a48b1e2c37aefdb34509603fdb9a44e4.mp4', '中式料理，蔬菜', '13');
+INSERT INTO `course` VALUES ('15', '1', '2020/05/15', '过桥米线', '台湾的过桥米线', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/764053_408bf9ea0e14ac498da0642b29ff9f3c.mp4', '面条', '14');
+INSERT INTO `course` VALUES ('16', '1', '2020/06/04', '什锦冷菜', '鲜脆爽口凉拌菜，炎炎夏日做一道凉拌菜给爸爸下酒吧', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/764053_ba3b47b714fa90b7e11b742a416c1745.mp4', '水果沙拉，蔬菜', '15');
+INSERT INTO `course` VALUES ('17', '1', '2020/03/23', '香瓜牛奶', '香瓜牛奶开始', 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/764053_2e4ceb9438eafb8843dfd133ed3fc6c5.mp4', '水果沙拉，甜', '16');
 
 -- ----------------------------
 -- Table structure for `findcomment`
@@ -82,7 +84,7 @@ CREATE TABLE `findcomment` (
   KEY `findfriendid` (`findfriendid`),
   CONSTRAINT `findcomment_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `user` (`id`),
   CONSTRAINT `findcomment_ibfk_2` FOREIGN KEY (`findfriendid`) REFERENCES `findfriend` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of findcomment
@@ -104,6 +106,8 @@ INSERT INTO `findcomment` VALUES ('14', '123', '嗯好', '14');
 INSERT INTO `findcomment` VALUES ('15', '1', '很好', '29');
 INSERT INTO `findcomment` VALUES ('16', '123', '不错', '28');
 INSERT INTO `findcomment` VALUES ('17', '123', '还行吧也就那样', '1');
+INSERT INTO `findcomment` VALUES ('18', '11', '很好', '29');
+INSERT INTO `findcomment` VALUES ('19', '11', '好吃', '1');
 
 -- ----------------------------
 -- Table structure for `findfriend`
@@ -125,19 +129,20 @@ CREATE TABLE `findfriend` (
   KEY `type` (`type`),
   CONSTRAINT `findfriend_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`id`),
   CONSTRAINT `findfriend_ibfk_3` FOREIGN KEY (`type`) REFERENCES `findlable` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of findfriend
 -- ----------------------------
-INSERT INTO `findfriend` VALUES ('1', '1', '不揉面，不发面，皮薄馅多三鲜馅饼', '今天给大家分享一款懒人版三鲜馅饼，不需要揉面发面，用饺子皮就可以做，咬上一口满满都是馅，太满足了', '2020-05-15', '1', '25', 'u=17521029,2307926959&fm=26&gp=0.jpg', '3');
+INSERT INTO `findfriend` VALUES ('1', '1', '不揉面，不发面，皮薄馅多三鲜馅饼', '今天给大家分享一款懒人版三鲜馅饼，不需要揉面发面，用饺子皮就可以做，咬上一口满满都是馅，太满足了', '2020-05-15', '1', '26', 'u=17521029,2307926959&fm=26&gp=0.jpg', '3');
 INSERT INTO `findfriend` VALUES ('2', '2', '正宗麦当劳双吉牛肉汉堡', '看了麦当劳后厨制作食谱，看了麦当劳员工的食谱，才有的这么正宗的食谱，一次只做一个比较麻烦，我是提前做好了，拌好肉馅，弄成饼形状，冻起来每天早上拿出来煎一下就好了', '2020-05-18', '1', '7', 'u=3466873163,659824253&fm=26&gp=0.jpg', '1');
 INSERT INTO `findfriend` VALUES ('3', '123', '珍珠奶茶', '用了三个房子，用这个方法的奶茶冲出来真的炒香，做了双倍的量，放了20g英红九号，大概有五六杯，用了triirrny的方子做的黑糖珍珠，超赞', '2020-05-19', '1', '10', 'u=3839931121,3410137979&fm=26&gp=0.jpg', '5');
 INSERT INTO `findfriend` VALUES ('10', '2', '红糖米饭', '值得推荐一下，碗底铺上葡萄干，红枣，做出来的米饭超级好吃，香糯可口', '2020-05-20', '1', '15', 'u=129500147,2663705099&fm=26&gp=0.jpg', '3');
-INSERT INTO `findfriend` VALUES ('14', '11', '蒸面', '豆角焖面是我们这里的一道特色，牛肉用土豆淀粉，蛋清酱油拌匀，入锅至变色，放上喜欢的而调料，十三香，干辣椒，下豆角酱油盐，放上面，小火闷，出锅加蒜末，我喜欢现在的你和今天的饭', '2020-05-16', '1', '102', 'u=725564182,1182291286&fm=26&gp=0.jpg', '2');
-INSERT INTO `findfriend` VALUES ('28', '1', '自制巧克力', '经过长达是一天的晾晒，我的可可豆终于派上用场了，烘烤之后就到了去壳时间，外科酥脆，真的超级解压，去完壳之后，要把可可豆从固态研磨至液态，悄悄告诉你们一定要加很多很多的糖', '2020-05-19', '1', '66', 'u=3481895104,1416116302&fm=15&gp=0.jpg', '4');
-INSERT INTO `findfriend` VALUES ('29', '11', '麻辣土豆', '家里的土豆不要老是炒着吃，今天我分享一个做法，土豆切成厚厚的薄片，水开加盐，碗里加上酱油辣椒盐白糖，浇在土豆上就能食用，学会了就点点关注，给个小红星，谢谢', '2020-05-24', '1', '40', 'tudou.jpg', '3');
+INSERT INTO `findfriend` VALUES ('14', '11', '蒸面', '豆角焖面是我们这里的一道特色，牛肉用土豆淀粉，蛋清酱油拌匀，入锅至变色，放上喜欢的而调料，十三香，干辣椒，下豆角酱油盐，放上面，小火闷，出锅加蒜末，我喜欢现在的你和今天的饭', '2020-05-16', '1', '103', 'u=725564182,1182291286&fm=26&gp=0.jpg', '2');
+INSERT INTO `findfriend` VALUES ('28', '1', '自制巧克力', '经过长达是一天的晾晒，我的可可豆终于派上用场了，烘烤之后就到了去壳时间，外科酥脆，真的超级解压，去完壳之后，要把可可豆从固态研磨至液态，悄悄告诉你们一定要加很多很多的糖', '2020-05-19', '1', '67', 'u=3481895104,1416116302&fm=15&gp=0.jpg', '4');
+INSERT INTO `findfriend` VALUES ('29', '11', '麻辣土豆', '家里的土豆不要老是炒着吃，今天我分享一个做法，土豆切成厚厚的薄片，水开加盐，碗里加上酱油辣椒盐白糖，浇在土豆上就能食用，学会了就点点关注，给个小红星，谢谢', '2020-05-24', '1', '41', 'tudou.jpg', '3');
 INSERT INTO `findfriend` VALUES ('30', '2', '毛血旺', '自制的毛血旺干净有卫生，关键是做法还简单，你说气人不气人，老铁，点点关注不迷路，干了兄弟们', '2020-05-21', '1', '10', 'maoxuewang.jpg', '6');
+INSERT INTO `findfriend` VALUES ('31', '11', '随你', '心得', '2020-06-04', '0', '0', '20200604154110Screenshot_20200604_104925_com.huawei.android.launcher.jpg', '1');
 
 -- ----------------------------
 -- Table structure for `findlable`
@@ -173,7 +178,7 @@ CREATE TABLE `find_photo` (
   PRIMARY KEY (`id`),
   KEY `photoid` (`photoid`),
   CONSTRAINT `find_photo_ibfk_1` FOREIGN KEY (`photoid`) REFERENCES `findfriend` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of find_photo
@@ -201,6 +206,8 @@ INSERT INTO `find_photo` VALUES ('20', '29', 'u=1262128205,348831020&fm=26&gp=0.
 INSERT INTO `find_photo` VALUES ('21', '30', 'maoxuewang.jpg');
 INSERT INTO `find_photo` VALUES ('22', '30', 'maoxuewang2.jpg');
 INSERT INTO `find_photo` VALUES ('23', '30', 'u=904887750,2844595113&fm=26&gp=0.jpg');
+INSERT INTO `find_photo` VALUES ('24', '31', '20200604154110Screenshot_20200604_104925_com.huawei.android.launcher.jpg');
+INSERT INTO `find_photo` VALUES ('25', '31', '20200604154110Screenshot_20200531_175527_com.tencent.tmgp.sgame.jpg');
 
 -- ----------------------------
 -- Table structure for `find_user_like`
@@ -215,7 +222,7 @@ CREATE TABLE `find_user_like` (
   KEY `userid` (`userid`),
   CONSTRAINT `find_user_like_ibfk_1` FOREIGN KEY (`findfriendid`) REFERENCES `findfriend` (`id`),
   CONSTRAINT `find_user_like_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of find_user_like
@@ -226,6 +233,9 @@ INSERT INTO `find_user_like` VALUES ('16', '1', '11');
 INSERT INTO `find_user_like` VALUES ('17', '3', '123');
 INSERT INTO `find_user_like` VALUES ('18', '28', '123');
 INSERT INTO `find_user_like` VALUES ('19', '2', '11');
+INSERT INTO `find_user_like` VALUES ('20', '14', '11');
+INSERT INTO `find_user_like` VALUES ('22', '29', '11');
+INSERT INTO `find_user_like` VALUES ('23', '28', '11');
 
 -- ----------------------------
 -- Table structure for `goods`
@@ -327,7 +337,7 @@ CREATE TABLE `market_comments` (
   PRIMARY KEY (`c_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `market_comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_comments
@@ -335,14 +345,11 @@ CREATE TABLE `market_comments` (
 INSERT INTO `market_comments` VALUES ('1', '宝贝收到了，做面包的不二选择', '2019-06-25', '1001.png,1002.png', '3', '4', '5', '11', '1');
 INSERT INTO `market_comments` VALUES ('3', '已经购买很多次了，很好的面粉', '2018-06-30', '1003.png', '2', '5', '2', '2', '1');
 INSERT INTO `market_comments` VALUES ('4', '袋子下面开了一个口子，包装啥时候能给力点', '2018-01-28', '1004.png', '1', '1', '1', '1', '1');
-INSERT INTO `market_comments` VALUES ('5', '宝贝很好啊', '2020-02-28', '1005.png', '5', '5', '5', '1', '2');
-INSERT INTO `market_comments` VALUES ('6', '这款摸具真的好脱膜哦', '2019-05-24', '1006.png', '3', '3', '3', '1', '2');
 INSERT INTO `market_comments` VALUES ('7', '质感不错是我喜欢的', '2019-04-03', '1007.png', '5', '5', '5', '11', '2');
 INSERT INTO `market_comments` VALUES ('8', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-01', '1.png,1.png,', '2.0', '2.0', '2.0', '2', '3');
 INSERT INTO `market_comments` VALUES ('9', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-02', '3.png,1.png,', '2.0', '2.0', '2.0', '1', '3');
 INSERT INTO `market_comments` VALUES ('10', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-05', '3.png,1.png,', '2.0', '2.0', '2.0', '2', '4');
 INSERT INTO `market_comments` VALUES ('11', '收到后就冷冻了，冻好后再拿出来到化为冰沙状态，棒极了！', '2020-05-011', '2.png,1.png,', '2.0', '2.0', '2.0', '1', '4');
-INSERT INTO `market_comments` VALUES ('12', '大话设计模式（带目录完整版）', '2020-05-11', '2.png', '2.0', '2.0', '2.0', '2', '5');
 
 -- ----------------------------
 -- Table structure for `market_commentshow`
@@ -379,15 +386,13 @@ CREATE TABLE `market_court` (
   PRIMARY KEY (`id`),
   KEY `goods_id` (`goods_id`),
   CONSTRAINT `market_court_ibfk_1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of market_court
 -- ----------------------------
-INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '4', '1', '31');
-INSERT INTO `market_court` VALUES ('11', '良润面包粉,经典实惠，大包装等你来拿', '新良原面包粉10kg', '￥100', '6', '1', '32');
-INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模具', '6寸蛋糕圆盘', '￥39', '3', '2', '33');
-INSERT INTO `market_court` VALUES ('2', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '4', '1', '34');
+INSERT INTO `market_court` VALUES ('11', 'sql6寸8寸圆形蛋糕烤盘高级模具', '6寸蛋糕圆盘', '￥39', '5', '2', '33');
+INSERT INTO `market_court` VALUES ('2', '良润面包粉,经典实惠，大包装等你来拿', '新良原味面包粉5kg', '￥50', '6', '1', '34');
 INSERT INTO `market_court` VALUES ('123', '良润面包粉,经典实惠，大包装等你来拿', '请选择规格', '￥50.0', '1', '1', '35');
 INSERT INTO `market_court` VALUES ('123', 'sql6寸8寸圆形蛋糕烤盘高级模具', '请选择规格', '￥39.0', '1', '2', '36');
 
@@ -407,13 +412,15 @@ CREATE TABLE `market_order` (
 -- ----------------------------
 -- Records of market_order
 -- ----------------------------
-INSERT INTO `market_order` VALUES ('0', '123', '地区选择                              ------', '89.0', 'null');
-INSERT INTO `market_order` VALUES ('1', '12', '10', '辽宁省丹东市东港市仁达路88-25号', 'null');
-INSERT INTO `market_order` VALUES ('2', '1', '1', '江苏省苏州市吴中区东方大道1233号', 'null');
-INSERT INTO `market_order` VALUES ('3', '123', '89.0', '河北省石家庄裕华区河北师范大学', '记得加送我一包辣条');
-INSERT INTO `market_order` VALUES ('4', '123', '77.2', '四川省成都市青羊区青华路10号之附10-12', 'null');
-INSERT INTO `market_order` VALUES ('5', '123', '33.2', '陕西省安康市汉滨区大桥路2号', 'null');
-INSERT INTO `market_order` VALUES ('6', '123', '66.6', '孝感市云梦县梦馨佳园b区', 'null');
+INSERT INTO `market_order` VALUES ('-1', '11', '917.0', '湖北省  武汉市  江岸区', 'null');
+INSERT INTO `market_order` VALUES ('1', '12', '10', 'mianbao.png', null);
+INSERT INTO `market_order` VALUES ('2', '1', '1', '1', '1');
+INSERT INTO `market_order` VALUES ('3', '123', '北京市  北京市  东城区asd', '89.0', 'null');
+INSERT INTO `market_order` VALUES ('5', '123', '地区选择                              ------', '89.0', 'null');
+INSERT INTO `market_order` VALUES ('6', '123', '地区选择                              ------', '89.0', 'null');
+INSERT INTO `market_order` VALUES ('7', '123', '地区选择                              ------', '89.0', 'null');
+INSERT INTO `market_order` VALUES ('8', '123', '地区选择                              ------', '89.0', 'null');
+INSERT INTO `market_order` VALUES ('9', '123', '地区选择                              ------', '89.0', 'null');
 
 -- ----------------------------
 -- Table structure for `market_type`
@@ -455,19 +462,12 @@ CREATE TABLE `menu` (
   `menu_name` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`menu_id`),
-<<<<<<< HEAD
   KEY `author` (`text`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
-=======
-  KEY `author` (`author`),
-  CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
->>>>>>> db9c99bacba2194f92478b851f2ec59134604747
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-<<<<<<< HEAD
 INSERT INTO `menu` VALUES ('4', '土豆丝的正宗做法，学会这个三个技巧，土豆又脆有下饭', '2020-06-03', 'tudousichaorou.jpg', '土豆丝炒肉', '米');
 INSERT INTO `menu` VALUES ('5', '一定要用甜口的辣白菜，太酸的辣白菜炒出来不好吃', '2020-06-03', 'labaicaiwuhuarou.jpg', '辣白菜五花肉', '菜');
 INSERT INTO `menu` VALUES ('6', '开水白菜以北方的大白菜心来制作，配以用鸡，鸭，排骨熬煮，\r\n并用鸡肉蓉，猪肉蓉澄澈的高汤调味，最后浇汤时在汤里淋一\r\n些鸡油。成菜后，清鲜淡雅，香味浓醇，汤味浓厚，不油不腻，\r\n却清香爽口。', '2020-06-03', 'kaishuibaicai.jpg', '开水白菜', '菜');
@@ -476,14 +476,9 @@ INSERT INTO `menu` VALUES ('13', '仅记录自己方便使用，侵权删除', '
 INSERT INTO `menu` VALUES ('14', '夏天不想做菜，那就来一道简单好吃又快手的凉拌豆皮吧、酸辣开胃，做法简单，喜欢的你一定要试试哦？', '2020-06-03', 'xcf_recipe_1591167750972.jpg', '巨好吃的凉拌豆皮❗️香辣过瘾连吃三天都不腻', '菜');
 INSERT INTO `menu` VALUES ('15', '时间：约20-25分钟 难度：零厨艺✌️ 份量：4人份', '2020-06-03', 'xcf_recipe_1591168098748.jpeg', '鲜味香菇芋头饭', '米');
 INSERT INTO `menu` VALUES ('16', '简单又爽口的热汤面 加入自己喜欢的青菜，十分钟就能搞定的早餐&午餐&晚餐', '2020-06-03', 'xcf_recipe_1591168309586.jpeg', '十分钟搞定的热汤面', '面');
-=======
-INSERT INTO `menu` VALUES ('1', null, '2020-04-23', 'simuxue.jpg', '思慕雪', '菜');
-INSERT INTO `menu` VALUES ('2', null, '2020-04-21', 'xiaolongxia.jpg', '小龙虾', '菜');
-INSERT INTO `menu` VALUES ('4', null, '2020-04-27', 'tudousichaorou.jpg', '土豆丝炒肉', '菜');
-INSERT INTO `menu` VALUES ('5', null, '2020-06-17', 'labaicaiwuhuarou.jpg', '辣白菜五花肉', '菜');
-INSERT INTO `menu` VALUES ('6', null, '2020-05-27', 'kaishuibaicai.jpg', '开水白菜', '菜');
-INSERT INTO `menu` VALUES ('7', null, '2020-04-17', 'congyoubanmian.jpg', '葱油拌面', '面');
->>>>>>> db9c99bacba2194f92478b851f2ec59134604747
+INSERT INTO `menu` VALUES ('17', '好吃', '2020-06-03', 'mmexport1589188909184.jpg', '好吃', '米');
+INSERT INTO `menu` VALUES ('18', '是是是', '2020-06-03', 'mmexport1586784832958.jpg', '是是是', '米');
+INSERT INTO `menu` VALUES ('19', '都偶尔', '2020-06-04', 'qxlarge-dsc-33647FAAB2CA8EA0EBB992B61CE6E98A.jpg', '豆皮', '菜');
 
 -- ----------------------------
 -- Table structure for `menu_comment`
@@ -519,7 +514,7 @@ CREATE TABLE `menu_label` (
   KEY `menu_id` (`menu_id`),
   CONSTRAINT `menu_label_ibfk_1` FOREIGN KEY (`label_id`) REFERENCES `label` (`label_id`),
   CONSTRAINT `menu_label_ibfk_2` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu_label
@@ -544,6 +539,9 @@ INSERT INTO `menu_label` VALUES ('60', '5', '15');
 INSERT INTO `menu_label` VALUES ('61', '1', '16');
 INSERT INTO `menu_label` VALUES ('62', '4', '16');
 INSERT INTO `menu_label` VALUES ('63', '5', '16');
+INSERT INTO `menu_label` VALUES ('64', '4', '17');
+INSERT INTO `menu_label` VALUES ('65', '5', '18');
+INSERT INTO `menu_label` VALUES ('66', '4', '19');
 
 -- ----------------------------
 -- Table structure for `mv_comment`
@@ -562,6 +560,7 @@ CREATE TABLE `mv_comment` (
 -- ----------------------------
 -- Records of mv_comment
 -- ----------------------------
+INSERT INTO `mv_comment` VALUES ('彩虹千层', '撒阿斯顿', null, null, '0');
 INSERT INTO `mv_comment` VALUES ('水煮肉片', 'sion', '好想吃', 'http://img2.imgtn.bdimg.com/it/u=1985706169,239838421&fm=26&gp=0.jpg', '1');
 INSERT INTO `mv_comment` VALUES ('米饭披萨料理', '九星毒奶', '比我有才，求大神多发点', 'http://img0.imgtn.bdimg.com/it/u=2589794277,4289567791&fm=26&gp=0.jpg', '2');
 INSERT INTO `mv_comment` VALUES ('西红柿米饭', '云天厚谊', '楼上的小姐姐来我家，我也会做', 'http://pic1.win4000.com/pic/5/40/ce69876873_130_170.jpg', '3');
@@ -569,18 +568,24 @@ INSERT INTO `mv_comment` VALUES ('西红柿米饭', '沧海一笑', '才艺不�
 INSERT INTO `mv_comment` VALUES ('米饭披萨料理', '手电筒', '图片说明一切', 'http://b-ssl.duitang.com/uploads/item/201808/13/20180813224158_wfcbm.thumb.224_0.jpg', '5');
 INSERT INTO `mv_comment` VALUES ('心形蛋糕', '站住别走', '我也想要', 'http://img0.imgtn.bdimg.com/it/u=1621815320,325751128&fm=11&gp=0.jpg', '6');
 INSERT INTO `mv_comment` VALUES ('甜点', '炸天帮徐缺', '虽然不懂，但是好想吃', 'http://img5.imgtn.bdimg.com/it/u=1915900830,2104806041&fm=26&gp=0.jpg', '7');
-INSERT INTO `mv_comment` VALUES ('甜点', '清华门', null, 'http://img3.imgtn.bdimg.com/it/u=1152582376,1311957215&fm=26&gp=0.jpg', '8');
+INSERT INTO `mv_comment` VALUES ('甜点', '清华门', '步骤好清晰啊', 'http://img3.imgtn.bdimg.com/it/u=1152582376,1311957215&fm=26&gp=0.jpg', '8');
 INSERT INTO `mv_comment` VALUES ('甜点', '网络喷子', '还有其他的甜点做法吗', null, '9');
 INSERT INTO `mv_comment` VALUES ('甜点', '24K', '求大神赐教', 'http://img1.imgtn.bdimg.com/it/u=237801882,3588233167&fm=15&gp=0.jpg', '10');
 INSERT INTO `mv_comment` VALUES ('青辣椒', '8sda', '看着就好辣，但是好爽', null, '11');
 INSERT INTO `mv_comment` VALUES ('香茅姜茶', 'qwes', '清凉解渴小宝贝，谁吃谁得劲', 'http://img3.imgtn.bdimg.com/it/u=1666262756,1936982353&fm=26&gp=0.jpg', '12');
 INSERT INTO `mv_comment` VALUES ('肉夹馍', 'zxf', '为什么我做出来的那么难吃？', 'http://img1.imgtn.bdimg.com/it/u=2921143277,2752102458&fm=15&gp=0.jpg', '13');
 INSERT INTO `mv_comment` VALUES ('花蛤', 'asdwq', '真的好吃吗？这么简单？', 'http://img0.imgtn.bdimg.com/it/u=41706827,3907250713&fm=15&gp=0.jpg', '14');
-INSERT INTO `mv_comment` VALUES ('美味炒面', 'csaz', '口水都流出来了', null, '15');
-INSERT INTO `mv_comment` VALUES ('水煮肉片', '蓑头翁', '老板给我一份', null, '16');
-INSERT INTO `mv_comment` VALUES ('水煮肉片', '寒江雪', '四川人的最奈', null, '17');
-INSERT INTO `mv_comment` VALUES ('水煮肉片', '江小皮皮不皮', '请开始你的表演', null, '18');
-INSERT INTO `mv_comment` VALUES ('肉夹馍', '夏研', '大厨，上菜', null, '19');
+INSERT INTO `mv_comment` VALUES ('美味炒面', 'csaz', '口水都流出来了', 'http://img0.imgtn.bdimg.com/it/u=41706827,3907250713&fm=15&gp=0.jpg', '15');
+INSERT INTO `mv_comment` VALUES ('水煮肉片', '蓑头翁', '老板给我一份', 'http://img0.imgtn.bdimg.com/it/u=41706827,3907250713&fm=15&gp=0.jpg', '16');
+INSERT INTO `mv_comment` VALUES ('水煮肉片', '寒江雪', '四川人的最奈', 'http://img0.imgtn.bdimg.com/it/u=41706827,3907250713&fm=15&gp=0.jpg', '17');
+INSERT INTO `mv_comment` VALUES ('水煮肉片', '江小皮皮不皮', '请开始你的表演', 'http://img0.imgtn.bdimg.com/it/u=41706827,3907250713&fm=15&gp=0.jpg', '18');
+INSERT INTO `mv_comment` VALUES ('肉夹馍', '夏研', '大厨，上菜', 'http://img0.imgtn.bdimg.com/it/u=41706827,3907250713&fm=15&gp=0.jpg', '19');
+INSERT INTO `mv_comment` VALUES ('肉夹馍', '夏山海', '6666', 'http://img0.imgtn.bdimg.com/it/u=41706827,3907250713&fm=15&gp=0.jpg', '20');
+INSERT INTO `mv_comment` VALUES ('晚歺糖水', '阿萨瓦多', '看着有点像红糖水唉', null, '21');
+INSERT INTO `mv_comment` VALUES ('晚歺糖水', '安金华', '太甜了吧啊，不会长胖吗', null, '23');
+INSERT INTO `mv_comment` VALUES ('西红柿土豆萝卜瘦肉汤', '客户苏北', '我按着做了，真好吃', 'http://img0.imgtn.bdimg.com/it/u=41706827,3907250713&fm=15&gp=0.jpg', '24');
+INSERT INTO `mv_comment` VALUES ('过桥米线', '啥看好你', '晚饭终于知道吃什么了', 'http://img2.imgtn.bdimg.com/it/u=1985706169,239838421&fm=26&gp=0.jpg', '25');
+INSERT INTO `mv_comment` VALUES ('什锦冷菜', '东北大汉', '这道菜我爸拉着我喝了三瓶二锅头', null, '26');
 
 -- ----------------------------
 -- Table structure for `step`
@@ -595,7 +600,7 @@ CREATE TABLE `step` (
   PRIMARY KEY (`step_id`),
   KEY `menu_id` (`menu_id`),
   CONSTRAINT `step_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of step
@@ -636,6 +641,9 @@ INSERT INTO `step` VALUES ('55', '3', '16', '加入烧开的热水（煮面的�
 INSERT INTO `step` VALUES ('56', '4', '16', '水烧开，煮熟面条（这时青菜可一起煮熟）', 'xcf_recipe_1591168299962.jpeg');
 INSERT INTO `step` VALUES ('57', '5', '16', '将煮熟的面条捞入热汤中，放点香菜，爽口的热汤面就做好啦', 'xcf_recipe_1591168305524.jpeg');
 INSERT INTO `step` VALUES ('58', '6', '16', '也可以放点紫菜，或者自己喜欢的青菜和鸡蛋，如果今天你不想大动干戈做顿饭，就来试试吧', 'xcf_recipe_1591168309586.jpeg');
+INSERT INTO `step` VALUES ('59', '1', '17', '好吃帮了', 'mmexport1586784832958.jpg');
+INSERT INTO `step` VALUES ('60', '1', '18', '啊啊啊', 'mmexport1586784832958.jpg');
+INSERT INTO `step` VALUES ('61', '1', '19', '先xxx', 'xcf_recipe_1591166514106.jpg');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -653,15 +661,15 @@ CREATE TABLE `user` (
   `home` varchar(255) DEFAULT NULL,
   `label` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1112313 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg', null, null, null, null, null);
-INSERT INTO `user` VALUES ('2', 'ss', '2', '1', 'abc.jpeg', null, null, null, null, null);
-INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-77-2020-05-16-03-27-47.jpg', 'nan', 'it', '2017', 'hebei', 'sss');
-INSERT INTO `user` VALUES ('123', '123', '123', '1', 'abc.jpeg', null, null, null, null, null);
+INSERT INTO `user` VALUES ('1', '一只肥罗', '123', null, 'yizhifeiluo.jpg', '女', 'it', '2017', '河北', null);
+INSERT INTO `user` VALUES ('2', 'ss', '2', '1', 'abc.jpeg', '男', '教师', '2018', '石家庄', null);
+INSERT INTO `user` VALUES ('11', 'zs', '11', '1', 'tiny-98-2020-06-03-16-15-49.jpg', '男', 'it', '2017', '河南', 'sss');
+INSERT INTO `user` VALUES ('123', '123', '123', '1', 'abc.jpeg', '女', '教师', '2019', '天津', null);
 
 -- ----------------------------
 -- Table structure for `user_menu`

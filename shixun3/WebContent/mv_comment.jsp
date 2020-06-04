@@ -8,35 +8,32 @@
 <meta charset="UTF-8">
 <title>评论管理</title>
 	<style type="text/css">
-        table
-        {
-            border-collapse: collapse;
-            margin: 0 auto;
-            text-align: center;
-        }
-        table td, table th
-        {
-            border: 1px solid #cad9ea;
-            color: #666;
-            height: 30px;
-        }
-        table thead th
-        {
-            background-color: #CCE8EB;
-            width: 100px;
-        }
-        table tr:nth-child(odd)
-        {
-            background: #fff;
-        }
-        table tr:nth-child(even)
-        {
-            background: #F5FAFA;
-        }
-    </style>
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+</style>
 </head>
 <body>
-	<table border="">
+	<table class="gridtable">
 	<tr>
 		<th>视频名称</th>
 		<th>作者</th>
@@ -53,7 +50,7 @@
 			out.println("<tr>");
 		}if(i%6==4){
 			id=(String)comm.get(i);
-			html="<td><a href='delcomment?mv_id="+id+"'>删除</a></td>";
+			html="<td><a href='delcomment?mv_id="+id+"'><img src='upload/shan.jpg' width='50' height='50'/></a></td>";
 		}if(i%6==5){
 			out.println(html);
 			out.println("</tr>");

@@ -70,6 +70,13 @@ import java.util.List;
             drawables.add(R.drawable.course_mifan);
             drawables.add(R.drawable.course_pizza);
             drawables.add(R.drawable.course_roupian);
+            drawables.add(R.drawable.caihong);
+            drawables.add(R.drawable.kugua);
+            drawables.add(R.drawable.tshui);
+            drawables.add(R.drawable.xihongshi);
+            drawables.add(R.drawable.mixian);
+            drawables.add(R.drawable.leng);
+            drawables.add(R.drawable.xianggua);
             if (null == convertView) {
                 LayoutInflater inflater = LayoutInflater.from(context);
                 convertView = inflater.inflate(itemLayoutId, null);

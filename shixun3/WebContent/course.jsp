@@ -9,36 +9,32 @@
 <meta charset="UTF-8">
 <title>视频管理</title>
 <style type="text/css">
-        table
-        {
-            border-collapse: collapse;
-            margin: 0 auto;
-            text-align: center;
-        }
-        table td, table th
- 
-        {
-            border: 1px solid #cad9ea;
-            color: #666;
-            height: 30px;
-        }
-        table thead th
-        {
-            background-color: #CCE8EB;
-            width: 100px;
-        }
-        table tr:nth-child(odd)
-        {
-            background: #fff;
-        }
-        table tr:nth-child(even)
-        {
-            background: #F5FAFA;
-        }
-    </style>
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+</style>
 </head>
 <body>
-	<table border="">
+	<table class="gridtable">
 	<tr>
 		<th>视频编号</th>
 		<th>作者</th>
@@ -58,7 +54,7 @@
 			out.println("<tr>");
 		}if(i%9==3){
 		 	mv_name=(String)ss.get(i);
-		 	html="<td><a href='delectMV?mv_name="+mv_name+"'>删除</a></td>";
+		 	html="<td><a href='delectMV?mv_name="+mv_name+"'><img src='upload/shan.jpg' width='50' height='50'/></a></td>";
 		 	System.out.println(html);
 		}
 		if(i%9==8){
